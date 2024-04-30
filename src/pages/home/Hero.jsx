@@ -13,7 +13,7 @@ export default function Hero() {
           <p className="leading-relaxed text-text__gray max-w-[35rem]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
             aperiam perspiciatis mollitia cum expedita veniam perferendis eaque
-            consectetur voluptatibus quia?
+            consectetur voluptatibus quia??
           </p>
           <br />
           <CustomLink
