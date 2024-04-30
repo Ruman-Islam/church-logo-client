@@ -11,9 +11,11 @@ export default function Layout({ children, title }) {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <Header topBarEnable="enable" />
-      <main>{children}</main>
-      <Footer />
+      <section className="flex flex-col justify-between h-screen">
+        <Header topBarEnable="enable" />
+        <main className="mb-auto">{children}</main>
+        <Footer />
+      </section>
     </>
   );
 }

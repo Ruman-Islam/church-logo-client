@@ -36,6 +36,9 @@ export default {
         success: "#65B741",
         error: "#E72929",
         white: "#fff",
+        text__navy_blue: "#00306e",
+        text__gray: "#313030",
+
       },
     },
   },
