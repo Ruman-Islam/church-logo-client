@@ -31,7 +31,7 @@ export default function Header({ topBarEnable }) {
       <header>
         <div className={isVisible ? "header-area react-sticky" : "header-area"}>
           {topBarEnable ? (
-            <div className="topBar-area bg-primary text-white py-2 font-semibold relative z-30">
+            <div className="topBar-area bg-[#031401] text-white py-2 font-semibold relative z-30">
               <div className="container text-center">
                 50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
               </div>
