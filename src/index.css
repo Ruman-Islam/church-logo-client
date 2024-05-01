@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,7 @@ html,
 body {
   scroll-behavior: smooth;
   /* background-color: #ebf0f4; */
-   font-family: "Gabarito", sans-serif;
+  font-family: "Gabarito", sans-serif;
   box-sizing: border-box;
 }
 
@@ -18,11 +18,11 @@ body {
   margin: 0 auto;
 }
 
-
 .slick-dots li button:before {
-background-color: #13a800;
-height: 10px;
-width: 10px;
-text-indent: -9999px;
-overflow:hidden; 
+  background-color: #031401;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  text-indent: -9999px;
+  overflow: hidden;
 }

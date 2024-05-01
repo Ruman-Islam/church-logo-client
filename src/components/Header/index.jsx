@@ -32,7 +32,7 @@ export default function Header({ topBarEnable }) {
         <div className={isVisible ? "header-area react-sticky" : "header-area"}>
           {topBarEnable ? (
             <div className="topBar-area bg-[#031401] text-white py-2 font-semibold relative z-30">
-              <div className="container text-center">
+              <div className="container text-center text-brand__font__size__xs md:text-brand__font__size__base">
                 50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
               </div>
             </div>
@@ -43,9 +43,9 @@ export default function Header({ topBarEnable }) {
           <div className="menu-part">
             <div className="container">
               <div className="relative">
-                <nav className="flex items-center justify-between h-[80px] px-2 bg-white">
-                  <div className="flex justify-between w-full z-20 bg-white h-full items-center">
-                    <div className="logo w-[300px] xl:w-[350px]">
+                <nav className="flex items-center justify-between h-[90px] bg-white">
+                  <div className="flex justify-between w-full z-20 bg-white h-full items-center px-2">
+                    <div className="logo w-[250px] md:w-[300px] xl:w-[350px]">
                       {isVisible ? (
                         <Link to="/" className="logo-text">
                           <img src={stickyLogo} alt="" />
@@ -72,10 +72,10 @@ export default function Header({ topBarEnable }) {
                   </div>
                   <div
                     className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full bg-white duration-500 ease-in-out ${
-                      menuOpen ? "top-[80px]" : "-top-44"
+                      menuOpen ? "top-[90px]" : "-top-56"
                     }`}
                   >
-                    <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-text__navy_blue font-semibold text-brand__font__size__sm xl:text-brand__font__size__base">
+                    <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-semibold text-brand__font__size__sm xl:text-brand__font__size__base">
                       <MenuItems />
                     </ul>
                   </div>
