@@ -20,9 +20,14 @@ body {
 
 .slick-dots li button:before {
   background-color: #031401;
-  height: 10px;
-  width: 10px;
+  height: 12px !important;
+  width: 12px !important;
   border-radius: 100%;
   text-indent: -9999px;
   overflow: hidden;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #031401 !important;
 }

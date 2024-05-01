@@ -40,7 +40,11 @@ export default {
         brand__black__color: "#031401",
         text__navy_blue: "#00306e",
         text__gray: "#313030",
+        section__bbg_color: "#fbfffa"
       },
+       backgroundImage: {
+        'globe': "url('./src/assets/image/background/globe.png')",
+      }
     },
   },
   plugins: [],

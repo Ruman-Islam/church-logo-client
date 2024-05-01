@@ -1,6 +1,4 @@
 import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
 import Banner1 from "../../assets/image/banner/hero-01-7daaa580.png";
 import Banner2 from "../../assets/image/banner/hero-01-7daaa580100.png";
 import Banner3 from "../../assets/image/banner/hero-01-7daaa58070.png";
@@ -27,7 +25,7 @@ export default function Hero() {
         <div className="basis-[100%] lg:basis-[40%] w-full p-2.5 flex justify-center items-center">
           <div className="slider-container max-w-[450px] xl:max-w-[600px] w-full">
             <Slider {...settings}>
-              <div className="outline-none">
+              <div>
                 <img src={Banner1} />
               </div>
               <div>
