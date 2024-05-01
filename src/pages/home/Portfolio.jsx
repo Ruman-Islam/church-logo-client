@@ -4,27 +4,36 @@ import Banner1 from "../../assets/image/banner/hero-01-7daaa580.png";
 export default function Portfolio() {
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
     arrows: true,
-    waitForAnimate: true,
-    cssEase: "linear",
   };
 
   return (
-    <div className="border border-red-500 w-full h-[800px] bg-globe bg-no-repeat bg-contain bg-center bg-origin-content relative">
+    <div className="w-full border border-red-500 h-[820px] bg-globe bg-no-repeat bg-contain bg-center relative">
       <div className="bg-white absolute w-full h-full bg-opacity-80">
         <div className="slider-container p-20">
-          <Slider {...settings}>
-            <div className="border border-green-500 flex">
-             <h1>hello 1</h1>
-             <h1>hello 2</h1>
+          <Slider {...settings} className="p-5">
+            <div className="px-[200px]">
+              <div className="flex items-center justify-between gap-4">
+                <div className="border border-blue-600 basis-[50%] w-full">
+                  <img src={Banner1} className="w-full"/>
+                </div>
+                <div className="border border-red-600 basis-[50%] h-full">
+                  <h1>hello 2</h1>
+                </div>
+              </div>
             </div>
-            <div className="border border-blue-500">
-             <h1>bye 1</h1>
-             <h1>bye 2</h1>
+            <div className="px-[200px]">
+              <div className="flex items-center justify-between gap-4">
+                <div className="border border-blue-600 basis-[50%] w-full">
+                  <img src={Banner1} className="w-full"/>
+                </div>
+                <div className="border border-red-600 basis-[50%] h-full">
+                  <h1>bye 2</h1>
+                </div>
+              </div>
             </div>
           </Slider>
         </div>

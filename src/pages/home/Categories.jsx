@@ -25,7 +25,7 @@ export default function Categories() {
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: false,
-    arrows: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
