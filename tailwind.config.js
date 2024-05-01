@@ -11,6 +11,7 @@ export default {
         brand__font__size__lg: "24px",
         brand__font__size__xl: "52px",
         brand__font__size__2xl: "74px",
+        section__title__size: "32px",
       },
       fontFamily: {
         brand__font__family__fancy: "Lato",

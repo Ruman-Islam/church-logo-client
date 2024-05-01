@@ -22,8 +22,8 @@ export default function Hero() {
   };
 
   return (
-    <div className="container px-2">
-      <div className="flex flex-col-reverse lg:flex-row justify-between py-0 md:py-6">
+    <div className="container px-2 py-[40px]">
+      <div className="flex flex-col-reverse lg:flex-row justify-between">
         <div className="basis-[100%] lg:basis-[40%] w-full p-2.5 flex justify-center items-center">
           <div className="slider-container max-w-[450px] xl:max-w-[600px] w-full">
             <Slider {...settings}>
@@ -55,7 +55,7 @@ export default function Hero() {
               Since excellent design generates excellent revenue.
             </p>
             <br />
-            <div className="flex flex-wrap gap-5 w-full items-center justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start">
               <CustomLink
                 route="/"
                 text="Get started"
@@ -68,7 +68,7 @@ export default function Hero() {
                 text="Get started"
                 classNames="py-3 px-6 inline-block rounded-full text-text__gray font-semibold bg-brand__black__color text-white hover:bg-primary duration-300"
               >
-                Check out our shop
+                Visit our shop
               </CustomLink>
             </div>
             <br />
