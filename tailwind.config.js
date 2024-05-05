@@ -42,7 +42,7 @@ export default {
         section__bg_color: "#fbfffa"
       },
        backgroundImage: {
-        'globe': "url('./src/assets/image/background/globe.png')",
+        'globe': "url('./src/assets/image/background/map.avif')",
       }
     },
   },

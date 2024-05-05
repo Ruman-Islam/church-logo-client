@@ -1,7 +1,10 @@
 import Layout from "../../components/common/Layout";
 import Categories from "./Categories";
+import CustomersDoing from "./CustomersDoing";
 import Hero from "./Hero";
 import Portfolio from "./Portfolio";
+import Services from "./Services";
+import ShowCaseYouLogo from "./ShowCaseYouLogo";
 
 export default function Home() {
   return (
@@ -9,6 +12,9 @@ export default function Home() {
       <Hero />
       <Categories />
       <Portfolio />
+      <Services />
+      <ShowCaseYouLogo />
+      <CustomersDoing />
     </Layout>
   );
 }

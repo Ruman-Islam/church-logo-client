@@ -7,7 +7,7 @@ const portfolioData = [
     id: 1,
     img: Banner1,
     headLine:
-      "99designs is a platform with a good name and a very good service…",
+      "Church Logo is a platform with a good name and a very good service…",
     feedBack:
       "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result.",
   },
@@ -15,7 +15,7 @@ const portfolioData = [
     id: 2,
     img: Banner1,
     headLine:
-      "99designs is a platform with a good name and a very good service…",
+      "Church Logo is a platform with a good name and a very good service…",
     feedBack:
       "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result.",
   },
@@ -31,10 +31,10 @@ const settings = {
 
 export default function Portfolio() {
   return (
-    <div className="w-full bg-globe bg-no-repeat bg-contain bg-center relative">
-      <div className="bg-white absolute w-full h-full bg-opacity-80"></div>
-      <div className="slider-container-portfolio p-20">
-        <Slider {...settings} className="p-5 relative">
+    <div className="w-full bg-globe bg-no-repeat bg-[length:1000px_700px] bg-center relative">
+      {/* <div className="bg-white absolute w-full h-full"></div> */}
+      <div className="slider-container-portfolio p-10 xl:p-20">
+        <Slider {...settings} className="p-5">
           {portfolioData.map((d) => (
             <div key={d.id} className="px-[0px] xl:px-[100px]">
               <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
