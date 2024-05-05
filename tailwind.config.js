@@ -14,8 +14,7 @@ export default {
         section__title__size: "32px",
       },
       fontFamily: {
-        brand__font__family__fancy: "Lato",
-        brand__font__family__regular: "Lato",
+        brand__font__family: "Gabarito",
       },
       fontWeight: {
         brand__font__thin: "100",
@@ -40,7 +39,7 @@ export default {
         brand__black__color: "#031401",
         text__navy_blue: "#00306e",
         text__gray: "#313030",
-        section__bbg_color: "#fbfffa"
+        section__bg_color: "#fbfffa"
       },
        backgroundImage: {
         'globe': "url('./src/assets/image/background/globe.png')",

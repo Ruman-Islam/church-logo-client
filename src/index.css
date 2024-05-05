@@ -27,7 +27,12 @@ body {
   overflow: hidden;
 }
 
-.slick-prev:before,
+.slider-container-portfolio .slick-prev:before,
 .slick-next:before {
   color: #031401 !important;
+}
+
+.slider-container-portfolio .slick-prev:before,
+.slick-next:before {
+  color: black !important;
 }

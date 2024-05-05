@@ -52,7 +52,7 @@ export default function Categories() {
   };
 
   return (
-    <div className="bg-section__bbg_color">
+    <div className="bg-section__bg_color">
       <div className="container px-2 py-[50px]">
         <div>
           <SectionTitle
@@ -65,7 +65,7 @@ export default function Categories() {
           <Slider {...settings} className="p-2">
             {categories.map((category) => (
               <CategoryCard
-                cardContainerClass="max-w-[350px] md:max-w-[300px] w-full h-full mx-[11px] rounded-lg bg-white aspect-[1.3/1] text-center border"
+                cardContainerClass="max-w-[350px] md:max-w-[300px] w-full h-full rounded-lg bg-white aspect-[1.3/1] text-center border"
                 imgClass="w-full h-full rounded-tl-lg rounded-tr-lg object-cover"
                 key={category.id}
                 route={category.route}
