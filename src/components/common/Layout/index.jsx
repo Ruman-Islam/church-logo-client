@@ -14,7 +14,7 @@ export default function Layout({ children, title }) {
       <section className="flex flex-col justify-between h-screen">
         <Header topBarEnable="enable" />
         <main className="mb-auto">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </section>
     </>
   );

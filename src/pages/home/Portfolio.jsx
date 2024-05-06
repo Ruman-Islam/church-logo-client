@@ -31,7 +31,7 @@ const settings = {
 
 export default function Portfolio() {
   return (
-    <div className="w-full bg-globe bg-no-repeat bg-[length:1000px_700px] bg-center relative">
+    <div className="w-full xl:max-h-[800px] bg-globe bg-no-repeat bg-[length:1000px_700px] bg-center relative">
       {/* <div className="bg-white absolute w-full h-full"></div> */}
       <div className="slider-container-portfolio p-10 xl:p-20">
         <Slider {...settings} className="p-5">
@@ -43,11 +43,13 @@ export default function Portfolio() {
                 </div>
                 <div className="flex-1 w-full h-full pl-0 xl:pl-10">
                   <div className="max-w-[100%] xl:max-w-[400px] w-full text-center xl:text-left">
-                    <h2 className="text-[32px] leading-tight text-primary">
+                    <h2 className="text-[32px] max-w-[500px] mx-auto leading-tight text-primary">
                       {d.headLine}
                     </h2>
                     <br />
-                    <p className="font-brand__font__regular">{d.feedBack}</p>
+                    <p className="max-w-[500px] mx-auto font-brand__font__regular">
+                      {d.feedBack}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -47,7 +47,7 @@ export default function ShowCaseYouLogo() {
           />
         </div>
         <br />
-        <div>
+        <div className="slider-container-portfolio">
           <Slider {...settings} className="xl:p-5">
             {showCaseData.map((d) => (
               <div key={d.id} className="w-full">
