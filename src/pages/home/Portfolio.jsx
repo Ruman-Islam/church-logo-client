@@ -21,6 +21,25 @@ const portfolioData = [
   },
 ];
 
+const renderArrows = () => {
+  return (
+    <div className="slider-arrow">
+      <button
+        className="arrow-btn prev"
+        onClick={() => this.slider.slickPrev()}
+      >
+        {/* <ArrowLeft /> */}
+      </button>
+      <button
+        className="arrow-btn next"
+        onClick={() => this.slider.slickNext()}
+      >
+        {/* <ArrowRight /> */}
+      </button>
+    </div>
+  );
+};
+
 const settings = {
   infinite: true,
   speed: 1000,
@@ -31,7 +50,7 @@ const settings = {
 
 export default function Portfolio() {
   return (
-    <div className="w-full xl:max-h-[800px] bg-globe bg-no-repeat bg-[length:1000px_700px] bg-center relative">
+    <div className="w-full xl:max-h-[800px] bg-globe bg-no-repeat bg-[length:1000px_700px] bg-right relative">
       {/* <div className="bg-white absolute w-full h-full"></div> */}
       <div className="slider-container-portfolio p-10 xl:p-20">
         <Slider {...settings} className="p-5">

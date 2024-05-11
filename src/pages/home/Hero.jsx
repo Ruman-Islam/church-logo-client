@@ -5,6 +5,37 @@ import Banner3 from "../../assets/image/banner/hero-01-7daaa58070.png";
 import Banner4 from "../../assets/image/banner/hero-01-7daaa58090.png";
 import CustomLink from "../../components/UI/CustomLink";
 
+const popularData = [
+  {
+    id: 1,
+    route: "/",
+    children: "Logo Design",
+    className:
+      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+  },
+  {
+    id: 2,
+    route: "/",
+    children: "Web Design",
+    className:
+      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+  },
+  {
+    id: 3,
+    route: "/",
+    children: "Branding",
+    className:
+      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+  },
+  {
+    id: 4,
+    route: "/",
+    children: "Personal Signature",
+    className:
+      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+  },
+];
+
 export default function Hero() {
   const settings = {
     dots: true,
@@ -20,10 +51,10 @@ export default function Hero() {
   };
 
   return (
-    <div className="container px-2 py-[40px]">
+    <div className="container px-2 md:py-[40px]">
       <div className="flex flex-col-reverse lg:flex-row justify-between">
-        <div className="basis-[100%] lg:basis-[40%] w-full p-2.5 flex justify-center items-center">
-          <div className="slider-container max-w-[450px] xl:max-w-[600px] w-full">
+        <div className="basis-[100%] lg:basis-[40%] w-full flex justify-center items-center">
+          <div className="slider-container max-w-[450px] xl:max-w-[600px] w-full p-10 md:p-0">
             <Slider {...settings}>
               <div>
                 <img src={Banner1} />
@@ -75,27 +106,15 @@ export default function Hero() {
                 <span>Popular: </span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-2 text-text__gray">
-                <CustomLink
-                  route="/"
-                  text="Get started"
-                  classNames="border py-0.5 px-6 inline-block rounded-md text-black bg-[#dad9d7] hover:text-white duration-300"
-                >
-                  Logo Design
-                </CustomLink>
-                <CustomLink
-                  route="/"
-                  text="Get started"
-                  classNames="border py-0.5 px-6 inline-block rounded-md text-black bg-[#dad9d7] hover:text-white duration-300"
-                >
-                  Web Design
-                </CustomLink>
-                <CustomLink
-                  route="/"
-                  text="Get started"
-                  classNames="border py-0.5 px-6 inline-block rounded-md text-black bg-[#dad9d7] hover:text-white duration-300"
-                >
-                  Branding
-                </CustomLink>
+                {popularData.map((d) => (
+                  <CustomLink
+                    key={d.id}
+                    route={d.route}
+                    classNames={d.className}
+                  >
+                    {d.children}
+                  </CustomLink>
+                ))}
               </div>
             </div>
           </div>

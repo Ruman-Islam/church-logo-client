@@ -34,16 +34,15 @@ const services = [
 export default function Services() {
   return (
     <div className="bg-section__bg_color">
-      <div className="container px-2 py-[50px]">
+      <div className="container px-2 py-[30px] md:py-[60px]">
         <div>
           <SectionTitle
             title="What you get"
-            titleClass="text-brand__font__size__xl leading-[35px] text-center"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-[35px] text-center"
           />
         </div>
-        <br />
-        <br />
-        <div className="flex flex-wrap justify-center gap-5">
+
+        <div className="flex flex-wrap justify-center gap-5 mt-5 md:mt-10">
           {services.map((service) => (
             <div
               key={service.id}

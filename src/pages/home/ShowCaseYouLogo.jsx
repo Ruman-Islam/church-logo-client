@@ -43,7 +43,7 @@ export default function ShowCaseYouLogo() {
         <div>
           <SectionTitle
             title="Design for what you need"
-            titleClass="text-section__title__size leading-[35px] text-center text-white"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-[35px] text-center text-white"
           />
         </div>
         <br />

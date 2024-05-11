@@ -48,11 +48,11 @@ export default function Header({ topBarEnable }) {
                     <div className="logo w-[250px] md:w-[300px] xl:w-[350px]">
                       {isVisible ? (
                         <Link to="/" className="logo-text">
-                          <img src={stickyLogo} alt="" />
+                          <img src={stickyLogo} alt="church logo" />
                         </Link>
                       ) : (
                         <Link to="/" className="logo-text">
-                          <img src={normalLogo} alt="" />
+                          <img src={normalLogo} alt="church logo" />
                         </Link>
                       )}
                     </div>

@@ -30,9 +30,18 @@ body {
 .slider-container-portfolio .slick-prev:before,
 .slick-next:before {
   color: #031401 !important;
+  border: 1px solid red;
 }
 
-.slider-container-portfolio .slick-prev:before,
-.slick-next:before {
-  color: black !important;
+.slider-arrow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.arrow-btn {
+  top: 45%;
+  z-index: 1;
+}
+.next {
+  float: right;
 }
