@@ -38,16 +38,16 @@ const settings = {
 
 export default function ShowCaseYouLogo() {
   return (
-    <div className="bg-[#525659]">
-      <div className="container px-2 py-[50px]">
+    <div className="bg-brand__black__color">
+      <div className="container px-2 pb-[30px] md:pb-[70px] pt-[30px] md:pt-[50px]">
         <div>
           <SectionTitle
             title="Design for what you need"
             titleClass="text-section__title__size xl:text-brand__font__size__xl leading-[35px] text-center text-white"
           />
         </div>
-        <br />
-        <div className="slider-container-portfolio">
+       
+        <div className="slider-container-portfolio mt-5">
           <Slider {...settings} className="xl:p-5">
             {showCaseData.map((d) => (
               <div key={d.id} className="w-full">
