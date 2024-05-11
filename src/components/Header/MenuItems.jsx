@@ -10,7 +10,7 @@ const MenuItems = () => {
           location.pathname === "/gallery" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-2.5 py-5 w-full inline-block" to="/gallery">
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/gallery">
           Gallery
         </Link>
       </li>
@@ -20,7 +20,7 @@ const MenuItems = () => {
           location.pathname === "/review" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-2.5 py-5 w-full inline-block" to="/review">
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/review">
           Church Shop
         </Link>
       </li>
@@ -30,7 +30,7 @@ const MenuItems = () => {
           location.pathname === "/review" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-2.5 py-5 w-full inline-block" to="/review">
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/review">
           Review
         </Link>
       </li>
@@ -40,7 +40,7 @@ const MenuItems = () => {
           location.pathname === "/faq" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-2.5 py-5 w-full inline-block" to="/faq">
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/faq">
           FAQ
         </Link>
       </li>
@@ -50,8 +50,17 @@ const MenuItems = () => {
           location.pathname === "/contact" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-2.5 py-5 w-full inline-block" to="/contact">
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/contact">
           Contact
+        </Link>
+      </li>
+      <li
+        className={`${
+          location.pathname === "/contact" ? "menu-active" : ""
+        } border-b lg:border-0 duration-500 bg-primary rounded-none lg:rounded-md text-white`}
+      >
+        <Link className="px-2.5 py-1.5 w-full inline-block" to="/contact">
+          Login
         </Link>
       </li>
     </>
