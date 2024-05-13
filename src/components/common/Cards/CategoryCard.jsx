@@ -17,7 +17,7 @@ export default function CategoryCard(props) {
             <div className="flex">
               <MdOutlineKeyboardArrowRight
                 size={25}
-                className="text-gray-400 group-hover:text-brand__light_green__color"
+                className="text-gray-400 group-hover:text-primary"
               />
               <MdOutlineKeyboardArrowRight
                 size={25}

@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+
+import withMT from "@material-tailwind/react/utils/withMT";
+
+export default withMT({
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontSize: {
@@ -43,10 +49,23 @@ export default {
         section__bg_color: "#f1f1f1",
       },
       backgroundImage: {
-        globe:
-          "url('./src/assets/image/background/bg.png')",
+        globe: "url('./src/assets/image/background/bg.png')",
+        not__found: "url('./src/assets/svg/404.svg')",
+      },
+      keyframes: {
+        fadeInNavbar: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        fadeInNavbar: "fadeInNavbar 0.5s linear 1",
       },
     },
   },
   plugins: [],
-};
+});

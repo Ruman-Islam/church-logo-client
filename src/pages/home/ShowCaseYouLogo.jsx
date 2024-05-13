@@ -47,8 +47,8 @@ export default function ShowCaseYouLogo() {
           />
         </div>
        
-        <div className="slider-container-portfolio mt-5">
-          <Slider {...settings} className="xl:p-5">
+        <div className="slider-container-portfolio mt-5 p-5">
+          <Slider {...settings} className="">
             {showCaseData.map((d) => (
               <div key={d.id} className="w-full">
                 <img src={d.img} className="w-full" />

@@ -6,7 +6,7 @@ import Portfolio from "./Portfolio";
 import Services from "./Services";
 import ShowCaseYouLogo from "./ShowCaseYouLogo";
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <Layout title="A handcrafted signature logo to suit your unique personality">
       <Hero />
