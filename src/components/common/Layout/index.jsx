@@ -2,7 +2,12 @@ import { Helmet } from "react-helmet";
 import Footer from "../../Footer";
 import Header from "../../Header";
 
-export default function Layout({ children, title }) {
+export default function Layout({
+  children,
+  title,
+  showHeader = true,
+  showFooter = true,
+}) {
   return (
     <>
       <Helmet>
@@ -12,9 +17,9 @@ export default function Layout({ children, title }) {
       </Helmet>
 
       <section className="flex flex-col justify-between h-screen">
-        <Header topBarEnable="enable" />
+        {showHeader && <Header topBarEnable="enable" />}
         <main className="mb-auto">{children}</main>
-        <Footer />
+        {showFooter && <Footer />}
       </section>
     </>
   );

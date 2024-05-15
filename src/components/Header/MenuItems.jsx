@@ -56,11 +56,11 @@ const MenuItems = () => {
       </li>
       <li
         className={`${
-          location.pathname === "/sign-in" ? "menu-active" : ""
+          location.pathname === "/login" ? "menu-active" : ""
         } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-500`}
       >
-        <Link className="px-1.5 py-1.5 w-full inline-block" to="/sign-in">
-          Sign In
+        <Link className="px-1.5 py-1.5 w-full inline-block" to="/login">
+          Login
         </Link>
       </li>
       <li
@@ -68,7 +68,7 @@ const MenuItems = () => {
           location.pathname === "/order-now" ? "menu-active" : ""
         } border-b lg:border-0 duration-500 bg-primary hover:bg-brand__black__color rounded-none lg:rounded-full text-white`}
       >
-        <Link className="px-4 py-1 w-full inline-block" to="/order-now">
+        <Link className="px-3 py-1.5 w-full inline-block" to="/order-now">
           Order Yours
         </Link>
       </li>

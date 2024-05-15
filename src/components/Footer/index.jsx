@@ -21,7 +21,7 @@ const navigation = [
   },
   {
     title: "Login",
-    route: "/",
+    route: "/login",
   },
 ];
 

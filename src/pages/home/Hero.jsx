@@ -83,24 +83,24 @@ export default function Hero() {
               business appear and feel professional, no matter what it needs.
               Since excellent design generates excellent revenue.
             </p>
-            <br />
-            <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start">
+
+            <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start my-4 xl:my-6">
               <CustomLink
                 route="/"
                 text="Get started"
-                classNames="py-3 px-6 inline-block rounded-full text-text__gray font-semibold bg-primary text-white hover:bg-brand__black__color duration-300"
+                classNames="py-2 px-4 xl:py-3 xl:px-6 inline-block rounded-full text-text__gray font-semibold bg-primary text-white hover:bg-brand__black__color duration-300 text-brand__font__size__sm"
               >
                 Get started
               </CustomLink>
               <CustomLink
                 route="/"
                 text="Get started"
-                classNames="py-3 px-6 inline-block rounded-full text-text__gray font-semibold bg-brand__black__color text-white hover:bg-primary duration-300"
+                classNames="py-2 px-4 xl:py-3 xl:px-6 inline-block rounded-full text-text__gray font-semibold bg-brand__black__color text-white hover:bg-primary duration-300 text-brand__font__size__sm"
               >
                 Visit our shop
               </CustomLink>
             </div>
-            <br />
+
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-2">
               <div>
                 <span>Popular: </span>
