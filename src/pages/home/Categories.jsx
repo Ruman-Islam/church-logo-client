@@ -50,7 +50,7 @@ export default function Categories() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, ex.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-between mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-between mt-5">
           {categories.map((category) => (
             <CategoryCard
               cardContainerClass="w-full h-full rounded-[30px] text-center mb-10 group"

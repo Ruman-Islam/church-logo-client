@@ -7,6 +7,7 @@ import photo3 from "../../assets/image/cards/Photog_UC-5-min.jpg";
 import photo4 from "../../assets/image/cards/Photog_UC-7-min.jpg";
 import photo5 from "../../assets/image/cards/Photog_UC-8-min.jpg";
 import photo6 from "../../assets/image/cards/Photog_UC-9-min.jpg";
+import CustomersDoingCard from "../../components/common/Cards/CustomersDoingCard";
 
 const photos = [
   { id: 1, img: photo1, title: "Word Mark" },
@@ -46,38 +47,18 @@ const settings = {
 export default function CustomersDoing() {
   return (
     <div>
-      <div className="container px-2 py-[50px]">
+      <div className="container px-2 py-[20px] md:py-[50px]">
         <div>
           <SectionTitle
             title="Check out the cool things our customers are doing with their Churchlogo"
-            titleClass="text-brand__font__size__lg md:text-brand__font__size__xl leading-[25px] md:leading-[50px] text-center"
+            titleClass="text-brand__font__size__lg md:text-brand__font__size__xl leading-[25px] md:leading-[50px] text-center mb-4"
           />
         </div>
-        <br />
+
         <div className="slider-container w-full">
           <Slider {...settings} className="p-2">
             {photos.map((content) => (
-              <div
-                key={content.id}
-                className="w-full h-full rounded-lg bg-white aspect-[1.3/1] text-center p-2"
-              >
-                <div className="mb-3">
-                  <img
-                    src={content.img}
-                    alt=""
-                    className="rounded-tl-lg rounded-tr-lg"
-                  />
-                </div>
-                <p className="leading-tight p-2 text-left shadow text-gray-500">
-                  <small>
-                    <em>
-                      #ilovephotologo “Awesome experience! I asked for a slight
-                      revision and you guys got it done ASAP. I love it!!! Thank
-                      you“
-                    </em>
-                  </small>
-                </p>
-              </div>
+              <CustomersDoingCard key={content.id} content={content} />
             ))}
           </Slider>
         </div>

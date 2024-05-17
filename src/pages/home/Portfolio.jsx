@@ -1,64 +1,54 @@
-// import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
 import Banner1 from "../../assets/image/banner/hero-01-7daaa580.png";
-
-const portfolioData = [
-  {
-    id: 1,
-    img: Banner1,
-    headLine:
-      "Church Logo is a platform with a good name and a very good service…",
-    feedBack:
-      "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result.",
-  },
-  {
-    id: 2,
-    img: Banner1,
-    headLine:
-      "Church Logo is a platform with a good name and a very good service…",
-    feedBack:
-      "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result.",
-  },
-];
-
-const renderArrows = () => {
-  return (
-    <div className="slider-arrow">
-      <button
-        className="arrow-btn prev"
-        onClick={() => this.slider.slickPrev()}
-      >
-        {/* <ArrowLeft /> */}
-      </button>
-      <button
-        className="arrow-btn next"
-        onClick={() => this.slider.slickNext()}
-      >
-        {/* <ArrowRight /> */}
-      </button>
-    </div>
-  );
-};
-
-const settings = {
-  infinite: true,
-  speed: 1000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-};
+import data from "../../data/portfolio.json";
+import "../../styles/portfolio-slider.css";
 
 export default function Portfolio() {
+  const PrevArrow = ({ ...props }) => {
+    const { onClick } = props;
+    return (
+      <div
+        onClick={onClick}
+        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -left-[20px] z-[10] bg-primary hover:bg-brand__black__color text-white hover:cursor-pointer duration-200"
+      >
+        <FaArrowLeft size={30} />
+      </div>
+    );
+  };
+
+  const NextArrow = ({ ...props }) => {
+    const { onClick } = props;
+    return (
+      <div
+        onClick={onClick}
+        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -right-[20px] z-[10] bg-primary hover:bg-brand__black__color text-white hover:cursor-pointer duration-200"
+      >
+        <FaArrowRight size={30} />
+      </div>
+    );
+  };
+
+  const settings = {
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   return (
-    <div className="w-full xl:max-h-[800px] bg-globe bg-no-repeat bg-[length:1000px_700px] bg-right relative">
+    <div className="w-full bg-globe bg-no-repeat bg-[length:1000px_700px] bg-right relative">
       {/* <div className="bg-white absolute w-full h-full"></div> */}
-      <div className="slider-container-portfolio p-10 xl:p-20">
-        <Slider {...settings} className="p-5">
-          {portfolioData.map((d) => (
-            <div key={d.id} className="px-[0px] xl:px-[100px]">
+      <div id="portfolio-slider" className="py-5 xl:py-0">
+        <Slider {...settings}>
+          {data.map((d) => (
+            <div key={d.id} className="">
               <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <div className="basis-[50%] w-full">
-                  <img src={d.img} className="w-full" />
+                <div className="basis-[50%] w-full p-5">
+                  <img src={Banner1} className="max-w-[95%] w-full mx-auto" />
                 </div>
                 <div className="flex-1 w-full h-full pl-0 xl:pl-10">
                   <div className="max-w-[100%] xl:max-w-[400px] w-full text-center xl:text-left">

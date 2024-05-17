@@ -2,6 +2,7 @@ import icon1 from "../../assets/gif/clock.gif";
 import icon3 from "../../assets/gif/monitor.gif";
 import icon2 from "../../assets/gif/paint-palette.gif";
 import icon4 from "../../assets/gif/responsive.gif";
+import ServiceCard from "../../components/common/Cards/ServiceCard";
 import SectionTitle from "../../components/common/SectionTitle";
 
 const services = [
@@ -44,20 +45,7 @@ export default function Services() {
 
         <div className="flex flex-wrap justify-center gap-5 mt-5 md:mt-10">
           {services.map((service) => (
-            <div
-              key={service.id}
-              className="max-w-[300px] xl:max-w-[250px] w-full max-h-full bg-white flex flex-col justify-center items-center rounded p-10 shadow"
-            >
-              <div className="max-w-[40px] w-full mb-3 flex-1">
-                <img src={service.img} />
-              </div>
-              <div className="text-center flex-1">
-                <h2>{service.title}</h2>
-                <p className="leading-tight mt-2">
-                  <small>{service.desc}</small>
-                </p>
-              </div>
-            </div>
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import MenuItems from "./MenuItems.jsx";
+import MenuItems from "./MenuItems";
 
 import {
   default as normalLogo,
@@ -26,11 +26,9 @@ export default function Header({ topBarEnable }) {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  console.log(isVisible);
-
   return (
     <>
-      <header className="z-50">
+      <header className="z-[9999999]">
         {topBarEnable && (
           <div className="topBar-area bg-[#031401] text-white py-2 font-semibold relative z-50">
             <div className="container text-center text-brand__font__size__xs md:text-brand__font__size__base">
@@ -40,17 +38,21 @@ export default function Header({ topBarEnable }) {
         )}
 
         <div
-          className={
-            isVisible ? "fixed w-full top-0 bg-white shadow" : "bg-white"
-          }
+          className={`bg-white duration-200 w-full h-[90px] ${
+            isVisible ? "fixed top-0 animate-headerDrop shadow h-[70px]" : ""
+          }`}
         >
-          <div className="container">
-            <nav className="flex items-center justify-between h-[90px]  relative">
+          <div className="container h-full">
+            <nav className="flex items-center justify-between h-full relative">
               <div className="flex justify-between flex-1 h-full items-center px-2 z-50 bg-white">
                 <div className="logo w-[220px] md:w-[280px] xl:w-[350px]">
                   {isVisible ? (
                     <Link to="/" className="logo-text">
-                      <img src={stickyLogo} alt="church logo" />
+                      <img
+                        className="w-[280px]"
+                        src={stickyLogo}
+                        alt="church logo"
+                      />
                     </Link>
                   ) : (
                     <Link to="/" className="logo-text">
@@ -73,8 +75,10 @@ export default function Header({ topBarEnable }) {
                 </button>
               </div>
               <div
-                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-500 ease-in-out lg:px-2 bg-white ${
-                  menuOpen ? "top-[90px] animate-fadeInNavbar" : "-top-[270px] "
+                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white ${
+                  menuOpen
+                    ? "top-[70px] animate-navMenuOpInOut"
+                    : "-top-[325px]"
                 }`}
               >
                 <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-semibold text-brand__font__size__sm xl:text-brand__font__size__base">

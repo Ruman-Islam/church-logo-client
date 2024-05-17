@@ -1,11 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontSize: {
@@ -51,9 +47,11 @@ export default {
       backgroundImage: {
         globe: "url('./src/assets/image/background/bg.png')",
         not__found: "url('./src/assets/svg/404.svg')",
+        ask__qus__background:
+          "url('./src/assets/image/background/ask__qus__bg.jpeg')",
       },
       keyframes: {
-        fadeInNavbar: {
+        navMenuOpInOut: {
           "0%": {
             opacity: "0",
           },
@@ -61,9 +59,18 @@ export default {
             opacity: "1",
           },
         },
+        headerDrop: {
+          "0%": {
+            top: "-100px",
+          },
+          "100%": {
+            top: "0px",
+          },
+        },
       },
       animation: {
-        fadeInNavbar: "fadeInNavbar 0.5s linear 1",
+        navMenuOpInOut: "navMenuOpInOut 0.5s linear 1",
+        headerDrop: "headerDrop 0.5s linear 1",
       },
     },
   },

@@ -24,8 +24,14 @@ export default function LogInScreen() {
       <section className="h-screen text-brand__black__color">
         <div className="container h-full flex flex-col justify-center items-center p-4 md:p-8">
           <div className="max-w-[400px] w-full border shadow-sm rounded-md p-4 md:p-8">
-            <div className="text-center mb-10">
-              <img className="mx-auto" src={churchLogo} alt="church logo" />
+            <div className="text-center mb-6 w-fit mx-auto">
+              <CustomLink route="/">
+                <img
+                  className="max-w-[300px]"
+                  src={churchLogo}
+                  alt="church logo"
+                />
+              </CustomLink>
             </div>
 
             <div>

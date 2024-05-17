@@ -1,0 +1,18 @@
+#showcase-logo .slick-slider {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+#showcase-logo .slick-list {
+  position: relative;
+  display: block !important;
+}
+#showcase-logo .slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+}
