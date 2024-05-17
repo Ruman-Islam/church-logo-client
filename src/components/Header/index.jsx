@@ -38,8 +38,10 @@ export default function Header({ topBarEnable }) {
         )}
 
         <div
-          className={`bg-white duration-200 w-full h-[90px] ${
-            isVisible ? "fixed top-0 animate-headerDrop shadow h-[70px]" : ""
+          className={`bg-white duration-200 w-full ${
+            isVisible
+              ? "fixed top-0 animate-headerDrop shadow h-[80px]"
+              : "h-[90px]"
           }`}
         >
           <div className="container h-full">
@@ -77,7 +79,7 @@ export default function Header({ topBarEnable }) {
               <div
                 className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white ${
                   menuOpen
-                    ? "top-[70px] animate-navMenuOpInOut"
+                    ? "top-[80px] animate-navMenuOpInOut"
                     : "-top-[325px]"
                 }`}
               >

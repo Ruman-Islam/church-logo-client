@@ -45,10 +45,10 @@ export default {
         section__bg_color: "#f1f1f1",
       },
       backgroundImage: {
-        globe: "url('./src/assets/image/background/bg.png')",
+        globe: "url('../src/assets/image/background/bg.png')",
         not__found: "url('./src/assets/svg/404.svg')",
         ask__qus__background:
-          "url('./src/assets/image/background/ask__qus__bg.jpeg')",
+          "url('../src/assets/image/background/ask__qus__bg.jpeg')",
       },
       keyframes: {
         navMenuOpInOut: {
