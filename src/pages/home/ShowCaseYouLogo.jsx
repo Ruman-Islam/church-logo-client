@@ -1,19 +1,9 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import Banner1 from "../../assets/image/banner/Screenshot_26.png";
 import SectionTitle from "../../components/common/SectionTitle";
+import data from "../../data/showCaseLogo.json";
 import "../../styles/showcase-logo-slider.css";
-
-const showCaseData = [
-  {
-    id: 1,
-    img: Banner1,
-  },
-  {
-    id: 2,
-    img: Banner1,
-  },
-];
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function ShowCaseYouLogo() {
   const PrevArrow = ({ ...props }) => {
@@ -21,7 +11,7 @@ export default function ShowCaseYouLogo() {
     return (
       <div
         onClick={onClick}
-        className="relative -left-[10px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
+        className="relative -left-[20px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
       >
         <FaArrowLeft size={25} />
       </div>
@@ -33,7 +23,7 @@ export default function ShowCaseYouLogo() {
     return (
       <div
         onClick={onClick}
-        className="relative -right-[10px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
+        className="relative -right-[20px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
       >
         <FaArrowRight size={25} />
       </div>
@@ -44,16 +34,32 @@ export default function ShowCaseYouLogo() {
     dots: false,
     infinite: true,
     speed: 1000,
-    // slidesToShow: 1,
-    // slidesToScroll: 1,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     arrows: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className="bg-brand__black__color">
-      <div className="container px-2 pb-[30px] md:pb-[70px] pt-[30px] md:pt-[50px]">
+      <div className="container px-2 py-[30px] md:py-[60px]">
         <div>
           <SectionTitle
             title="Design for what you need"
@@ -61,11 +67,17 @@ export default function ShowCaseYouLogo() {
           />
         </div>
 
-        <div id="showcase-logo" className="mt-10">
+        <div id="showcase-logo" className="mt-16 px-20">
           <Slider {...settings}>
-            {showCaseData.map((d) => (
-              <div key={d.id} className="min-w-[600px] w-full h-full">
-                <img src={Banner1} alt="" className="w-full h-full" />
+            {data.map((d) => (
+              <div key={d.id}>
+                <div>
+                  <img
+                    src={getImgUrl(d.img)}
+                    alt="churchlogo"
+                    className="w-[512px] h-full cursor-grab active:cursor-grabbing"
+                  />
+                </div>
               </div>
             ))}
           </Slider>

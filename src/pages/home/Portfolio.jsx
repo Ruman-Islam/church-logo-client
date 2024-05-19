@@ -1,8 +1,8 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import Banner1 from "../../assets/image/banner/hero-01-7daaa580.png";
 import data from "../../data/portfolio.json";
 import "../../styles/portfolio-slider.css";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function Portfolio() {
   const PrevArrow = ({ ...props }) => {
@@ -10,7 +10,7 @@ export default function Portfolio() {
     return (
       <div
         onClick={onClick}
-        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -left-[20px] z-[10] bg-primary hover:bg-brand__black__color text-white hover:cursor-pointer duration-200"
+        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -left-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
       >
         <FaArrowLeft size={30} />
       </div>
@@ -22,7 +22,7 @@ export default function Portfolio() {
     return (
       <div
         onClick={onClick}
-        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -right-[20px] z-[10] bg-primary hover:bg-brand__black__color text-white hover:cursor-pointer duration-200"
+        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -right-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
       >
         <FaArrowRight size={30} />
       </div>
@@ -45,10 +45,13 @@ export default function Portfolio() {
       <div id="portfolio-slider" className="py-5 xl:py-0">
         <Slider {...settings}>
           {data.map((d) => (
-            <div key={d.id} className="">
+            <div key={d.id}>
               <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
                 <div className="basis-[50%] w-full p-5">
-                  <img src={Banner1} className="max-w-[95%] w-full mx-auto" />
+                  <img
+                    src={getImgUrl(d.img)}
+                    className="max-w-[95%] w-full mx-auto"
+                  />
                 </div>
                 <div className="flex-1 w-full h-full pl-0 xl:pl-10">
                   <div className="max-w-[100%] xl:max-w-[400px] w-full text-center xl:text-left">

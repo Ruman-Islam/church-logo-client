@@ -1,4 +1,5 @@
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
 import CustomLink from "../../UI/CustomLink";
 
 export default function CategoryCard(props) {
@@ -10,7 +11,7 @@ export default function CategoryCard(props) {
       <CustomLink to={route}>
         <div className="relative">
           <div className="overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
-            <img className={imgClass} src={img} alt={alt} />
+            <img className={imgClass} src={getImgUrl(img)} alt={alt} />
           </div>
           <div className={contentClass}>
             <p>{title}</p>

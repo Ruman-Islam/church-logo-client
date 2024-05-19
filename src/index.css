@@ -17,31 +17,3 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-
-.slick-dots li button:before {
-  background-color: #031401;
-  height: 12px !important;
-  width: 12px !important;
-  border-radius: 100%;
-  text-indent: -9999px;
-  overflow: hidden;
-}
-
-.slider-container-portfolio .slick-prev:before,
-.slick-next:before {
-  color: #031401 !important;
-  border: 1px solid red;
-}
-
-.slider-arrow {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-.arrow-btn {
-  top: 45%;
-  z-index: 1;
-}
-.next {
-  float: right;
-}

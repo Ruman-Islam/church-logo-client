@@ -1,22 +1,8 @@
 import Slider from "react-slick";
 import SectionTitle from "../../components/common/SectionTitle";
-
-import photo1 from "../../assets/image/cards/Photog_UC-10-min.jpg";
-import photo2 from "../../assets/image/cards/Photog_UC-4-min.jpg";
-import photo3 from "../../assets/image/cards/Photog_UC-5-min.jpg";
-import photo4 from "../../assets/image/cards/Photog_UC-7-min.jpg";
-import photo5 from "../../assets/image/cards/Photog_UC-8-min.jpg";
-import photo6 from "../../assets/image/cards/Photog_UC-9-min.jpg";
 import CustomersDoingCard from "../../components/common/Cards/CustomersDoingCard";
+import data from '../../data/customersDoing.json'
 
-const photos = [
-  { id: 1, img: photo1, title: "Word Mark" },
-  { id: 2, img: photo2, title: "Letter Mark" },
-  { id: 3, img: photo3, title: "Pictorial Mark" },
-  { id: 4, img: photo4, title: "Abstract Mark" },
-  { id: 5, img: photo5, title: "Mascot Logo" },
-  { id: 6, img: photo6, title: "Combination Mark" },
-];
 
 const settings = {
   dots: false,
@@ -57,7 +43,7 @@ export default function CustomersDoing() {
 
         <div className="slider-container w-full">
           <Slider {...settings} className="p-2">
-            {photos.map((content) => (
+            {data.map((content) => (
               <CustomersDoingCard key={content.id} content={content} />
             ))}
           </Slider>

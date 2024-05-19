@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "img": "icons/churchlogo_quick.png",
+    "title": "Quick Turnaround",
+    "desc": "We understand that your time is valuable. We make sure your logo is delivered to you within 3 days."
+  },
+  {
+    "id": 2,
+    "img": "icons/churchlogo_custom_logo.png",
+    "title": "Handmade by a Professional Artist",
+    "desc": "Our team of highly talented artists do this all day, and they're good at it!"
+  },
+  {
+    "id": 3,
+    "img": "icons/churchlogo_revision.png",
+    "title": "FREE Revisions Risk Free",
+    "desc": "Want something changed? All Churchlogos come with three FREE revisions!"
+  },
+  {
+    "id": 4,
+    "img": "icons/churchlogo_device.png",
+    "title": "Desktop & Mobile Ready",
+    "desc": "Your Churchlogo will look great no matter what device you're on!"
+  }
+]

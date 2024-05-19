@@ -1,32 +1,10 @@
-import { FaArrowLeft, FaArrowRight, FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
 import Slider from "react-slick";
 import SectionTitle from "../../components/common/SectionTitle";
 import data from "../../data/testimonial.json";
 import "../../styles/testimonial-slider.css";
 
 export default function Testimonial() {
-  const PrevArrow = ({ ...props }) => {
-    const { onClick } = props;
-    return (
-      <FaArrowLeft
-        size={30}
-        className="relative -left-[10px] z-[99999] hover:text-primary duration-200 hover:cursor-pointer"
-        onClick={onClick}
-      />
-    );
-  };
-
-  const NextArrow = ({ ...props }) => {
-    const { onClick } = props;
-    return (
-      <FaArrowRight
-        size={30}
-        className="relative -right-[10px] z-[99999] hover:text-primary duration-200 hover:cursor-pointer"
-        onClick={onClick}
-      />
-    );
-  };
-
   const settings = {
     className: "center",
     centerMode: true,
@@ -38,8 +16,8 @@ export default function Testimonial() {
     slidesToScroll: 3,
     speed: 500,
     dots: true,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    arrows: false,
+    swipe: false,
     responsive: [
       {
         breakpoint: 600,
@@ -52,7 +30,7 @@ export default function Testimonial() {
   };
 
   return (
-    <section className="mb-10">
+    <section className="my-10">
       <div className="container px-2">
         <div className="px-2 text-center">
           <SectionTitle
@@ -66,7 +44,7 @@ export default function Testimonial() {
 
         <div
           id="testimonial-slider"
-          className="max-w-[1100px] w-full mx-auto pb-5"
+          className="max-w-[1200px] w-full mx-auto p-5"
         >
           <Slider {...settings}>
             {data.map((slide, index) => (

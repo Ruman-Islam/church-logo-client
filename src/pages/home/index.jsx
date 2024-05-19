@@ -16,9 +16,9 @@ export default function HomeScreen() {
       <Categories />
       <Portfolio />
       <Services />
+      <Testimonial />
       <ShowCaseYouLogo />
       <CustomersDoing />
-      <Testimonial />
       <ContactBar />
       <PersonalSignature />
     </Layout>

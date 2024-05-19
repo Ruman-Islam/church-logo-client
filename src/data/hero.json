@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "route": "/",
+    "children": "Logo Design",
+    "className": "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+    "img": "image/banner/hero-01-7daaa580.png"
+  },
+  {
+    "id": 2,
+    "route": "/",
+    "children": "Web Design",
+    "className": "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+     "img": "image/banner/hero-01-7daaa580100.png"
+  },
+  {
+    "id": 3,
+    "route": "/",
+    "children": "Branding",
+    "className": "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+     "img": "image/banner/hero-01-7daaa58070.png"
+  },
+  {
+    "id": 4,
+    "route": "/",
+    "children": "Personal Signature",
+    "className": "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
+     "img": "image/banner/hero-01-7daaa58090.png"
+  }
+]

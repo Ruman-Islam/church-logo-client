@@ -84,7 +84,7 @@ const MenuItems = () => {
         } border-b lg:border-0 duration-500 bg-primary hover:bg-brand__black__color rounded-none lg:rounded-full text-white`}
       >
         <Link
-          className="px-3 py-3 lg:py-1.5 w-full inline-block"
+          className="px-5 py-3 lg:py-1.5 w-full inline-block"
           to="/order-now"
         >
           Order Yours

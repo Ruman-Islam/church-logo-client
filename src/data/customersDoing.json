@@ -1,0 +1,20 @@
+[
+  { "id": 1, "img": "image/cards/Photog_UC-10-min.jpg", "title": "Word Mark" },
+  { "id": 2, "img": "image/cards/Photog_UC-4-min.jpg", "title": "Letter Mark" },
+  {
+    "id": 3,
+    "img": "image/cards/Photog_UC-5-min.jpg",
+    "title": "Pictorial Mark"
+  },
+  {
+    "id": 4,
+    "img": "image/cards/Photog_UC-7-min.jpg",
+    "title": "Abstract Mark"
+  },
+  { "id": 5, "img": "image/cards/Photog_UC-8-min.jpg", "title": "Mascot Logo" },
+  {
+    "id": 6,
+    "img": "image/cards/Photog_UC-9-min.jpg",
+    "title": "Combination Mark"
+  }
+]

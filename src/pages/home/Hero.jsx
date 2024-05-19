@@ -1,40 +1,8 @@
 import Slider from "react-slick";
-import Banner1 from "../../assets/image/banner/hero-01-7daaa580.png";
-import Banner2 from "../../assets/image/banner/hero-01-7daaa580100.png";
-import Banner3 from "../../assets/image/banner/hero-01-7daaa58070.png";
-import Banner4 from "../../assets/image/banner/hero-01-7daaa58090.png";
 import CustomLink from "../../components/UI/CustomLink";
-
-const popularData = [
-  {
-    id: 1,
-    route: "/",
-    children: "Logo Design",
-    className:
-      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
-  },
-  {
-    id: 2,
-    route: "/",
-    children: "Web Design",
-    className:
-      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
-  },
-  {
-    id: 3,
-    route: "/",
-    children: "Branding",
-    className:
-      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
-  },
-  {
-    id: 4,
-    route: "/",
-    children: "Personal Signature",
-    className:
-      "border py-0.5 px-3 inline-block rounded-md text-black bg-[#dad9d7] hover:bg-white duration-300 text-brand__font__size__sm",
-  },
-];
+import data from "../../data/hero.json";
+import "../../styles/hero-slider.css";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function Hero() {
   const settings = {
@@ -54,20 +22,16 @@ export default function Hero() {
     <div className="container px-2 md:py-[40px]">
       <div className="flex flex-col-reverse lg:flex-row justify-between">
         <div className="basis-[100%] lg:basis-[40%] w-full flex justify-center items-center">
-          <div className="slider-container max-w-[450px] xl:max-w-[600px] w-full p-10 md:p-0">
+          <div
+            id="hero-slider"
+            className="max-w-[450px] xl:max-w-[600px] w-full p-10 md:p-0"
+          >
             <Slider {...settings}>
-              <div>
-                <img src={Banner1} />
-              </div>
-              <div>
-                <img src={Banner2} />
-              </div>
-              <div>
-                <img src={Banner3} />
-              </div>
-              <div>
-                <img src={Banner4} />
-              </div>
+              {data.map((d) => (
+                <div key={d.id}>
+                  <img src={getImgUrl(d.img)} />
+                </div>
+              ))}
             </Slider>
           </div>
         </div>
@@ -106,7 +70,7 @@ export default function Hero() {
                 <span>Popular: </span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-2 text-text__gray">
-                {popularData.map((d) => (
+                {data.map((d) => (
                   <CustomLink
                     key={d.id}
                     route={d.route}

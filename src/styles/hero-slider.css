@@ -1,0 +1,8 @@
+#hero-slider .slick-dots li button:before {
+  background-color: #031401;
+  height: 8px !important;
+  width: 8px !important;
+  border-radius: 100%;
+  text-indent: -9999px;
+  overflow: hidden;
+}

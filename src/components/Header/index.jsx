@@ -14,7 +14,7 @@ export default function Header({ topBarEnable }) {
   useEffect(() => {
     // Sticky is displayed after scrolling for 100 pixels
     function toggleVisibility() {
-      if (window.pageYOffset > 100) {
+      if (window.pageYOffset > 50) {
         setIsVisible(true);
       } else {
         setIsVisible(false);

@@ -1,41 +1,6 @@
-import SectionTitle from "../../components/common/SectionTitle";
-
-import CatImg3 from "../../assets/image/category/churchlogo_branding.jpeg";
-import CatImg1 from "../../assets/image/category/churchlogo_logodesign.jpg";
-import CatImg4 from "../../assets/image/category/churchlogo_personal_signature.jpeg";
-import CatImg2 from "../../assets/image/category/churchlogo_webdesign.jpeg";
 import CategoryCard from "../../components/common/Cards/CategoryCard";
-
-const categories = [
-  {
-    id: 1,
-    img: CatImg1,
-    title: "Logo Design",
-    alt: "churchlogo_logodesign",
-    route: "/",
-  },
-  {
-    id: 2,
-    img: CatImg2,
-    title: "Web Design",
-    alt: "churchlogo_webdesign",
-    route: "/",
-  },
-  {
-    id: 3,
-    img: CatImg3,
-    title: "Branding",
-    alt: "churchlogo_branding",
-    route: "/",
-  },
-  {
-    id: 4,
-    img: CatImg4,
-    title: "Personal Signature",
-    alt: "churchlogo_personal_signature",
-    route: "/",
-  },
-];
+import SectionTitle from "../../components/common/SectionTitle";
+import data from "../../data/categories.json";
 
 export default function Categories() {
   return (
@@ -51,14 +16,14 @@ export default function Categories() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-between mt-5">
-          {categories.map((category) => (
+          {data.map((d) => (
             <CategoryCard
               cardContainerClass="w-full h-full rounded-[30px] text-center mb-10 group"
               imgClass="w-full h-full rounded-tl-[30px] rounded-tr-[30px] object-cover group-hover:scale-125 duration-500"
               contentClass="py-3 bg-white rounded-[30px] absolute w-full -bottom-6 text-brand__font__size__md text-brand__black__color font-brand__font__semibold group-hover:text-primary duration-300 flex justify-center items-center border"
-              key={category.id}
-              route={category.route}
-              category={category}
+              key={d.id}
+              route={d.route}
+              category={d}
             />
           ))}
         </div>
