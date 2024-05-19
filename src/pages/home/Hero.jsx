@@ -23,10 +23,10 @@ export default function Hero() {
     <section className="md:py-[40px]">
       <div className="container px-2">
         <div className="flex flex-col-reverse lg:flex-row justify-between">
-          <div className="basis-[100%] lg:basis-[40%] w-full flex justify-center items-center">
+          <div className="basis-[30%] w-full flex justify-center items-center">
             <div
               id="hero-slider"
-              className="max-w-[450px] xl:max-w-[600px] w-full p-10 md:p-0"
+              className="max-w-[450px] xl:max-w-[560px] w-full p-10 md:p-0"
             >
               <Slider {...settings}>
                 {data.map((d) => (

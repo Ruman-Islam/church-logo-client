@@ -47,7 +47,7 @@ const help = [
   },
   {
     title: "Privacy Policy",
-    route: "/",
+    route: "/privacy-policy",
   },
   {
     title: "FAQ",

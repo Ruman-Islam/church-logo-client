@@ -1,6 +1,7 @@
 import Categories from "../pages/categories";
 import HomeScreen from "../pages/home";
 import LogInScreen from "../pages/login";
+import PrivacyPolicy from "../pages/privacy-policy";
 import RegisterScreen from "../pages/register";
 
 const publicRoutes = [
@@ -11,6 +12,11 @@ const publicRoutes = [
     path: "/categories/:section",
     name: "categories",
     Component: Categories,
+  },
+  {
+    path: "/privacy-policy",
+    name: "privacy-policy",
+    Component: PrivacyPolicy,
   },
 ];
 

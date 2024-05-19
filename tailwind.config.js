@@ -15,12 +15,14 @@ export default {
         section__title__size: "32px",
       },
       fontFamily: {
-        brand__font__family: "Gabarito",
+        brand__font__family: "Poppins",
       },
       fontWeight: {
         brand__font__thin: "100",
         brand__font__light: "300",
         brand__font__regular: "400",
+        brand__font__500: "500",
+        brand__font__600: "600",
         brand__font__semibold: "700",
         brand__font__bold: "900",
       },

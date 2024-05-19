@@ -1,0 +1,235 @@
+{
+    "policy1": {
+        "title": "What Does The Personal Information We Collect Can Include?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "Personal Information Provided by You: We collect first name, last name, email address, signature information, billing data."
+            }
+        ]
+    },
+    "policy2": {
+        "title": "How Do We Use Your Personal Data?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "To provide and enhance the Service: We may use personal information data in-house in order to provide and enhance the Service, to improve the Customers’ experience."
+            }
+        ]
+    },
+    "policy3": {
+        "title": "To Which Extent And To Whom Does We Disclose Your Personal Data?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "We use personal information collected via Our Services for a variety of business purposes described below. We process Your personal information for these purposes in reliance on Our legitimate business interests, in order to enter into or perform a contract with you, with Your consent, and/or for compliance with Our legal obligations. We indicate the specific processing grounds We rely on next to each purpose listed below."
+            },
+            {
+                "id": 2,
+                "text": "We use the information We collect or receive:"
+            },
+            {
+                "id": 3,
+                "text": "• To facilitate account creation and login process. We use the information You allowed Us to collect to facilitate account creation and login process for the performance of the contract."
+            },
+            {
+                "id": 4,
+                "text": "• To send administrative information to you. We may use Your personal information to send You product, service and other related information and/or information about changes to Our terms, conditions, and policies."
+            },
+            {
+                "id": 5,
+                "text": "• Fulfill and manage Your orders. We may use Your information to fulfill and manage Your orders, payments, made through Our website."
+            },
+            {
+                "id": 6,
+                "text": "• To enforce Our terms, conditions and policies for Business Purposes, Legal Reasons and Contractual."
+            },
+            {
+                "id": 7,
+                "text": "• To respond to legal requests and prevent harm. If We receive a subpoena or other legal request, We may need to inspect the data We hold to determine how to respond. We may disclose aggregate information about Users for such legal purposes."
+            },
+            {
+                "id": 8,
+                "text": "• To manage user accounts. We may use Your information for the purposes of managing Our account and keeping it in working order."
+            },
+            {
+                "id": 9,
+                "text": "• To deliver services to the user. We may use Your information to provide You with the requested Service."
+            },
+            {
+                "id": 10,
+                "text": "• For other Business Purposes. We may use Your information for other Business Purposes, such as data analysis, identifying usage trends, determining the effectiveness of Our promotional campaigns, to evaluate and improve Our Services, products, marketing and Your experience. We will not use identifiable personal information without Your consent."
+            }
+        ]
+    },
+    "policy4": {
+        "title": "Will Your Information Be Shared With Anyone?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "When You create an account with Us You give Your consent that We may process or share data based on the following legal basis:"
+            },
+            {
+                "id": 2,
+                "text": "• Legitimate Interests: We may process Your data when it is reasonably necessary to achieve Our legitimate business interests."
+            },
+            {
+                "id": 3,
+                "text": "• Legal Obligations: if We reasonably suspect that Your Photologo Account has been used for an unauthorized, illegal, or criminal purpose, You give Us express authorization to share information about you, Your Photologo Account, and any of Your transactions with law enforcement. We may disclose Your information where We are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process, such as in response to a court order or a subpoena (including in response to public authorities to meet national security or law enforcement requirements)."
+            },
+            {
+                "id": 4,
+                "text": "• Vital Interests: We may disclose Your information where We believe it is necessary to investigate, prevent, or take action regarding potential violations of Our policies, suspected fraud, situations involving potential threats to the safety of any person and illegal activities, or as evidence in litigation in which We are involved."
+            },
+            {
+                "id": 5,
+                "text": "• Marketing and Promotion of Affiliated Products or Services: We may disclose Your information to our affiliates and partners in order to promote Company-related products or Services."
+            }
+        ]
+    },
+    "policy5": {
+        "title": "What Safety Tools Are Being Used To Protect You Privacy?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "We have implemented security measures designed to secure Your personal information from accidental loss and from unauthorized access, use, alteration, or disclosure. However, We cannot absolutely guarantee that unauthorized third parties will never be able to defeat those measures or use Your personal information for improper purposes."
+            },
+            {
+                "id": 2,
+                "text": "You are responsible for safeguarding Your password and for restricting access to the Services from Your devices (e.g. compatible mobile devices and computer/s). You will immediately notify Us of any unauthorized use of Your password or Photologo Account or any other breach of security so We could address it immediately and take the necessary course of actions."
+            }
+        ]
+    },
+    "policy6": {
+        "title": "For How Long Do We Keep Your Information?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "We keep Your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required by law."
+            },
+            {
+                "id": 2,
+                "text": "We will only keep Your personal information for as long as it is necessary for the purposes set out in this privacy policy, unless a longer retention period is required or permitted by law (such as tax, accounting or other legal requirements)."
+            },
+            {
+                "id": 3,
+                "text": "When We have no ongoing legitimate business need to process Your personal information, We will either delete or anonymize it, or, if this is not possible then We will securely store Your personal information and isolate it from any further processing until deletion is possible."
+            },
+            {
+                "id": 4,
+                "text": "If You claim Your personal information to be deleted and Your account with Our Services to be cancelled, We will cancel Your account and information associated with it to exercise Your right “to be forgotten”."
+            }
+        ]
+    },
+    "policy7": {
+        "title": "What Are Your Privacy Rights?",
+        "policies": [
+            {
+                "id": 1,
+                "text": "In some regions (like the European Economic Area), You have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of Your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of Your personal information; and (iv) if applicable, to data portability. In certain circumstances, You may also have the right to object to the processing of Your personal information. To make such a request, please use the contact details provided herein. We will consider and act upon any request in accordance with applicable data protection laws."
+            },
+            {
+                "id": 2,
+                "text": "If We are relying on Your consent to process Your personal information, You have the right to withdraw Your consent at any time. Please note, however that this will not affect the lawfulness of the processing before its withdrawal."
+            }
+        ]
+    },
+    "policy8": {
+        "title": "Account Information",
+        "policies": [
+            {
+                "id": 1,
+                "text": "If You would at any time like to review or change the information in Your account You can log into Your account settings and update Your user account."
+            }
+        ]
+    },
+    "policy9": {
+        "title": "Opting Out Of Email Marketing",
+        "policies": [
+            {
+                "id": 1,
+                "text": "You can unsubscribe from Our marketing email list at any time by contacting Us via Our Contact Center by email at data@photologo.co. You will then be removed from the marketing email list – however, We will still need to send You service-related emails that are necessary for the administration and use of Your account."
+            }
+        ]
+    },
+    "policy10": {
+        "title": "Information From Minors Regulation",
+        "policies": [
+            {
+                "id": 1,
+                "text": "Our Site and Services are not directed to children. Access to and use of Our Services is only for those over the age of 18."
+            }
+        ]
+    },
+    "policy11": {
+        "title": "California Residents Privacy Rights",
+        "policies": [
+            {
+                "id": 1,
+                "text": "California Civil Code Section 1798.83 permits Our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) We disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which We shared personal information in the immediately preceding calendar year. If You are a California resident and would like to make such a request, please submit Your request in writing to Us using the contact information provided below."
+            },
+            {
+                "id": 2,
+                "text": "If You are under 18 years of age, reside in California, and have a registered account with the Services, You have the right to request removal of unwanted data that You publicly post on the Services. To request removal of such data, please contact Us using the contact information provided below, and include the email address associated with Your account and a statement that You reside in California. We will make sure the data is not publicly displayed on the Services, but please be aware that the data may not be completely or comprehensively removed from Our systems."
+            }
+        ]
+    },
+    "policy12": {
+        "title": "COOKIES POLICY",
+        "policies": [
+            {
+                "id": 1,
+                "text": "We may use cookies and other tracking technologies when You visit Our website at https://photologo.co, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”) to help customize the Site and improve Your experience. A “cookie” is a string of information which assigns You a unique identifier that We store on Your computer. Your browser then provides that unique identifier to use each time You submit a query to the Site. We use cookies on the Site to, among other things, keep track of services You have used, record registration information, record Your user preferences, keep You logged into the Site, facilitate purchase procedures, and track the pages You visit. Cookies help Us understand how the Site is being used and improve Your user experience. We also may share information about your use of our website with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services."
+            }
+        ]
+    },
+    "policy13": {
+        "title": "Types Of Cookies",
+        "policies": [
+            {
+                "id": 1,
+                "text": "The following types of cookies may be used when You visit the Site:"
+            }
+        ]
+    },
+    "policy14": {
+        "title": "ANALYTICS COOKIES",
+        "policies": [
+            {
+                "id": 1,
+                "text": "Analytics cookies monitor how users reached the Site, and how they interact with and move around once on the Site. These cookies let Us know what features on the Site are working the best and what features on the Site can be improved."
+            }
+        ]
+    },
+    "policy15": {
+        "title": "OUR COOKIES",
+        "policies": [
+            {
+                "id": 1,
+                "text": "Our cookies are “first-party cookies”, and can be either permanent or temporary. These are necessary cookies, without which the Site won’t work properly or be able to provide certain features and functionalities. Some of these may be manually disabled in Your browser, but may affect the functionality of the Site."
+            }
+        ]
+    },
+    "policy16": {
+        "title": "SITE MANAGEMENT COOKIES",
+        "policies": [
+            {
+                "id": 1,
+                "text": "Site management cookies are used to maintain Your identity or session on the Site so that You are not logged off unexpectedly, and any information You enter is retained from page to page. These cookies cannot be turned off individually, but You can disable all cookies in Your browser."
+            }
+        ]
+    },
+    "policy17": {
+        "title": "Contacting CHURCHLOGO",
+        "policies": [
+            {
+                "id": 1,
+                "text": "If You have questions or comments about this policy, You may contact Our Data Protection Officer (DPO), Enrique Cubero by email at data@photologo.co"
+            },
+            {
+                "id": 2,
+                "text": "If You believe that CHURCHLOGO™ has not adhered to this Privacy Policy, please contact Us by email at data@photologo.co We will use commercially reasonable efforts to remedy the problem."
+            }
+        ]
+    }
+}
