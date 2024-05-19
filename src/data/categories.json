@@ -4,27 +4,27 @@
     "img": "image/category/churchlogo_logodesign.jpg",
     "title": "Logo Design",
     "alt": "churchlogo_logodesign",
-    "route": "/"
+    "route": "/categories/logo-design"
   },
   {
     "id": 2,
     "img": "image/category/churchlogo_webdesign.jpeg",
     "title": "Web Design",
     "alt": "churchlogo_webdesign",
-    "route": "/"
+    "route": "/categories/web-design"
   },
   {
     "id": 3,
     "img": "image/category/churchlogo_branding.jpeg",
     "title": "Branding",
     "alt": "churchlogo_branding",
-    "route": "/"
+    "route": "/categories/branding"
   },
   {
     "id": 4,
     "img": "image/category/churchlogo_personal_signature.jpeg",
     "title": "Personal Signature",
     "alt": "churchlogo_personal_signature",
-    "route": "/"
+    "route": "/categories/personal-signature"
   }
 ]

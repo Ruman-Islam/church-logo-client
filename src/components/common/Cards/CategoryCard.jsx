@@ -8,7 +8,7 @@ export default function CategoryCard(props) {
 
   return (
     <div className={cardContainerClass}>
-      <CustomLink to={route}>
+      <CustomLink route={route}>
         <div className="relative">
           <div className="overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
             <img className={imgClass} src={getImgUrl(img)} alt={alt} />

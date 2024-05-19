@@ -24,6 +24,10 @@ export default {
         brand__font__semibold: "700",
         brand__font__bold: "900",
       },
+      padding: {
+        yAxisPaddingNorm: "30px",
+        yAxisPaddingMid: "60px",
+      },
       screens: {
         xs: "300px",
         sm: "640px",
