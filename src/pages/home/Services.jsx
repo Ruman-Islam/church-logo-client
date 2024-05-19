@@ -13,7 +13,7 @@ export default function Services() {
           />
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5 mt-5 md:mt-10">
+        <div className="flex flex-wrap justify-center gap-5 mt-10 md:mt-20">
           {data.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

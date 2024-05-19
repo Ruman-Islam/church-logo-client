@@ -3,6 +3,7 @@ import HomeScreen from "../pages/home";
 import LogInScreen from "../pages/login";
 import PrivacyPolicy from "../pages/privacy-policy";
 import RegisterScreen from "../pages/register";
+import TermsAndConditions from "../pages/terms-conditions";
 
 const publicRoutes = [
   { path: "/", name: "home", Component: HomeScreen },
@@ -17,6 +18,11 @@ const publicRoutes = [
     path: "/privacy-policy",
     name: "privacy-policy",
     Component: PrivacyPolicy,
+  },
+  {
+    path: "/terms-conditions",
+    name: "terms-conditions",
+    Component: TermsAndConditions,
   },
 ];
 

@@ -43,7 +43,7 @@ const product = [
 const help = [
   {
     title: "Terms & Conditions",
-    route: "/",
+    route: "/terms-conditions",
   },
   {
     title: "Privacy Policy",

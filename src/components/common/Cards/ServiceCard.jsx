@@ -3,7 +3,7 @@ import { getImgUrl } from "../../../utils/getImgUrl-utility";
 export default function ServiceCard(props) {
   const { service } = props;
   return (
-    <div className="max-w-[300px] w-full max-h-full bg-transparent flex flex-col justify-center items-center rounded text-center border hover:border-primary duration-300 cursor-context-menu py-5">
+    <div className="max-w-[300px] w-full max-h-full bg-transparent flex flex-col justify-center items-center rounded text-center duration-300 cursor-context-menu py-5">
       <div className="w-full flex-1 p-2.5">
         <img
           src={getImgUrl(service.img)}

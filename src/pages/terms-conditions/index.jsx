@@ -1,32 +1,44 @@
 import Layout from "../../components/common/Layout";
-import data from "../../data/privacyPolicy.json";
+import data from "../../data/termsConditions.json"
 
-export default function PrivacyPolicy() {
+export default function TermsAndConditions() {
   return (
-    <Layout title="Privacy Policy">
+    <Layout title="Term & Conditions">
       <section className="mb-10">
         {/* Introduction */}
         <div className="bg-brand__black__color text-white">
           <div className="container px-2 py-[30px] md:py-[60px]">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              Introduction
+              Terms & Conditions
             </h2>
             <h3 className="mt-1 mb-5 text-brand__font__size__md">
               Last Updated: 01/07/2020
             </h3>
-            <p className="font-brand__font__light">
-              Echko Limited (“We” or “Us” or “Our” or “Photologo™”) is committed
-              to ensure Your privacy while providing the most unique services
-              (“Services”) of its kind. If You want to become a user of the
-              Service, You need to register and open Your personal account
-              through Our website. At the time of registration, Photologo will
-              ask You to provide Us with a certain amount of personal
-              information. Submission of such personal information is voluntary,
-              but without it You may not be able to receive Our Services. Your
-              submission of personal information in response to Our questions
-              shall be voluntary, and Users may decline to answer Our questions
-              at any time. However, by providing Your personal information, You
-              consent to do so for the purpose of delivering to You the Service.
+
+            <p className="font-brand__font__light mb-4">
+              When using our website please read the following terms and
+              conditions
+            </p>
+
+            <p className="font-brand__font__light mb-4">
+              The following terminology is applied for these terms and
+              conditions, privacy statement as well as a disclaimer regarding
+              all agreements that included customer (that refers to ‘you’/ any
+              person accessing the website), “We” and “us” that refers to the
+              company, and any third parties refers to our unique product or
+              services that includes our commitment. All these terms refer to
+              the offer, acceptance, and consideration of payment necessary to
+              carry out the process of meeting the customer’s need by following
+              the provision of the company’s stated service under the
+              country&apos;s law. Any use of the above terminology or other
+              words in singular/plural/capitalization, as well as he/she/they,
+              will be taken as interchangeable and therefore will be considered
+              as same.
+            </p>
+
+            <p className="font-brand__font__light ">
+              ** All Rights Not Expressly Granted to You under These Terms and conditions Are Reserved to the Company.
+
             </p>
           </div>
         </div>
@@ -34,9 +46,9 @@ export default function PrivacyPolicy() {
         <div className="container px-2 py-[30px]">
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy1?.title}
+              {data?.term1?.title}
             </h2>
-            {data?.policy1?.policies.map((d) => (
+            {data?.term1?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -45,9 +57,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy2?.title}
+              {data?.term2?.title}
             </h2>
-            {data?.policy2?.policies.map((d) => (
+            {data?.term2?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -56,9 +68,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy3?.title}
+              {data?.term3?.title}
             </h2>
-            {data?.policy3?.policies.map((d) => (
+            {data?.term3?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -67,9 +79,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy4?.title}
+              {data?.term4?.title}
             </h2>
-            {data?.policy4?.policies.map((d) => (
+            {data?.term4?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -78,9 +90,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy5?.title}
+              {data?.term5?.title}
             </h2>
-            {data?.policy5?.policies.map((d) => (
+            {data?.term5?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -89,9 +101,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy6?.title}
+              {data?.term6?.title}
             </h2>
-            {data?.policy6?.policies.map((d) => (
+            {data?.term6?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -100,9 +112,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy7?.title}
+              {data?.term7?.title}
             </h2>
-            {data?.policy7?.policies.map((d) => (
+            {data?.term7?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -111,9 +123,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy8?.title}
+              {data?.term8?.title}
             </h2>
-            {data?.policy8?.policies.map((d) => (
+            {data?.term8?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -122,9 +134,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy9?.title}
+              {data?.term9?.title}
             </h2>
-            {data?.policy9?.policies.map((d) => (
+            {data?.term9?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -133,9 +145,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy10?.title}
+              {data?.term10?.title}
             </h2>
-            {data?.policy10?.policies.map((d) => (
+            {data?.term10?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -144,9 +156,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy11?.title}
+              {data?.term11?.title}
             </h2>
-            {data?.policy11?.policies.map((d) => (
+            {data?.term11?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -155,9 +167,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy12?.title}
+              {data?.term12?.title}
             </h2>
-            {data?.policy12?.policies.map((d) => (
+            {data?.term12?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
@@ -166,53 +178,9 @@ export default function PrivacyPolicy() {
 
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy13?.title}
+              {data?.term13?.title}
             </h2>
-            {data?.policy13?.policies.map((d) => (
-              <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
-                {d?.text}
-              </p>
-            ))}
-          </div>
-
-          <div className="py-2">
-            <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy14?.title}
-            </h2>
-            {data?.policy14?.policies.map((d) => (
-              <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
-                {d?.text}
-              </p>
-            ))}
-          </div>
-
-          <div className="py-2">
-            <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy15?.title}
-            </h2>
-            {data?.policy15?.policies.map((d) => (
-              <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
-                {d?.text}
-              </p>
-            ))}
-          </div>
-
-          <div className="py-2">
-            <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy16?.title}
-            </h2>
-            {data?.policy16?.policies.map((d) => (
-              <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
-                {d?.text}
-              </p>
-            ))}
-          </div>
-
-          <div className="py-2">
-            <h2 className="text-brand__font__size__lg font-brand__font__500">
-              {data?.policy17?.title}
-            </h2>
-            {data?.policy17?.policies.map((d) => (
+            {data?.term13?.policies.map((d) => (
               <p key={d.id} className="mt-2 mb-5 font-brand__font__light">
                 {d?.text}
               </p>
