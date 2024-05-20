@@ -1,0 +1,52 @@
+{
+  "navigation": [
+    {
+      "title": "Home",
+      "route": "/#"
+    },
+    {
+      "title": "Gallery",
+      "route": "/"
+    },
+    {
+      "title": "Church Shop",
+      "route": "/"
+    },
+    {
+      "title": "Review",
+      "route": "/"
+    },
+    {
+      "title": "Login",
+      "route": "/login"
+    }
+  ],
+  "product": [
+    {
+      "title": "Order My ChurchLogo",
+      "route": "/"
+    },
+    {
+      "title": "How to Use Your ChurchLogo",
+      "route": "/"
+    },
+    {
+      "title": "ChurchLogo Terms",
+      "route": "/"
+    }
+  ],
+  "help": [
+    {
+      "title": "Terms & Conditions",
+      "route": "/terms-conditions#terms"
+    },
+    {
+      "title": "Privacy Policy",
+      "route": "/privacy-policy#privacy"
+    },
+    {
+      "title": "FAQ",
+      "route": "/faq#faq"
+    }
+  ]
+}

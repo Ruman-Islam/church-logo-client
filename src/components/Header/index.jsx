@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import MenuItems from "./MenuItems";
 
+import Modal from "@mui/material/Modal";
 import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
+import Auth from "../Auth";
 
 export default function Header({ topBarEnable }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Sticky is displayed after scrolling for 100 pixels
@@ -26,12 +29,15 @@ export default function Header({ topBarEnable }) {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
+  const handleModalOpen = () => setIsModalOpen(true);
+  const handleModalClose = () => setIsModalOpen(false);
+
   return (
     <>
-      <header className="z-[9999999]">
+      <header className="z-[999]">
         {topBarEnable && (
-          <div className="topBar-area bg-[#031401] text-white py-2 font-semibold relative z-50">
-            <div className="container text-center text-brand__font__size__xs md:text-brand__font__size__base">
+          <div className="topBar-area bg-[#031401] text-white py-2 font-medium relative z-50">
+            <div className="container text-center text-brand__font__size__sm">
               50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
             </div>
           </div>
@@ -49,17 +55,17 @@ export default function Header({ topBarEnable }) {
               <div className="flex justify-between flex-1 h-full items-center px-2 z-50 bg-white">
                 <div className="logo w-[220px] md:w-[280px] xl:w-[350px]">
                   {isVisible ? (
-                    <Link to="/" className="logo-text">
+                    <HashLink to="/#" className="logo-text">
                       <img
                         className="w-[280px]"
                         src={stickyLogo}
                         alt="church logo"
                       />
-                    </Link>
+                    </HashLink>
                   ) : (
-                    <Link to="/" className="logo-text">
+                    <HashLink to="/#" className="logo-text">
                       <img src={normalLogo} alt="church logo" />
-                    </Link>
+                    </HashLink>
                   )}
                 </div>
                 <button
@@ -84,13 +90,26 @@ export default function Header({ topBarEnable }) {
                 }`}
               >
                 <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-semibold text-brand__font__size__sm xl:text-brand__font__size__base">
-                  <MenuItems />
+                  <MenuItems onModalOpen={handleModalOpen} />
                 </ul>
               </div>
             </nav>
           </div>
         </div>
       </header>
+
+      <Modal
+        sx={{
+          backdropFilter: "blur(5px)",
+          //other styles here
+        }}
+        open={isModalOpen}
+        onClose={handleModalClose}
+      >
+        <div>
+          <Auth />
+        </div>
+      </Modal>
     </>
   );
 }

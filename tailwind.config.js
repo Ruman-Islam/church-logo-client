@@ -50,12 +50,6 @@ export default {
         text__gray: "#313030",
         section__bg_color: "#f1f1f1",
       },
-      backgroundImage: {
-        globe: "url('../src/assets/image/background/bg.png')",
-        not__found: "url('./src/assets/svg/404.svg')",
-        ask__qus__background:
-          "url('../src/assets/image/background/ask__qus__bg.jpeg')",
-      },
       keyframes: {
         navMenuOpInOut: {
           "0%": {
@@ -77,6 +71,14 @@ export default {
       animation: {
         navMenuOpInOut: "navMenuOpInOut 0.5s linear 1",
         headerDrop: "headerDrop 0.5s linear 1",
+      },
+      backgroundImage: {
+        globe: "url('../src/assets/image/background/bg.png')",
+        not__found: "url('./src/assets/svg/404.svg')",
+        ask__qus__background:
+          "url('../src/assets/image/background/ask__qus__bg.jpeg')",
+        login__background:
+          "url('../src/assets/image/background/churchlogo-login-banner.jpeg')",
       },
     },
   },

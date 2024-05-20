@@ -11,7 +11,7 @@ export default function ShowCaseYouLogo() {
     return (
       <div
         onClick={onClick}
-        className="relative -left-[20px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
+        className="relative -left-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
       >
         <FaArrowLeft size={25} />
       </div>
@@ -23,7 +23,7 @@ export default function ShowCaseYouLogo() {
     return (
       <div
         onClick={onClick}
-        className="relative -right-[20px] z-[99999] text-white hover:text-primary duration-200 hover:cursor-pointer"
+        className="relative -right-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
       >
         <FaArrowRight size={25} />
       </div>

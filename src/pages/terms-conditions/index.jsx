@@ -1,10 +1,10 @@
 import Layout from "../../components/common/Layout";
-import data from "../../data/termsConditions.json"
+import data from "../../data/termsConditions.json";
 
 export default function TermsAndConditions() {
   return (
     <Layout title="Term & Conditions">
-      <section className="mb-10">
+      <section id="terms" className="mb-10">
         {/* Introduction */}
         <div className="bg-brand__black__color text-white">
           <div className="container px-2 py-[30px] md:py-[60px]">
@@ -37,8 +37,8 @@ export default function TermsAndConditions() {
             </p>
 
             <p className="font-brand__font__light ">
-              ** All Rights Not Expressly Granted to You under These Terms and conditions Are Reserved to the Company.
-
+              ** All Rights Not Expressly Granted to You under These Terms and
+              conditions Are Reserved to the Company.
             </p>
           </div>
         </div>

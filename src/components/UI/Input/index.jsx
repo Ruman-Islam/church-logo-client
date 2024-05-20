@@ -1,15 +1,18 @@
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import TextField from "@mui/material/TextField";
 
 export default function Input(props) {
   const {
     id,
     type,
+    name,
+    error,
     label,
     variant,
     onChange,
+    helperText,
     inputValue,
     inputLabelStyle,
     formControlStyle,
@@ -25,13 +28,16 @@ export default function Input(props) {
       <InputLabel sx={inputLabelStyle} htmlFor={id}>
         {label}
       </InputLabel>
-      <OutlinedInput
+      <TextField
+        error={error}
         sx={outlinedInputStyle}
         id={id}
+        name={name}
         type={type}
         value={inputValue}
         onChange={onChange}
         label={label}
+        helperText={helperText}
       />
     </FormControl>
   );
@@ -42,12 +48,15 @@ export default function Input(props) {
         <InputLabel sx={inputLabelStyle} htmlFor={id}>
           {label}
         </InputLabel>
-        <OutlinedInput
+        <TextField
+          error={error}
           sx={outlinedInputStyle}
           id={id}
           type={type}
+          name={name}
           value={inputValue}
           onChange={onChange}
+          helperText={helperText}
           startAdornment={
             <InputAdornment
               sx={inputAdornmentStyle}
@@ -68,12 +77,15 @@ export default function Input(props) {
         <InputLabel sx={inputLabelStyle} htmlFor={id}>
           {label}
         </InputLabel>
-        <OutlinedInput
+        <TextField
+          error={error}
           sx={outlinedInputStyle}
           id={id}
           type={type}
+          name={name}
           value={inputValue}
           onChange={onChange}
+          helperText={helperText}
           endAdornment={
             <InputAdornment
               sx={inputAdornmentStyle}

@@ -1,6 +1,5 @@
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
-import CustomLink from "../../components/UI/CustomLink";
 import data from "../../data/hero.json";
 import "../../styles/hero-slider.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -20,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="md:py-[40px]">
+    <section id="home" className="md:py-[40px]">
       <div className="container px-2">
         <div className="flex flex-col-reverse lg:flex-row justify-between">
           <div className="basis-[30%] w-full flex justify-center items-center">
@@ -39,7 +38,7 @@ export default function Hero() {
           </div>
           <div className="flex-1 flex justify-center p-2.5">
             <div className="w-full xl:p-10 text-center lg:text-start">
-              <h2 className="text-brand__black__color text-[50px] md:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] md:leading-[65px] font-brand__font__semibold">
+              <h2 className="text-brand__black__color text-[50px] md:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] md:leading-[65px] font-brand__font__bold">
                 Get Your Own <span className="text-primary">Custom Church</span>
                 <br /> Logo
               </h2>
@@ -51,20 +50,18 @@ export default function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start my-4 xl:my-6">
-                <CustomLink
-                  route="/"
-                  text="Get started"
-                  classNames="py-2 px-4 xl:py-3 xl:px-6 inline-block rounded-full text-text__gray font-semibold bg-primary text-white hover:bg-brand__black__color duration-300 text-brand__font__size__sm"
+                <HashLink
+                  to="/"
+                  className="px-5 py-2 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300 text-brand__font__size__sm"
                 >
                   Get started
-                </CustomLink>
-                <CustomLink
-                  route="/"
-                  text="Get started"
-                  classNames="py-2 px-4 xl:py-3 xl:px-6 inline-block rounded-full text-text__gray font-semibold bg-brand__black__color text-white hover:bg-primary duration-300 text-brand__font__size__sm"
+                </HashLink>
+                <HashLink
+                  to="/"
+                  className="px-5 py-2 inline-block rounded-full font-semibold bg-brand__black__color text-white hover:bg-primary duration-300 text-brand__font__size__sm"
                 >
                   Visit our shop
-                </CustomLink>
+                </HashLink>
               </div>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-2">

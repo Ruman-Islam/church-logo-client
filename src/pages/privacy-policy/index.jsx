@@ -4,7 +4,7 @@ import data from "../../data/privacyPolicy.json";
 export default function PrivacyPolicy() {
   return (
     <Layout title="Privacy Policy">
-      <section className="mb-10">
+      <section id="privacy" className="mb-10">
         {/* Introduction */}
         <div className="bg-brand__black__color text-white">
           <div className="container px-2 py-[30px] md:py-[60px]">
