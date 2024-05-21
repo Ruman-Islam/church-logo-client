@@ -9,9 +9,9 @@ export default function Categories() {
         <div className="px-2">
           <SectionTitle
             title="Design for what you need"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center lg:text-left"
           />
-          <p>
+          <p className="font-brand__font__500 mt-2 text-center lg:text-left">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, ex.
           </p>
         </div>

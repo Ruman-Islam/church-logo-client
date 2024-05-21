@@ -63,11 +63,11 @@ export default function ShowCaseYouLogo() {
         <div>
           <SectionTitle
             title="Design for what you need"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-[35px] text-center text-white"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-white"
           />
         </div>
 
-        <div id="showcase-logo" className="mt-16 px-20">
+        <div id="showcase-logo" className="md:mt-10 md:px-20">
           <Slider {...settings}>
             {data.map((d) => (
               <div key={d.id}>

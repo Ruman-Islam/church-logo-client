@@ -37,7 +37,7 @@ export default function Header({ topBarEnable }) {
       <header className="z-[999]">
         {topBarEnable && (
           <div className="topBar-area bg-[#031401] text-white py-2 font-medium relative z-50">
-            <div className="container text-center text-brand__font__size__sm">
+            <div className="container px-0.5 text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
               50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
             </div>
           </div>

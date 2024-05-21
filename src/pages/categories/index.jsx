@@ -20,7 +20,11 @@ export default function Categories() {
           <div className="flex justify-center items-center gap-5 mb-5">
             {data.map((d) => (
               <HashLink key={d.id} to={d.route}>
-                <div className="border hover:border-primary duration-300 rounded-full px-4 py-1.5 text-brand__font__size__sm">
+                <div
+                  className={`border hover:text-white hover:bg-primary hover:border-primary duration-200 rounded-full px-4 py-1.5 text-brand__font__size__sm ${
+                    d.route.includes(section) && "bg-primary text-white"
+                  }`}
+                >
                   {d.title}
                 </div>
               </HashLink>

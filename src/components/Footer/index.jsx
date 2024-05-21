@@ -31,14 +31,14 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row flex-1 gap-5">
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__semibold text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left">
                   Navigation
                 </p>
                 {footerData?.navigation.map((item, index) =>
                   !item?.route.includes("/login") ? (
                     <HashLink
                       key={index}
-                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0"
+                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
                       to={item.route}
                       scroll={(el) => scrollWithOffset(el, 135)}
                     >
@@ -47,7 +47,7 @@ export default function Footer() {
                   ) : (
                     <button
                       key={index}
-                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0"
+                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
                       onClick={handleModalOpen}
                     >
                       {item?.title}
@@ -57,13 +57,13 @@ export default function Footer() {
               </div>
 
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__semibold text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left">
                   Product
                 </p>
                 {footerData?.product.map((item, index) => (
                   <HashLink
                     key={index}
-                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0"
+                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
                     to={item.route}
                     scroll={(el) => scrollWithOffset(el, 135)}
                   >
@@ -73,13 +73,13 @@ export default function Footer() {
               </div>
 
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__semibold text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left">
                   Help
                 </p>
                 {footerData?.help.map((item, index) => (
                   <HashLink
                     key={index}
-                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0"
+                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
                     to={item.route}
                     scroll={(el) => scrollWithOffset(el, 135)}
                   >

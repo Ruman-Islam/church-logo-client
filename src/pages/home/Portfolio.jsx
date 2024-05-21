@@ -46,22 +46,20 @@ export default function Portfolio() {
         <Slider {...settings}>
           {data.map((d) => (
             <div key={d.id}>
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-4 container">
                 <div className="basis-[50%] w-full p-5">
                   <img
                     src={getImgUrl(d.img)}
                     className="max-w-[95%] w-full mx-auto"
                   />
                 </div>
-                <div className="flex-1 w-full h-full pl-0 xl:pl-10">
-                  <div className="max-w-[100%] xl:max-w-[400px] w-full text-center xl:text-left">
-                    <h2 className="text-[32px] max-w-[500px] mx-auto leading-tight text-primary">
+                <div className="flex-1 w-full h-full">
+                  <div className="w-full text-center md:text-left">
+                    <h2 className="text-[32px] leading-[40px] text-primary font-brand__font__600">
                       {d.headLine}
                     </h2>
                     <br />
-                    <p className="max-w-[500px] mx-auto font-brand__font__regular">
-                      {d.feedBack}
-                    </p>
+                    <p className="font-brand__font__light">{d.feedBack}</p>
                   </div>
                 </div>
               </div>

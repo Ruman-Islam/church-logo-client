@@ -1,34 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import churchLogo from "../../assets/logo/churchlogo.png";
 import CustomButton from "../UI/CustomButton";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-export default function Auth() {
-  const [onShow, setOnShow] = useState(true);
-  const [loginData, setLoginData] = useState({
-    showPassword: false,
+const initialLoginData = {
+  showPassword: false,
+  email: "",
+  password: "",
+  error: {
     email: "",
     password: "",
-    error: {
-      email: "",
-      password: "",
-    },
-  });
-  const [registerData, setRegisterData] = useState({
-    showPassword: false,
+  },
+};
+
+const initialRegisterData = {
+  showPassword: false,
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  error: {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    error: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    },
-  });
+  },
+};
+
+export default function Auth() {
+  const [onShow, setOnShow] = useState(true);
+  const [loginData, setLoginData] = useState(initialLoginData);
+  const [registerData, setRegisterData] = useState(initialRegisterData);
+
+  useEffect(() => {
+    if (onShow) {
+      setRegisterData(initialRegisterData);
+    } else if (!onShow) {
+      setLoginData(initialLoginData);
+    }
+  }, [onShow]);
 
   const handleLoginInput = (e) => {
     const key = e.target.name;

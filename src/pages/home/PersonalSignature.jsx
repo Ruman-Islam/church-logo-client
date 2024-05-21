@@ -3,12 +3,12 @@ import SectionTitle from "../../components/common/SectionTitle";
 
 export default function PersonalSignature() {
   return (
-    <section className="bg-[#363A30] mt-20">
+    <section className="bg-[#363A30]">
       <div className="container px-2 py-10">
-        <div className="px-2 text-center">
+        <div className="px-2">
           <SectionTitle
             title="Is a Signature Churchlogo for you?"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight text-white"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-white"
           />
         </div>
 

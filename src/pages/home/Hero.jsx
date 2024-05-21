@@ -19,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="md:py-[40px]">
+    <section id="home" className="md:py-[20px]">
       <div className="container px-2">
         <div className="flex flex-col-reverse lg:flex-row justify-between">
           <div className="basis-[30%] w-full flex justify-center items-center">
@@ -38,7 +38,7 @@ export default function Hero() {
           </div>
           <div className="flex-1 flex justify-center p-2.5">
             <div className="w-full xl:p-10 text-center lg:text-start">
-              <h2 className="text-brand__black__color text-[50px] md:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] md:leading-[65px] font-brand__font__bold">
+              <h2 className="text-brand__black__color text-[50px] md:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] md:leading-[65px] font-brand__font__semibold">
                 Get Your Own <span className="text-primary">Custom Church</span>
                 <br /> Logo
               </h2>

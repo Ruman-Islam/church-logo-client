@@ -23,6 +23,8 @@ export default function SignUp(props) {
         onShow ? "translate-x-[100%] opacity-0" : "translate-x-0 opacity-1"
       }`}
     >
+      <GoogleLoginButton />
+
       <div className="text-center mb-2.5 text-brand__black__color font-brand__font__500 text-brand__font__size__lg">
         <h3>Create Account</h3>
       </div>
@@ -111,8 +113,6 @@ export default function SignUp(props) {
           </CustomButton>
         </div>
       </form>
-
-      <GoogleLoginButton />
     </div>
   );
 }

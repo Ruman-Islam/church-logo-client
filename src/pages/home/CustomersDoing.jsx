@@ -36,8 +36,8 @@ export default function CustomersDoing() {
       <div className="container px-2 py-[20px] md:py-[50px]">
         <div>
           <SectionTitle
-            title="Check out the cool things our customers are doing with their Churchlogo"
-            titleClass="text-brand__font__size__lg md:text-brand__font__size__xl leading-[25px] md:leading-[50px] text-center mb-4"
+            title="Check out the cool things our customers are doing with their Church Logo"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-center mb-4"
           />
         </div>
 

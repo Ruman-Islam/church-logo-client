@@ -24,6 +24,8 @@ export default function SignIn(props) {
         onShow ? "translate-x-0 opacity-1" : "-translate-x-[100%] opacity-0"
       }`}
     >
+      <GoogleLoginButton />
+
       <div className="text-center mb-2.5 text-brand__black__color font-brand__font__500 text-brand__font__size__lg">
         <h3>Sign In</h3>
       </div>
@@ -92,8 +94,6 @@ export default function SignIn(props) {
           </div>
         </div>
       </form>
-
-      <GoogleLoginButton />
     </div>
   );
 }
