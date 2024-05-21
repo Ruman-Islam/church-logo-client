@@ -8,18 +8,26 @@ import SignUp from "./SignUp";
 export default function Auth() {
   const [onShow, setOnShow] = useState(true);
   const [loginData, setLoginData] = useState({
+    showPassword: false,
     email: "",
     password: "",
-    error: "",
-    showPassword: false,
+    error: {
+      email: "",
+      password: "",
+    },
   });
   const [registerData, setRegisterData] = useState({
+    showPassword: false,
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    error: "",
-    showPassword: false,
+    error: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
   });
 
   const handleLoginInput = (e) => {
@@ -31,20 +39,23 @@ export default function Auth() {
     });
   };
 
-  const handleClickShowLoginPassword = () =>
-    setLoginData({
-      ...loginData,
-      showPassword: !loginData.showPassword,
-    });
-
   const handleRegisterInput = (e) => {
     const key = e.target.name;
     const value = e.target.value;
     setRegisterData({
       ...registerData,
+      error: {
+        [key]: "",
+      },
       [key]: value,
     });
   };
+
+  const handleClickShowLoginPassword = () =>
+    setLoginData({
+      ...loginData,
+      showPassword: !loginData.showPassword,
+    });
 
   const handleClickShowRegisterPassword = () =>
     setRegisterData({
@@ -53,6 +64,50 @@ export default function Auth() {
     });
 
   const handleMouseDownPassword = (e) => e.preventDefault();
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    // if (!registerData.firstName) {
+    //   setRegisterData((prev) => ({
+    //     ...prev,
+    //     error: {
+    //       ...prev.error,
+    //       firstName: "First name is required!",
+    //     },
+    //   }));
+    // }
+    // if (!registerData.lastName) {
+    //   setRegisterData((prev) => ({
+    //     ...prev,
+    //     error: {
+    //       ...prev.error,
+    //       lastName: "Last name is required!",
+    //     },
+    //   }));
+    // }
+    // if (!registerData.email) {
+    //   setRegisterData((prev) => ({
+    //     ...prev,
+    //     error: {
+    //       ...prev.error,
+    //       email: "Email is required!",
+    //     },
+    //   }));
+    // }
+    // if (!registerData.password) {
+    //   setRegisterData((prev) => ({
+    //     ...prev,
+    //     error: {
+    //       ...prev.error,
+    //       password: "Password is required!",
+    //     },
+    //   }));
+    // }
+  };
 
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[800px] w-full max-h-[600px] h-full mx-auto rounded-xl p-2">
@@ -106,6 +161,7 @@ export default function Auth() {
             <SignIn
               onShow={onShow}
               loginData={loginData}
+              onSubmit={handleLoginSubmit}
               onChangeInput={handleLoginInput}
               onClickShowPassword={handleClickShowLoginPassword}
               onMouseDownShowPassword={handleMouseDownPassword}
@@ -113,6 +169,7 @@ export default function Auth() {
             <SignUp
               onShow={onShow}
               registerData={registerData}
+              onSubmit={handleRegisterSubmit}
               onChangeInput={handleRegisterInput}
               onClickShowPassword={handleClickShowRegisterPassword}
               onMouseDownShowPassword={handleMouseDownPassword}

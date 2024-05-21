@@ -1,19 +1,23 @@
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import { HashLink } from "react-router-hash-link";
 import CustomButton from "../UI/CustomButton";
-import Input from "../UI/Input";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 export default function SignIn(props) {
   const {
     onShow,
+    onSubmit,
     loginData,
     onChangeInput,
     onClickShowPassword,
     onMouseDownShowPassword,
   } = props;
+
   return (
     <div
       className={`w-full h-full px-4 absolute top-0 duration-500 ${
@@ -24,43 +28,51 @@ export default function SignIn(props) {
         <h3>Sign In</h3>
       </div>
 
-      <form>
-        <Input
-          id="email"
-          type="text"
-          variant="outlined"
-          inputValue={loginData?.email}
-          label="Email Address"
-          name="email"
-          onChange={onChangeInput}
-          formControlStyle={{ width: "100%" }}
-          error={loginData?.error}
-        />
+      <form onSubmit={onSubmit}>
+        <FormControl sx={{ width: "100%" }}>
+          <TextField
+            variant="outlined"
+            id="email"
+            name="email"
+            type="text"
+            label="Email Address"
+            value={loginData?.email}
+            onChange={onChangeInput}
+            error={!!loginData?.error?.email}
+            helperText={!!loginData?.error?.email}
+          />
+        </FormControl>
 
-        <Input
-          id="password"
-          label="Password"
-          variant="outlined"
-          name="password"
-          inputValue={loginData?.password}
-          onChange={onChangeInput}
-          inputAdornmentPosition="end"
-          error={loginData?.error}
-          type={loginData?.showPassword ? "text" : "password"}
-          formControlStyle={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-          endAdornmentChildren={
-            <IconButton
-              onClick={onClickShowPassword}
-              onMouseDown={onMouseDownShowPassword}
-              edge="end"
-            >
-              {loginData?.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          }
-        />
+        <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+          <TextField
+            variant="outlined"
+            id="password"
+            type="password"
+            name="password"
+            label="Password"
+            value={loginData?.password}
+            onChange={onChangeInput}
+            error={!!loginData?.error?.password}
+            helperText={loginData?.error?.password}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={onClickShowPassword}
+                    onMouseDown={onMouseDownShowPassword}
+                    edge="end"
+                  >
+                    {loginData?.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FormControl>
 
         <div className="mt-4">
           <CustomButton

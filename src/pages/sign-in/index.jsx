@@ -9,16 +9,26 @@ import Layout from "../../components/common/Layout";
 export default function SignInScreen() {
   const [onShow, setOnShow] = useState(true);
   const [loginData, setLoginData] = useState({
+    showPassword: false,
     email: "",
     password: "",
-    showPassword: false,
+    error: {
+      email: "",
+      password: "",
+    },
   });
   const [registerData, setRegisterData] = useState({
+    showPassword: false,
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    showPassword: false,
+    error: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
   });
 
   const handleLoginInput = (e) => {
@@ -30,12 +40,6 @@ export default function SignInScreen() {
     });
   };
 
-  const handleClickShowLoginPassword = () =>
-    setLoginData({
-      ...loginData,
-      showPassword: !loginData.showPassword,
-    });
-
   const handleRegisterInput = (e) => {
     const key = e.target.name;
     const value = e.target.value;
@@ -44,6 +48,12 @@ export default function SignInScreen() {
       [key]: value,
     });
   };
+
+  const handleClickShowLoginPassword = () =>
+    setLoginData({
+      ...loginData,
+      showPassword: !loginData.showPassword,
+    });
 
   const handleClickShowRegisterPassword = () =>
     setRegisterData({

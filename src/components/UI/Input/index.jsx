@@ -24,12 +24,8 @@ export default function Input(props) {
   } = props;
 
   let input = (
-    <FormControl sx={formControlStyle} variant={variant}>
-      <InputLabel sx={inputLabelStyle} htmlFor={id}>
-        {label}
-      </InputLabel>
+    <FormControl error={error} sx={formControlStyle} variant={variant}>
       <TextField
-        error={error}
         sx={outlinedInputStyle}
         id={id}
         name={name}
@@ -37,19 +33,18 @@ export default function Input(props) {
         value={inputValue}
         onChange={onChange}
         label={label}
-        helperText={helperText}
+        helperText={"thikase bhai"}
       />
     </FormControl>
   );
 
   if (startAdornmentChildren) {
     input = (
-      <FormControl sx={formControlStyle} variant={variant}>
+      <FormControl error={error} sx={formControlStyle} variant={variant}>
         <InputLabel sx={inputLabelStyle} htmlFor={id}>
           {label}
         </InputLabel>
         <TextField
-          error={error}
           sx={outlinedInputStyle}
           id={id}
           type={type}
@@ -73,12 +68,11 @@ export default function Input(props) {
 
   if (endAdornmentChildren) {
     input = (
-      <FormControl sx={formControlStyle} variant={variant}>
+      <FormControl error={error} sx={formControlStyle} variant={variant}>
         <InputLabel sx={inputLabelStyle} htmlFor={id}>
           {label}
         </InputLabel>
         <TextField
-          error={error}
           sx={outlinedInputStyle}
           id={id}
           type={type}

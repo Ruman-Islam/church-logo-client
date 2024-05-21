@@ -1,13 +1,16 @@
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import CustomButton from "../UI/CustomButton";
-import Input from "../UI/Input";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 export default function SignUp(props) {
   const {
     onShow,
+    onSubmit,
     registerData,
     onChangeInput,
     onClickShowPassword,
@@ -24,72 +27,87 @@ export default function SignUp(props) {
         <h3>Create Account</h3>
       </div>
 
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="flex gap-2">
-          <Input
-            id="firstName"
-            type="text"
-            variant="outlined"
-            inputValue={registerData?.firstName}
-            name="firstName"
-            label="First name"
-            onChange={onChangeInput}
-            formControlStyle={{ width: "100%" }}
-            error={registerData?.error}
-          />
-          <Input
-            id="lastName"
-            type="text"
-            variant="outlined"
-            inputValue={registerData?.lastName}
-            name="lastName"
-            label="Last name"
-            onChange={onChangeInput}
-            formControlStyle={{ width: "100%" }}
-            error={registerData?.error}
-          />
+          <FormControl sx={{ width: "100%" }}>
+            <TextField
+              variant="outlined"
+              id="firstName"
+              name="firstName"
+              type="text"
+              label="First name"
+              value={registerData?.firstName}
+              onChange={onChangeInput}
+              error={!!registerData?.error?.firstName}
+              helperText={registerData?.error?.firstName}
+            />
+          </FormControl>
+          <FormControl sx={{ width: "100%" }}>
+            <TextField
+              variant="outlined"
+              id="lastName"
+              name="lastName"
+              type="text"
+              label="Last name"
+              value={registerData?.lastName}
+              onChange={onChangeInput}
+              error={!!registerData?.error?.lastName}
+              helperText={registerData?.error?.lastName}
+            />
+          </FormControl>
         </div>
 
-        <Input
-          id="email"
-          type="text"
-          variant="outlined"
-          inputValue={registerData?.email}
-          name="email"
-          label="Email Address"
-          onChange={onChangeInput}
-          formControlStyle={{ width: "100%", marginTop: "10px" }}
-          error={registerData?.error}
-        />
+        <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+          <TextField
+            variant="outlined"
+            id="email"
+            name="email"
+            type="text"
+            label="Email Address"
+            value={registerData?.email}
+            onChange={onChangeInput}
+            error={!!registerData?.error?.email}
+            helperText={registerData?.error?.email}
+          />
+        </FormControl>
 
-        <Input
-          id="password"
-          label="Password"
-          variant="outlined"
-          inputValue={registerData?.password}
-          name="password"
-          onChange={onChangeInput}
-          inputAdornmentPosition="end"
-          error={registerData?.error}
-          type={registerData?.showPassword ? "text" : "password"}
-          formControlStyle={{ width: "100%", marginTop: "10px" }}
-          endAdornmentChildren={
-            <IconButton
-              onClick={onClickShowPassword}
-              onMouseDown={onMouseDownShowPassword}
-              edge="end"
-            >
-              {registerData?.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          }
-        />
+        <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+          <TextField
+            variant="outlined"
+            id="password"
+            type="password"
+            name="password"
+            label="Password"
+            value={registerData?.password}
+            onChange={onChangeInput}
+            error={!!registerData?.error?.password}
+            helperText={registerData?.error?.password}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={onClickShowPassword}
+                    onMouseDown={onMouseDownShowPassword}
+                    edge="end"
+                  >
+                    {registerData?.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FormControl>
 
         <div className="mt-4">
           <CustomButton
             type="submit"
             className="border w-full rounded-full py-2.5 bg-primary hover:bg-brand__black__color text-white duration-300"
           >
-            Register
+            Submit
           </CustomButton>
         </div>
       </form>
