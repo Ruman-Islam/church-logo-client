@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import navigation from "../../data/navigation.json";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 
 const MenuItems = ({ onModalOpen }) => {
+  const scrollWithOffset = useScrollWithOffset();
   const location = useLocation();
   const { pathname } = location;
 
@@ -17,11 +19,12 @@ const MenuItems = ({ onModalOpen }) => {
             <HashLink
               className="px-1.5 md:px-5 py-3 lg:py-1.5 w-full inline-block"
               to={d?.route}
+              scroll={(el) => scrollWithOffset(el, 135)}
             >
               {d?.title}
             </HashLink>
           </li>
-        ) : d?.route.includes("/login") ? (
+        ) : d?.route.includes("/sign-in") ? (
           <li
             key={d?.id}
             className="border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent duration-300 rounded-none lg:rounded-full"
@@ -45,6 +48,7 @@ const MenuItems = ({ onModalOpen }) => {
             <HashLink
               className="px-1.5 py-3 lg:py-1.5 w-full inline-block"
               to={d?.route}
+              scroll={(el) => scrollWithOffset(el, 135)}
             >
               {d?.title}
             </HashLink>

@@ -17,8 +17,8 @@
       "route": "/"
     },
     {
-      "title": "Login",
-      "route": "/login"
+      "title": "Sign In",
+      "route": "/sign-in"
     }
   ],
   "product": [

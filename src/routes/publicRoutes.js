@@ -1,4 +1,5 @@
 import Categories from "../pages/categories";
+import FAQ from "../pages/faq";
 import HomeScreen from "../pages/home";
 import PrivacyPolicy from "../pages/privacy-policy";
 import SignInScreen from "../pages/sign-in";
@@ -21,6 +22,11 @@ const publicRoutes = [
     path: "/terms-conditions",
     name: "terms-conditions",
     Component: TermsAndConditions,
+  },
+  {
+    path: "/faq",
+    name: "faq",
+    Component: FAQ,
   },
 ];
 

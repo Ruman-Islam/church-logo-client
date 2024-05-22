@@ -25,9 +25,9 @@
   },
   {
     "id": 5,
-    "title": "Login",
-    "route": "/login#login",
-    "match": "/login"
+    "title": "Sign In",
+    "route": "/sign-in#sign-in",
+    "match": "/sign-in"
   },
   {
     "id": 6,

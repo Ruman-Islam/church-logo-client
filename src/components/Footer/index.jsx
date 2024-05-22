@@ -35,7 +35,7 @@ export default function Footer() {
                   Navigation
                 </p>
                 {footerData?.navigation.map((item, index) =>
-                  !item?.route.includes("/login") ? (
+                  !item?.route.includes("/sign-in") ? (
                     <HashLink
                       key={index}
                       className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"

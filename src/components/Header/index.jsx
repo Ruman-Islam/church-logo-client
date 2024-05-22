@@ -89,7 +89,7 @@ export default function Header({ topBarEnable }) {
                     : "-top-[325px]"
                 }`}
               >
-                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-semibold text-brand__font__size__sm xl:text-brand__font__size__base">
+                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm xl:text-brand__font__size__base">
                   <MenuItems onModalOpen={handleModalOpen} />
                 </ul>
               </div>
