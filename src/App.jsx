@@ -1,8 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import NotFoundScreen from "./pages/not-found";
 import publicRoutes from "./routes/publicRoutes";
+import AOS from 'aos';
+
 
 function App() {
+  AOS.init();
   return (
     <>
       <Routes>

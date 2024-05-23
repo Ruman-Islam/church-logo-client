@@ -2,6 +2,7 @@
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  important: "#root",
   theme: {
     extend: {
       fontSize: {
@@ -15,7 +16,7 @@ export default {
         section__title__size: "32px",
       },
       fontFamily: {
-        brand__font__family: "Poppins",
+        brand__font__family: "Gabarito",
       },
       fontWeight: {
         brand__font__thin: "100",
