@@ -1,9 +1,10 @@
-import Categories from "../pages/categories";
-import FAQ from "../pages/faq";
+import CategoriesScreen from "../pages/categories";
+import FAQScreen from "../pages/faq";
+import GalleryScreen from "../pages/gallery";
 import HomeScreen from "../pages/home";
-import PrivacyPolicy from "../pages/privacy-policy";
+import PrivacyPolicyScreen from "../pages/privacy-policy";
 import SignInScreen from "../pages/sign-in";
-import TermsAndConditions from "../pages/terms-conditions";
+import TermsAndConditionsScreen from "../pages/terms-conditions";
 
 const publicRoutes = [
   { path: "/", name: "home", Component: HomeScreen },
@@ -11,22 +12,27 @@ const publicRoutes = [
   {
     path: "/categories/:section",
     name: "categories",
-    Component: Categories,
+    Component: CategoriesScreen,
   },
   {
     path: "/privacy-policy",
     name: "privacy-policy",
-    Component: PrivacyPolicy,
+    Component: PrivacyPolicyScreen,
   },
   {
     path: "/terms-conditions",
     name: "terms-conditions",
-    Component: TermsAndConditions,
+    Component: TermsAndConditionsScreen,
   },
   {
     path: "/faq",
     name: "faq",
-    Component: FAQ,
+    Component: FAQScreen,
+  },
+  {
+    path: "/gallery",
+    name: "gallery",
+    Component: GalleryScreen,
   },
 ];
 

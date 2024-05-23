@@ -1,12 +1,12 @@
 import Layout from "../../components/common/Layout";
 import data from "../../data/privacyPolicy.json";
 
-export default function PrivacyPolicy() {
+export default function PrivacyPolicyScreen() {
   return (
     <Layout title="Privacy Policy">
       <section id="privacy" className="mb-10">
         {/* Introduction */}
-        <div className="bg-brand__black__color text-white">
+        <div className="bg-section__bg_color text-brand__black__color">
           <div className="container px-2 py-[30px] md:py-[60px]">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
               Introduction
@@ -15,11 +15,11 @@ export default function PrivacyPolicy() {
               Last Updated: 01/07/2020
             </h3>
             <p className="font-brand__font__light">
-              Echko Limited (“We” or “Us” or “Our” or “Photologo™”) is committed
+              Echko Limited (“We” or “Us” or “Our” or “Churchlogo™”) is committed
               to ensure Your privacy while providing the most unique services
               (“Services”) of its kind. If You want to become a user of the
               Service, You need to register and open Your personal account
-              through Our website. At the time of registration, Photologo will
+              through Our website. At the time of registration, Churchlogo will
               ask You to provide Us with a certain amount of personal
               information. Submission of such personal information is voluntary,
               but without it You may not be able to receive Our Services. Your

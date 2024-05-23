@@ -59,7 +59,7 @@ export default function ShowCaseYouLogo() {
 
   return (
     <div className="bg-brand__black__color">
-      <div className="container px-2 py-[30px] md:py-[60px]">
+      <div className="container px-2 py-[40px]">
         <div>
           <SectionTitle
             title="Design for what you need"
@@ -67,7 +67,7 @@ export default function ShowCaseYouLogo() {
           />
         </div>
 
-        <div id="showcase-logo" className="md:mt-10 md:px-20">
+        <div id="showcase-logo" className="lg:mt-10 md:px-20">
           <Slider {...settings}>
             {data.map((d) => (
               <div key={d.id}>

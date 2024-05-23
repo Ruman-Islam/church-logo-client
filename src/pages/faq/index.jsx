@@ -7,25 +7,25 @@ import { useState } from "react";
 import Layout from "../../components/common/Layout";
 import data from "../../data/faq.json";
 
-export default function FAQ() {
-  const [index, setIndex] = useState(0);
-  const [index2, setIndex2] = useState(0);
-  const [index3, setIndex3] = useState(0);
-  const [index4, setIndex4] = useState(0);
-  // const [accordionIndexes, setAccordionIndexes] = useState({
+export default function FAQScreen() {
+  const [faqs] = useState(data);
 
-  // })
-
-  const handleExpansion = (i, accordionNo) => {
-    if (accordionNo === 1) {
-      setIndex(i);
-    } else if (accordionNo === 2) {
-      setIndex2(i);
-    } else if (accordionNo === 3) {
-      setIndex3(i);
-    } else if (accordionNo === 4) {
-      setIndex4(i);
+  const initializeIndexes = (faqs) => {
+    const initialIndexes = {};
+    for (const faq of faqs) {
+      initialIndexes[faq?.faqName] = faq?.uniqueId;
     }
+    return initialIndexes;
+  };
+
+  const [indexes, setIndexes] = useState(() => initializeIndexes(faqs));
+
+  const handleChange = (data) => {
+    const { faqName, uniqueId } = data;
+    setIndexes((prev) => ({
+      ...prev,
+      [faqName]: uniqueId,
+    }));
   };
 
   return (
@@ -35,207 +35,84 @@ export default function FAQ() {
           <h3 className="text-[37px]">FAQ</h3>
         </div>
         <div className="container px-2 py-5 md:py-10">
-          <div className="flex flex-col lg:flex-row justify-between gap-5 pb-5 md:pb-10">
-            <div className="basis-[100%] lg:basis-[60%] h-full w-full">
-              <div className="text-[22px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
-                <h2>{data?.basicFaq?.title}</h2>
-              </div>
-              <div>
-                {data?.basicFaq?.faqs.map((d, i) => (
-                  <div key={d?.id}>
-                    <Accordion
-                      className="border-b"
-                      sx={{
-                        boxShadow: "none",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      expanded={i === index}
-                      onChange={() => handleExpansion(i, 1)}
-                    >
-                      <AccordionSummary
-                        expandIcon={
-                          <ExpandMoreIcon
-                            className={`${i === index && "text-primary"}`}
-                          />
-                        }
-                      >
-                        <Typography>
-                          <span
-                            className={`font-brand__font__semibold md:text-brand__font__size__md ${
-                              i === index && "text-primary"
-                            }`}
-                          >{`${i + 1}. ${d?.question}`}</span>
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
-                            {d?.answer}
-                          </span>
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
+          {faqs.map((faq) => {
+            return (
+              <div
+                key={faq?.uniqueId}
+                className="flex flex-col lg:flex-row justify-between gap-5"
+              >
+                <div
+                  className={`basis-[100%] ${faq?.imgUrl && "lg:basis-[60%]"} ${
+                    !faq?.imgUrl && "pt-5 md:pt-10"
+                  } h-full w-full`}
+                >
+                  <div className="text-[22px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
+                    <h2>{faq?.title}</h2>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="basis-[100%] lg:basis-[40%] h-[68vh] xl:h-[62vh] w-full hidden lg:block">
-              <img
-                className="w-full h-full object-cover"
-                src="https://photologo.co/wp-content/uploads/2022/07/Tom-Hill-Architecture-5-768x794.jpg"
-                alt=""
-              />
-              {/* <figure>
-                <img
-                  className="w-full h-full"
-                  src="https://photologo.co/wp-content/uploads/2022/07/Tom-Hill-Architecture-5-768x794.jpg"
-                  alt=""
-                />
-              </figure> */}
-            </div>
-          </div>
-
-          <div className="pt-5 md:pt-10">
-            <div className="basis-[100%] lg:basis-[60%] h-full w-full">
-              <div className="text-[25px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
-                <h2>{data?.paymentFaq?.title}</h2>
-              </div>
-              <div>
-                {data?.paymentFaq?.faqs.map((d, i) => (
-                  <div key={d?.id}>
-                    <Accordion
-                      className="border-b"
-                      sx={{
-                        boxShadow: "none",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      expanded={i === index2}
-                      onChange={() => handleExpansion(i, 3)}
-                    >
-                      <AccordionSummary
-                        expandIcon={
-                          <ExpandMoreIcon
-                            className={`${i === index2 && "text-primary"}`}
-                          />
-                        }
-                      >
-                        <Typography>
-                          <span
-                            className={`font-brand__font__semibold md:text-brand__font__size__md ${
-                              i === index2 && "text-primary"
-                            }`}
-                          >{`${i + 1}. ${d?.question}`}</span>
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
-                            {d?.answer}
-                          </span>
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
+                  <div>
+                    {faq?.faqs.map((d, i) => (
+                      <div key={d?.uniqueId}>
+                        <Accordion
+                          className="border-b"
+                          sx={{
+                            boxShadow: "none",
+                            paddingTop: "10px",
+                            paddingBottom: "10px",
+                          }}
+                          expanded={d?.uniqueId === indexes[faq?.faqName]}
+                          onChange={() =>
+                            handleChange({
+                              faqName: faq?.faqName,
+                              uniqueId: d?.uniqueId,
+                            })
+                          }
+                        >
+                          <AccordionSummary
+                            expandIcon={
+                              <ExpandMoreIcon
+                                className={`${
+                                  d?.uniqueId === indexes[faq?.faqName] &&
+                                  "text-primary"
+                                }`}
+                              />
+                            }
+                          >
+                            <Typography>
+                              <span
+                                className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                                  d?.uniqueId === indexes[faq?.faqName]
+                                    ? "text-primary"
+                                    : "text-text__gray"
+                                }`}
+                              >{`${i + 1}. ${d?.question}`}</span>
+                            </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Typography>
+                              <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
+                                {d?.answer}
+                              </span>
+                            </Typography>
+                          </AccordionDetails>
+                        </Accordion>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-5 md:pt-10">
-            <div className="basis-[100%] lg:basis-[60%] h-full w-full">
-              <div className="text-[25px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
-                <h2>{data?.statusFaq?.title}</h2>
-              </div>
-              <div>
-                {data?.statusFaq?.faqs.map((d, i) => (
-                  <div key={d?.id}>
-                    <Accordion
-                      className="border-b"
-                      sx={{
-                        boxShadow: "none",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      expanded={i === index3}
-                      onChange={() => handleExpansion(i, 3)}
-                    >
-                      <AccordionSummary
-                        expandIcon={
-                          <ExpandMoreIcon
-                            className={`${i === index3 && "text-primary"}`}
-                          />
-                        }
-                      >
-                        <Typography>
-                          <span
-                            className={`font-brand__font__semibold md:text-brand__font__size__md ${
-                              i === index3 && "text-primary"
-                            }`}
-                          >{`${i + 1}. ${d?.question}`}</span>
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
-                            {d?.answer}
-                          </span>
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
+                </div>
+                {faq?.imgUrl && (
+                  <div className="basis-[100%] lg:basis-[40%] w-full hidden lg:block">
+                    <figure className="w-full h-full rounded-xl">
+                      <img
+                        className="w-full h-full object-cover rounded-xl"
+                        src={faq?.imgUrl}
+                        alt={faq?.title}
+                      />
+                    </figure>
                   </div>
-                ))}
+                )}
               </div>
-            </div>
-          </div>
-
-          <div className="pt-5 md:pt-10">
-            <div className="basis-[100%] lg:basis-[60%] h-full w-full">
-              <div className="text-[25px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
-                <h2>{data?.revisionFaq?.title}</h2>
-              </div>
-              <div>
-                {data?.revisionFaq?.faqs.map((d, i) => (
-                  <div key={d?.id}>
-                    <Accordion
-                      className="border-b"
-                      sx={{
-                        boxShadow: "none",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      expanded={i === index4}
-                      onChange={() => handleExpansion(i, 4)}
-                    >
-                      <AccordionSummary
-                        expandIcon={
-                          <ExpandMoreIcon
-                            className={`${i === index4 && "text-primary"}`}
-                          />
-                        }
-                      >
-                        <Typography>
-                          <span
-                            className={`font-brand__font__semibold md:text-brand__font__size__md ${
-                              i === index4 && "text-primary"
-                            }`}
-                          >{`${i + 1}. ${d?.question}`}</span>
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography>
-                          <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
-                            {d?.answer}
-                          </span>
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
     </Layout>

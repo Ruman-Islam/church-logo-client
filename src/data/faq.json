@@ -1,92 +1,94 @@
-{
-  "basicFaq": {
+[
+  {
+    "uniqueId": "A1b2C3d4",
+    "faqName": "basic",
     "title": "More About The Churchlogo",
+    "imgUrl": "https://photologo.co/wp-content/uploads/2022/07/Tom-Hill-Architecture-5-768x794.jpg",
     "faqs": [
       {
-        "id": 1,
+        "uniqueId": "A1b2C3d4",
         "question": "What is Churchlogo?",
         "answer": "Churchlogo is your unique, handwritten signature, specially created by our Professional Artists."
       },
       {
-        "id": 2,
+        "uniqueId": "A11b2C3d4",
         "question": "How to order?",
         "answer": "Simply go to the Order Page at the top right corner of your screen and fill out the short questionnaire that will help your Artist understand your preferred style."
       },
       {
-        "id": 3,
+        "uniqueId": "A13b2C3d4",
         "question": "What is the format of the Churchlogo?",
-        "answer": "Churchlogos come in .PNG format. You will receive a low resolution (1280×800) and super high resolution (8000×5000) version in both black and white on the transparent background. These versions can be used for a wide range of purposes, such as sharing on your social media, website, emails and much more."
+        "answer": "Churchlogos come in .PNG format. You will receive a low resolution (1280×800) and super high resolution (8000×5000) version in both black and white on the transparent background. These versions can be used for a wuniqueIde range of purposes, such as sharing on your social media, website, emails and much more."
       },
       {
-        "id": 4,
+        "uniqueId": "A1db2C3d4",
         "question": "Delivery time?",
         "answer": "5 working days delivery time is FREE for every Churchlogo, but you can request 1-day delivery upon placing your order, for a small extra fee."
       },
       {
-        "id": 5,
+        "uniqueId": "A1b2C3sd4",
         "question": "Can I see a preview of the Churchlogo before I purchase it?",
         "answer": "Unfortunately, no. If we were to offer samples of each signature, the quality of designs would decrease, because our logos are handcrafted with creativity, skill, and passion by our lovely designers to ensure maximum quality and elegance. However, all Churchlogo orders are risk-free, thanks to unlimited revisions offered on every order. This allows you to make design and style changes to your signature."
       },
       {
-        "id": 6,
+        "uniqueId": "A1b2C3df4",
         "question": "How can I use it?",
-        "answer": "Usage of the Churchlogo is flexible due to the format that it is being delivered. You can use it to add it to your images, use it as your email signature, or print it on your business cards and promotional material. For our customers, we have prepared video tutorials that can help out: “How to use your Churchlogo”"
+        "answer": "Usage of the Churchlogo is flexible due to the format that it is being delivered. You can use it to add it to your images, use it as your email signature, or print it on your business cards and promotional material. For our customers, we have prepared vuniqueIdeo tutorials that can help out: “How to use your Churchlogo”"
       }
     ]
   },
-  "paymentFaq": {
+  {
+    "uniqueId": "A1b2C3fdd4",
+    "faqName": "payment",
     "title": "Payment Questions",
+    "imgUrl": "",
     "faqs": [
       {
-        "id": 1,
+        "uniqueId": "A1b2C3fdd4",
         "question": "What forms of payment do you accept?",
         "answer": "We accept credit card payments (Visa, Mastercard), Google Pay, Apple Pay, Paypal. We also accept Amex cards when paying through the PayPal option."
       },
       {
-        "id": 2,
+        "uniqueId": "A1b2C3fsd4",
         "question": "I have payment issues",
         "answer": "If you are having a payment issue, please confirm with your bank that your card allows international purchases. If the issue persists, please contact our Customer Support via Chat or at: support@churchlogo.co"
       }
     ]
   },
-  "statusFaq": {
+  {
+    "uniqueId": "A1bcb2C3d4",
+    "faqName": "status",
     "title": "Status of my Churchlogo",
+    "imgUrl": "",
     "faqs": [
       {
-        "id": 1,
+        "uniqueId": "A1bcb2C3d4",
         "question": "How to check the status of my Churchlogo?",
         "answer": "As soon as you order your Churchlogo, our Artist will start designing it. Depending on the time frame that you selected, your Churchlogo will be delivered. We will notify you via email when your Churchlogo is delivered to your account."
       },
       {
-        "id": 2,
+        "uniqueId": "A1b2C3d134",
         "question": "How to check the status of my revision?",
         "answer": "The time frame for the delivery of your revised Churchlogo is 5 working days. As soon as we finish revising your Churchlogo, you will receive an email. You can always log in to your Churchlogo account and check the status of your Churchlogo."
       }
     ]
   },
-  "revisionFaq": {
+  {
+    "uniqueId": "A1b2C3d4v",
+    "faqName": "revision",
     "title": "Revision of my Churchlogo",
+    "imgUrl": "",
     "faqs": [
       {
-        "id": 1,
+        "uniqueId": "A1b2C3d4v",
         "question": "How many free revisions do I have?",
         "answer": "Every Churchlogo comes with 3 free revisions, but we are sure it will be love at first sight."
       },
       {
-        "id": 2,
+        "uniqueId": "A1b2C3d4d",
         "question": "How to send a revision request?",
         "answer": "Please log in to your Churchlogo account > Select the Churchlogo design you want to be revised > Click on the “Request a Revision” button> Fill out the form that will help us better understand what would you like to be changed > Once filled, submit the form and you will receive an email confirming your revision request has been received."
       }
     ]
-  },
-  "ordersFaq": {
-    "title": "Where do I find my orders?",
-    "faqs": [
-      {
-        "id": 1,
-        "question": "How to find my Photologo?",
-        "answer": "> Visit your Photologo account at this link: Photologo Account > Enter your Email address and Password ( if you don’t know your password, see the ‘Account Issues > Forgot my account email/ password’ section provided below) > Select your Order ID and click Track > You will see a preview of your Photologo design > From there, you can Approve and Download your Photologo or request a revision.`"
-      }
-    ]
   }
-}
+]

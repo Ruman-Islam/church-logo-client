@@ -3,7 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import data from "../../data/categories.json";
 
-export default function Categories() {
+export default function CategoriesScreen() {
   const { section } = useParams();
 
   return (

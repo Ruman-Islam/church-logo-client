@@ -59,7 +59,7 @@ export default function Portfolio() {
                       {d.headLine}
                     </h2>
                     <br />
-                    <p className="font-brand__font__light">{d.feedBack}</p>
+                    <p className="text-text__gray">{d.feedBack}</p>
                   </div>
                 </div>
               </div>

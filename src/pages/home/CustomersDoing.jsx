@@ -1,8 +1,7 @@
 import Slider from "react-slick";
-import SectionTitle from "../../components/common/SectionTitle";
 import CustomersDoingCard from "../../components/common/Cards/CustomersDoingCard";
-import data from '../../data/customersDoing.json'
-
+import SectionTitle from "../../components/common/SectionTitle";
+import data from "../../data/customersDoing.json";
 
 const settings = {
   dots: false,
@@ -37,7 +36,7 @@ export default function CustomersDoing() {
         <div>
           <SectionTitle
             title="Check out the cool things our customers are doing with their Church Logo"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-center mb-4"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-center mb-4 text-text__gray"
           />
         </div>
 

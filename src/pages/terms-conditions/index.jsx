@@ -1,12 +1,12 @@
 import Layout from "../../components/common/Layout";
 import data from "../../data/termsConditions.json";
 
-export default function TermsAndConditions() {
+export default function TermsAndConditionsScreen() {
   return (
     <Layout title="Term & Conditions">
       <section id="terms" className="mb-10">
         {/* Introduction */}
-        <div className="bg-brand__black__color text-white">
+        <div className="bg-section__bg_color text-brand__black__color">
           <div className="container px-2 py-[30px] md:py-[60px]">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
               Terms & Conditions

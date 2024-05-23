@@ -43,11 +43,12 @@ export default {
         success: "#65B741",
         error: "#E72929",
         white: "#fff",
+
         brand__black__color: "#031401",
         brand__light_green__color: "#a4fb99",
         text__navy_blue: "#00306e",
         link__color: "#1976d2",
-        text__gray: "#313030",
+        text__gray: "#7a7a7a",
         section__bg_color: "#f1f1f1",
       },
       keyframes: {

@@ -35,7 +35,7 @@ export default function Testimonial() {
         <div className="px-2 text-center">
           <SectionTitle
             title="10,000+ Glowing Reviews"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-center"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-text__gray"
           />
           <h3 className="font-brand__font__500 mt-2 text-primary">
             See what others say
