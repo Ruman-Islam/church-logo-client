@@ -18,7 +18,7 @@ export default function Layout({
 
       <section className="flex flex-col justify-between h-screen">
         {showHeader && <Header topBarEnable="enable" />}
-        <main className="mb-auto">{children}</main>
+        <main className="mb-auto flex-1">{children}</main>
         {showFooter && <Footer />}
       </section>
     </>

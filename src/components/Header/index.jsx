@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import MenuItems from "./MenuItems";
 
-import Modal from "@mui/material/Modal";
+import { Modal } from "@mui/material";
 import {
   default as normalLogo,
   default as stickyLogo,
@@ -89,7 +89,7 @@ export default function Header({ topBarEnable }) {
                     : "-top-[325px]"
                 }`}
               >
-                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm xl:text-brand__font__size__base">
+                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
                   <MenuItems onModalOpen={handleModalOpen} />
                 </ul>
               </div>

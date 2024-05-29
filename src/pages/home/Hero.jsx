@@ -9,7 +9,8 @@ export default function Hero() {
     dots: true,
     fade: true,
     infinite: true,
-    speed: 500,
+    speed: 2000,
+    autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -49,16 +50,16 @@ export default function Hero() {
                 Since excellent design generates excellent revenue.
               </p>
 
-              <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start my-4 xl:my-6">
+              <div className="flex flex-wrap gap-2 w-full items-center justify-center lg:justify-start my-4">
                 <HashLink
                   to="/"
-                  className="px-5 py-2 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300 text-brand__font__size__sm"
+                  className="px-4 py-1.5 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300"
                 >
                   Get started
                 </HashLink>
                 <HashLink
                   to="/"
-                  className="px-5 py-2 inline-block rounded-full font-semibold bg-brand__black__color text-white hover:bg-primary duration-300 text-brand__font__size__sm"
+                  className="px-4 py-1.5 inline-block rounded-full font-semibold bg-brand__black__color text-white hover:bg-primary duration-300"
                 >
                   Visit our shop
                 </HashLink>

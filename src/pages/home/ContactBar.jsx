@@ -1,4 +1,4 @@
-import CustomLink from "../../components/UI/CustomLink";
+import { HashLink } from "react-router-hash-link";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function ContactBar() {
@@ -18,12 +18,12 @@ export default function ContactBar() {
               Still have a question that needs a little human touch? Lorem ipsum
               dolor sit amet consectetur adipisicing elit. Nobis, aliquid!
             </h4>
-            <CustomLink
-              classNames="text-brand__font__size__sm bg-primary px-4 py-1 rounded-full mt-1 inline-block hover:bg-brand__black__color duration-200 text-white w-fit"
-              route="/"
+            <HashLink
+              className="bg-primary px-4 py-1.5 rounded-full mt-1 inline-block hover:bg-brand__black__color duration-200 text-white w-fit"
+              to="/"
             >
               Contact us
-            </CustomLink>
+            </HashLink>
           </div>
         </div>
       </div>
