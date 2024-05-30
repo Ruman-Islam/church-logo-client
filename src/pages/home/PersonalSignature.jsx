@@ -12,7 +12,7 @@ export default function PersonalSignature() {
           />
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-10 mt-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-10 mt-10">
           <div className="flex-1 flex justify-center items-center">
             <img
               src="https://photologo.co/wp-content/uploads/2023/05/AndyMoore_FinalCTA.png"

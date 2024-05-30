@@ -4,19 +4,55 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
+import { useForm } from "react-hook-form";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 export default function SignUp(props) {
   const {
     onShow,
-    onSubmit,
+    // onSubmit,
     registerData,
     onChangeInput,
     onClickShowPassword,
     onMouseDownShowPassword,
   } = props;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const firstNameError =
+    errors?.firstName && errors?.firstName?.type.includes("required")
+      ? "This field is required"
+      : errors?.firstName?.type.includes("maxLength")
+      ? "Maximum 15 characters"
+      : errors?.firstName?.type.includes("minLength")
+      ? "Minimum 3 characters"
+      : "";
+  const lastNameError =
+    errors?.lastName && errors?.lastName?.type.includes("required")
+      ? "This field is required"
+      : errors?.lastName?.type.includes("maxLength")
+      ? "Maximum 15 characters"
+      : errors?.lastName?.type.includes("minLength")
+      ? "Minimum 3 characters"
+      : "";
+  const emailError =
+    errors?.email && errors?.email?.type.includes("required")
+      ? "This field is required"
+      : errors?.email?.type.includes("pattern")
+      ? "Invalid email"
+      : "";
+  const passwordError =
+    errors?.password && errors?.password?.type.includes("required")
+      ? "This field is required"
+      : errors?.password?.type.includes("pattern")
+      ? "Maximum 15 characters"
+      : "";
 
+  const onSubmit = async (data) => {};
+  console.log(errors);
   return (
     <div
       className={`w-full h-full px-4 absolute top-0 duration-500 ${
@@ -29,10 +65,15 @@ export default function SignUp(props) {
         <h3>Create Account</h3>
       </div>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex gap-2">
           <FormControl sx={{ width: "100%" }}>
             <TextField
+              {...register("firstName", {
+                required: "This field is required",
+                maxLength: 15,
+                minLength: 3,
+              })}
               variant="outlined"
               id="firstName"
               name="firstName"
@@ -40,12 +81,17 @@ export default function SignUp(props) {
               label="First name"
               value={registerData?.firstName}
               onChange={onChangeInput}
-              error={!!registerData?.error?.firstName}
-              helperText={registerData?.error?.firstName}
+              error={!!firstNameError}
+              helperText={firstNameError}
             />
           </FormControl>
           <FormControl sx={{ width: "100%" }}>
             <TextField
+              {...register("lastName", {
+                required: true,
+                maxLength: 15,
+                minLength: 3,
+              })}
               variant="outlined"
               id="lastName"
               name="lastName"
@@ -53,14 +99,18 @@ export default function SignUp(props) {
               label="Last name"
               value={registerData?.lastName}
               onChange={onChangeInput}
-              error={!!registerData?.error?.lastName}
-              helperText={registerData?.error?.lastName}
+              error={!!lastNameError}
+              helperText={lastNameError}
             />
           </FormControl>
         </div>
 
         <FormControl sx={{ width: "100%", marginTop: "10px" }}>
           <TextField
+            {...register("email", {
+              required: true,
+              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            })}
             variant="outlined"
             id="email"
             name="email"
@@ -68,13 +118,17 @@ export default function SignUp(props) {
             label="Email Address"
             value={registerData?.email}
             onChange={onChangeInput}
-            error={!!registerData?.error?.email}
-            helperText={registerData?.error?.email}
+            error={!!emailError}
+            helperText={emailError}
           />
         </FormControl>
 
         <FormControl sx={{ width: "100%", marginTop: "10px" }}>
           <TextField
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/,
+            })}
             variant="outlined"
             id="password"
             type="password"
@@ -82,8 +136,8 @@ export default function SignUp(props) {
             label="Password"
             value={registerData?.password}
             onChange={onChangeInput}
-            error={!!registerData?.error?.password}
-            helperText={registerData?.error?.password}
+            error={!!passwordError}
+            helperText={passwordError}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

@@ -46,7 +46,7 @@ export default function Header({ topBarEnable }) {
         <div
           className={`bg-white duration-200 w-full ${
             isVisible
-              ? "fixed top-0 animate-headerDrop shadow h-[80px]"
+              ? "fixed top-0 animate-headerDrop shadow h-[90px]"
               : "h-[90px]"
           }`}
         >
@@ -83,9 +83,9 @@ export default function Header({ topBarEnable }) {
                 </button>
               </div>
               <div
-                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white ${
+                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white shadow-xl lg:shadow-none ${
                   menuOpen
-                    ? "top-[80px] animate-navMenuOpInOut"
+                    ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[325px]"
                 }`}
               >
