@@ -7,16 +7,23 @@ import TextField from "@mui/material/TextField";
 import { HashLink } from "react-router-hash-link";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 
-export default function SignIn(props) {
+export default function SignIn({ onShow }) {
   const {
-    onShow,
-    onSubmit,
-    loginData,
-    onChangeInput,
-    onClickShowPassword,
-    onMouseDownShowPassword,
-  } = props;
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => setShowPassword(!showPassword);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
 
   return (
     <div
@@ -30,45 +37,41 @@ export default function SignIn(props) {
         <h3>Sign In</h3>
       </div>
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl sx={{ width: "100%" }}>
           <TextField
+            {...register("email", {
+              required: true,
+              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            })}
             variant="outlined"
             id="email"
             name="email"
             type="text"
             label="Email Address"
-            value={loginData?.email}
-            onChange={onChangeInput}
-            error={!!loginData?.error?.email}
-            helperText={!!loginData?.error?.email}
+            error={!!getAuthErrorMessage(errors, "email")}
+            helperText={getAuthErrorMessage(errors, "email")}
           />
         </FormControl>
 
         <FormControl sx={{ width: "100%", marginTop: "10px" }}>
           <TextField
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+            })}
             variant="outlined"
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             label="Password"
-            value={loginData?.password}
-            onChange={onChangeInput}
-            error={!!loginData?.error?.password}
-            helperText={loginData?.error?.password}
+            error={!!getAuthErrorMessage(errors, "password")}
+            helperText={getAuthErrorMessage(errors, "password")}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={onClickShowPassword}
-                    onMouseDown={onMouseDownShowPassword}
-                    edge="end"
-                  >
-                    {loginData?.showPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
+                  <IconButton onClick={handleShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -79,7 +82,7 @@ export default function SignIn(props) {
         <div className="mt-4">
           <CustomButton
             type="submit"
-            className="border w-full rounded-full py-2.5 bg-primary hover:bg-brand__black__color text-white duration-300"
+            className="border w-full rounded-full py-2 bg-primary hover:bg-brand__black__color text-white duration-300"
           >
             Submit
           </CustomButton>

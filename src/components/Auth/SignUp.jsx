@@ -7,52 +7,23 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
+import { useState } from "react";
+import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 
-export default function SignUp(props) {
-  const {
-    onShow,
-    // onSubmit,
-    registerData,
-    onChangeInput,
-    onClickShowPassword,
-    onMouseDownShowPassword,
-  } = props;
+export default function SignUp({ onShow }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const firstNameError =
-    errors?.firstName && errors?.firstName?.type.includes("required")
-      ? "This field is required"
-      : errors?.firstName?.type.includes("maxLength")
-      ? "Maximum 15 characters"
-      : errors?.firstName?.type.includes("minLength")
-      ? "Minimum 3 characters"
-      : "";
-  const lastNameError =
-    errors?.lastName && errors?.lastName?.type.includes("required")
-      ? "This field is required"
-      : errors?.lastName?.type.includes("maxLength")
-      ? "Maximum 15 characters"
-      : errors?.lastName?.type.includes("minLength")
-      ? "Minimum 3 characters"
-      : "";
-  const emailError =
-    errors?.email && errors?.email?.type.includes("required")
-      ? "This field is required"
-      : errors?.email?.type.includes("pattern")
-      ? "Invalid email"
-      : "";
-  const passwordError =
-    errors?.password && errors?.password?.type.includes("required")
-      ? "This field is required"
-      : errors?.password?.type.includes("pattern")
-      ? "Maximum 15 characters"
-      : "";
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = async (data) => {};
-  console.log(errors);
+  const handleShowPassword = () => setShowPassword(!showPassword);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
+
   return (
     <div
       className={`w-full h-full px-4 absolute top-0 duration-500 ${
@@ -79,10 +50,8 @@ export default function SignUp(props) {
               name="firstName"
               type="text"
               label="First name"
-              value={registerData?.firstName}
-              onChange={onChangeInput}
-              error={!!firstNameError}
-              helperText={firstNameError}
+              error={!!getAuthErrorMessage(errors, "firstName")}
+              helperText={getAuthErrorMessage(errors, "firstName")}
             />
           </FormControl>
           <FormControl sx={{ width: "100%" }}>
@@ -97,10 +66,8 @@ export default function SignUp(props) {
               name="lastName"
               type="text"
               label="Last name"
-              value={registerData?.lastName}
-              onChange={onChangeInput}
-              error={!!lastNameError}
-              helperText={lastNameError}
+              error={!!getAuthErrorMessage(errors, "lastName")}
+              helperText={getAuthErrorMessage(errors, "lastName")}
             />
           </FormControl>
         </div>
@@ -116,10 +83,8 @@ export default function SignUp(props) {
             name="email"
             type="text"
             label="Email Address"
-            value={registerData?.email}
-            onChange={onChangeInput}
-            error={!!emailError}
-            helperText={emailError}
+            error={!!getAuthErrorMessage(errors, "email")}
+            helperText={getAuthErrorMessage(errors, "email")}
           />
         </FormControl>
 
@@ -127,30 +92,20 @@ export default function SignUp(props) {
           <TextField
             {...register("password", {
               required: true,
-              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/,
+              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
             })}
             variant="outlined"
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             label="Password"
-            value={registerData?.password}
-            onChange={onChangeInput}
-            error={!!passwordError}
-            helperText={passwordError}
+            error={!!getAuthErrorMessage(errors, "password")}
+            helperText={getAuthErrorMessage(errors, "password")}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={onClickShowPassword}
-                    onMouseDown={onMouseDownShowPassword}
-                    edge="end"
-                  >
-                    {registerData?.showPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
+                  <IconButton onClick={handleShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -161,7 +116,7 @@ export default function SignUp(props) {
         <div className="mt-4">
           <CustomButton
             type="submit"
-            className="border w-full rounded-full py-2.5 bg-primary hover:bg-brand__black__color text-white duration-300"
+            className="border w-full rounded-full py-2 bg-primary hover:bg-brand__black__color text-white duration-300"
           >
             Submit
           </CustomButton>

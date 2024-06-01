@@ -59,18 +59,6 @@ export default function GalleryScreen() {
             ))}
           </div>
           <PhotoProvider>
-<<<<<<< HEAD
-            <div className="grid grid-cols-4 gap-4 p-2">
-              {galleryData[selectedCategory].slice(0, visible).map((d, i) => (
-                <PhotoView key={i} src={getImgUrl(d)} >
-                  <img data-aos="flip-left" data-aos-duration={`${5+5}00`}
-                    src={getImgUrl(d)}
-                    className="w-full h-full object-cover rounded-md hover:cursor-pointer" 
-                    
-                  />
-                </PhotoView>
-              ))}
-=======
             <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4 p-2">
               {(loading
                 ? Array.from(new Array(visible))
@@ -91,7 +79,6 @@ export default function GalleryScreen() {
                     <Skeleton key={i} variant="rectangular" height={218} />
                   )
                 )}
->>>>>>> 9b922fafbbdf17454b34476431d1ca076c4ad23c
             </div>
           </PhotoProvider>
 
