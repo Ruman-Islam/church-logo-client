@@ -45,7 +45,7 @@ export default function GalleryScreen() {
             <div className="grid grid-cols-4 gap-4 p-2">
               {galleryData[selectedCategory].slice(0, visible).map((d, i) => (
                 <PhotoView key={i} src={getImgUrl(d)} >
-                  <img data-aos="flip-left" data-aos-duration={`${i+5+5}00`}
+                  <img data-aos="flip-left" data-aos-duration={`${5+5}00`}
                     src={getImgUrl(d)}
                     className="w-full h-full object-cover rounded-md hover:cursor-pointer" 
                     
