@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import MenuItems from "./MenuItems";
 
-import Modal from "@mui/material/Modal";
+import { Modal } from "@mui/material";
 import {
   default as normalLogo,
   default as stickyLogo,
@@ -46,7 +46,7 @@ export default function Header({ topBarEnable }) {
         <div
           className={`bg-white duration-200 w-full ${
             isVisible
-              ? "fixed top-0 animate-headerDrop shadow h-[80px]"
+              ? "fixed top-0 animate-headerDrop shadow h-[90px]"
               : "h-[90px]"
           }`}
         >
@@ -83,13 +83,13 @@ export default function Header({ topBarEnable }) {
                 </button>
               </div>
               <div
-                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white ${
+                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white shadow-xl lg:shadow-none ${
                   menuOpen
-                    ? "top-[80px] animate-navMenuOpInOut"
+                    ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[325px]"
                 }`}
               >
-                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm xl:text-brand__font__size__base">
+                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
                   <MenuItems onModalOpen={handleModalOpen} />
                 </ul>
               </div>

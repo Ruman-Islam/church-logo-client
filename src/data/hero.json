@@ -3,24 +3,24 @@
     "id": 1,
     "route": "/categories/logo-design",
     "title": "Logo Design",
-    "img": "image/banner/hero-01-7daaa580.png"
+    "img": "image/slider/church_logo_hero3.png"
   },
   {
     "id": 2,
     "route": "/categories/web-design",
     "title": "Web Design",
-    "img": "image/banner/hero-01-7daaa580100.png"
+    "img": "image/slider/church_logo_hero2.png"
   },
   {
     "id": 3,
     "route": "/categories/branding",
     "title": "Branding",
-    "img": "image/banner/hero-01-7daaa58070.png"
+    "img": "image/slider/church_logo_hero1.png"
   },
   {
     "id": 4,
     "route": "/categories/personal-signature",
     "title": "Personal Signature",
-    "img": "image/banner/hero-01-7daaa58090.png"
+    "img": "image/slider/church_logo_hero2.png"
   }
 ]

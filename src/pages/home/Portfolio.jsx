@@ -46,7 +46,7 @@ export default function Portfolio() {
         <Slider {...settings}>
           {data.map((d) => (
             <div key={d.id}>
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-4 container">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 container">
                 <div className="basis-[50%] w-full p-5">
                   <img
                     src={getImgUrl(d.img)}
@@ -54,12 +54,12 @@ export default function Portfolio() {
                   />
                 </div>
                 <div className="flex-1 w-full h-full">
-                  <div className="w-full text-center md:text-left">
-                    <h2 className="text-[32px] leading-[40px] text-primary font-brand__font__600">
+                  <div className="w-full text-center md:text-left gap-5">
+                    <h2 className="text-[22px] lg:text-[32px] leading-[25px] lg:leading-[40px] text-primary font-brand__font__600 mb-4">
                       {d.headLine}
                     </h2>
-                    <br />
-                    <p className="text-text__gray">{d.feedBack}</p>
+                  
+                    <p className="text-text__gray leading-[23px]">{d.feedBack}</p>
                   </div>
                 </div>
               </div>

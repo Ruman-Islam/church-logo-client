@@ -1,4 +1,4 @@
-import Modal from "@mui/material/Modal";
+import { Box, Modal } from "@mui/material";
 import { useState } from "react";
 import { AiFillInstagram, AiOutlineCopyrightCircle } from "react-icons/ai";
 import { FaFacebook, FaTiktok } from "react-icons/fa";
@@ -119,9 +119,9 @@ export default function Footer() {
         open={isModalOpen}
         onClose={handleModalClose}
       >
-        <div>
+        <Box>
           <Auth />
-        </div>
+        </Box>
       </Modal>
     </>
   );

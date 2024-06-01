@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import MuiIButton from "../../components/UI/MuiButton";
 import navigation from "../../data/navigation.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 
@@ -17,7 +18,7 @@ const MenuItems = ({ onModalOpen }) => {
             className="duration-300 bg-primary hover:bg-brand__black__color rounded-none lg:rounded-full text-white"
           >
             <HashLink
-              className="px-1.5 md:px-5 py-3 lg:py-1.5 w-full inline-block"
+              className="px-4 py-3 lg:py-1.5 w-full inline-block"
               to={d?.route}
               scroll={(el) => scrollWithOffset(el, 135)}
             >
@@ -29,12 +30,14 @@ const MenuItems = ({ onModalOpen }) => {
             key={d?.id}
             className="border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent duration-300 rounded-none lg:rounded-full"
           >
-            <button
-              className="hover:text-primary duration-300 px-1.5 py-3 lg:py-1.5 w-full text-start"
+            <MuiIButton
+              className="text-brand__black__color font-brand__font__600 hover:text-primary duration-300 px-1.5 py-3 lg:py-1.5 w-full text-start"
               onClick={onModalOpen}
+              style={{justifyContent: "flex-start"}}
+
             >
               {d?.title}
-            </button>
+            </MuiIButton>
           </li>
         ) : (
           <li

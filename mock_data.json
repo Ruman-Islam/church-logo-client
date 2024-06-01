@@ -1,0 +1,52 @@
+{
+  "gallery": {
+    "logo-design": [
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg"
+    ],
+    "web-design": [
+      "image/gallery/amity-animal-shelter.webp",
+      "image/gallery/amity-charity.webp",
+      "image/gallery/amity-children.webp",
+      "image/gallery/amity-church.webp",
+      "image/gallery/amity-community.webp",
+      "image/gallery/amity-ecology.webp",
+      "image/gallery/amity-elder-care.webp",
+      "image/gallery/amity-ngo.webp",
+      "image/gallery/amity-political.webp"
+    ],
+    "branding": [],
+    "personal-signature": [
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg",
+      "image/category/churchlogo_logodesign.jpg",
+      "image/category/churchlogo_webdesign.jpeg",
+      "image/category/churchlogo_branding.jpeg",
+      "image/category/churchlogo_personal_signature.jpeg"
+    ]
+  }
+}
