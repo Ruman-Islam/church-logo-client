@@ -3,8 +3,12 @@ import { HashLink } from "react-router-hash-link";
 import MuiIButton from "../../components/UI/MuiButton";
 import navigation from "../../data/navigation.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
+import { useAppSelector } from "../../services/hook";
 
 const MenuItems = ({ onModalOpen }) => {
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
   const scrollWithOffset = useScrollWithOffset();
   const location = useLocation();
   const { pathname } = location;
@@ -26,19 +30,37 @@ const MenuItems = ({ onModalOpen }) => {
             </HashLink>
           </li>
         ) : d?.route.includes("/sign-in") ? (
-          <li
-            key={d?.id}
-            className="border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent duration-300 rounded-none lg:rounded-full"
-          >
-            <MuiIButton
-              className="text-brand__black__color font-brand__font__600 hover:text-primary duration-300 px-1.5 py-3 lg:py-1.5 w-full text-start"
-              onClick={onModalOpen}
-              style={{justifyContent: "flex-start"}}
-
+          user ? (
+            <li
+              key={d?.id}
+              className={`${
+                pathname.includes("profile")
+                  ? "text-primary"
+                  : "text-brand__black__color"
+              } border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent hover:text-primary duration-300`}
             >
-              {d?.title}
-            </MuiIButton>
-          </li>
+              <HashLink
+                className="px-1.5 py-3 lg:py-1.5 w-full inline-block"
+                to="/profile"
+                scroll={(el) => scrollWithOffset(el, 135)}
+              >
+                Profile
+              </HashLink>
+            </li>
+          ) : (
+            <li
+              key={d?.id}
+              className="border-b lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent duration-300 rounded-none lg:rounded-full"
+            >
+              <MuiIButton
+                className="text-brand__black__color font-brand__font__600 hover:text-primary duration-300 px-1.5 py-3 lg:py-1.5 w-full text-start"
+                onClick={onModalOpen}
+                style={{ justifyContent: "flex-start" }}
+              >
+                {d?.title}
+              </MuiIButton>
+            </li>
+          )
         ) : (
           <li
             key={d?.id}

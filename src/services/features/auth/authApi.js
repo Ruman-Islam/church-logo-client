@@ -6,22 +6,22 @@ const authApi = api.injectEndpoints({
       query: ({ data }) => {
         console.log(data);
         return {
-          url: "/auth/register",
+          url: "/auth/sign-up",
           method: "POST",
           body: data,
         };
       },
     }),
-    // login: builder.mutation({
-    //   query: ({ data }) => ({
-    //     url: "/auth/admin/login",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
+    signIn: builder.mutation({
+      query: ({ data }) => ({
+        url: "/auth/sign-in",
+        method: "POST",
+        body: data,
+      }),
+    }),
     getRefreshToken: builder.mutation({
       query: ({ data }) => ({
-        url: "/auth/admin/refresh/token",
+        url: "/auth/refresh/token",
         method: "POST",
         body: data,
       }),
@@ -52,7 +52,7 @@ const authApi = api.injectEndpoints({
 
 export const {
   useSignUpMutation,
-  //   useLoginMutation,
+  useSignInMutation,
   useGetRefreshTokenMutation,
   //   useForgetPasswordMutation,
   //   useResetPasswordMutation,

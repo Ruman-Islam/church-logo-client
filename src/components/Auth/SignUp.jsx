@@ -31,25 +31,26 @@ export default function SignUp({ showForm }) {
   const dispatch = useAppDispatch();
   const [signUp, { data, error, isLoading }] = useSignUpMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/gallery";
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, navigate]);
 
   useEffect(() => {
     if (data?.statusCode === 200) {
+      toast.success("Registration successful");
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));
     }
     if (error?.status === 400) {
       toast.error(error?.data?.message);
     }
-  }, [data, dispatch, error, handleSetCookie]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 

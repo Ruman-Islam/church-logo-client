@@ -4,12 +4,18 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HashLink } from "react-router-hash-link";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { useSignInMutation } from "../../services/features/auth/authApi";
+import toast from "react-hot-toast";
+import useCookie from "../../hooks/useCookie";
+import { setAuth } from "../../services/features/auth/authSlice";
 
 export default function SignIn({ showForm }) {
   const {
@@ -17,12 +23,43 @@ export default function SignIn({ showForm }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
+  const { handleSetCookie } = useCookie();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const [signIn, { data, error, isLoading }] = useSignInMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, navigate]);
+console.log(user)
+  useEffect(() => {
+    if (data?.statusCode === 200) {
+      toast.success("Login successful");
+      handleSetCookie(data?.data?.refreshToken);
+      dispatch(setAuth(data?.data));
+    }
+    if (error?.status === 400) {
+      toast.error(error?.data?.message);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const options = {
+      data: data,
+    };
+    await signIn(options);
   };
 
   const isSignIn = showForm.includes("sign-in");
@@ -92,7 +129,7 @@ export default function SignIn({ showForm }) {
             type="submit"
             className="border w-full rounded-full py-2 bg-primary hover:bg-brand__black__color text-white duration-300"
           >
-            Submit
+            {isLoading ? "Loading..." : "Submit"}
           </CustomButton>
 
           <div className="mt-0.5 text-center">
