@@ -4,30 +4,68 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import useCookie from "../../hooks/useCookie";
+import { useSignUpMutation } from "../../services/features/auth/authApi";
+import { setAuth } from "../../services/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
-import { useState } from "react";
-import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 
-export default function SignUp({ onShow }) {
+export default function SignUp({ showForm }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
+  const { handleSetCookie } = useCookie();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const [signUp, { data, error, isLoading }] = useSignUpMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const from = location.state?.from?.pathname || "/gallery";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, navigate]);
+
+  useEffect(() => {
+    if (data?.statusCode === 200) {
+      handleSetCookie(data?.data?.refreshToken);
+      dispatch(setAuth(data?.data));
+    }
+    if (error?.status === 400) {
+      toast.error(error?.data?.message);
+    }
+  }, [data, dispatch, error, handleSetCookie]);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const options = {
+      data: data,
+    };
+    await signUp(options);
   };
+
+  const isSignUp = showForm.includes("sign-up");
 
   return (
     <div
       className={`w-full h-full px-4 absolute top-0 duration-500 ${
-        onShow ? "translate-x-[100%] opacity-0" : "translate-x-0 opacity-1"
+        isSignUp ? "translate-x-0 opacity-1" : "translate-x-[100%] opacity-0"
       }`}
     >
       <GoogleLoginButton />
@@ -76,7 +114,10 @@ export default function SignUp({ onShow }) {
           <TextField
             {...register("email", {
               required: true,
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Email is not a valid email",
+              },
             })}
             variant="outlined"
             id="email"
@@ -92,7 +133,10 @@ export default function SignUp({ onShow }) {
           <TextField
             {...register("password", {
               required: true,
-              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+              pattern: {
+                value: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+                message: "At least 6 characters and a symbol",
+              },
             })}
             variant="outlined"
             id="password"
@@ -118,7 +162,7 @@ export default function SignUp({ onShow }) {
             type="submit"
             className="border w-full rounded-full py-2 bg-primary hover:bg-brand__black__color text-white duration-300"
           >
-            Submit
+            {isLoading ? "Loading..." : "Submit"}
           </CustomButton>
         </div>
       </form>

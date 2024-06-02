@@ -1,9 +1,10 @@
 import AOS from "aos";
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
+import PersistLogin from "./components/PersistLogin";
 import NotFoundScreen from "./pages/not-found";
 import privateRoutes from "./routes/privateRoutes";
 import publicRoutes from "./routes/publicRoutes";
-import PersistLogin from "./components/PersistLogin";
 
 function App() {
   AOS.init();
@@ -21,6 +22,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundScreen />} />
       </Routes>
+      <Toaster />
     </>
   );
 }

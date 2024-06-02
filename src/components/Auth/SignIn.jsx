@@ -4,14 +4,14 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { HashLink } from "react-router-hash-link";
+import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 
-export default function SignIn({ onShow }) {
+export default function SignIn({ showForm }) {
   const {
     register,
     handleSubmit,
@@ -25,10 +25,12 @@ export default function SignIn({ onShow }) {
     console.log(data);
   };
 
+  const isSignIn = showForm.includes("sign-in");
+
   return (
     <div
       className={`w-full h-full px-4 absolute top-0 duration-500 ${
-        onShow ? "translate-x-0 opacity-1" : "-translate-x-[100%] opacity-0"
+        isSignIn ? "translate-x-0 opacity-1" : "-translate-x-[100%] opacity-0"
       }`}
     >
       <GoogleLoginButton />
@@ -42,7 +44,10 @@ export default function SignIn({ onShow }) {
           <TextField
             {...register("email", {
               required: true,
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Email is not a valid email",
+              },
             })}
             variant="outlined"
             id="email"
@@ -58,7 +63,10 @@ export default function SignIn({ onShow }) {
           <TextField
             {...register("password", {
               required: true,
-              pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+              pattern: {
+                value: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+                message: "At least 6 characters and a symbol",
+              },
             })}
             variant="outlined"
             id="password"

@@ -2,6 +2,16 @@ import { api } from "../../api/apiSlice";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    signUp: builder.mutation({
+      query: ({ data }) => {
+        console.log(data);
+        return {
+          url: "/auth/register",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
     // login: builder.mutation({
     //   query: ({ data }) => ({
     //     url: "/auth/admin/login",
@@ -41,9 +51,10 @@ const authApi = api.injectEndpoints({
 });
 
 export const {
-//   useLoginMutation,
+  useSignUpMutation,
+  //   useLoginMutation,
   useGetRefreshTokenMutation,
-//   useForgetPasswordMutation,
-//   useResetPasswordMutation,
-//   useChangePasswordMutation
+  //   useForgetPasswordMutation,
+  //   useResetPasswordMutation,
+  //   useChangePasswordMutation
 } = authApi;

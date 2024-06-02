@@ -101,14 +101,13 @@ export default function Header({ topBarEnable }) {
       <Modal
         sx={{
           backdropFilter: "blur(5px)",
-          //other styles here
         }}
         open={isModalOpen}
         onClose={handleModalClose}
       >
-        <div>
+        <>
           <Auth />
-        </div>
+        </>
       </Modal>
     </>
   );

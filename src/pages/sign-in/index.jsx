@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import churchLogo from "../../assets/logo/churchlogo.png";
 import SignIn from "../../components/Auth/SignIn";
@@ -6,74 +6,12 @@ import SignUp from "../../components/Auth/SignUp";
 import CustomButton from "../../components/UI/CustomButton";
 import Layout from "../../components/common/Layout";
 
-const initialLoginData = {
-  showPassword: false,
-  email: "",
-  password: "",
-  error: {
-    email: "",
-    password: "",
-  },
-};
-
-const initialRegisterData = {
-  showPassword: false,
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  error: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  },
-};
-
 export default function SignInScreen() {
-  const [onShow, setOnShow] = useState(true);
-  const [loginData, setLoginData] = useState(initialLoginData);
-  const [registerData, setRegisterData] = useState(initialRegisterData);
+  const [showForm, setShowForm] = useState("sign-in");
 
-  useEffect(() => {
-    if (onShow) {
-      setRegisterData(initialRegisterData);
-    } else if (!onShow) {
-      setLoginData(initialLoginData);
-    }
-  }, [onShow]);
+  const handleShowForm = (text) => setShowForm(text);
 
-  const handleLoginInput = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    setLoginData({
-      ...loginData,
-      [key]: value,
-    });
-  };
-
-  const handleRegisterInput = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    setRegisterData({
-      ...registerData,
-      [key]: value,
-    });
-  };
-
-  const handleClickShowLoginPassword = () =>
-    setLoginData({
-      ...loginData,
-      showPassword: !loginData.showPassword,
-    });
-
-  const handleClickShowRegisterPassword = () =>
-    setRegisterData({
-      ...registerData,
-      showPassword: !registerData.showPassword,
-    });
-
-  const handleMouseDownPassword = (e) => e.preventDefault();
+  const isSignIn = showForm.includes("sign-in");
 
   return (
     <Layout title="Log In" showHeader={false} showFooter={false}>
@@ -109,17 +47,17 @@ export default function SignInScreen() {
 
                   <div className="w-full flex justify-center items-center gap-2 text-brand__font__size__sm font-brand__font__500 text-primary">
                     <CustomButton
-                      onClick={() => setOnShow(true)}
+                      onClick={() => handleShowForm("sign-in")}
                       className={`border border-primary px-4 py-0.5 rounded-full duration-300 ${
-                        onShow ? "bg-primary text-white" : "bg-transparent"
+                        isSignIn ? "bg-primary text-white" : "bg-transparent"
                       }`}
                     >
                       Sign In
                     </CustomButton>
                     <CustomButton
-                      onClick={() => setOnShow(false)}
+                      onClick={() => handleShowForm("sign-up")}
                       className={`border border-primary px-4 py-0.5 rounded-full duration-300 ${
-                        onShow ? "bg-transparent" : "bg-primary text-white"
+                        isSignIn ? "bg-transparent" : "bg-primary text-white"
                       }`}
                     >
                       Sign Up
@@ -127,20 +65,8 @@ export default function SignInScreen() {
                   </div>
                 </div>
                 <div className="flex-1 relative w-full overflow-hidden">
-                  <SignIn
-                    onShow={onShow}
-                    loginData={loginData}
-                    onChangeInput={handleLoginInput}
-                    onClickShowPassword={handleClickShowLoginPassword}
-                    onMouseDownShowPassword={handleMouseDownPassword}
-                  />
-                  <SignUp
-                    onShow={onShow}
-                    registerData={registerData}
-                    onChangeInput={handleRegisterInput}
-                    onClickShowPassword={handleClickShowRegisterPassword}
-                    onMouseDownShowPassword={handleMouseDownPassword}
-                  />
+                  <SignIn showForm={showForm} />
+                  <SignUp showForm={showForm} />
                 </div>
               </div>
             </div>
