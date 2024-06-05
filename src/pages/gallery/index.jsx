@@ -22,7 +22,7 @@ export default function GalleryScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:8080/gallery");
+      const res = await fetch("http://localhost:8081/gallery");
       const data = await res.json();
 
       setGallery(data);

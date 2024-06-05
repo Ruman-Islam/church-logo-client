@@ -7,10 +7,10 @@ const RequireAuth = () => {
   } = useAppSelector((state) => state);
   const location = useLocation();
 
-  return user ? (
+  return user?.userId ? (
     <Outlet />
   ) : (
-    <Navigate to="/" state={{ from: location }} replace />
+    <Navigate to="/sign-in" state={{ from: location }} replace />
   );
 };
 

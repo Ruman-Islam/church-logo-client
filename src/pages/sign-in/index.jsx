@@ -1,29 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import churchLogo from "../../assets/logo/churchlogo.png";
 import SignIn from "../../components/Auth/SignIn";
 import SignUp from "../../components/Auth/SignUp";
 import CustomButton from "../../components/UI/CustomButton";
 import Layout from "../../components/common/Layout";
-import { useAppSelector } from "../../services/hook";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SignInScreen() {
-  const {
-    auth: { user },
-  } = useAppSelector((state) => state);
-  const navigate = useNavigate();
-  const location = useLocation();
   const [showForm, setShowForm] = useState("sign-in");
-  const from = location.state?.from?.pathname || "/";
-
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, navigate]);
 
   const handleShowForm = (text) => setShowForm(text);
 

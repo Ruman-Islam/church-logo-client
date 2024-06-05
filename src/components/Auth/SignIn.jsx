@@ -6,16 +6,16 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import useCookie from "../../hooks/useCookie";
+import { useSignInMutation } from "../../services/features/auth/authApi";
+import { setAuth } from "../../services/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../services/hook";
-import { useSignInMutation } from "../../services/features/auth/authApi";
-import toast from "react-hot-toast";
-import useCookie from "../../hooks/useCookie";
-import { setAuth } from "../../services/features/auth/authSlice";
 
 export default function SignIn({ showForm }) {
   const {
@@ -23,24 +23,27 @@ export default function SignIn({ showForm }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const {
     auth: { user },
   } = useAppSelector((state) => state);
-  const { handleSetCookie } = useCookie();
+
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const [signIn, { data, error, isLoading }] = useSignInMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, navigate]);
-console.log(user)
+
   useEffect(() => {
     if (data?.statusCode === 200) {
       toast.success("Login successful");

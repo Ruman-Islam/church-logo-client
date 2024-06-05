@@ -22,16 +22,18 @@ export default function SignUp({ showForm }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const {
     auth: { user },
   } = useAppSelector((state) => state);
-  const { handleSetCookie } = useCookie();
+
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const [signUp, { data, error, isLoading }] = useSignUpMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (user) {

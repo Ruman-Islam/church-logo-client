@@ -5,10 +5,10 @@ import { useAppSelector } from "../../services/hook.js";
 import Loader from "../common/Loader";
 
 const PersistLogin = () => {
-  const { auth } = useAppSelector((state) => state);
   const refresh = useRefreshToken();
+  const { auth } = useAppSelector((state) => state);
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(auth, ' persist login');
   useEffect(() => {
     // isMounted is using for no memory leak
     let isMounted = true;

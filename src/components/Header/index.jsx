@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import MenuItems from "./MenuItems";
 
@@ -7,15 +7,27 @@ import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
+import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 
 export default function Header({ topBarEnable }) {
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const setModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
+
   useEffect(() => {
-    // Sticky is displayed after scrolling for 100 pixels
+    setModal();
+  }, [user, setModal]);
+
+  useEffect(() => {
     function toggleVisibility() {
       if (window.pageYOffset > 50) {
         setIsVisible(true);
