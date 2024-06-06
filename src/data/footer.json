@@ -6,7 +6,7 @@
     },
     {
       "title": "Gallery",
-      "route": "/"
+      "route": "/gallery#gallery"
     },
     {
       "title": "Church Shop",

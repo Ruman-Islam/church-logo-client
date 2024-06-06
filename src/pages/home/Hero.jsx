@@ -38,7 +38,7 @@ export default function Hero() {
           </div>
           <div className="flex-1 flex justify-center p-2.5">
             <div className="w-full xl:p-10">
-              <h2 className="text-brand__black__color text-[50px] lg:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] lg:leading-[65px] font-brand__font__bold text-center md:text-left">
+              <h2 className="text-brand__black__color text-[50px] lg:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] lg:leading-[65px] font-brand__font__semibold text-center md:text-left">
                 Get Your Own <span className="text-primary">Custom Church</span>
                 <br /> Logo
               </h2>

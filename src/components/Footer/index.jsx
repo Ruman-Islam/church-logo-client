@@ -1,19 +1,16 @@
-import {  Modal } from "@mui/material";
-import { useState } from "react";
 import { AiFillInstagram, AiOutlineCopyrightCircle } from "react-icons/ai";
 import { FaFacebook, FaTiktok } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import footerData from "../../data/footer.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
-import Auth from "../Auth";
+import { useAppSelector } from "../../services/hook";
 
 export default function Footer() {
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
   const scrollWithOffset = useScrollWithOffset();
   const year = new Date().getFullYear();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
 
   return (
     <>
@@ -35,7 +32,27 @@ export default function Footer() {
                   Navigation
                 </p>
                 {footerData?.navigation.map((item, index) =>
-                  !item?.route.includes("/sign-in") ? (
+                  item?.route.includes("/sign-in") ? (
+                    user ? (
+                      <HashLink
+                        key={index}
+                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                        to="/profile"
+                        scroll={(el) => scrollWithOffset(el, 135)}
+                      >
+                        Profile
+                      </HashLink>
+                    ) : (
+                      <HashLink
+                        key={index}
+                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                        to={item.route}
+                        scroll={(el) => scrollWithOffset(el, 135)}
+                      >
+                        {item.title}
+                      </HashLink>
+                    )
+                  ) : (
                     <HashLink
                       key={index}
                       className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
@@ -44,14 +61,6 @@ export default function Footer() {
                     >
                       {item.title}
                     </HashLink>
-                  ) : (
-                    <button
-                      key={index}
-                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
-                      onClick={handleModalOpen}
-                    >
-                      {item?.title}
-                    </button>
                   )
                 )}
               </div>
@@ -110,19 +119,6 @@ export default function Footer() {
           </div>
         </div>
       </section>
-
-      <Modal
-        sx={{
-          backdropFilter: "blur(5px)",
-          //other styles here
-        }}
-        open={isModalOpen}
-        onClose={handleModalClose}
-      >
-        <>
-          <Auth />
-        </>
-      </Modal>
     </>
   );
 }
