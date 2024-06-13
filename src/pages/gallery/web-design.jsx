@@ -22,7 +22,7 @@ export default function GalleryWebDesignScreen() {
   const handleShowMoreItems = () => {
     setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
   };
-
+  console.log(isVisibleMoreBtn);
   return (
     <Layout title="Gallery & Examples">
       <section id="web-design">
@@ -46,20 +46,27 @@ export default function GalleryWebDesignScreen() {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-10">
+          <div className="flex flex-wrap items-center justify-center gap-10 p-5">
             {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
               ?.slice(0, dynamicUrl.limit)
               .map((d, i) =>
                 d ? (
                   <div
                     key={d?.id}
-                    style={{
-                      backgroundImage: `url(${getImgUrl(d.url)})`,
-                    }}
-                    className={`w-full md:max-w-[800px] xl:max-w-[600px] h-[600px] bg-brand__black__color hover:duration-[10s] bg-top hover:bg-bottom cursor-pointer bg-cover shadow-lg border rounded`}
-                  ></div>
+                    className="w-full md:max-w-[800px] xl:max-w-[400px] text-center"
+                  >
+                    <div
+                      style={{
+                        backgroundImage: `url(${getImgUrl(d.url)})`,
+                      }}
+                      className={`w-full md:max-w-[800px] xl:max-w-[400px] h-[450px] bg-text__gray hover:duration-[10s] bg-top hover:bg-bottom cursor-pointer bg-cover shadow-lg border rounded-xl`}
+                    ></div>
+                    <div className="p-3">
+                      {d?.title ? d?.title : "Website Name"}
+                    </div>
+                  </div>
                 ) : (
-                  <Skeleton key={i} variant="rectangular" height={218} />
+                  <Skeleton key={i} variant="rectangular" width={400} height={450} />
                 )
               )}
           </div>
