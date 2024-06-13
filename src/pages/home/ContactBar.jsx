@@ -5,7 +5,7 @@ export default function ContactBar() {
   return (
     <section>
       <div className="py-5 md:py-10 bg-section__bg_color w-full md:h-[430px] flex items-center justify-center px-2">
-        <div className="flex-1 flex container text-brand__black__color gap-5">
+        <div className="flex-1 flex items-end container text-brand__black__color gap-5">
           <div className="basis-[0%] xl:basis-[30%]">
             <div className="max-w-[370px] hidden xl:block">
               <img
@@ -16,7 +16,7 @@ export default function ContactBar() {
             </div>
           </div>
 
-          <div className="basis-[100%] xl:basis-[70%] h-fit">
+          <div className="basis-[100%] xl:basis-[70%] h-full md:mb-6">
             <div className="border-b border-brand__black__color flex justify-between items-end w-full p-2">
               <div className="flex-grow h-full text-brand__black__color text-[32px]  md:text-brand__font__size__xl font-brand__font__semibold leading-tight">
                 <h2 className="">Got a project? </h2>

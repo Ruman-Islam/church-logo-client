@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Gallery",
-    "route": "/gallery#gallery",
+    "route": "/gallery/logo-design#logo-design",
     "match": "/gallery"
   },
   {

@@ -9,6 +9,7 @@ html,
 body {
   font-family: "Gabarito", sans-serif;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .container {

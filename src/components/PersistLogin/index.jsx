@@ -8,7 +8,7 @@ const PersistLogin = () => {
   const refresh = useRefreshToken();
   const { auth } = useAppSelector((state) => state);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(auth, ' persist login');
+
   useEffect(() => {
     // isMounted is using for no memory leak
     let isMounted = true;
