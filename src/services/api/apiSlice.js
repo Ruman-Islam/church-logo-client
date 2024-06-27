@@ -3,12 +3,12 @@ import Cookies from "js-cookie";
 import { logOut, setAuth } from "../features/auth/authSlice";
 
 // eslint-disable-next-line no-unused-vars
-const productionUrl = "https://insignia-backend.vercel.app/api/v1";
+const productionUrl = "https://church-logo-server.vercel.app/api/v1";
 // eslint-disable-next-line no-unused-vars
 const developmentUrl = "http://localhost:8080/api/v1";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: developmentUrl,
+  baseUrl: productionUrl,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {

@@ -36,7 +36,7 @@ export default function CustomersDoing() {
         <div>
           <SectionTitle
             title="Check out the cool things our customers are doing with their Church Logo"
-            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-center mb-4 text-text__gray"
+            titleClass="text-section__title__size xl:text-brand__font__size__xl leading-[50px] font-brand__font__600 text-center text-center mb-4 text-text__gray max-w-[600px] xl:max-w-[1024px] mx-auto"
           />
         </div>
 

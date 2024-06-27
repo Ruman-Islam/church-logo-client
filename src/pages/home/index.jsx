@@ -16,11 +16,11 @@ export default function HomeScreen() {
       <Categories />
       <Portfolio />
       <Services />
-      <ContactBar />
       <Testimonial />
+      <ContactBar />
       <ShowCaseYouLogo />
-      <PersonalSignature />
       <CustomersDoing />
+      <PersonalSignature />
     </Layout>
   );
 }

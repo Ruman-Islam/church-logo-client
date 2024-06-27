@@ -1,130 +1,92 @@
 [
   {
-    "section": "logo-design",
-    "images": [
-      {
-        "title": "churchlogo_logodesign",
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "title": "churchlogo_webdesign",
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "title": "churchlogo_branding",
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "title": "churchlogo_personal_signature",
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      },
-      {
-        "title": "churchlogo_logodesign",
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "title": "churchlogo_webdesign",
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "title": "churchlogo_branding",
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "title": "churchlogo_personal_signature",
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      },
-      {
-        "title": "churchlogo_logodesign",
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "title": "churchlogo_webdesign",
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "title": "churchlogo_branding",
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "title": "churchlogo_personal_signature",
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      }
-    ]
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_01",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
   },
   {
-    "section": "web-design",
-    "images": [
-      {
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      }
-    ]
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_02",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
   },
   {
-    "section": "branding",
-    "images": [
-      {
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      }
-    ]
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_03",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
   },
   {
-    "section": "personal-signature",
-    "images": [
-      {
-        "url": "image/category/churchlogo_logodesign.jpg",
-        "alt": "churchlogo_logodesign"
-      },
-      {
-        "url": "image/category/churchlogo_webdesign.jpeg",
-        "alt": "churchlogo_webdesign"
-      },
-      {
-        "url": "image/category/churchlogo_branding.jpeg",
-        "alt": "churchlogo_branding"
-      },
-      {
-        "url": "image/category/churchlogo_personal_signature.jpeg",
-        "alt": "churchlogo_personal_signature"
-      }
-    ]
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_04",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_05",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_06",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_07",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_08",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_09",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_10",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_11",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_12",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_13",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_14",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
+  },
+  {
+    "title": "churchlogo_web_design",
+    "url": "image/gallery/web-design/church_logo_web_design_15",
+    "alt": "churchlogo_web_design",
+    "collection": "web-design"
   }
 ]

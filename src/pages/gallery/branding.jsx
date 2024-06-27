@@ -1,57 +1,32 @@
-import { Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Button, Skeleton } from "@mui/material";
+import { useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout/index";
+import { galleryNavButtons } from "../../constants/gallery";
+import { useGetGalleryLogoDesignQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-
-const galleryNavButtons = [
-  {
-    id: 1,
-    title: "Logo Design",
-    route: "/gallery/logo-design",
-    match: "logo-design",
-  },
-  {
-    id: 2,
-    title: "Web Design",
-    route: "/gallery/web-design",
-    match: "web-design",
-  },
-  {
-    id: 3,
-    title: "Branding",
-    route: "/gallery/branding",
-    match: "branding",
-  },
-  {
-    id: 3,
-    title: "Personal Signature",
-    route: "/gallery/personal-signature",
-    match: "personal-signature",
-  },
-];
 
 export default function GalleryBrandingScreen() {
   const { pathname } = useLocation();
-//   const [loading, setLoading] = useState(true);
-//   const [gallery, setGallery] = useState({});
+  const [dynamicUrl, setDynamicUrl] = useState({
+    page: 1,
+    limit: 8,
+    searchTerm: "",
+    collection: "logo-design",
+  });
+  const { data, isLoading } = useGetGalleryLogoDesignQuery(dynamicUrl);
+  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
+  const gallery = data?.data;
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const res = await fetch("http://localhost:8081/gallery");
-//       const data = await res.json();
-
-//       setGallery(data);
-//       setLoading(false);
-//     };
-//     fetchData();
-//   }, []);
+  const handleShowMoreItems = () => {
+    setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
+  };
 
   return (
     <Layout title="Gallery & Examples">
-      <section id="logo-design">
+      <section id="branding">
         <div className="bg-[url(https://photologo.co/wp-content/uploads/2022/08/hero-bg-min-scaled-1.jpg)] h-[150px] md:h-[200px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white">
           <h3 className="text-[37px]">Gallery</h3>
         </div>
@@ -73,36 +48,36 @@ export default function GalleryBrandingScreen() {
           </div>
           <PhotoProvider>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4 p-2">
-              {/* {(loading ? Array.from(new Array(8)) : gallery)
-                ?.slice(0, 8)
+              {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
+                ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
-                    <PhotoView key={i} src={getImgUrl(d)}>
+                    <PhotoView key={d?._id} src={getImgUrl(d?.url)}>
                       <img
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}
-                        src={getImgUrl(d)}
+                        src={getImgUrl(d?.url)}
                         className="w-full h-full object-cover rounded-md hover:cursor-pointer"
                       />
                     </PhotoView>
                   ) : (
                     <Skeleton key={i} variant="rectangular" height={218} />
                   )
-                )} */}
+                )}
             </div>
           </PhotoProvider>
 
-          {/* {showLoadMoreBtn ? (
+          {isVisibleMoreBtn ? (
             <div className="flex justify-center">
               <Button
-                onClick={showMoreItem}
+                onClick={handleShowMoreItems}
                 className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
                 variant="contained"
               >
                 Load More
               </Button>
             </div>
-          ) : null} */}
+          ) : null}
         </div>
       </section>
     </Layout>

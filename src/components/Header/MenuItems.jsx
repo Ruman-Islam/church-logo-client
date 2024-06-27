@@ -16,7 +16,7 @@ const MenuItems = ({ onModalOpen }) => {
   return (
     <>
       {navigation.map((d) =>
-        d?.route.includes("order-now") ? (
+        d?.title.includes("Order") ? (
           <li
             key={d?.id}
             className="duration-300 bg-primary hover:bg-brand__black__color rounded-none lg:rounded-full text-white"

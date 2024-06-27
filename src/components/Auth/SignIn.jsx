@@ -30,11 +30,13 @@ export default function SignIn({ showForm }) {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const isSignIn = showForm.includes("sign-in");
   const from = location.state?.from?.pathname || "/";
   const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
-  const [signIn, { data, error, isLoading }] = useSignInMutation();
   const [showPassword, setShowPassword] = useState(false);
+
+  const [signIn, { data, error, isLoading }] = useSignInMutation();
 
   useEffect(() => {
     if (user) {
@@ -56,16 +58,14 @@ export default function SignIn({ showForm }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
-  const handleShowPassword = () => setShowPassword(!showPassword);
-
-  const onSubmit = async (data) => {
+  const onSubmit = async (signInData) => {
     const options = {
-      data: data,
+      data: signInData,
     };
     await signIn(options);
   };
 
-  const isSignIn = showForm.includes("sign-in");
+  const handleShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <div

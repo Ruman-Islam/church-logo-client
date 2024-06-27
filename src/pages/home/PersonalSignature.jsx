@@ -1,5 +1,6 @@
 import { TiTick } from "react-icons/ti";
 import SectionTitle from "../../components/common/SectionTitle";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function PersonalSignature() {
   return (
@@ -15,8 +16,8 @@ export default function PersonalSignature() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-10 mt-10">
           <div className="flex-1 flex justify-center items-center">
             <img
-              src="https://photologo.co/wp-content/uploads/2023/05/AndyMoore_FinalCTA.png"
-              alt=""
+              src={getImgUrl("image/hero-banner/churchlogo_slider_03.png")}
+              alt="church_logo"
             />
           </div>
           <div className="flex-1 flex justify-center items-center text-white">
@@ -33,12 +34,17 @@ export default function PersonalSignature() {
               </li>
               <li className="flex items-center gap-3">
                 <TiTick size={30} className="text-primary" />
-                You want to be distinct and become a leading name in your
-                industry
+                You want to be perfect to put on your social media, website,
+                emails and much much more.
               </li>
               <li className="flex items-center gap-3">
                 <TiTick size={30} className="text-primary" />
-                You want to protect your online content from being stolen
+                You want people to quickly identify and remember you.
+              </li>
+              <li className="flex items-center gap-3">
+                <TiTick size={30} className="text-primary" />
+                You want visitors to get a more ‘premium’ feel to your name and
+                give you a more professional look.
               </li>
             </ul>
           </div>

@@ -62,7 +62,7 @@ export default function ShowCaseYouLogo() {
       <div className="container px-2 py-[40px]">
         <div>
           <SectionTitle
-            title="Design for what you need"
+            title="Looks great and easy to use everywhere!"
             titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-white"
           />
         </div>

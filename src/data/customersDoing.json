@@ -1,20 +1,62 @@
 [
-  { "id": 1, "img": "image/cards/Photog_UC-10-min.jpg", "title": "Word Mark" },
-  { "id": 2, "img": "image/cards/Photog_UC-4-min.jpg", "title": "Letter Mark" },
+  {
+    "id": 1,
+    "img": "image/cards/Photog_UC-10-min.jpg",
+    "hashTag": "#churchlogo",
+    "title": "Amazing... It exceeded my expectations. I asked for a classy look, and they nailed it perfectly."
+  },
+  {
+    "id": 2,
+    "img": "image/cards/Photog_UC-4-min.jpg",
+    "hashTag": "#ilovechurchlogo",
+    "title": "I'm thrilled with my Church Logo, and so are my clients, prospective clients, and friends. It looks so classy! Thank you, Church Logo!"
+  },
   {
     "id": 3,
     "img": "image/cards/Photog_UC-5-min.jpg",
-    "title": "Pictorial Mark"
+    "hashTag": "#churchbrandidentity",
+    "title": "I receive so many compliments! Thank you so much!"
   },
   {
     "id": 4,
     "img": "image/cards/Photog_UC-7-min.jpg",
-    "title": "Abstract Mark"
+    "hashTag": "#faithfullogos",
+    "title": "I absolutely LOVE my new signature! It looks professional and elegant on my images and products."
   },
-  { "id": 5, "img": "image/cards/Photog_UC-8-min.jpg", "title": "Mascot Logo" },
+  {
+    "id": 5,
+    "img": "image/cards/Photog_UC-8-min.jpg",
+    "hashTag": "#churchvisualidentity",
+    "title": "I just received my Church Logo, and I'm very pleased with their work."
+  },
   {
     "id": 6,
     "img": "image/cards/Photog_UC-9-min.jpg",
-    "title": "Combination Mark"
+    "hashTag": "#logoforchurch",
+    "title": "I use mine everywhere and absolutely love it!"
+  },
+  {
+    "id": 7,
+    "img": "image/cards/Photog_UC-9-min.jpg",
+    "hashTag": "#christianlogodesign",
+    "title": "It went beyond what I hoped for. I wanted something elegant, and they delivered flawlessly. Fantastic..."
+  },
+  {
+    "id": 8,
+    "img": "image/cards/Photog_UC-9-min.jpg",
+    "hashTag": "#churchbranding",
+    "title": "Incredible... Church Logo  surpassed my expectations. I requested a sophisticated design, and they nailed it."
+  },
+  {
+    "id": 9,
+    "img": "image/cards/Photog_UC-9-min.jpg",
+    "hashTag": "#elegantchurchlogos",
+    "title": "It was more than I imagined. I asked for a refined look, and they got it just right. Outstanding."
+  },
+  {
+    "id": 10,
+    "img": "image/cards/Photog_UC-9-min.jpg",
+    "hashTag": "#mychurchlogo",
+    "title": "This outdid my expectations. I asked for a classy design, and they nailed it flawlessly."
   }
 ]

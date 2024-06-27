@@ -32,6 +32,6 @@
   {
     "id": 6,
     "title": "Order Yours",
-    "route": "/order-now#order-now"
+    "route": "/categories/logo-design#logo-design"
   }
 ]

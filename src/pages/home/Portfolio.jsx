@@ -58,8 +58,10 @@ export default function Portfolio() {
                     <h2 className="text-[22px] lg:text-[32px] leading-[25px] lg:leading-[40px] text-primary font-brand__font__600 mb-4">
                       {d.headLine}
                     </h2>
-                  
-                    <p className="text-text__gray leading-[23px]">{d.feedBack}</p>
+
+                    <p className="text-brand__black__color leading-[23px]">
+                      {d.feedBack}
+                    </p>
                   </div>
                 </div>
               </div>

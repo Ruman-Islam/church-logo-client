@@ -50,7 +50,7 @@ export default {
         text__navy_blue: "#00306e",
         link__color: "#1976d2",
         text__gray: "#7a7a7a",
-        section__bg_color: "#f1f1f1",
+        section__bg_color: "#f7f6f6",
       },
       keyframes: {
         navMenuOpInOut: {

@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "route": "/categories/logo-design",
+    "route": "/categories/logo-design#logo-design",
     "title": "Logo Design",
     "img": "image/hero-banner/churchlogo_slider_01.png"
   },
   {
     "id": 2,
-    "route": "/categories/web-design",
+    "route": "/categories/web-design#web-design",
     "title": "Web Design",
-   "img": "image/hero-banner/churchlogo_slider_02.png"
+    "img": "image/hero-banner/churchlogo_slider_02.png"
   },
   {
     "id": 3,
-    "route": "/categories/branding",
+    "route": "/categories/branding#branding",
     "title": "Branding",
-"img": "image/hero-banner/churchlogo_slider_03.png"
+    "img": "image/hero-banner/churchlogo_slider_03.png"
   },
   {
     "id": 4,
-    "route": "/categories/personal-signature",
+    "route": "/categories/personal-signature#personal-signature",
     "title": "Personal Signature",
-   "img": "image/hero-banner/churchlogo_slider_04.png"
+    "img": "image/hero-banner/churchlogo_slider_04.png"
   }
 ]

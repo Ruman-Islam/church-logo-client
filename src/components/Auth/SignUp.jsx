@@ -29,11 +29,13 @@ export default function SignUp({ showForm }) {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const isSignUp = showForm.includes("sign-up");
   const from = location.state?.from?.pathname || "/";
   const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
-  const [signUp, { data, error, isLoading }] = useSignUpMutation();
   const [showPassword, setShowPassword] = useState(false);
+
+  const [signUp, { data, error, isLoading }] = useSignUpMutation();
 
   useEffect(() => {
     if (user) {
@@ -54,16 +56,14 @@ export default function SignUp({ showForm }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
-  const handleShowPassword = () => setShowPassword(!showPassword);
-
-  const onSubmit = async (data) => {
+  const onSubmit = async (signUpData) => {
     const options = {
-      data: data,
+      data: signUpData,
     };
     await signUp(options);
   };
 
-  const isSignUp = showForm.includes("sign-up");
+  const handleShowPassword = () => setShowPassword(!showPassword);
 
   return (
     <div

@@ -1,32 +1,92 @@
 [
   {
-    "name": "Robert Downy",
+    "name": "Phnom Penh",
     "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
-    "review": "Testimonials designed by Clément Jacquelin. Connect with them on Dribbble; the global community for designers and creative professionals.",
-    "date": "Sat May 12 2024"
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/us.svg",
+    "review": "Church Logo was a very good organization, also, helped me a lot even when we finished the project. Totally recommend them. The only catch is, if you are in Europe or America you are going to talk 1 day by day because of his location, so make the specifications very clear.",
+    "date": "Thu Jan 04 2024",
+    "countryName": "USA",
+    "rating": 5
   },
   {
-    "name": "Robert Downy",
+    "name": "Rogelio M. Hughes",
     "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
-    "review": "Testimonials designed by Clément Jacquelin. Connect with them on Dribbble; the global community for designers and creative professionals.",
-    "date": "Sat May 12 2024"
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/us.svg",
+    "review": "It was truly a pleasure working with Church Logo. The team is a true professional. As soon as I gave them the ok to work on the project, they immediately started working. Any changes or tweaks I requested, the team took care of them immediately. Communication was key for me. Church Logo communicated well and always responded in a timely manner. I gave them a model of what I wanted the website to look like and they hit it out of the park. I am extremely happy with my new website. I will definitely use Church Logo for my next project.",
+    "date": "Wed May 12 2024",
+    "countryName": "USA",
+    "rating": 5
   },
   {
-    "name": "Robert Downyee",
+    "name": "Madison Gallagher",
     "image": "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-    "review": "Testimonials designed by Clément Jacquelin. Connect with them on Dribbble; the global community for designers and creative professionals.",
-    "date": "Sat May 12 2024"
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/uk.svg",
+    "review": "Outstanding service! The designer was professional, prompt, and delivered a stunning, user-friendly website. Great value for money and completed ahead of schedule. Highly recommended for top-notch web design! Thank you!",
+    "date": "Sat May 12 2024",
+    "countryName": "UK",
+    "rating": 5
   },
   {
-    "name": "Robert Downyr",
+    "name": "Richard K. Ruth",
     "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-    "review": "Testimonials designed by Clément Jacquelin. Connect with them on Dribbble; the global community for designers and creative professionals.",
-    "date": "Sat May 12 2024"
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/au.svg",
+    "review": "Beyond fantastic ! Church Logo is hard working , professional and follows directions perfectly. Was happy to alter changes I requested and completely exceeded my expectations. Would hire again in a heartbeat.",
+    "date": "Sat May 12 2024",
+    "countryName": "Australia",
+    "rating": 4
   },
   {
-    "name": "Robert Downye",
+    "name": "Daila Gaona Ojeda",
     "image": "https://images.unsplash.com/photo-1493238792000-8113da705763?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-    "review": "Testimonials designed by Clément Jacquelin. Connect with them on Dribbble; the global community for designers and creative professionals.",
-    "date": "Sat May 12 2024"
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/us.svg",
+    "review": "Gran professional David. Seguiré trabajando con él regularmente. Lo recomiendo encarecidamente.",
+    "date": "Sat May 12 2024",
+    "countryName": "USA",
+    "rating": 5
+  },
+  {
+    "name": "Alperen Yıldırım",
+    "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/tr.svg",
+    "review": "Great job with website creation, and excellent communication, and went above and beyond to ensure we were happy. Thank you.",
+    "date": "Sat May 12 2024",
+    "countryName": "Turkey",
+    "rating": 5
+  },
+  {
+    "name": "Nicolas Degée",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/fr.svg",
+    "review": "Incredibly talented, capturing my vision perfectly. Communication was efficient, and the turnaround time was quick. The attention to detail was remarkable.",
+    "date": "Sat May 12 2024",
+    "countryName": "France",
+    "rating": 4
+  },
+  {
+    "name": "Lucy May",
+    "image": "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/uk.svg",
+    "review": "This was my first time working with Church Logo and they did a great job. Worked quickly, understood what I needed and delivered right on time. I would definitely work with him again.",
+    "date": "Sat May 12 2024",
+    "countryName": "UK",
+    "rating": 4
+  },
+  {
+    "name": "Dorothy W. Coley",
+    "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/us.svg",
+    "review": "Great partner who was flexible and focused on ensuring I was satisfied with the delivery. I will use it again and would highly recommend it to others. As a matter of fact, we've already launched our next project and expect to have many more in the future.",
+    "date": "Sat May 12 2024",
+    "countryName": "USA",
+    "rating": 5
+  },
+  {
+    "name": "Alfonzo L. Whiting",
+    "image": "https://images.unsplash.com/photo-1493238792000-8113da705763?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    "countryImage": "https://hatscripts.github.io/circle-flags/flags/us.svg",
+    "review": "Excellent work! The flyer came out amazing and with great attention to detail. I highly recommend and will use his services again in the future. Thanks again! 10/10 highly recommended.",
+    "date": "Sat May 12 2024",
+    "countryName": "USA",
+    "rating": 5
   }
 ]

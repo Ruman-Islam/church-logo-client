@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import footerData from "../../data/footer.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useAppSelector } from "../../services/hook";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function Footer() {
   const {
@@ -18,11 +19,19 @@ export default function Footer() {
         <div className="container px-2.5 py-5 md:py-10">
           <div className="flex gap-16">
             <div className="hidden md:block basis-[25%]">
-              <div className="">
-                <p className="lg:text-lg lg:font-semibold">
-                  Prepare yourself to be a part of exploration of
+              <div>
+                <HashLink to="/#home" className="block mb-5">
+                  <img
+                    src={getImgUrl("logo/churchlogo_color.png")}
+                    alt="churchlogo"
+                  />
+                </HashLink>
+                <p className="text-brand__font__size__sm lg:font-semibold">
+                  Check out all the church branding services at Church Logo.
+                  From logo design to all branding work and everything between.
+                  Without compromising the quality we are doing some amazing
+                  jobs.
                 </p>
-                <p className="text-4xl font-bold">With the Church Logo</p>
               </div>
             </div>
 

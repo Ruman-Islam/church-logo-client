@@ -44,14 +44,15 @@ export default function Hero() {
               </h2>
               <br />
               <p className="leading-snug text-[#7a7a7a] lg:max-w-[40rem] w-full font-brand__font__500 text-brand__font__size__sm lg:text-brand__font__size__base text-center md:text-left">
-                We can put you in touch with a creative specialist to help your
-                business appear and feel professional, no matter what it needs.
-                Since excellent design generates excellent revenue.
+                &ldquo;Church logo&rdquo; a branding agency provides unique,
+                quick, and demonstrative service for a church brand creation. We
+                also provide web development, graphics design and other
+                services.
               </p>
 
               <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4">
                 <HashLink
-                  to="/"
+                  to="/categories/logo-design#logo-design"
                   className="px-4 py-1.5 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300"
                 >
                   Get started

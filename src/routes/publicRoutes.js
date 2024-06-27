@@ -6,11 +6,6 @@ const publicRoutes = [
     Component: () => import("../pages/sign-in"),
   },
   {
-    path: "/categories/:section",
-    name: "categories",
-    Component: () => import("../pages/categories"),
-  },
-  {
     path: "/privacy-policy",
     name: "privacy-policy",
     Component: () => import("../pages/privacy-policy"),
@@ -44,6 +39,26 @@ const publicRoutes = [
     path: "/gallery/personal-signature",
     name: "/gallery/personal-signature",
     Component: () => import("../pages/gallery/personal-signature"),
+  },
+  {
+    path: "/categories/logo-design",
+    name: "/categories/logo-design",
+    Component: () => import("../pages/categories/logo-design"),
+  },
+  {
+    path: "/categories/web-design",
+    name: "/categories/web-design",
+    Component: () => import("../pages/categories/web-design"),
+  },
+  {
+    path: "/categories/branding",
+    name: "/categories/branding",
+    Component: () => import("../pages/categories/branding"),
+  },
+  {
+    path: "/categories/personal-signature",
+    name: "/categories/personal-signature",
+    Component: () => import("../pages/categories/personal-signature"),
   },
 ];
 

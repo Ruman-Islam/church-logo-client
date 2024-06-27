@@ -10,7 +10,7 @@ export default function ContactBar() {
             <div className="max-w-[370px] hidden xl:block">
               <img
                 className="w-full rounded-xl"
-                src={getImgUrl("image/banner/hero-01-7daaa580.png")}
+                src={getImgUrl("image/contact-us/Contact-Us.png")}
                 alt=""
               />
             </div>
@@ -33,7 +33,10 @@ export default function ContactBar() {
             </div>
             <div className="text-text__gray px-2 py-3 leading-tight font-brand__font__500">
               <p>Do you have any query?</p>
-              <p>Send us email or contact us via chat</p>
+              <p>
+                If you have any query or any question before starting your
+                valuable project with us, you can contact us through our email.
+              </p>
             </div>
           </div>
         </div>
