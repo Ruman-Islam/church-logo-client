@@ -8,12 +8,22 @@ import Loader from "./components/common/Loader";
 import NotFoundScreen from "./pages/not-found";
 import privateRoutes from "./routes/privateRoutes";
 import publicRoutes from "./routes/publicRoutes";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   AOS.init();
   return (
     <>
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={
+          <>
+            <Header topBarEnable="enable" />
+            <Loader />
+            <Footer />
+          </>
+        }
+      >
         <Routes>
           <Route element={<PersistLogin />}>
             {publicRoutes.map(({ path, name, Component }) => {
