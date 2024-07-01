@@ -14,10 +14,10 @@ export default function HomeScreen() {
     <Layout title="A handcrafted signature logo to suit your unique personality">
       <Hero />
       <Categories />
-      <Portfolio />
       <Services />
-      <Testimonial />
+      <Portfolio />
       <ContactBar />
+      <Testimonial />
       <ShowCaseYouLogo />
       <CustomersDoing />
       <PersonalSignature />

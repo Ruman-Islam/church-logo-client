@@ -44,7 +44,7 @@ export default function Hero() {
               </h2>
               <br />
               <p className="leading-snug text-[#7a7a7a] lg:max-w-[40rem] w-full font-brand__font__500 text-brand__font__size__sm lg:text-brand__font__size__base text-center md:text-left">
-                &ldquo;Church logo&rdquo; a branding agency provides unique,
+                &ldquo;Church Logo&rdquo; a branding agency provides unique,
                 quick, and demonstrative service for a church brand creation. We
                 also provide web development, graphics design and other
                 services.

@@ -2,5 +2,6 @@
   { "id": 1, "img": "image/banner/churchlogo_facebook.png" },
   { "id": 2, "img": "image/banner/churchlogo_instagram_post.png" },
   { "id": 3, "img": "image/banner/churchlogo_print_use.png" },
-  { "id": 4, "img": "image/banner/chrchlogo_website.png" }
+  { "id": 4, "img": "image/banner/chrchlogo_website.png" },
+  { "id": 5, "img": "image/banner/chrchlogo_email_signature.png" }
 ]

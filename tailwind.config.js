@@ -82,6 +82,8 @@ export default {
         login__background:
           "url('../src/assets/image/background/churchlogo-login-banner.jpeg')",
         test: "url('../src/assets/image/gallery/web-design/church_logo_web_design_02.png')",
+        page_bg:
+          "url('../src/assets/image/background/church_logo_page_background.jpg')",
       },
     },
   },

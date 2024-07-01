@@ -60,6 +60,16 @@ const publicRoutes = [
     name: "/categories/personal-signature",
     Component: () => import("../pages/categories/personal-signature"),
   },
+  {
+    path: "/categories/business-advertising",
+    name: "/categories/business-advertising",
+    Component: () => import("../pages/categories/business-advertising"),
+  },
+  {
+    path: "/categories/others",
+    name: "/categories/others",
+    Component: () => import("../pages/categories/others"),
+  },
 ];
 
 export default publicRoutes;

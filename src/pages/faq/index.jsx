@@ -31,7 +31,7 @@ export default function FAQScreen() {
   return (
     <Layout title="FAQ">
       <section id="faq">
-        <div className="bg-[url(https://photologo.co/wp-content/uploads/2022/08/hero-bg-min-scaled-1.jpg)] h-[150px] md:h-[200px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white">
+        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
           <h3 className="text-[37px]">FAQ</h3>
         </div>
         <div className="container px-2 py-5 md:py-10">

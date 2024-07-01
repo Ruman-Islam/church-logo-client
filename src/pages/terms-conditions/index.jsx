@@ -5,12 +5,12 @@ export default function TermsAndConditionsScreen() {
   return (
     <Layout title="Term & Conditions">
       <section id="terms" className="mb-10">
+        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
+          <h3 className="text-[37px]">Terms & Conditions</h3>
+        </div>
         {/* Introduction */}
         <div className="bg-section__bg_color text-brand__black__color">
           <div className="container px-2 py-[30px] md:py-[60px]">
-            <h2 className="text-brand__font__size__lg font-brand__font__500">
-              Terms & Conditions
-            </h2>
             <h3 className="mt-1 mb-5 text-brand__font__size__md">
               Last Updated: 01/07/2020
             </h3>

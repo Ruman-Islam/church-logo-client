@@ -27,19 +27,19 @@ export default function GalleryBrandingScreen() {
   return (
     <Layout title="Gallery & Examples">
       <section id="branding">
-        <div className="bg-[url(https://photologo.co/wp-content/uploads/2022/08/hero-bg-min-scaled-1.jpg)] h-[150px] md:h-[200px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white">
+        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
           <h3 className="text-[37px]">Gallery</h3>
         </div>
-        <div className="container px-2 flex flex-col gap-5 py-[30px] xl:py-[60px]">
-          <div className="flex flex-wrap lg:justify-center items-center gap-2">
+        <div className="container px-2 flex flex-col gap-5 py-[20px]">
+          <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
             {galleryNavButtons.map((d) => (
               <HashLink
                 key={d.id}
                 to={d.route}
-                className={`border text-text__gray hover:text-white hover:bg-primary hover:border-primary duration-200 rounded-full font-brand__font__600 px-4 lg:px-6 py-1 lg:py-1.5 text-brand__font__size__xs lg:text-brand__font__size__sm ${
+                className={`border hover:text-white hover:bg-brand__black__color hover:border-brand__black__color duration-300 rounded-md font-brand__font__600 px-4 lg:px-8 py-2 lg:py-3 text-brand__font__size__sm lg:text-[19px] ${
                   pathname && pathname.includes(d.match)
-                    ? "bg-primary border-primary text-white"
-                    : "border-text__gray"
+                    ? "bg-brand__black__color border-brand__black__color text-white"
+                    : "border-text__gray text-text__gray"
                 }`}
               >
                 {d?.title}

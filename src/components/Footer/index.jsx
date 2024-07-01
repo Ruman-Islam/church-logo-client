@@ -1,5 +1,5 @@
 import { AiFillInstagram, AiOutlineCopyrightCircle } from "react-icons/ai";
-import { FaFacebook, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import footerData from "../../data/footer.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
@@ -116,15 +116,34 @@ export default function Footer() {
             All rights reserved Churchlogo {year}
           </p>
           <div className="flex items-center gap-5">
-            <HashLink to="/" className="hover:text-primary duration-300">
+            <a
+              href="https://www.facebook.com/churchlogo"
+              target="_blank"
+              className="hover:text-primary duration-300"
+            >
               <FaFacebook size={20} />
-            </HashLink>
-            <HashLink to="/" className="hover:text-primary duration-300">
+            </a>
+            <a
+              href="https://www.instagram.com/churchlogo.co"
+              target="_blank"
+              className="hover:text-primary duration-300"
+            >
               <AiFillInstagram size={23} />
-            </HashLink>
-            <HashLink to="/" className="hover:text-primary duration-300">
+            </a>
+            <a
+              href="https://www.youtube.com/@ChurchLogo"
+              target="_blank"
+              className="hover:text-primary duration-300"
+            >
+              <FaYoutube size={20} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@churchlogo.co"
+              target="_blank"
+              className="hover:text-primary duration-300"
+            >
               <FaTiktok size={20} />
-            </HashLink>
+            </a>
           </div>
         </div>
       </section>
