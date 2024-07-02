@@ -5,30 +5,31 @@ import data from "../../data/showCaseLogo.json";
 import "../../styles/showcase-logo-slider.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
-export default function ShowCaseYouLogo() {
-  const PrevArrow = ({ ...props }) => {
-    const { onClick } = props;
-    return (
-      <div
-        onClick={onClick}
-        className="relative -left-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
-      >
-        <FaArrowLeft size={25} />
-      </div>
-    );
-  };
+const PrevArrow = ({ ...props }) => {
+  const { onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className="relative -left-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
+    >
+      <FaArrowLeft size={25} />
+    </div>
+  );
+};
 
-  const NextArrow = ({ ...props }) => {
-    const { onClick } = props;
-    return (
-      <div
-        onClick={onClick}
-        className="relative -right-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
-      >
-        <FaArrowRight size={25} />
-      </div>
-    );
-  };
+const NextArrow = ({ ...props }) => {
+  const { onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className="relative -right-[20px] text-white hover:text-primary duration-200 hover:cursor-pointer"
+    >
+      <FaArrowRight size={25} />
+    </div>
+  );
+};
+
+export default function ShowCaseYouLogo() {
 
   const settings = {
     dots: false,

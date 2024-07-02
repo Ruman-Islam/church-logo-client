@@ -28,6 +28,16 @@ export default function FAQScreen() {
     }));
   };
 
+  // const replaceUrlAndLineBreaks = (text) => {
+  //   const urlRegex = /(https?:\/\/[^\s]+)/g;
+  //   // Replace URLs with anchor tags
+  //   const withAnchors = text.replace(urlRegex, (url) => {
+  //     return `<a href="${url}" target="_blank" rel="noopener noreferrer">Church Logo</a>`;
+  //   });
+  //   // Replace newlines with <br> tags
+  //   return withAnchors.replace(/\n/g, "<br>");
+  // };
+
   return (
     <Layout title="FAQ">
       <section id="faq">
@@ -89,9 +99,12 @@ export default function FAQScreen() {
                           </AccordionSummary>
                           <AccordionDetails>
                             <Typography>
-                              <span className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a]">
-                                {d?.answer}
-                              </span>
+                              <span
+                                className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify"
+                                dangerouslySetInnerHTML={{
+                                  __html: d?.answer,
+                                }}
+                              />
                             </Typography>
                           </AccordionDetails>
                         </Accordion>

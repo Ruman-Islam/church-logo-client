@@ -7,9 +7,81 @@ import { FaCheck } from "react-icons/fa6";
 import { MdOutlineMotionPhotosAuto } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import Slider from "react-slick";
+import NextArrow from "../../components/common/Arrow/nextArrow";
+import PrevArrow from "../../components/common/Arrow/prevArrow";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import data from "../../data/customersDoing.json";
+import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import RatingCard from "../../components/common/RatingCard/inedx";
+
+const ratingData = [
+  {
+    Icon: <StarIcon fontSize="large" />,
+    title: "4.8/5 star rating",
+    text: "That’s our average rating from 37,533 customer reviews. Happydesigners make happy clients.",
+  },
+  {
+    Icon: <SupportAgentIcon fontSize="large" />,
+    title: "100% money-back guarantee for contests",
+    text: "Great design, guaranteed. Love your final design or get your money back. T&Cs apply.",
+  },
+  {
+    Icon: <ThumbUpIcon fontSize="large" />,
+    title: "Verified freelance logo designers",
+    text: "Our logo designers are vetted, creative professionals with verified industry experience who take the time to understand your business.",
+  },
+  {
+    Icon: <VerifiedUserIcon fontSize="large" />,
+    title: "24/7 design support",
+    text: "Get help when you need it with our support team of real bonafide humans. No question is too small or complex!",
+  },
+];
+
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 6,
+  slidesToScroll: 6,
+  autoplay: false,
+  arrows: true,
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
+  responsive: [
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 export default function CategoryLogoDesignScreen() {
   const { pathname } = useLocation();
@@ -278,63 +350,9 @@ export default function CategoryLogoDesignScreen() {
                 </h3>
               </div>
               <div className="flex flex-wrap gap-5 py-5">
-                <div className="basis-full md:basis-[48%] flex gap-2">
-                  <div>
-                    <StarIcon fontSize="large" />
-                  </div>
-                  <div>
-                    <h2 className="font-brand__font__600 text-brand__font__size__md">
-                      4.8/5 star rating
-                    </h2>
-                    <p className="mt-2 text-text__gray">
-                      That’s our average rating from 37,533 customer reviews.
-                      Happy designers make happy clients.
-                    </p>
-                  </div>
-                </div>
-                <div className="basis-full md:basis-[48%] flex gap-2">
-                  <div>
-                    <ThumbUpIcon fontSize="large" />
-                  </div>
-                  <div>
-                    <h2 className="font-brand__font__600 text-brand__font__size__md">
-                      100% money-back guarantee for contests
-                    </h2>
-                    <p className="mt-2 text-text__gray">
-                      Great design, guaranteed. Love your final design or get
-                      your money back. T&Cs apply
-                    </p>
-                  </div>
-                </div>
-                <div className="basis-full md:basis-[48%] flex gap-2">
-                  <div>
-                    <VerifiedUserIcon fontSize="large" />
-                  </div>
-                  <div>
-                    <h2 className="font-brand__font__600 text-brand__font__size__md">
-                      Verified freelance logo designers
-                    </h2>
-                    <p className="mt-2 text-text__gray">
-                      Our logo designers are vetted, creative professionals with
-                      verified industry experience who take the time to
-                      understand your business.
-                    </p>
-                  </div>
-                </div>
-                <div className="basis-full md:basis-[48%] flex gap-2">
-                  <div>
-                    <SupportAgentIcon fontSize="large" />
-                  </div>
-                  <div>
-                    <h2 className="font-brand__font__600 text-brand__font__size__md">
-                      24/7 design support
-                    </h2>
-                    <p className="mt-2 text-text__gray">
-                      Get help when you need it with our support team of real
-                      bonafide humans. No question is too small or complex!
-                    </p>
-                  </div>
-                </div>
+                {ratingData.map((item) => (
+                  <RatingCard key={item?.title} {...item} />
+                ))}
               </div>
             </div>
             <div className="basis-full xl:basis-[40%] flex justify-center items-center">
@@ -343,6 +361,49 @@ export default function CategoryLogoDesignScreen() {
                 alt="church_logo"
               />
             </div>
+          </div>
+        </div>
+        <div className="h-fit py-10 ld:py-20 overflow-hidden">
+          <h1 className="text-brand__font__size__xl text-center mb-2">
+            Our clients love us
+          </h1>
+
+          <div className="category-slide-container w-full">
+            <Slider {...settings} className="p-2">
+              {data.map((content) => (
+                <div key={content.id} className="border rounded-xl shadow">
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <img
+                        className="rounded-tl-xl rounded-tr-xl"
+                        src="https://images-marketing.99static.com/images/product-landing/reviews/review-design-01.jpeg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="p-5">
+                      <div>
+                        <span>Review</span>
+                      </div>
+                      <div>
+                        <StarIcon fontSize="small" />
+                        <StarIcon fontSize="small" />
+                        <StarIcon fontSize="small" />
+                        <StarIcon fontSize="small" />
+                        <StarIcon fontSize="small" />
+                      </div>
+                      <div className="mt-1.5 leading-snug text-brand__font__size__sm">
+                        <p>
+                          The logo contest was amazing; within a few days of
+                          posting the brief I received over 70 quality options
+                          to choose from
+                        </p>
+                      </div>
+                    </div>
+                    <div className="p-5">logo</div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
       </section>

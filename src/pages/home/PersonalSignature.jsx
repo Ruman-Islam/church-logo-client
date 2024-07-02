@@ -12,7 +12,7 @@ export default function PersonalSignature() {
       <div className="container px-2 py-10">
         <div className="px-2">
           <SectionTitle
-            title="Is a Signature Churchlogo for you?"
+            title="Is a Signature Church Logo for you?"
             titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-white"
           />
         </div>
