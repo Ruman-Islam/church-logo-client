@@ -19,7 +19,7 @@ import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import PrevArrow from "../../components/common/Arrow/prevArrow";
 import NextArrow from "../../components/common/Arrow/nextArrow";
-import RatingCard from "../../components/common/RatingCard/inedx";
+import RatingCard from "../../components/common/RatingCard";
 
 const ratingData = [
   {

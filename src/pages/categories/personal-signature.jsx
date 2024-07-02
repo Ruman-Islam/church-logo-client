@@ -15,7 +15,7 @@ import { categoryNavButtons } from "../../constants/category";
 import data from "../../data/customersDoing.json";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-import RatingCard from "../../components/common/RatingCard/inedx";
+import RatingCard from "../../components/common/RatingCard";
 
 const ratingData = [
   {
