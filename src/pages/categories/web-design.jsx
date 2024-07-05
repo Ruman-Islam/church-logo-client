@@ -1,91 +1,13 @@
-import StarIcon from "@mui/icons-material/Star";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import {
-  FaBoxOpen,
-  FaRegCreditCard,
-  FaStar,
-} from "react-icons/fa";
+import { FaBoxOpen, FaRegCreditCard, FaStar } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineMotionPhotosAuto } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import Slider from "react-slick";
+import OurClientsLoveUs from "../../components/OurClientsLoveUs";
+import WhyChurchLogo from "../../components/WhyChurchLogo";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
-import data from "../../data/customersDoing.json";
 import "../../styles/categories.css";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
-import PrevArrow from "../../components/common/Arrow/prevArrow";
-import NextArrow from "../../components/common/Arrow/nextArrow";
-import RatingCard from "../../components/common/RatingCard";
-
-const ratingData = [
-  {
-    Icon: <StarIcon fontSize="large" />,
-    title: "4.8/5 star rating",
-    text: "That’s our average rating from 37,533 customer reviews. Happydesigners make happy clients.",
-  },
-  {
-    Icon: <SupportAgentIcon fontSize="large" />,
-    title: "100% money-back guarantee for contests",
-    text: "Great design, guaranteed. Love your final design or get your money back. T&Cs apply.",
-  },
-  {
-    Icon: <ThumbUpIcon fontSize="large" />,
-    title: "Verified freelance logo designers",
-    text: "Our logo designers are vetted, creative professionals with verified industry experience who take the time to understand your business.",
-  },
-  {
-    Icon: <VerifiedUserIcon fontSize="large" />,
-    title: "24/7 design support",
-    text: "Get help when you need it with our support team of real bonafide humans. No question is too small or complex!",
-  },
-];
-
-
-const settings = {
-  dots: false,
-  infinite: true,
-  speed: 1000,
-  slidesToShow: 6,
-  slidesToScroll: 6,
-  autoplay: false,
-  arrows: true,
-  prevArrow: <PrevArrow />,
-  nextArrow: <NextArrow />,
-  responsive: [
-    {
-      breakpoint: 1280,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-      },
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
 
 export default function CategoryWebDesignScreen() {
   const { pathname } = useLocation();
@@ -342,75 +264,10 @@ export default function CategoryWebDesignScreen() {
               </HashLink>
             </div>
 
-            <div className="flex flex-col xl:flex-row justify-center items-center gap-5">
-              <div className="basis-full xl:basis-[60%] p-5">
-                <div>
-                  <h2 className="text-[24px] md:text-[32px]">
-                    So, why Church Logo for a brand identity design?
-                  </h2>
-                  <h3 className="leading-[60px]">
-                    We live and breathe design, and folks think that’s pretty
-                    rad.
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-5 py-5">
-                  {ratingData.map((item) => (
-                    <RatingCard key={item?.title} {...item} />
-                  ))}
-                </div>
-              </div>
-              <div className="basis-full xl:basis-[40%] flex justify-center items-center">
-                <img
-                  src={getImgUrl("image/hero-banner/churchlogo_slider_02.png")}
-                  alt="church_logo"
-                />
-              </div>
-            </div>
+            <WhyChurchLogo />
           </div>
         </div>
-        <div className="h-fit py-10 ld:py-20 overflow-hidden">
-          <h1 className="text-brand__font__size__xl text-center mb-2">
-            Our clients love us
-          </h1>
-
-          <div className="category-slide-container w-full">
-            <Slider {...settings} className="p-2">
-              {data.map((content) => (
-                <div key={content.id} className="border rounded-xl shadow">
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <img
-                        className="rounded-tl-xl rounded-tr-xl"
-                        src="https://images-marketing.99static.com/images/product-landing/reviews/review-design-01.jpeg"
-                        alt=""
-                      />
-                    </div>
-                    <div className="p-5">
-                      <div>
-                        <span>Review</span>
-                      </div>
-                      <div>
-                        <StarIcon fontSize="small" />
-                        <StarIcon fontSize="small" />
-                        <StarIcon fontSize="small" />
-                        <StarIcon fontSize="small" />
-                        <StarIcon fontSize="small" />
-                      </div>
-                      <div className="mt-1.5 leading-snug text-brand__font__size__sm">
-                        <p>
-                          The logo contest was amazing; within a few days of
-                          posting the brief I received over 70 quality options
-                          to choose from
-                        </p>
-                      </div>
-                    </div>
-                    <div className="p-5">logo</div>
-                  </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </div>
+        <OurClientsLoveUs />
       </section>
     </Layout>
   );

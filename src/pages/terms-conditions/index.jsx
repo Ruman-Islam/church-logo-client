@@ -12,7 +12,7 @@ export default function TermsAndConditionsScreen() {
         <div className="bg-section__bg_color text-brand__black__color">
           <div className="container px-2 py-[30px] md:py-[60px]">
             <h3 className="mt-1 mb-5 text-brand__font__size__md">
-              Last Updated: 01/07/2020
+              Last Updated: Tue 02 July 2024
             </h3>
 
             <p className="font-brand__font__light mb-4">

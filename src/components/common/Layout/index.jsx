@@ -12,7 +12,7 @@ export default function Layout({
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{title ? "ChurchLogo - " + title : "ChurchLogo"}</title>
+        <title>{title ? "Church Logo - " + title : "Church Logo"}</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 

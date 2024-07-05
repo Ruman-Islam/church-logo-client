@@ -20,7 +20,7 @@ export default function PersonalSignature() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-10 mt-10">
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={getImgUrl("image/hero-banner/churchlogo_slider_03.png")}
+              src={getImgUrl("image/banner/churchlogo_signature.png")}
               alt="church_logo"
             />
           </div>

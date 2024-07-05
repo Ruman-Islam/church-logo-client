@@ -70,6 +70,11 @@ const publicRoutes = [
     name: "/categories/others",
     Component: () => import("../pages/categories/others"),
   },
+  {
+    path: "/logo-design/logo-design-pack",
+    name: "/logo-design/logo-design-pack",
+    Component: () => import("../pages/packages/logo-design/logo-design-pack"),
+  },
 ];
 
 export default publicRoutes;
