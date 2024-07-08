@@ -66,7 +66,7 @@ export default function Testimonial() {
               </div>
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 border border-error">
               <div className="rounded-lg w-full">
                 <Slider
                   {...settings}
