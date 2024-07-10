@@ -2,8 +2,8 @@ import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import data from "../../data/testimonial.json";
-import "../../styles/testimonial-slider.css";
+import data from "../../../data/testimonial.json";
+import "../../../styles/testimonial-slider.css";
 
 export default function Testimonial() {
   const PrevArrow = ({ ...props }) => {
@@ -48,7 +48,7 @@ export default function Testimonial() {
       {
         breakpoint: 768,
         settings: {
-          arrows: false
+          arrows: false,
         },
       },
     ],

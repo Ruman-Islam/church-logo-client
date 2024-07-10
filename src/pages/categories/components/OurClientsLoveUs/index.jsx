@@ -5,9 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
-import data from "../../data/testimonial.json";
-import NextArrow from "../common/Arrow/nextArrow";
-import PrevArrow from "../common/Arrow/prevArrow";
+import data from "../../../../data/testimonial.json";
+import NextArrow from "../../../../components/common/Arrow/nextArrow";
+import PrevArrow from "../../../../components/common/Arrow/prevArrow";
 
 export default function OurClientsLoveUs() {
   const settings = {

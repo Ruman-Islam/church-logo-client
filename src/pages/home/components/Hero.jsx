@@ -1,9 +1,9 @@
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
-import data from "../../data/hero.json";
-import useScrollWithOffset from "../../hooks/useScrollWithOffset";
-import "../../styles/hero-slider.css";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import data from "../../../data/hero.json";
+import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import { getImgUrl } from "../../../utils/getImgUrl-utility.js";
+import "../../../styles/hero-slider.css";
 
 export default function Hero() {
   const scrollWithOffset = useScrollWithOffset();
