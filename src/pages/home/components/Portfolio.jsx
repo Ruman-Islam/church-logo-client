@@ -1,8 +1,8 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import data from "../../data/portfolio.json";
-import "../../styles/portfolio-slider.css";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import data from "../../../data/portfolio.json";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
+import "../../../styles/portfolio-slider.css";
 
 export default function Portfolio() {
   const PrevArrow = ({ ...props }) => {

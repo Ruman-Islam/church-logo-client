@@ -1,10 +1,10 @@
 import { HashLink } from "react-router-hash-link";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 export default function ContactBar() {
   return (
     <section>
-      <div className="py-5 md:py-10 bg-section__bg_color w-full md:h-[430px] flex items-center justify-center px-2">
+      <div className="py-5 md:py-10 bg-section__bg_color w-full md:h-[280px] xl:h-[430px] flex items-center justify-center px-2">
         <div className="flex-1 flex items-end container text-brand__black__color gap-5">
           <div className="basis-[0%] xl:basis-[30%]">
             <div className="max-w-[370px] hidden xl:block">

@@ -1,9 +1,9 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import SectionTitle from "../../components/common/SectionTitle";
-import data from "../../data/showCaseLogo.json";
-import "../../styles/showcase-logo-slider.css";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import SectionTitle from "../../../components/common/SectionTitle";
+import data from "../../../data/showCaseLogo.json";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
+import "../../../styles/showcase-logo-slider.css";
 
 const PrevArrow = ({ ...props }) => {
   const { onClick } = props;
@@ -30,7 +30,6 @@ const NextArrow = ({ ...props }) => {
 };
 
 export default function ShowCaseYouLogo() {
-
   const settings = {
     dots: false,
     infinite: true,

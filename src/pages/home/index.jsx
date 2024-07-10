@@ -1,13 +1,15 @@
 import Layout from "../../components/common/Layout";
-import Categories from "./Categories";
-import ContactBar from "./ContactBar";
-import CustomersDoing from "./CustomersDoing";
-import Hero from "./Hero";
-import PersonalSignature from "./PersonalSignature";
-import Portfolio from "./Portfolio";
-import Services from "./Services";
-import ShowCaseYouLogo from "./ShowCaseYouLogo";
-import Testimonial from "./Testimonial";
+import Categories from "./components/Categories";
+import ContactBar from "./components/ContactBar";
+import CustomersDoing from "./components/CustomersDoing";
+import Hero from "./components/Hero";
+import OtherPromotionalSpace from "./components/OtherPromotionalSpace";
+import PersonalSignature from "./components/PersonalSignature";
+import Portfolio from "./components/Portfolio";
+import Services from "./components/Services";
+import ShowCaseYouLogo from "./components/ShowCaseYouLogo";
+import Testimonial from "./components/Testimonial";
+import ZeroPlacePromotionalSpace from "./components/ZeroPlacePromotionalSpace";
 
 export default function HomeScreen() {
   return (
@@ -19,6 +21,8 @@ export default function HomeScreen() {
       <ContactBar />
       <Testimonial />
       <ShowCaseYouLogo />
+      <ZeroPlacePromotionalSpace />
+      <OtherPromotionalSpace />
       <CustomersDoing />
       <PersonalSignature />
     </Layout>

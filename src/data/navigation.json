@@ -14,8 +14,8 @@
   {
     "id": 3,
     "title": "Review",
-    "route": "/review#review",
-    "match": "/review"
+    "route": "/reviews#reviews",
+    "match": "/reviews"
   },
   {
     "id": 4,

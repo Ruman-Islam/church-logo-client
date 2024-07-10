@@ -1,8 +1,8 @@
 import { TiTick } from "react-icons/ti";
 import { HashLink } from "react-router-hash-link";
-import SectionTitle from "../../components/common/SectionTitle";
-import useScrollWithOffset from "../../hooks/useScrollWithOffset";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import SectionTitle from "../../../components/common/SectionTitle";
+import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 export default function PersonalSignature() {
   const scrollWithOffset = useScrollWithOffset();

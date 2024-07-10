@@ -85,6 +85,11 @@ const publicRoutes = [
     name: "/logo-design/logo-design-pack",
     Component: () => import("../pages/packages/logo-design/logo-design-pack"),
   },
+  {
+    path: "/reviews",
+    name: "/reviews",
+    Component: () => import("../pages/reviews"),
+  },
 ];
 
 export default publicRoutes;

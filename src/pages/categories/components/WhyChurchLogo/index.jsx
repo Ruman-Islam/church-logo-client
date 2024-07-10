@@ -2,7 +2,7 @@ import StarIcon from "@mui/icons-material/Star";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { getImgUrl } from "../../../../utils/getImgUrl-utility";
 
 const ratingData = [
   {
