@@ -11,7 +11,7 @@ export default function Testimonial() {
     return (
       <div
         onClick={onClick}
-        className="absolute right-20 md:right-24 bottom-10 text-white duration-300 hover:cursor-pointer bg-primary w-8 h-8 md:w-10 md:h-10 flex flex-col items-center justify-center p-1 hover:p-1.5 rounded-full group"
+        className="absolute right-20 bottom-0 md:bottom-10 text-white duration-300 hover:cursor-pointer bg-primary w-8 h-8 flex flex-col items-center justify-center p-1 hover:p-1.5 rounded-full group"
       >
         <FaArrowLeft size={16} className="group-hover:scale-125 duration-300" />
       </div>
@@ -23,7 +23,7 @@ export default function Testimonial() {
     return (
       <div
         onClick={onClick}
-        className="absolute right-10 bottom-10 text-white duration-300 hover:cursor-pointer bg-primary w-8 h-8 md:w-10 md:h-10 flex flex-col items-center justify-center p-1 hover:p-1.5 rounded-full group"
+        className="absolute right-10 bottom-0 md:bottom-10 text-white duration-300 hover:cursor-pointer bg-primary w-8 h-8 flex flex-col items-center justify-center p-1 hover:p-1.5 rounded-full group"
       >
         <FaArrowRight
           size={16}
@@ -44,14 +44,19 @@ export default function Testimonial() {
     arrows: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false
+        },
+      },
+    ],
   };
 
   return (
     <section>
-      <div
-        id="testimonial-slider"
-        className="w-full mx-auto px-10 bg-white"
-      >
+      <div id="testimonial-slider" className="w-full mx-auto px-10 bg-white">
         <div className="container px-2">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-5">
             <div className="flex-1 hidden lg:block text-brand__black__color">
@@ -66,26 +71,26 @@ export default function Testimonial() {
               </div>
             </div>
 
-            <div className="flex-1 border border-error">
+            <div className="flex-1">
               <div className="rounded-lg w-full">
                 <Slider
                   {...settings}
-                  className="relative max-w-[450px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
+                  className="relative max-w-[350px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
                 >
                   {data.map((slide, index) => (
                     <div
                       key={index}
                       className="rounded-md w-full text-brand__black__color"
                     >
-                      <div className="p-8 flex">
-                        <div className="basis-[15%]">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="basis-[100%] md:basis-[15%]">
                           <img
                             className="w-12 h-12 rounded-full mx-auto"
                             src={slide?.image}
                             alt={slide?.name}
                           />
                         </div>
-                        <div className="basis-[85%]">
+                        <div className="basis-[100%] md:basis-[85%] text-center md:text-start flex flex-col items-center md:items-start">
                           <p className="font-brand__font__600">{slide?.name}</p>
                           <div className="flex items-center gap-1.5 my-1">
                             <img
@@ -95,7 +100,7 @@ export default function Testimonial() {
                             />
                             <p>{slide?.countryName}</p>
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center justify-center md:justify-start gap-1">
                             <Rating
                               name="read-only"
                               value={slide?.rating}
@@ -108,7 +113,7 @@ export default function Testimonial() {
                                 <StarIcon
                                   style={{
                                     opacity: 0.55,
-                                    color: "white",
+                                    color: "#7a7a7a",
                                   }}
                                   fontSize="inherit"
                                 />

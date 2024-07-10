@@ -8,21 +8,21 @@ import { galleryNavButtons } from "../../constants/gallery";
 import { useGetGalleryLogoDesignQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
-export default function GalleryPersonalSignatureScreen() {
-  const { pathname } = useLocation();
-  const [dynamicUrl, setDynamicUrl] = useState({
-    page: 1,
-    limit: 8,
-    searchTerm: "",
-    collection: "logo-design",
-  });
-  const { data, isLoading } = useGetGalleryLogoDesignQuery(dynamicUrl);
-  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
-  const gallery = data?.data;
-
-  const handleShowMoreItems = () => {
-    setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
-  };
+export default function GalleryBusinessAdvertisingScreen() {
+    const { pathname } = useLocation();
+    const [dynamicUrl, setDynamicUrl] = useState({
+      page: 1,
+      limit: 8,
+      searchTerm: "",
+      collection: "logo-design",
+    });
+    const { data, isLoading } = useGetGalleryLogoDesignQuery(dynamicUrl);
+    const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
+    const gallery = data?.data;
+  
+    const handleShowMoreItems = () => {
+      setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
+    };
 
   return (
     <Layout title="Gallery & Examples">
@@ -81,5 +81,5 @@ export default function GalleryPersonalSignatureScreen() {
         </div>
       </section>
     </Layout>
-  );
+  )
 }

@@ -9,7 +9,7 @@ import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
 import "../../styles/categories.css";
 
-export default function CategoryPersonalSignatureScreen() {
+export default function CategoryOthersScreen() {
   const { pathname } = useLocation();
 
   return (
@@ -41,7 +41,7 @@ export default function CategoryPersonalSignatureScreen() {
               </HashLink>
             ))}
           </div>
-          <div className="p-5 mt-4">
+          <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
                 to="/"

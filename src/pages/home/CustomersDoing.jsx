@@ -32,11 +32,11 @@ const settings = {
 export default function CustomersDoing() {
   return (
     <div>
-      <div className="container px-2 py-[10px] md:py-[30px] xl:py-[50px]">
+      <div className="container px-2 py-[20px] md:py-[30px] xl:py-[50px]">
         <div>
           <SectionTitle
             title="Check out the cool things our customers are doing with their Church Logo"
-            titleClass="text-brand__font__size__lg md:text-section__title__size xl:text-brand__font__size__xl leading-[30px] md:leading-[40px] xl:leading-[55px] font-brand__font__600 text-center text-center md:mb-4 text-text__gray max-w-[600px] xl:max-w-[1024px] mx-auto"
+            titleClass="text-[22px] md:text-section__title__size xl:text-brand__font__size__xl leading-[30px] md:leading-[40px] xl:leading-[55px] font-brand__font__600 text-center text-center md:mb-4 text-text__gray max-w-[600px] xl:max-w-[1024px] mx-auto"
           />
         </div>
 

@@ -41,6 +41,16 @@ const publicRoutes = [
     Component: () => import("../pages/gallery/personal-signature"),
   },
   {
+    path: "/gallery/business-advertising",
+    name: "/gallery/business-advertising",
+    Component: () => import("../pages/gallery/business-advertising"),
+  },
+  {
+    path: "/gallery/others",
+    name: "/gallery/others",
+    Component: () => import("../pages/gallery/others"),
+  },
+  {
     path: "/categories/logo-design",
     name: "/categories/logo-design",
     Component: () => import("../pages/categories/logo-design"),

@@ -14,7 +14,7 @@ export default function CategoryBrandingScreen() {
 
   return (
     <Layout title="Categories">
-      <section id="web-design" className="bg-white">
+      <section id="branding" className="bg-white">
         <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
           <h3 className="text-brand__font__size__lg md:text-[37px]">
             The Signature Collection
@@ -41,7 +41,7 @@ export default function CategoryBrandingScreen() {
               </HashLink>
             ))}
           </div>
-          <div className="p-5 mt-4">
+          <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
                 to="/"
