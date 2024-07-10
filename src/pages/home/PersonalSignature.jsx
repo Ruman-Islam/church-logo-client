@@ -24,7 +24,7 @@ export default function PersonalSignature() {
               alt="church_logo"
             />
           </div>
-          <div className="flex-1 flex justify-center items-center text-white">
+          <div className="flex-1 text-white">
             <ul className="flex flex-col gap-4 text-brand__font__size__md leading-tight">
               <li className="flex items-center gap-3">
                 <span>
@@ -70,16 +70,16 @@ export default function PersonalSignature() {
                   and give you a more professional look.
                 </span>
               </li>
-              <li className="duration-300 bg-primary hover:bg-brand__black__color rounded-none lg:rounded-full text-white w-fit mt-2">
-                <HashLink
-                  className="px-8 py-3 w-full inline-block"
-                  to="/"
-                  scroll={(el) => scrollWithOffset(el, 135)}
-                >
-                  Only $24.99 - Order Now
-                </HashLink>
-              </li>
             </ul>
+            <div className="duration-300 bg-primary hover:bg-brand__black__color rounded-full text-white w-fit mt-5 mx-auto md:ml-2">
+              <HashLink
+                className="px-8 py-3 w-full inline-block"
+                to="/"
+                scroll={(el) => scrollWithOffset(el, 135)}
+              >
+                Only $24.99 - Order Now
+              </HashLink>
+            </div>
           </div>
         </div>
       </div>

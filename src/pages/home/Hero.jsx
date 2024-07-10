@@ -1,10 +1,13 @@
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import data from "../../data/hero.json";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/hero-slider.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function Hero() {
+  const scrollWithOffset = useScrollWithOffset();
+
   const settings = {
     fade: true,
     infinite: true,
@@ -65,19 +68,20 @@ export default function Hero() {
                 </HashLink>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-2">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-text__gray">
                 <div>
                   <span>Popular: </span>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-2 text-text__gray">
-                  {data.map((d) => (
-                    <HashLink key={d.id} to={d.route}>
-                      <div className="border hover:bg-section__bg_color hover:text-brand__black__color py-0.5 px-3 inline-block rounded-md text-text__gray duration-300 text-brand__font__size__sm">
-                        {d.title}
-                      </div>
-                    </HashLink>
-                  ))}
-                </div>
+                {data.map((d) => (
+                  <HashLink
+                    key={d.id}
+                    to={d.route}
+                    scroll={(el) => scrollWithOffset(el, 135)}
+                    className="hover:bg-section__bg_color hover:text-brand__black__color py-0.5 px-3 block rounded-md text-text__gray duration-300 text-brand__font__size__sm border text-center flex-grow"
+                  >
+                    {d.title}
+                  </HashLink>
+                ))}
               </div>
             </div>
           </div>

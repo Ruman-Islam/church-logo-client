@@ -10,9 +10,9 @@ export default function Portfolio() {
     return (
       <div
         onClick={onClick}
-        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -left-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
+        className="w-[100px] sm:w-[200px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -left-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
       >
-        <FaArrowLeft size={30} />
+        <FaArrowLeft className="md:text-[30px]" />
       </div>
     );
   };
@@ -22,9 +22,9 @@ export default function Portfolio() {
     return (
       <div
         onClick={onClick}
-        className="w-[250px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -right-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
+        className="w-[100px] sm:w-[200px] md:w-[400px] xl:w-[500px] h-[60px] md:h-[80px] xl:h-[100px] flex items-center justify-center relative -right-[20px] z-[10] bg-primary hover:bg-[#14a800be] text-white hover:cursor-pointer duration-200 active:bg-brand__black__color"
       >
-        <FaArrowRight size={30} />
+        <FaArrowRight className="md:text-[30px]" />
       </div>
     );
   };

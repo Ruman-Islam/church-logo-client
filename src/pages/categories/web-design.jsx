@@ -41,7 +41,7 @@ export default function CategoryWebDesignScreen() {
               </HashLink>
             ))}
           </div>
-          <div className="p-5 mt-4">
+          <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
                 to="/"

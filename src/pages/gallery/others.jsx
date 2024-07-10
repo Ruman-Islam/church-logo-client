@@ -8,7 +8,7 @@ import { galleryNavButtons } from "../../constants/gallery";
 import { useGetGalleryLogoDesignQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
-export default function GalleryPersonalSignatureScreen() {
+export default function GalleryOthersScreen() {
   const { pathname } = useLocation();
   const [dynamicUrl, setDynamicUrl] = useState({
     page: 1,
