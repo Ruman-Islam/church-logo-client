@@ -2,8 +2,8 @@ import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import data from "../../../data/hero.json";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
-import { getImgUrl } from "../../../utils/getImgUrl-utility.js";
 import "../../../styles/hero-slider.css";
+import { getImgUrl } from "../../../utils/getImgUrl-utility.js";
 
 export default function Hero() {
   const scrollWithOffset = useScrollWithOffset();
@@ -20,6 +20,10 @@ export default function Hero() {
     waitForAnimate: true,
     cssEase: "linear",
   };
+
+  // const now = new Date("2024-07-11T05:44:17.565+00:00");
+  // const timeString = now.toTimeString();
+  // const dateString = now.toDateString();
 
   return (
     <section id="home" className="lg:pt-[20px] lg:pb-[40px]">
@@ -54,6 +58,7 @@ export default function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4">
+                {/* {timeString} {dateString} */}
                 <HashLink
                   to="/categories/logo-design#logo-design"
                   className="px-4 py-1.5 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300"
