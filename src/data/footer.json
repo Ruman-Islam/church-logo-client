@@ -23,15 +23,11 @@
   ],
   "product": [
     {
-      "title": "Order My ChurchLogo",
+      "title": "Order My Church Logo",
       "route": "/"
     },
     {
       "title": "How to Use Your Church Logo",
-      "route": "/"
-    },
-    {
-      "title": "Church Logo Team",
       "route": "/"
     }
   ],

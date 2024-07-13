@@ -1,5 +1,4 @@
 import StarIcon from "@mui/icons-material/Star";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -8,17 +7,28 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import Rating from "@mui/material/Rating";
 import Skeleton from "@mui/material/Skeleton";
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import { useState } from "react";
+import manPlaceHolder from "../../assets/svg/icons/profile_placeholder_man.svg";
+import womanPlaceHolder from "../../assets/svg/icons/profile_placeholder_woman.svg";
 import Layout from "../../components/common/Layout";
 import { useGetReviewQuery } from "../../services/features/review/reviewApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 320,
+  },
+});
+
 export default function ReviewsScreen() {
   const [dynamicUrl, setDynamicUrl] = useState({
     page: 1,
-    limit: 8,
+    limit: 10,
   });
 
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);
@@ -42,73 +52,99 @@ export default function ReviewsScreen() {
 
         <div className="container px-2 py-5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
-            <Card
-              sx={{ maxWidth: 345 }}
-              className="shadow-none border rounded-md p-10"
-            >
-              <Typography className="text-brand__font__size__lg">
-                3.8/5
-              </Typography>
-              <Typography>
-                <Rating
-                  name="read-only"
-                  value={5}
-                  precision={0.5}
-                  readOnly
-                  style={{
-                    fontSize: 20,
-                  }}
-                  emptyIcon={
-                    <StarIcon
-                      style={{
-                        opacity: 0.55,
-                        color: "white",
-                      }}
-                      fontSize="inherit"
-                    />
-                  }
-                />
-              </Typography>
-              <Typography>554 Real Customer Reviews</Typography>
-            </Card>
+            {isLoading ? (
+              <Skeleton variant="rectangular" height={218} />
+            ) : (
+              <Card
+                sx={{ maxWidth: 345 }}
+                className="shadow-none border rounded-md p-10"
+              >
+                <Typography className="text-brand__font__size__lg">
+                  3.8/5
+                </Typography>
+                <Typography>
+                  <Rating
+                    name="read-only"
+                    value={5}
+                    precision={0.5}
+                    readOnly
+                    style={{
+                      fontSize: 20,
+                    }}
+                    emptyIcon={
+                      <StarIcon
+                        style={{
+                          opacity: 0.55,
+                          color: "white",
+                        }}
+                        fontSize="inherit"
+                      />
+                    }
+                  />
+                </Typography>
+                <Typography>554 Real Customer Reviews</Typography>
+              </Card>
+            )}
+
             {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : reviews)
               ?.slice(0, dynamicUrl.limit)
-              .map((review) =>
-                review ? (
+              .map((item) =>
+                item ? (
                   <Card
-                    key={review?._id}
+                    key={item?._id}
                     sx={{ maxWidth: 345 }}
                     className="shadow-none border rounded-md"
                   >
                     <CardHeader
                       avatar={
-                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                          R
-                        </Avatar>
+                        <div className="w-10 h-10 rounded-full border border-brand__black__color mx-auto">
+                          <img
+                            className="w-full h-full rounded-full border-[2px] border-white"
+                            src={
+                              item?.user?.photo?.cloudinaryUrl
+                                ? getImgUrl(item?.user?.photo?.cloudinaryUrl)
+                                : item?.user?.gender === "male"
+                                ? manPlaceHolder
+                                : womanPlaceHolder
+                            }
+                            alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                          />
+                        </div>
                       }
-                      title={`${review?.user?.firstName} ${review?.user?.lastName}`}
-                      subheader={review?.submittedDate}
+                      title={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                      subheader={item?.submittedDate}
                     />
                     <CardMedia
                       component="img"
                       height="194"
-                      image={getImgUrl(review?.productImageUrl)}
+                      image={getImgUrl(item?.productImageUrl)}
                       alt="Paella dish"
                     />
                     <CardContent>
-                      <Typography variant="body2" color="text.secondary">
-                        <span>&ldquo;</span>
-                        {review?.reviewText?.length > 200
-                          ? `${review?.reviewText?.slice(0, 200)}...`
-                          : review?.reviewText}
-                        <span>&rdquo;</span>
-                      </Typography>
+                      {item?.reviewText.length > 150 ? (
+                        <Typography variant="body2" color="text.secondary">
+                          <span>&ldquo;</span>
+                          <CustomWidthTooltip
+                            title={item?.reviewText}
+                            placement="top"
+                          >
+                            {`${item?.reviewText.slice(0, 150)}...`}
+                          </CustomWidthTooltip>
+                          <span>&rdquo;</span>
+                        </Typography>
+                      ) : (
+                        <Typography variant="body2" color="text.secondary">
+                          <span>&ldquo;</span>
+                          {item?.reviewText}
+                          <span>&rdquo;</span>
+                        </Typography>
+                      )}
                     </CardContent>
                     <CardActions disableSpacing></CardActions>
                   </Card>
                 ) : (
                   <Skeleton
-                    key={review?._id}
+                    key={item?._id}
                     variant="rectangular"
                     height={218}
                   />

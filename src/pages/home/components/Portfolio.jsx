@@ -1,8 +1,8 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
 import data from "../../../data/portfolio.json";
-import { getImgUrl } from "../../../utils/getImgUrl-utility";
 import "../../../styles/portfolio-slider.css";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 export default function Portfolio() {
   const PrevArrow = ({ ...props }) => {
@@ -40,7 +40,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="w-full bg-globe bg-no-repeat bg-[length:1000px_700px] bg-right relative">
+    <div className="w-full bg-globe bg-no-repeat bg-[length:600px_200px] sm:bg-[length:700px_400px] md:bg-[length:800px_350px] lg:bg-[length:900px_400px] xl:bg-[length:900px_450px] 2xl:bg-[length:1500px_520px] bg-right relative">
       {/* <div className="bg-white absolute w-full h-full"></div> */}
       <div id="portfolio-slider" className="py-5 xl:py-0">
         <Slider {...settings}>
