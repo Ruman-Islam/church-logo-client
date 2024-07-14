@@ -1,28 +1,24 @@
 import { Button, Skeleton } from "@mui/material";
-import { useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout/index";
 import { galleryNavButtons } from "../../constants/gallery";
-import { useGetGalleryLogoDesignQuery } from "../../services/features/gallery/galleryApi";
+import useQueryParameter from "../../hooks/useQueryParameter";
+import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function GalleryLogoDesignScreen() {
   const { pathname } = useLocation();
-  const [dynamicUrl, setDynamicUrl] = useState({
+  const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
     limit: 8,
-    searchTerm: "",
     collection: "logo-design",
   });
-  const { data, isLoading } = useGetGalleryLogoDesignQuery(dynamicUrl);
-  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
-  const gallery = data?.data;
 
-  const handleShowMoreItems = () => {
-    setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
-  };
+  const { data, isLoading } = useGetGalleryImageQuery(dynamicUrl);
+  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
+  const gallery = data?.data;
 
   return (
     <Layout title="Gallery & Examples">
@@ -47,7 +43,7 @@ export default function GalleryLogoDesignScreen() {
             ))}
           </div>
           <PhotoProvider>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4 p-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4">
               {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>

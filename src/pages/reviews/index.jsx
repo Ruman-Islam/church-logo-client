@@ -28,12 +28,12 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 export default function ReviewsScreen() {
   const [dynamicUrl, setDynamicUrl] = useState({
     page: 1,
-    limit: 10,
+    limit: 11,
   });
 
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);
   const reviews = data?.data;
-  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
+  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
 
   const handleShowMoreItems = () => {
     setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 10 }));
@@ -50,15 +50,12 @@ export default function ReviewsScreen() {
           </Typography>
         </div>
 
-        <div className="container px-2 py-5">
+        <div className="container px-2 flex flex-col gap-5 py-[20px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
             {isLoading ? (
               <Skeleton variant="rectangular" height={218} />
             ) : (
-              <Card
-                sx={{ maxWidth: 345 }}
-                className="shadow-none border rounded-md p-10"
-              >
+              <Card className="shadow-none border rounded-md p-10">
                 <Typography className="text-brand__font__size__lg">
                   3.8/5
                 </Typography>
@@ -92,7 +89,6 @@ export default function ReviewsScreen() {
                 item ? (
                   <Card
                     key={item?._id}
-                    sx={{ maxWidth: 345 }}
                     className="shadow-none border rounded-md"
                   >
                     <CardHeader
@@ -151,6 +147,7 @@ export default function ReviewsScreen() {
                 )
               )}
           </div>
+
           {isVisibleMoreBtn ? (
             <div className="flex justify-center">
               <Button
