@@ -1,4 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import Rating from "@mui/material/Rating";
 import Skeleton from "@mui/material/Skeleton";
 import { styled } from "@mui/material/styles";
@@ -6,6 +7,7 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
+import imagePlaceHolder from "../../../assets/icons/church_logo_image_placeholder.jpg";
 import manPlaceHolder from "../../../assets/svg/icons/profile_placeholder_man.svg";
 import womanPlaceHolder from "../../../assets/svg/icons/profile_placeholder_woman.svg";
 import { useGetReviewQuery } from "../../../services/features/review/reviewApi";
@@ -122,6 +124,8 @@ export default function Testimonial() {
                                       ? getImgUrl(
                                           item?.user?.photo?.cloudinaryUrl
                                         )
+                                      : !item?.user?.gender
+                                      ? imagePlaceHolder
                                       : item?.user?.gender === "male"
                                       ? manPlaceHolder
                                       : womanPlaceHolder
@@ -131,7 +135,10 @@ export default function Testimonial() {
                               </div>
                             </div>
                             <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
-                              <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
+                              <div className="flex items-center gap-1">
+                                <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
+                                <VerifiedUserIcon className="text-primary" />
+                              </div>
                               <div className="flex items-center justify-center gap-1.5 my-1">
                                 <img
                                   src={getCountryImgPath(item?.user?.country)}
@@ -143,7 +150,7 @@ export default function Testimonial() {
                               <div className="flex items-center justify-center md:justify-start gap-1">
                                 <Rating
                                   name="read-only"
-                                  value={5}
+                                  value={item?.ratingPoints || 5}
                                   precision={0.5}
                                   readOnly
                                   style={{
@@ -168,7 +175,9 @@ export default function Testimonial() {
                                     title={item?.reviewText}
                                     placement="top"
                                   >
-                                    {`${item?.reviewText.slice(0, 250)}...`}
+                                    <span>
+                                      {`${item?.reviewText.slice(0, 250)}...`}
+                                    </span>
                                   </CustomWidthTooltip>
                                   <span>&rdquo;</span>
                                 </blockquote>

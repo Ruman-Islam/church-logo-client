@@ -1,4 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -10,10 +11,11 @@ import Skeleton from "@mui/material/Skeleton";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import imagePlaceHolder from "../../assets/icons/church_logo_image_placeholder.jpg";
 import manPlaceHolder from "../../assets/svg/icons/profile_placeholder_man.svg";
 import womanPlaceHolder from "../../assets/svg/icons/profile_placeholder_woman.svg";
 import Layout from "../../components/common/Layout";
+import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetReviewQuery } from "../../services/features/review/reviewApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
@@ -26,7 +28,7 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 });
 
 export default function ReviewsScreen() {
-  const [dynamicUrl, setDynamicUrl] = useState({
+  const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
     limit: 11,
   });
@@ -34,10 +36,6 @@ export default function ReviewsScreen() {
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);
   const reviews = data?.data;
   const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
-
-  const handleShowMoreItems = () => {
-    setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 10 }));
-  };
 
   return (
     <Layout title="Reviews">
@@ -85,7 +83,7 @@ export default function ReviewsScreen() {
 
             {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : reviews)
               ?.slice(0, dynamicUrl.limit)
-              .map((item) =>
+              .map((item, i) =>
                 item ? (
                   <Card
                     key={item?._id}
@@ -99,6 +97,8 @@ export default function ReviewsScreen() {
                             src={
                               item?.user?.photo?.cloudinaryUrl
                                 ? getImgUrl(item?.user?.photo?.cloudinaryUrl)
+                                : !item?.user?.gender
+                                ? imagePlaceHolder
                                 : item?.user?.gender === "male"
                                 ? manPlaceHolder
                                 : womanPlaceHolder
@@ -107,14 +107,19 @@ export default function ReviewsScreen() {
                           />
                         </div>
                       }
-                      title={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                      title={
+                        <div className="flex items-center gap-1">
+                          <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
+                          <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                        </div>
+                      }
                       subheader={item?.submittedDate}
                     />
                     <CardMedia
                       component="img"
                       height="194"
                       image={getImgUrl(item?.productImageUrl)}
-                      alt="Paella dish"
+                      alt="church_logo"
                     />
                     <CardContent>
                       {item?.reviewText.length > 150 ? (
@@ -124,7 +129,9 @@ export default function ReviewsScreen() {
                             title={item?.reviewText}
                             placement="top"
                           >
-                            {`${item?.reviewText.slice(0, 150)}...`}
+                            <span>
+                              {`${item?.reviewText.slice(0, 150)}...`}
+                            </span>
                           </CustomWidthTooltip>
                           <span>&rdquo;</span>
                         </Typography>
@@ -139,11 +146,7 @@ export default function ReviewsScreen() {
                     <CardActions disableSpacing></CardActions>
                   </Card>
                 ) : (
-                  <Skeleton
-                    key={item?._id}
-                    variant="rectangular"
-                    height={218}
-                  />
+                  <Skeleton key={i} variant="rectangular" height={218} />
                 )
               )}
           </div>

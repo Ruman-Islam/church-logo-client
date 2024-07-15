@@ -3,61 +3,79 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Rating from "@mui/material/Rating";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
-import data from "../../../../data/testimonial.json";
+import imagePlaceHolder from "../../../../assets/icons/church_logo_image_placeholder.jpg";
+import manPlaceHolder from "../../../../assets/svg/icons/profile_placeholder_man.svg";
+import womanPlaceHolder from "../../../../assets/svg/icons/profile_placeholder_woman.svg";
 import NextArrow from "../../../../components/common/Arrow/nextArrow";
 import PrevArrow from "../../../../components/common/Arrow/prevArrow";
+import useQueryParameter from "../../../../hooks/useQueryParameter";
+import { useGetReviewQuery } from "../../../../services/features/review/reviewApi";
+import { getImgUrl } from "../../../../utils/getImgUrl-utility";
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 6,
+  slidesToScroll: 3,
+  autoplay: false,
+  arrows: true,
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
+  responsive: [
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 1280,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 export default function OurClientsLoveUs() {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 6,
-    slidesToScroll: 3,
-    autoplay: false,
-    arrows: true,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const { dynamicUrl } = useQueryParameter({
+    page: 1,
+    limit: 11,
+  });
+
+  const { data, isLoading } = useGetReviewQuery(dynamicUrl);
+  const reviews = data?.data;
+
+  if (isLoading) {
+    return <Skeleton variant="rectangular" height={318} />;
+  }
 
   return (
     <div className="h-fit py-5 md:py-10 overflow-hidden">
@@ -67,18 +85,14 @@ export default function OurClientsLoveUs() {
 
       <div className="category-slide-container w-full">
         <Slider {...settings} className="p-2">
-          {data.map((content) => (
-            <Card
-              key={content.id}
-              sx={{ maxWidth: 345 }}
-              className="rounded-xl"
-            >
+          {reviews.map((item) => (
+            <Card key={item?.id} sx={{ maxWidth: 345 }} className="rounded-xl">
               <CardMedia
                 className="rounded-tl-xl rounded-tr-xl border"
                 component="img"
                 height="140"
-                image="https://images-marketing.99static.com/images/product-landing/reviews/review-design-01.jpeg"
-                alt="green iguana"
+                image={getImgUrl(item?.productImageUrl)}
+                alt="church_logo"
               />
 
               <CardContent>
@@ -88,7 +102,7 @@ export default function OurClientsLoveUs() {
                 <Typography>
                   <Rating
                     name="read-only"
-                    value={content?.rating}
+                    value={item?.ratingPoints || 5}
                     precision={0.5}
                     readOnly
                     style={{
@@ -107,26 +121,38 @@ export default function OurClientsLoveUs() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   <blockquote
-                    title={content?.review.length > 100 ? content?.review : ""}
+                    title={
+                      item?.reviewText.length > 100 ? item?.reviewText : ""
+                    }
                   >
                     <span>&ldquo;</span>
-                    {content?.review.length > 100
-                      ? `${content?.review.slice(0, 100)}...`
-                      : content?.review}
+                    {item?.reviewText.length > 100
+                      ? `${item?.reviewText.slice(0, 100)}...`
+                      : item?.reviewText}
                     <span>&rdquo;</span>
                   </blockquote>
                 </Typography>
               </CardContent>
 
               <CardContent>
-                <div className="flex gap-1.5 my-1">
-                  <img
-                    className="w-8 h-8 rounded-full"
-                    src={content?.image}
-                    alt={content?.name}
-                  />
+                <div className="flex gap-2">
+                  <div className="w-10 h-10 rounded-full border border-brand__black__color">
+                    <img
+                      className="w-full h-full rounded-full border-[2px] border-white"
+                      src={
+                        item?.user?.photo?.cloudinaryUrl
+                          ? getImgUrl(item?.user?.photo?.cloudinaryUrl)
+                          : !item?.user?.gender
+                          ? imagePlaceHolder
+                          : item?.user?.gender === "male"
+                          ? manPlaceHolder
+                          : womanPlaceHolder
+                      }
+                      alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                    />
+                  </div>
                   <div className="leading-tight">
-                    <p>{content?.name}</p>
+                    <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                     <small>Client</small>
                   </div>
                 </div>
