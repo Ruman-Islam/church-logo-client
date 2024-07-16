@@ -7,8 +7,8 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import imagePlaceHolder from "../../../assets/icons/church_logo_image_placeholder.jpg";
-import manPlaceHolder from "../../../assets/svg/icons/profile_placeholder_man.svg";
+import imagePlaceHolder from "../../../assets/svg/icons/church_logo_image_placeholder.svg";
+import manPlaceHolder from "../../../assets/svg/icons/profile_placeholder_man.png";
 import womanPlaceHolder from "../../../assets/svg/icons/profile_placeholder_woman.svg";
 import { useGetReviewQuery } from "../../../services/features/review/reviewApi";
 import "../../../styles/testimonial-slider.css";
@@ -137,7 +137,7 @@ export default function Testimonial() {
                             <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
                               <div className="flex items-center gap-1">
                                 <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
-                                <VerifiedUserIcon className="text-primary" />
+                                <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
                               </div>
                               <div className="flex items-center justify-center gap-1.5 my-1">
                                 <img

@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Layout from "../../components/common/Layout";
 import data from "../../data/faq.json";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function FAQScreen() {
   const [faqs] = useState(data);
@@ -52,7 +53,7 @@ export default function FAQScreen() {
                 className="flex flex-col lg:flex-row justify-between gap-5"
               >
                 <div
-                  className={`basis-[100%] ${faq?.imgUrl && "lg:basis-[60%]"} ${
+                  className={`basis-[100%] ${faq?.imgUrl && "basis-[50%]"} ${
                     !faq?.imgUrl && "pt-5 md:pt-10"
                   } h-full w-full`}
                 >
@@ -112,13 +113,13 @@ export default function FAQScreen() {
                     ))}
                   </div>
                 </div>
+
                 {faq?.imgUrl && (
-                  <div className="basis-[100%] lg:basis-[40%] w-full hidden lg:block">
+                  <div className="basis-[50%] w-full h-[600px] hidden xl:block">
                     <figure className="w-full h-full rounded-xl">
                       <img
                         className="w-full h-full object-cover rounded-xl"
-                        src={faq?.imgUrl}
-                        alt={faq?.title}
+                        src={getImgUrl(faq?.imgUrl)}
                       />
                     </figure>
                   </div>

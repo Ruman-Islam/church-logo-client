@@ -3,7 +3,7 @@ import Categories from "./components/Categories";
 import ContactBar from "./components/ContactBar";
 import CustomersDoing from "./components/CustomersDoing";
 import Hero from "./components/Hero";
-import OtherPromotionalSpace from "./components/OtherPromotionalSpace";
+// import OtherPromotionalSpace from "./components/OtherPromotionalSpace";
 import PersonalSignature from "./components/PersonalSignature";
 import Portfolio from "./components/Portfolio";
 import Services from "./components/Services";
@@ -19,10 +19,10 @@ export default function HomeScreen() {
       <Services />
       <Portfolio />
       <ContactBar />
+      <ZeroPlacePromotionalSpace />
       <Testimonial />
       <ShowCaseYouLogo />
-      <ZeroPlacePromotionalSpace />
-      <OtherPromotionalSpace />
+      {/* <OtherPromotionalSpace /> */}
       <CustomersDoing />
       <PersonalSignature />
     </Layout>

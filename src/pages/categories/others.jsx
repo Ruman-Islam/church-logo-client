@@ -3,11 +3,11 @@ import { FaCheck } from "react-icons/fa6";
 import { MdOutlineMotionPhotosAuto } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import OurClientsLoveUs from "./components/OurClientsLoveUs";
-import WhyChurchLogo from "./components/WhyChurchLogo";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
 import "../../styles/categories.css";
+import OurClientsLoveUs from "./components/OurClientsLoveUs";
+import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryOthersScreen() {
   const { pathname } = useLocation();
@@ -263,9 +263,11 @@ export default function CategoryOthersScreen() {
                 </div>
               </HashLink>
             </div>
-
-            <WhyChurchLogo />
           </div>
+        </div>
+
+        <div className="bg-section__bg_color">
+          <WhyChurchLogo />
         </div>
 
         <OurClientsLoveUs />

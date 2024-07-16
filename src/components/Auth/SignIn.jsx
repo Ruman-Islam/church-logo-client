@@ -103,10 +103,10 @@ export default function SignIn({ showForm }) {
           <TextField
             {...register("password", {
               required: true,
-              pattern: {
-                value: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
-                message: "At least 6 characters and a symbol",
-              },
+              // pattern: {
+              //   value: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+              //   message: "At least 6 characters and a symbol",
+              // },
             })}
             variant="outlined"
             id="password"

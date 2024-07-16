@@ -8,7 +8,7 @@ const productionUrl = "https://church-logo-server.vercel.app/api/v1";
 const developmentUrl = "http://localhost:8080/api/v1";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: productionUrl,
+  baseUrl: developmentUrl,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -57,13 +57,7 @@ export const api = createApi({
   tagTypes: [
     "user",
     "gallery",
-    "config",
-    "faq",
-    "video",
-    "question",
     "review",
-    "photo",
-    "admin",
   ],
   endpoints: () => ({}),
 });

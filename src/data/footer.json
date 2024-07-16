@@ -14,7 +14,7 @@
     },
     {
       "title": "Review",
-      "route": "/"
+      "route": "/reviews#reviews"
     },
     {
       "title": "Sign In",

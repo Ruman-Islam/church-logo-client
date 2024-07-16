@@ -6,8 +6,8 @@ import Rating from "@mui/material/Rating";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
-import imagePlaceHolder from "../../../../assets/icons/church_logo_image_placeholder.jpg";
-import manPlaceHolder from "../../../../assets/svg/icons/profile_placeholder_man.svg";
+import imagePlaceHolder from "../../../../assets/svg/icons/church_logo_image_placeholder.svg";
+import manPlaceHolder from "../../../../assets/svg/icons/profile_placeholder_man.png";
 import womanPlaceHolder from "../../../../assets/svg/icons/profile_placeholder_woman.svg";
 import NextArrow from "../../../../components/common/Arrow/nextArrow";
 import PrevArrow from "../../../../components/common/Arrow/prevArrow";
@@ -86,7 +86,7 @@ export default function OurClientsLoveUs() {
       <div className="category-slide-container w-full">
         <Slider {...settings} className="p-2">
           {reviews.map((item) => (
-            <Card key={item?.id} sx={{ maxWidth: 345 }} className="rounded-xl">
+            <Card key={item?._id} sx={{ maxWidth: 345 }} className="rounded-xl">
               <CardMedia
                 className="rounded-tl-xl rounded-tr-xl border"
                 component="img"
@@ -120,17 +120,13 @@ export default function OurClientsLoveUs() {
                   />
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  <blockquote
-                    title={
-                      item?.reviewText.length > 100 ? item?.reviewText : ""
-                    }
-                  >
-                    <span>&ldquo;</span>
+                  <span>&ldquo;</span>
+                  <span className="italic">
                     {item?.reviewText.length > 100
                       ? `${item?.reviewText.slice(0, 100)}...`
                       : item?.reviewText}
-                    <span>&rdquo;</span>
-                  </blockquote>
+                  </span>
+                  <span>&rdquo;</span>
                 </Typography>
               </CardContent>
 

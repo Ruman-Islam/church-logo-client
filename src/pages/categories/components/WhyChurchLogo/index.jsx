@@ -44,7 +44,7 @@ const RatingCard = (props) => {
 
 export default function WhyChurchLogo() {
   return (
-    <div className="flex flex-col xl:flex-row justify-center items-center gap-5  md:mt-10">
+    <div className="flex flex-col xl:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container">
       <div className="basis-full xl:basis-[60%] p-5">
         <div className="leading-tight">
           <h2 className="text-[24px] md:text-[32px]">

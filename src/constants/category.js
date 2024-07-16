@@ -25,13 +25,13 @@ export const categoryNavButtons = [
   },
   {
     id: 5,
-    title: "Business & advertising",
+    title: "Business & Advertising",
     route: "/categories/business-advertising",
     match: "business-advertising",
   },
   {
     id: 6,
-    title: "Others",
+    title: "Social Media Service",
     route: "/categories/others",
     match: "others",
   },
