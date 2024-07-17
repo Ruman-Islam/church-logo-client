@@ -10,7 +10,7 @@ import {
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 
-export default function Header({ topBarEnable }) {
+export default function Header({ topBarEnable, bgColor = "bg-white" }) {
   const {
     auth: { user },
   } = useAppSelector((state) => state);
@@ -49,14 +49,14 @@ export default function Header({ topBarEnable }) {
       <header className="z-[999]">
         {topBarEnable && (
           <div className="topBar-area bg-[#031401] text-white py-2 font-medium relative z-50">
-            <div className="container px-0.5 text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
+            <div className="container px-4 text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
               50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
             </div>
           </div>
         )}
 
         <div
-          className={`bg-white duration-200 w-full ${
+          className={`${bgColor} px-4 duration-200 w-full ${
             isVisible
               ? "fixed top-0 animate-headerDrop shadow h-[90px]"
               : "h-[90px]"
@@ -64,7 +64,7 @@ export default function Header({ topBarEnable }) {
         >
           <div className="container h-full">
             <nav className="flex items-center justify-between h-full relative">
-              <div className="flex justify-between flex-1 h-full items-center px-2 z-50 bg-white">
+              <div className="flex justify-between flex-1 h-full items-center z-50">
                 <div className="logo w-[220px] md:w-[280px] xl:w-[350px]">
                   {isVisible ? (
                     <HashLink to="/#" className="logo-text">
@@ -95,7 +95,7 @@ export default function Header({ topBarEnable }) {
                 </button>
               </div>
               <div
-                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 bg-white shadow-xl lg:shadow-none ${
+                className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[325px]"

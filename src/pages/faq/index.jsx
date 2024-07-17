@@ -45,7 +45,7 @@ export default function FAQScreen() {
         <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
           <h3 className="text-[37px]">FAQ</h3>
         </div>
-        <div className="container px-2 py-5 md:py-10">
+        <div className="container px-4 py-5 md:py-10">
           {faqs.map((faq) => {
             return (
               <div

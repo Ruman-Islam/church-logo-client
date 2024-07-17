@@ -31,8 +31,8 @@ export const galleryNavButtons = [
   },
   {
     id: 6,
-    title: "Others",
-    route: "/gallery/others",
-    match: "others",
+    title: "Social Media Service",
+    route: "/gallery/social-media-service",
+    match: "social-media-service",
   },
 ];

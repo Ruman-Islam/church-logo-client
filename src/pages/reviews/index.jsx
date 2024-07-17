@@ -48,7 +48,7 @@ export default function ReviewsScreen() {
           </Typography>
         </div>
 
-        <div className="container px-2 flex flex-col gap-5 py-[20px]">
+        <div className="container px-4 flex flex-col gap-5 py-[20px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
             {isLoading ? (
               <Skeleton variant="rectangular" height={218} />

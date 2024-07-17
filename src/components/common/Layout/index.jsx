@@ -7,6 +7,7 @@ export default function Layout({
   title,
   showHeader = true,
   showFooter = true,
+  headerBgColor,
 }) {
   return (
     <>
@@ -17,7 +18,7 @@ export default function Layout({
       </Helmet>
 
       <section className="flex flex-col justify-between h-screen">
-        {showHeader && <Header topBarEnable="enable" />}
+        {showHeader && <Header topBarEnable="enable" bgColor={headerBgColor} />}
         <main className="mb-auto flex-1">{children}</main>
         {showFooter && <Footer />}
       </section>

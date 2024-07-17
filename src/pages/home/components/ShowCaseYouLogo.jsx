@@ -2,8 +2,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
 import SectionTitle from "../../../components/common/SectionTitle";
 import data from "../../../data/showCaseLogo.json";
-import { getImgUrl } from "../../../utils/getImgUrl-utility";
 import "../../../styles/showcase-logo-slider.css";
+import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 const PrevArrow = ({ ...props }) => {
   const { onClick } = props;
@@ -59,7 +59,7 @@ export default function ShowCaseYouLogo() {
 
   return (
     <div className="bg-brand__black__color">
-      <div className="container px-2 py-[40px]">
+      <div className="container px-4 py-[40px]">
         <div>
           <SectionTitle
             title="Looks great and easy to use everywhere!"
@@ -67,7 +67,7 @@ export default function ShowCaseYouLogo() {
           />
         </div>
 
-        <div id="showcase-logo" className="lg:mt-10 md:px-20">
+        <div id="showcase-logo" className="lg:mt-10 md:px-40">
           <Slider {...settings}>
             {data.map((d) => (
               <div key={d.id}>

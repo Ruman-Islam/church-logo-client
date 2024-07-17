@@ -27,7 +27,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="lg:pt-[20px] lg:pb-[40px]">
-      <div className="container px-2">
+      <div className="container px-4">
         <div className="flex flex-col-reverse md:flex-row justify-between">
           <div className="basis-[30%] w-full flex justify-center items-center">
             <div

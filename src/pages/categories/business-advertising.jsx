@@ -7,7 +7,7 @@ import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-import OurClientsLoveUs from "./components/OurClientsLoveUs";
+import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageIcon from "./components/PackageIcon";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
@@ -42,7 +42,7 @@ export default function CategoryPersonalSignatureScreen() {
           </h4>
         </div>
 
-        <div className="container px-2 py-5">
+        <div className="container px-4 py-5">
           <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
             {categoryNavButtons.map((d) => (
               <HashLink
@@ -84,7 +84,7 @@ export default function CategoryPersonalSignatureScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$50</span>
-                        <span className="border py-0.5 px-2 rounded">
+                        <span className="border py-0.5 px-4 rounded">
                           Save 40%+
                         </span>
                       </div>
@@ -355,7 +355,7 @@ export default function CategoryPersonalSignatureScreen() {
           <WhyChurchLogo />
         </div>
 
-        <OurClientsLoveUs />
+        <OurClientsLovesUs />
       </section>
     </Layout>
   );

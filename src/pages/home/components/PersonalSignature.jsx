@@ -9,8 +9,8 @@ export default function PersonalSignature() {
 
   return (
     <section className="bg-[#051f02]">
-      <div className="container px-2 py-10">
-        <div className="px-2">
+      <div className="container px-4 py-10">
+        <div className="px-4">
           <SectionTitle
             title="Is a Signature Church Logo for you?"
             titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center text-white"

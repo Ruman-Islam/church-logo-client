@@ -46,9 +46,9 @@ const publicRoutes = [
     Component: () => import("../pages/gallery/business-advertising"),
   },
   {
-    path: "/gallery/others",
-    name: "/gallery/others",
-    Component: () => import("../pages/gallery/others"),
+    path: "/gallery/social-media-service",
+    name: "/gallery/social-media-service",
+    Component: () => import("../pages/gallery/social-media-service"),
   },
   {
     path: "/categories/logo-design",
@@ -76,14 +76,15 @@ const publicRoutes = [
     Component: () => import("../pages/categories/business-advertising"),
   },
   {
-    path: "/categories/others",
-    name: "/categories/others",
-    Component: () => import("../pages/categories/others"),
+    path: "/categories/social-media-service",
+    name: "/categories/social-media-service",
+    Component: () => import("../pages/categories/social-media-service"),
   },
   {
-    path: "/logo-design/logo-design-pack",
-    name: "/logo-design/logo-design-pack",
-    Component: () => import("../pages/packages/logo-design/logo-design-pack"),
+    path: "package/logo-design/logo-design-source-pack",
+    name: "package/logo-design/logo-design-source-pack",
+    Component: () =>
+      import("../pages/packages/logo-design/logo-design-source-pack"),
   },
   {
     path: "/reviews",

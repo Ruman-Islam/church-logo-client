@@ -64,7 +64,7 @@ const settings = {
   ],
 };
 
-export default function OurClientsLoveUs() {
+export default function OurClientsLovesUs() {
   const { dynamicUrl } = useQueryParameter({
     page: 1,
     limit: 11,
@@ -86,7 +86,11 @@ export default function OurClientsLoveUs() {
       <div className="category-slide-container w-full">
         <Slider {...settings} className="p-2">
           {reviews.map((item) => (
-            <Card key={item?._id} sx={{ maxWidth: 345 }} className="rounded-xl">
+            <Card
+              key={item?._id}
+              sx={{ maxWidth: 345 }}
+              className="rounded-xl shadow-md"
+            >
               <CardMedia
                 className="rounded-tl-xl rounded-tr-xl border"
                 component="img"

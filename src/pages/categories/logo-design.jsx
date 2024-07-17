@@ -7,7 +7,7 @@ import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-import OurClientsLoveUs from "./components/OurClientsLoveUs";
+import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageIcon from "./components/PackageIcon";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
@@ -42,7 +42,7 @@ export default function CategoryLogoDesignScreen() {
           </h4>
         </div>
 
-        <div className="container px-2 py-5 text-brand__black__color">
+        <div className="container px-4 py-5 text-brand__black__color">
           <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
             {categoryNavButtons.map((d) => (
               <HashLink
@@ -61,7 +61,7 @@ export default function CategoryLogoDesignScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/logo-design/logo-design-pack"
+                to="/package/logo-design/logo-design-source-pack"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
@@ -84,7 +84,7 @@ export default function CategoryLogoDesignScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$159.99</span>
-                        <span className="border py-0.5 px-2 rounded">
+                        <span className="border py-0.5 px-4 rounded">
                           Save 40%+
                         </span>
                       </div>
@@ -421,7 +421,7 @@ export default function CategoryLogoDesignScreen() {
           <WhyChurchLogo />
         </div>
 
-        <OurClientsLoveUs />
+        <OurClientsLovesUs />
       </section>
     </Layout>
   );

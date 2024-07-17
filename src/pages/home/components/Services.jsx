@@ -12,7 +12,7 @@ function ServiceCard(props) {
           className="w-[45px] h-[45px] lg:w-[65px] lg:h-[65px] mx-auto"
         />
       </div>
-      <div className="w-full text-brand__font__size__md px-2.5">
+      <div className="w-full text-brand__font__size__md px-4.5">
         <h2>{service.title}</h2>
       </div>
       <div className="w-full flex-1 flex flex-col items-center justify-center leading-tight mt-2 text-brand__font__size__sm px-5">
@@ -27,7 +27,7 @@ function ServiceCard(props) {
 export default function Services() {
   return (
     <div className="bg-brand__black__color">
-      <div className="container px-2 py-[30px] md:py-[60px] text-white">
+      <div className="container px-4 py-[30px] md:py-[60px] text-white">
         <div>
           <SectionTitle
             title="What you get"

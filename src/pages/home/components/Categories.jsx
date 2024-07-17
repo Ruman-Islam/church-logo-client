@@ -30,8 +30,8 @@ function CategoryCard(props) {
 export default function Categories() {
   return (
     <div className="bg-section__bg_color">
-      <div className="container px-2 pt-[30px] pb-[60px]">
-        <div className="px-2">
+      <div className="container px-4 pt-[30px] pb-[60px]">
+        <div className="px-4">
           <SectionTitle
             title="Design for what you need"
             titleClass="text-section__title__size xl:text-brand__font__size__xl leading-tight font-brand__font__600 text-center md:text-left text-text__gray"

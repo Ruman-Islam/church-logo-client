@@ -32,7 +32,7 @@ export const categoryNavButtons = [
   {
     id: 6,
     title: "Social Media Service",
-    route: "/categories/others",
-    match: "others",
+    route: "/categories/social-media-service",
+    match: "social-media-service",
   },
 ];

@@ -83,7 +83,7 @@ export default function Testimonial() {
   return (
     <section>
       <div id="testimonial-slider" className="w-full mx-auto px-10 bg-white">
-        <div className="container px-2">
+        <div className="container px-4">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
             <div className="flex-1 hidden lg:block text-brand__black__color">
               <p className="text-brand__font__size__xs text-text__gray font-brand__font__600">

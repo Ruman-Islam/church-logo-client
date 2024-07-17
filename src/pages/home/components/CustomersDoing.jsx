@@ -54,7 +54,7 @@ function CustomersDoingCard(props) {
 export default function CustomersDoing() {
   return (
     <div>
-      <div className="container px-2 py-[20px] md:py-[30px] xl:py-[50px]">
+      <div className="container px-4 py-[20px] md:py-[30px] xl:py-[50px]">
         <div>
           <SectionTitle
             title="Check out the cool things our customers are doing with their Church Logo"

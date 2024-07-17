@@ -15,8 +15,8 @@ export default function Footer() {
 
   return (
     <>
-      <section className="relative bg-brand__black__color py-5 px-2 text-white">
-        <div className="container px-2.5 py-5 md:py-10">
+      <section className="relative bg-brand__black__color py-5 px-4 text-white">
+        <div className="container px-4.5 py-5 md:py-10">
           <div className="flex gap-16">
             <div className="hidden md:block basis-[25%]">
               <div>
@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         <div className="border-b w-full mx-auto my-5"></div>
-        <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-2.5">
+        <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-4.5">
           <p className="flex items-center gap-x-2">
             <AiOutlineCopyrightCircle />
             All rights reserved Churchlogo {year}
