@@ -84,7 +84,7 @@ export default function CategoryPersonalSignatureScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$50</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
                       </div>
@@ -96,7 +96,7 @@ export default function CategoryPersonalSignatureScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Printable file</span>
@@ -134,7 +134,7 @@ export default function CategoryPersonalSignatureScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unforgettable logo crafted for your brand
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>
@@ -171,7 +171,7 @@ export default function CategoryPersonalSignatureScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>
@@ -189,8 +189,10 @@ export default function CategoryPersonalSignatureScreen() {
               </HashLink>
               <div className="basis-[100%] md:basis-[50%] w-full h-full">
                 <img
-                  className="max-w-[550px] w-full h-[450px] object-cover p-5"
-                  src={getImgUrl("image/hero-banner/churchlogo_slider_04.png")}
+                  className="max-w-[550px] w-full h-[500px] object-cover p-5"
+                  src={getImgUrl(
+                    "image/home/portfolio/churchlogo_flyer_design.png"
+                  )}
                   alt=""
                 />
               </div>
@@ -216,7 +218,7 @@ export default function CategoryPersonalSignatureScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>
@@ -254,7 +256,7 @@ export default function CategoryPersonalSignatureScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>
@@ -293,7 +295,7 @@ export default function CategoryPersonalSignatureScreen() {
                     A comprehensive guide of your brand&rsquo;s fonts, colors
                     and style
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>
@@ -331,7 +333,7 @@ export default function CategoryPersonalSignatureScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Printable file</span>

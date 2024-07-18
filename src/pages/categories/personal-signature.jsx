@@ -83,7 +83,7 @@ export default function CategoryPersonalSignatureScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$75</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
                       </div>
@@ -95,7 +95,7 @@ export default function CategoryPersonalSignatureScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Logo transparency</span>
@@ -133,7 +133,7 @@ export default function CategoryPersonalSignatureScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unforgettable logo crafted for your brand
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -162,7 +162,7 @@ export default function CategoryPersonalSignatureScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>

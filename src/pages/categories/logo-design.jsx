@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -13,6 +14,7 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryLogoDesignScreen() {
   const { pathname } = useLocation();
+  const scrollWithOffset = useScrollWithOffset();
   const [iconColors, setIconColors] = useState({});
 
   const handleMouseEnter = (id) => {
@@ -61,10 +63,11 @@ export default function CategoryLogoDesignScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/package/logo-design/logo-design-source-pack"
+                to="/package/logo-design/logo-design-source-pack#logo-design-source-pack"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="mb-2 w-fit">
@@ -84,7 +87,7 @@ export default function CategoryLogoDesignScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$159.99</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
                       </div>
@@ -96,7 +99,11 @@ export default function CategoryLogoDesignScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
+                      <li className="flex items-center gap-1">
+                        <FaCheck className="text-brand__black__color" />{" "}
+                        <span>3 logo concepts</span>
+                      </li>
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Logo transparency</span>
@@ -122,10 +129,11 @@ export default function CategoryLogoDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/logo-design#logo-design"
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -142,7 +150,11 @@ export default function CategoryLogoDesignScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unforgettable logo crafted for your brand
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>2 logo concepts</span>
+                    </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -155,10 +167,11 @@ export default function CategoryLogoDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/logo-design-and-all#logo-design-and-all"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -175,7 +188,11 @@ export default function CategoryLogoDesignScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>4 logo concepts</span>
+                    </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -205,16 +222,17 @@ export default function CategoryLogoDesignScreen() {
               </HashLink>
               <div className="basis-[100%] md:basis-[50%] w-full h-full">
                 <img
-                  className="max-w-[550px] w-full h-[450px] object-cover p-5"
+                  className="max-w-[550px] w-full h-[500px] object-cover p-5"
                   src={getImgUrl("image/hero-banner/churchlogo_slider_04.png")}
                   alt=""
                 />
               </div>
               <HashLink
-                to="/"
+                to="/package/logo-design/stationery-design#stationery-design"
                 className="block md:border-l md:border-r border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack4")}
                 onMouseLeave={() => handleMouseLeave("pack4")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -232,7 +250,11 @@ export default function CategoryLogoDesignScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>3 logo concepts</span>
+                    </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -243,16 +265,25 @@ export default function CategoryLogoDesignScreen() {
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
+                      <span>Source file</span>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>Vector file</span>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
                       <span>Stationery design</span>
                     </li>
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/business-card#business-card"
                 className="block border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack5")}
                 onMouseLeave={() => handleMouseLeave("pack5")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -270,7 +301,11 @@ export default function CategoryLogoDesignScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>3 logo concepts</span>
+                    </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -287,10 +322,11 @@ export default function CategoryLogoDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/social-media#social-media"
                 className="block md:border-t md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack6")}
                 onMouseLeave={() => handleMouseLeave("pack6")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -308,7 +344,7 @@ export default function CategoryLogoDesignScreen() {
                     A comprehensive guide of your brand&rsquo;s fonts, colors
                     and style
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -325,10 +361,11 @@ export default function CategoryLogoDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/logo-and-website#logo-and-website"
                 className="block md:border-t border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack7")}
                 onMouseLeave={() => handleMouseLeave("pack7")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -346,7 +383,11 @@ export default function CategoryLogoDesignScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>3 logo concepts</span>
+                    </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Logo transparency</span>
@@ -357,16 +398,25 @@ export default function CategoryLogoDesignScreen() {
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
+                      <span>Source file</span>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
+                      <span>Vector file</span>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <FaCheck className="text-brand__black__color" />{" "}
                       <span>Web design</span>
                     </li>
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/logo-design/full-service#full-service"
                 className="block md:border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack8")}
                 onMouseLeave={() => handleMouseLeave("pack8")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="flex gap-2 mb-2">
@@ -378,7 +428,7 @@ export default function CategoryLogoDesignScreen() {
                         Full-Service logo design package
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$3,999</span>
+                        <span>from US$359.99</span>
                       </div>
                     </div>
                   </div>
@@ -389,7 +439,7 @@ export default function CategoryLogoDesignScreen() {
                       personal Creative Director from Church Logo Studio
                     </h2>
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>All source file</span>

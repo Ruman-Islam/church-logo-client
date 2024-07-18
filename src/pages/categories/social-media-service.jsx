@@ -6,6 +6,7 @@ import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
 import "../../styles/categories.css";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
@@ -65,7 +66,7 @@ export default function CategorySocialMediaServiceScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$599</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 39%+
                         </span>
                       </div>
@@ -77,7 +78,7 @@ export default function CategorySocialMediaServiceScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Logo</span>
@@ -142,8 +143,10 @@ export default function CategorySocialMediaServiceScreen() {
               </HashLink>
               <div className="basis-[100%] md:basis-[50%] w-full h-full">
                 <img
-                  className="max-w-[550px] w-full h-[350px] object-cover p-5"
-                  src="https://99designs-start-static.imgix.net/categories-page/parent-categories/logo-04.png?auto=format&ch=Width%2CDPR&q=50&h=660"
+                  className="max-w-[550px] w-full h-[500px] object-cover p-5"
+                  src={getImgUrl(
+                    "image/home/portfolio/churchlogo_social_media_service.png"
+                  )}
                   alt=""
                 />
               </div>

@@ -15,7 +15,7 @@ export default function Faq() {
   };
 
   return (
-    <section className="bg-section__bg_color py-10">
+    <section id="package-faq" className="bg-section__bg_color py-10">
       <div className="container px-4">
         <h2 className="text-section__title__size">
           Your branding FAQs, answered.

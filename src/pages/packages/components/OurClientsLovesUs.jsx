@@ -80,7 +80,7 @@ export default function OurClientsLovesUs() {
   }
 
   return (
-    <div className="h-fit py-5 md:py-10 overflow-hidden">
+    <div className="h-fit py-5 md:py-20 overflow-hidden">
       <h1 className="text-brand__font__size__lg md:text-brand__font__size__xl leading-tight text-center mb-2">
         Our clients love us
       </h1>

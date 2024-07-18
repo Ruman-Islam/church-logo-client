@@ -84,7 +84,7 @@ export default function CategoryBrandingScreen() {
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
                         <span>from US$00</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
                       </div>
@@ -96,7 +96,7 @@ export default function CategoryBrandingScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Includes logo design</span>
@@ -134,7 +134,7 @@ export default function CategoryBrandingScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unforgettable logo crafted for your brand
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Includes logo design</span>
@@ -175,7 +175,7 @@ export default function CategoryBrandingScreen() {
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Includes logo design</span>
@@ -201,8 +201,10 @@ export default function CategoryBrandingScreen() {
               </HashLink>
               <div className="basis-[100%] md:basis-[50%] w-full h-full">
                 <img
-                  className="max-w-[550px] w-full h-[450px] object-cover p-5"
-                  src={getImgUrl("image/hero-banner/churchlogo_slider_04.png")}
+                  className="max-w-[550px] w-full h-[500px] object-cover p-5"
+                  src={getImgUrl(
+                    "image/home/portfolio/churchlogo_branding.png"
+                  )}
                   alt=""
                 />
               </div>
@@ -228,7 +230,7 @@ export default function CategoryBrandingScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Includes logo design</span>
@@ -282,7 +284,7 @@ export default function CategoryBrandingScreen() {
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Includes logo design</span>
@@ -334,7 +336,7 @@ export default function CategoryBrandingScreen() {
                       personal Creative Director from Church Logo Studio
                     </h2>
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>All source file</span>

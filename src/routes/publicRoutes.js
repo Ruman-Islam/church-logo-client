@@ -87,6 +87,43 @@ const publicRoutes = [
       import("../pages/packages/logo-design/logo-design-source-pack"),
   },
   {
+    path: "package/logo-design/logo-design",
+    name: "package/logo-design/logo-design",
+    Component: () => import("../pages/packages/logo-design/logo-design"),
+  },
+  {
+    path: "package/logo-design/logo-design-and-all",
+    name: "package/logo-design/logo-design-and-all",
+    Component: () =>
+      import("../pages/packages/logo-design/logo-design-and-all"),
+  },
+  {
+    path: "package/logo-design/stationery-design",
+    name: "package/logo-design/stationery-design",
+    Component: () => import("../pages/packages/logo-design/stationery-design"),
+  },
+  {
+    path: "package/logo-design/business-card",
+    name: "package/logo-design/business-card",
+    Component: () => import("../pages/packages/logo-design/business-card"),
+  },
+  {
+    path: "package/logo-design/social-media",
+    name: "package/logo-design/social-media",
+    Component: () => import("../pages/packages/logo-design/social-media"),
+  },
+  {
+    path: "package/logo-design/logo-and-website",
+    name: "package/logo-design/logo-and-website",
+    Component: () =>
+      import("../pages/packages/logo-design/logo-and-website-design"),
+  },
+  {
+    path: "package/logo-design/full-service",
+    name: "package/logo-design/full-service",
+    Component: () => import("../pages/packages/logo-design/full-service"),
+  },
+  {
     path: "/reviews",
     name: "/reviews",
     Component: () => import("../pages/reviews"),

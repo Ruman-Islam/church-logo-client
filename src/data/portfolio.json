@@ -1,13 +1,49 @@
 [
   {
     "id": 1,
-    "img": "image/banner/hero-01-7daaa580.png",
+    "img": "image/home/portfolio/churchlogo_branding.png",
     "headLine": "Church Logo is a platform with a good name and a very good service…",
     "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
   },
   {
     "id": 2,
-    "img": "image/banner/hero-01-7daaa580.png",
+    "img": "image/home/portfolio/churchlogo_flyer_design.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 3,
+    "img": "image/home/portfolio/churchlogo_website_design.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 4,
+    "img": "image/home/portfolio/churchlogo_book_cover.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 5,
+    "img": "image/home/portfolio/churchlogo_business_card.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 6,
+    "img": "image/home/portfolio/churchlogo_apple_watch.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 7,
+    "img": "image/home/portfolio/churchlogo_ipad_design.png",
+    "headLine": "Church Logo is a platform with a good name and a very good service…",
+    "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
+  },
+  {
+    "id": 8,
+    "img": "image/home/portfolio/churchlogo_social_media_service.png",
     "headLine": "Church Logo is a platform with a good name and a very good service…",
     "feedBack": "where entrepreneurs can easily find the right design for their company. The book cover for us was a very important part of the success of the book. Therefore, we entrusted this to experts and ended up being very happy with the result."
   }

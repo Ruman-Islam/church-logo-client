@@ -83,8 +83,8 @@ export default function CategoryWebDesignScreen() {
                         Website builders
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$250</span>
-                        <span className="border py-0.5 px-4 rounded">
+                        <span>from US$249.99</span>
+                        <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
                       </div>
@@ -96,7 +96,7 @@ export default function CategoryWebDesignScreen() {
                       A logo plus digital and print essentials to kick-start
                       your brand
                     </h2>
-                    <ul className="text-brand__font__size__xs leading-loose">
+                    <ul className="text-brand__font__size__xs leading-loose mt-2">
                       <li className="flex items-center gap-1">
                         <FaCheck className="text-brand__black__color" />{" "}
                         <span>Wordpress</span>
@@ -164,13 +164,13 @@ export default function CategoryWebDesignScreen() {
                       Website Design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$100
+                      from US$99.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Wordpress</span>
@@ -217,13 +217,13 @@ export default function CategoryWebDesignScreen() {
                       Website development
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$350
+                      from US$349.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
                     An unique card designed to build connections
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Wordpress</span>
@@ -286,7 +286,9 @@ export default function CategoryWebDesignScreen() {
               <div className="basis-[100%] md:basis-[50%] w-full h-full">
                 <img
                   className="max-w-[550px] w-full h-[450px] object-cover p-5"
-                  src={getImgUrl("image/hero-banner/churchlogo_slider_04.png")}
+                  src={getImgUrl(
+                    "image/home/portfolio/churchlogo_website_design.png"
+                  )}
                   alt=""
                 />
               </div>
@@ -305,14 +307,14 @@ export default function CategoryWebDesignScreen() {
                       Website redesign
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$150
+                      from US$149.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Functional website</span>
@@ -351,14 +353,14 @@ export default function CategoryWebDesignScreen() {
                       Custom website development
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$650
+                      from US$649.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Functional website</span>
@@ -401,7 +403,7 @@ export default function CategoryWebDesignScreen() {
                       Existing bug fix
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$75
+                      from US$74.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -425,14 +427,14 @@ export default function CategoryWebDesignScreen() {
                       Landing page design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$174.99
+                      from US$99.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
                     Letterhead and envelopes that send your brand&rsquo;s
                     message
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Functional website</span>
@@ -476,7 +478,7 @@ export default function CategoryWebDesignScreen() {
                         Blog
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$250</span>
+                        <span>from US$249.99</span>
                       </div>
                     </div>
                   </div>
@@ -486,7 +488,7 @@ export default function CategoryWebDesignScreen() {
                       A strategically crafted brand
                     </h2>
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Functional website</span>
@@ -540,7 +542,7 @@ export default function CategoryWebDesignScreen() {
                       A strategically crafted brand
                     </h2>
                   </div>
-                  <ul className="text-brand__font__size__xs leading-loose">
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
                       <span>Functional website</span>
