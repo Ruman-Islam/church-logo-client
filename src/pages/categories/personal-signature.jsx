@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageIcon from "./components/PackageIcon";
@@ -12,6 +13,7 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryPersonalSignatureScreen() {
   const { pathname } = useLocation();
+  const scrollWithOffset = useScrollWithOffset();
   const [iconColors, setIconColors] = useState({});
 
   const handleMouseEnter = (id) => {
@@ -60,10 +62,11 @@ export default function CategoryPersonalSignatureScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/logo-design/logo-design-pack"
+                to="/package/personal-signature/signature-logo-design-source-pack#signature-logo-design-source-pack"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="mb-2 w-fit">
@@ -82,7 +85,7 @@ export default function CategoryPersonalSignatureScreen() {
                         Signature logo design & source pack
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$75</span>
+                        <span>from US$74.99</span>
                         <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
@@ -113,10 +116,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/personal-signature/signature-logo-design#signature-logo-design"
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -142,10 +146,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/personal-signature/full-service-signature-logo-design#full-service-signature-logo-design"
                 className="block md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">

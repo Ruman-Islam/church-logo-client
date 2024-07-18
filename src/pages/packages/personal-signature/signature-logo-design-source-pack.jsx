@@ -12,15 +12,18 @@ import WhyChurchLogo from "../components/WhyChurchLogo";
 const whatYouGet = [
   "Includes logo design",
   "Includes all logo file",
-  "Typography guidelines",
+  "Logo usage guidelines",
+  "Website design",
+  "Color palette",
+  "Brand book design",
 ];
 
-export default function PackageLogoAndBrandScreen() {
+export default function PackageSignatureLogoDesignSourcePackScreen() {
   const scrollWithOffset = useScrollWithOffset();
 
   return (
-    <Layout title="Logo & Brand">
-      <section id="logo-and-brand">
+    <Layout title="Signature Logo Design Source Pack">
+      <section id="signature-logo-design-source-pack">
         <div className="bg-section__bg_color">
           <div className="container px-4 flex flex-col md:flex-row justify-between items-center gap-5 py-10 xl:py-20">
             <div className="basis-[100%] md:basis-[50%]">
@@ -44,7 +47,7 @@ export default function PackageLogoAndBrandScreen() {
                 ))}
               </ul>
               <h2 className="text-brand__font__size__lg">
-                Starting from $224.99
+                Starting from $74.99
               </h2>
               <div className="flex items-center gap-5 mt-4">
                 <Button
@@ -54,7 +57,7 @@ export default function PackageLogoAndBrandScreen() {
                   Get started
                 </Button>
                 <HashLink
-                  to="/package/branding/logo-and-brand#package-faq"
+                  to="/package/personal-signature/signature-logo-design-source-pack#package-faq"
                   scroll={(el) => scrollWithOffset(el, 130)}
                   className="flex items-center gap-2 hover:underline duration-300 text-brand__font__size__md"
                 >

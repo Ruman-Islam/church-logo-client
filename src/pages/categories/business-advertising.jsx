@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -13,6 +14,7 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryPersonalSignatureScreen() {
   const { pathname } = useLocation();
+  const scrollWithOffset = useScrollWithOffset();
   const [iconColors, setIconColors] = useState({});
 
   const handleMouseEnter = (id) => {
@@ -61,10 +63,11 @@ export default function CategoryPersonalSignatureScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/logo-design/logo-design-pack"
+                to="/package/business-advertising/flyer-design#flyer-design"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="mb-2 w-fit">
@@ -83,7 +86,7 @@ export default function CategoryPersonalSignatureScreen() {
                         Flyer design
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$50</span>
+                        <span>from US$49.99</span>
                         <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
@@ -114,10 +117,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/business-advertising/leaflet-design#leaflet-design"
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -151,10 +155,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/business-advertising/poster-design#poster-design"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -165,7 +170,7 @@ export default function CategoryPersonalSignatureScreen() {
                       Poster design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$45
+                      from US$44.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -197,10 +202,11 @@ export default function CategoryPersonalSignatureScreen() {
                 />
               </div>
               <HashLink
-                to="/"
+                to="/package/business-advertising/infographic-design#infographic-design"
                 className="block md:border-l md:border-r border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack4")}
                 onMouseLeave={() => handleMouseLeave("pack4")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -211,7 +217,7 @@ export default function CategoryPersonalSignatureScreen() {
                       Infographic design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$100
+                      from US$99.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -235,10 +241,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/business-advertising/brochure-design#brochure-design"
                 className="block border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack5")}
                 onMouseLeave={() => handleMouseLeave("pack5")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -249,7 +256,7 @@ export default function CategoryPersonalSignatureScreen() {
                       Brochure design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$75
+                      from US$74.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -274,10 +281,11 @@ export default function CategoryPersonalSignatureScreen() {
               </HashLink>
               <div className="block md:border-t px-5 py-10 basis-[100%] md:basis-[50%]"></div>
               <HashLink
-                to="/"
+                to="/package/business-advertising/website-header-design#website-header-design"
                 className="block md:border-t md:border-r border-b md:border-l px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack6")}
                 onMouseLeave={() => handleMouseLeave("pack6")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -288,7 +296,7 @@ export default function CategoryPersonalSignatureScreen() {
                       Website header design
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$25
+                      from US$24.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -312,10 +320,11 @@ export default function CategoryPersonalSignatureScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/business-advertising/other-business-advertising#other-business-advertising"
                 className="block md:border-t md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack7")}
                 onMouseLeave={() => handleMouseLeave("pack7")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -326,7 +335,7 @@ export default function CategoryPersonalSignatureScreen() {
                       Other business advertising
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$150
+                      from US$149.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">

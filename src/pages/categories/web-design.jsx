@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -13,6 +14,7 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryWebDesignScreen() {
   const { pathname } = useLocation();
+  const scrollWithOffset = useScrollWithOffset();
   const [iconColors, setIconColors] = useState({});
 
   const handleMouseEnter = (id) => {
@@ -61,10 +63,11 @@ export default function CategoryWebDesignScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/logo-design/logo-design-pack"
+                to="/package/web-design/website-builders#website-builders"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="mb-2 w-fit">
@@ -150,10 +153,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/website-design#website-design"
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -203,10 +207,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/website-development#website-development"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -293,10 +298,11 @@ export default function CategoryWebDesignScreen() {
                 />
               </div>
               <HashLink
-                to="/"
+                to="/package/web-design/website-redesign#website-redesign"
                 className="block md:border-l md:border-r border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack4")}
                 onMouseLeave={() => handleMouseLeave("pack4")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -339,10 +345,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/custom-website-development#custom-website-development"
                 className="block border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack5")}
                 onMouseLeave={() => handleMouseLeave("pack5")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -389,10 +396,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/existing-bug-fix#existing-bug-fix"
                 className="block md:border-t md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack6")}
                 onMouseLeave={() => handleMouseLeave("pack6")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -413,10 +421,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/landing-page-design#landing-page-design"
                 className="block md:border-t border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack7")}
                 onMouseLeave={() => handleMouseLeave("pack7")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -463,10 +472,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/blog#blog"
                 className="block md:border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack8")}
                 onMouseLeave={() => handleMouseLeave("pack8")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="flex gap-2 mb-2">
@@ -517,10 +527,11 @@ export default function CategoryWebDesignScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/web-design/full-service#full-service"
                 className="block border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack9")}
                 onMouseLeave={() => handleMouseLeave("pack9")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="flex gap-2 mb-2">

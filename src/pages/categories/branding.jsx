@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import { categoryNavButtons } from "../../constants/category";
+import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -13,6 +14,7 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryBrandingScreen() {
   const { pathname } = useLocation();
+  const scrollWithOffset = useScrollWithOffset();
   const [iconColors, setIconColors] = useState({});
 
   const handleMouseEnter = (id) => {
@@ -61,10 +63,11 @@ export default function CategoryBrandingScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/logo-design/logo-design-pack"
+                to="/package/branding/logo-and-brand#logo-and-brand"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="mb-2 w-fit">
@@ -80,10 +83,10 @@ export default function CategoryBrandingScreen() {
                     </div>
                     <div>
                       <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                        Logo & brand design pack
+                        Logo & brand design
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$00</span>
+                        <span>from US$224.99</span>
                         <span className="border border-primary py-0.5 px-4 rounded text-primary">
                           Save 40%+
                         </span>
@@ -114,10 +117,11 @@ export default function CategoryBrandingScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/branding/logo-and-brand-guide#logo-and-brand-guide"
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -125,7 +129,7 @@ export default function CategoryBrandingScreen() {
                   </div>
                   <div className="mb-1">
                     <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Logo & brand guide design pack
+                      Logo & brand guide design
                     </h1>
                     <span className="text-brand__font__size__sm">
                       from US$374.99
@@ -155,10 +159,11 @@ export default function CategoryBrandingScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/branding/logo-and-brand-identity#logo-and-brand-identity"
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -166,10 +171,10 @@ export default function CategoryBrandingScreen() {
                   </div>
                   <div className="mb-1">
                     <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Logo & brand identity pack
+                      Logo & brand identity
                     </h1>
                     <span className="text-brand__font__size__sm">
-                      from US$00
+                      from US$399.99
                     </span>
                   </div>
                   <div className="text-brand__font__size__sm leading-tight">
@@ -194,7 +199,7 @@ export default function CategoryBrandingScreen() {
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
-                      <span>Do`&apos;`s and don`&apos;`ts</span>
+                      <span>Do&apos;s and don&apos;ts</span>
                     </li>
                   </ul>
                 </div>
@@ -209,10 +214,11 @@ export default function CategoryBrandingScreen() {
                 />
               </div>
               <HashLink
-                to="/"
+                to="/package/branding/brand-identity-stationary-design#brand-identity-stationary-design"
                 className="block md:border-l md:border-r border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack4")}
                 onMouseLeave={() => handleMouseLeave("pack4")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -220,7 +226,7 @@ export default function CategoryBrandingScreen() {
                   </div>
                   <div className="mb-1">
                     <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Brand identity & stationery design pack
+                      Brand identity & stationery design
                     </h1>
                     <span className="text-brand__font__size__sm">
                       from US$534.99
@@ -253,7 +259,7 @@ export default function CategoryBrandingScreen() {
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
-                      <span>Do`&apos;`s and don`&apos;`ts</span>
+                      <span>Do&apos;s and don&apos;ts</span>
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
@@ -263,10 +269,11 @@ export default function CategoryBrandingScreen() {
                 </div>
               </HashLink>
               <HashLink
-                to="/"
+                to="/package/branding/brand-identity-and-website-design#brand-identity-and-website-design"
                 className="block border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack5")}
                 onMouseLeave={() => handleMouseLeave("pack5")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
@@ -274,7 +281,7 @@ export default function CategoryBrandingScreen() {
                   </div>
                   <div className="mb-1">
                     <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Brand identity & website design pack
+                      Brand identity & website design
                     </h1>
                     <span className="text-brand__font__size__sm">
                       from US$824.99
@@ -310,10 +317,11 @@ export default function CategoryBrandingScreen() {
               </HashLink>
               <div className="block md:border-t px-5 py-10 basis-[100%] md:basis-[50%]"></div>
               <HashLink
-                to="/"
+                to="/package/branding/full-service-logo-design#full-service-logo-design"
                 className="block md:border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack6")}
                 onMouseLeave={() => handleMouseLeave("pack6")}
+                scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
                   <div className="flex gap-2 mb-2">
@@ -322,10 +330,10 @@ export default function CategoryBrandingScreen() {
                     </div>
                     <div>
                       <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                        Full-Service logo design package
+                        Full-Service logo design
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$3,999</span>
+                        <span>from US$1034.99</span>
                       </div>
                     </div>
                   </div>
@@ -347,7 +355,7 @@ export default function CategoryBrandingScreen() {
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
-                      <span>Stationary design</span>
+                      <span>Stationery design</span>
                     </li>
                     <li className="flex items-center gap-1">
                       <FaCheck className="text-brand__black__color" />{" "}
