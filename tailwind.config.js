@@ -84,6 +84,8 @@ export default {
         test: "url('../src/assets/image/gallery/web-design/church_logo_web_design_02.png')",
         page_bg:
           "url('../src/assets/image/background/church_logo_page_background.jpg')",
+        zero_place_promotional_section_bg:
+          "url('../src/assets/image/background/zero_place_background.jpg')",
       },
     },
   },

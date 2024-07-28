@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function NotFoundScreen() {
   return (
     <section className="w-full min-h-screen bg-not__found bg-center bg-cover bg-no-repeat flex flex-col justify-center items-center">
-      <div className="max-w-screen-xl m-auto w-full min-h-screen flex flex-col justify-center px-2 text-brand__black__color">
+      <div className="max-w-screen-xl m-auto w-full min-h-screen flex flex-col justify-center px-4 text-brand__black__color">
         <div>
           <h2 className="text-8xl font-extrabold">OOPS!</h2>
           <p className="font-bold">Page not found</p>

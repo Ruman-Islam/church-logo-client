@@ -25,14 +25,14 @@ export const categoryNavButtons = [
   },
   {
     id: 5,
-    title: "Business & advertising",
+    title: "Business & Advertising",
     route: "/categories/business-advertising",
     match: "business-advertising",
   },
   {
     id: 6,
-    title: "Others",
-    route: "/categories/others",
-    match: "others",
+    title: "Social Media Service",
+    route: "/categories/social-media-service",
+    match: "social-media-service",
   },
 ];

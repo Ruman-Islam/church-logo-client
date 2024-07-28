@@ -57,13 +57,7 @@ export const api = createApi({
   tagTypes: [
     "user",
     "gallery",
-    "config",
-    "faq",
-    "video",
-    "question",
     "review",
-    "photo",
-    "admin",
   ],
   endpoints: () => ({}),
 });

@@ -17,7 +17,7 @@ export default function PrivacyPolicyScreen() {
         </div>
         {/* Introduction */}
         <div className="bg-section__bg_color text-brand__black__color">
-          <div className="container px-2 py-[30px] md:py-[60px]">
+          <div className="container px-4 py-[30px] md:py-[60px]">
             <h3 className="mt-1 mb-5 text-brand__font__size__md">
               Last Updated: Tue 02 July 2024
             </h3>
@@ -37,7 +37,7 @@ export default function PrivacyPolicyScreen() {
           </div>
         </div>
 
-        <div className="container px-2 py-[30px]">
+        <div className="container px-4 py-[30px]">
           <div className="py-2">
             <h2 className="text-brand__font__size__lg font-brand__font__500">
               {data?.policy1?.title}

@@ -23,4 +23,16 @@ export const galleryNavButtons = [
     route: "/gallery/personal-signature",
     match: "personal-signature",
   },
+  {
+    id: 5,
+    title: "Business & advertising",
+    route: "/gallery/business-advertising",
+    match: "business-advertising",
+  },
+  {
+    id: 6,
+    title: "Social Media Service",
+    route: "/gallery/social-media-service",
+    match: "social-media-service",
+  },
 ];

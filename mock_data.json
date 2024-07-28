@@ -1,52 +1,109 @@
-{
-  "gallery": {
-    "logo-design": [
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg"
-    ],
-    "web-design": [
-      "image/gallery/amity-animal-shelter.webp",
-      "image/gallery/amity-charity.webp",
-      "image/gallery/amity-children.webp",
-      "image/gallery/amity-church.webp",
-      "image/gallery/amity-community.webp",
-      "image/gallery/amity-ecology.webp",
-      "image/gallery/amity-elder-care.webp",
-      "image/gallery/amity-ngo.webp",
-      "image/gallery/amity-political.webp"
-    ],
-    "branding": [],
-    "personal-signature": [
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg",
-      "image/category/churchlogo_logodesign.jpg",
-      "image/category/churchlogo_webdesign.jpeg",
-      "image/category/churchlogo_branding.jpeg",
-      "image/category/churchlogo_personal_signature.jpeg"
-    ]
+[
+  {
+    "user": "Jessica Miller",
+    "package": "USA",
+    "ratingPoints": 5,
+    "submittedDate": "Thu Jul 11 2024",
+    "productImageUrl": "",
+    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+  },
+  {
+    "id": 2,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+  },
+  {
+    "id": 3,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+  },
+  {
+    "id": 4,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+  },
+  {
+    "id": 5,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+  },
+  {
+    "id": 6,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+  },
+  {
+    "id": 7,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+  },
+  {
+    "id": 8,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+  },
+  {
+    "id": 9,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+  },
+  {
+    "id": 10,
+    "customerName": "Jessica Miller",
+    "countryName": "USA",
+    "submittedDate": "Thu Jul 11 2024",
+    "profileImageUrl": "",
+    "productImageUrl": "",
+    "ratingPoints": 5,
+    "packageCategory": "logo-design",
+    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
   }
-}
+]

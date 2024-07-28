@@ -13,10 +13,11 @@ import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout/index";
 import { galleryNavButtons } from "../../constants/gallery";
-import { useGetGalleryLogoDesignQuery } from "../../services/features/gallery/galleryApi";
+import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 import slideData from "../../data/customersDoing.json";
+import useQueryParameter from "../../hooks/useQueryParameter";
 
 const settings = {
   dots: true,
@@ -31,21 +32,17 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function GalleryBrandingScreen() {
-  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const [dynamicUrl, setDynamicUrl] = useState({
+  const [open, setOpen] = useState(false);
+  const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
     limit: 8,
-    searchTerm: "",
     collection: "logo-design",
   });
-  const { data, isLoading } = useGetGalleryLogoDesignQuery(dynamicUrl);
-  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.total;
-  const gallery = data?.data;
 
-  const handleShowMoreItems = () => {
-    setDynamicUrl((prev) => ({ ...prev, limit: prev.limit + 4 }));
-  };
+  const { data, isLoading } = useGetGalleryImageQuery(dynamicUrl);
+  const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
+  const gallery = data?.data;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -62,7 +59,7 @@ export default function GalleryBrandingScreen() {
           <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
             <h3 className="text-[37px]">Gallery</h3>
           </div>
-          <div className="container px-2 flex flex-col gap-5 py-[20px]">
+          <div className="container px-4 flex flex-col gap-5 py-[20px]">
             <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
               {galleryNavButtons.map((d) => (
                 <HashLink
