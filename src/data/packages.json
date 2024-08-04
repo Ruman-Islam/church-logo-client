@@ -119,5 +119,366 @@
       "Social media kit",
       "3D mockup"
     ]
+  },
+  {
+    "id": "PbvBBuTq",
+    "category": "web-design",
+    "title": "Website builders",
+    "desc": "A logo plus digital and print essentials to kick-start your brand",
+    "isPopular": true,
+    "basePrice": 625,
+    "savings": 40,
+    "featuredItems": [
+      "Wordpress",
+      "Functional website",
+      "6 pages",
+      "Responsive design",
+      "Content upload",
+      "7 plugins/extensions",
+      "E-commerce functionality",
+      "5 products",
+      "Payment processing",
+      "Speed optimization",
+      "Hosting setup",
+      "Social media icons"
+    ]
+  },
+  {
+    "id": "j49QAQRG",
+    "category": "web-design",
+    "title": "Website design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 100,
+    "savings": 0,
+    "featuredItems": [
+      "Wordpress",
+      "Functional website",
+      "3 pages",
+      "Responsive design",
+      "4 plugins/extensions",
+      "Hosting setup",
+      "Social media icons"
+    ]
+  },
+  {
+    "id": "0kMtalZi",
+    "category": "web-design",
+    "title": "Website development",
+    "desc": "An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 350,
+    "savings": 0,
+    "featuredItems": [
+      "Wordpress",
+      "Functional website",
+      "10 pages",
+      "Responsive design",
+      "Content upload",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "20 products",
+      "Payment processing",
+      "Opt-in form",
+      "Auto responder integration",
+      "Speed optimization",
+      "Hosting setup",
+      "Social media icons"
+    ]
+  },
+  {
+    "id": "S35xJl8R",
+    "category": "web-design",
+    "title": "Website redesign",
+    "desc": "An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 150,
+    "savings": 0,
+    "featuredItems": [
+      "Functional website",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "Payment processing",
+      "Speed optimization"
+    ]
+  },
+  {
+    "id": "X1fUTRY7",
+    "category": "web-design",
+    "title": "Custom website development",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 650,
+    "savings": 0,
+    "featuredItems": [
+      "Functional website",
+      "Responsive design",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "Payment processing",
+      "Speed optimization"
+    ]
+  },
+  {
+    "id": "9d5VjBZ8",
+    "category": "web-design",
+    "title": "Existing bug fix",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 75,
+    "savings": 0,
+    "featuredItems": []
+  },
+  {
+    "id": "xXm4WjII",
+    "category": "web-design",
+    "title": "Landing page design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 100,
+    "savings": 0,
+    "featuredItems": [
+      "Functional website",
+      "Responsive design",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "Payment processing",
+      "Speed optimization"
+    ]
+  },
+  {
+    "id": "FXYsYEoP",
+    "category": "web-design",
+    "title": "Blog",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 250,
+    "savings": 0,
+    "featuredItems": [
+      "Functional website",
+      "Responsive design",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "Payment processing",
+      "Speed optimization"
+    ]
+  },
+  {
+    "id": "ApAQC3Pn",
+    "category": "web-design",
+    "title": "Full-service website development",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 360,
+    "savings": 0,
+    "featuredItems": [
+      "Functional website",
+      "Responsive design",
+      "10 plugins/extensions",
+      "E-commerce functionality",
+      "Payment processing",
+      "Speed optimization"
+    ]
+  },
+  {
+    "id": "DVAmbb7E",
+    "category": "branding",
+    "title": "Logo & brand design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": true,
+    "basePrice": 600,
+    "savings": 40,
+    "featuredItems": [
+      "Includes logo design",
+      "Includes all logo file",
+      "Typography guidelines"
+    ]
+  },
+  {
+    "id": "OV8biNUh",
+    "category": "branding",
+    "title": "Logo & brand guide design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 375,
+    "savings": 0,
+    "featuredItems": [
+      "Includes logo design",
+      "Includes all logo file",
+      "Typography guidelines",
+      "Color palette"
+    ]
+  },
+  {
+    "id": "Nzaejoco",
+    "category": "branding",
+    "title": "Logo & brand identity",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 400,
+    "savings": 0,
+    "featuredItems": [
+      "Includes logo design",
+      "Includes all logo file",
+      "Typography guidelines",
+      "Color palette",
+      "Do's and don'ts"
+    ]
+  },
+  {
+    "id": "NPIjFFMg",
+    "category": "branding",
+    "title": "Brand identity & stationary design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 535,
+    "savings": 0,
+    "featuredItems": [
+      "Includes logo design",
+      "Includes all logo file",
+      "Logo usage guidelines",
+      "Typography guidelines",
+      "Color palette",
+      "Do's and don'ts",
+      "Stationary design"
+    ]
+  },
+  {
+    "id": "3F20xuus",
+    "category": "branding",
+    "title": "Brand identity & website design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 825,
+    "savings": 0,
+    "featuredItems": [
+      "Includes logo design",
+      "Includes all logo file",
+      "Logo usage guidelines",
+      "Website design",
+      "Brand book design"
+    ]
+  },
+  {
+    "id": "mbHakXEV",
+    "category": "branding",
+    "title": "Full-service logo design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 1035,
+    "savings": 0,
+    "featuredItems": [
+      "All source file",
+      "All printable file",
+      "Stationary design",
+      "Social media kit",
+      "3D mockup"
+    ]
+  },
+  {
+    "id": "02Q1Y1rM",
+    "category": "personal-signature",
+    "title": "Signature logo design & source pack",
+    "desc": " An unique card designed to build connections",
+    "isPopular": true,
+    "basePrice": 187,
+    "savings": 40,
+    "featuredItems": ["Logo transparency", "Source file", "Vector file"]
+  },
+  {
+    "id": "OILnfGOr",
+    "category": "personal-signature",
+    "title": "Signature logo design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 25,
+    "savings": 0,
+    "featuredItems": ["Logo transparency"]
+  },
+  {
+    "id": "396YemDC",
+    "category": "personal-signature",
+    "title": "Full-service signature logo design pack",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 150,
+    "savings": 0,
+    "featuredItems": [
+      "Logo transparency",
+      "Source file",
+      "Vector file",
+      "3D mockup",
+      "Social media kit"
+    ]
+  },
+  {
+    "id": "vMEdri6g",
+    "category": "business-advertising",
+    "title": "Flyer design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": true,
+    "basePrice": 150,
+    "savings": 40,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "jsWpGfsm",
+    "category": "business-advertising",
+    "title": "Leaflet design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 25,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "ANANw2hD",
+    "category": "business-advertising",
+    "title": "Poster design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 45,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "QUdbXvLW",
+    "category": "business-advertising",
+    "title": "Infographic design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 100,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "IKJbOgc4",
+    "category": "business-advertising",
+    "title": "Brochure design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 75,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "pmBoiLB6",
+    "category": "business-advertising",
+    "title": "Website header design",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 25,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
+  },
+  {
+    "id": "T19P89Db",
+    "category": "business-advertising",
+    "title": "Other business advertising",
+    "desc": " An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 150,
+    "savings": 0,
+    "featuredItems": ["Printable file", "Source file", "Vector file"]
   }
 ]

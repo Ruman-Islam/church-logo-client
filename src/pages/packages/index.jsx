@@ -3,29 +3,22 @@ import { FaCheck } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
+import packagesData from "../../data/packages.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
-const whatYouGet = [
-  "3 logo concepts",
-  "Logo transparency",
-  "Printable file",
-  "Source file",
-  "Vector file",
-  "3D mockup",
-  "Social media kit",
-];
-
 export default function Package() {
   const { id } = useParams();
   const scrollWithOffset = useScrollWithOffset();
+  const filteredPackage = packagesData.find((item) => item.id === id);
 
   return (
     <Layout title="Logo design source pack">
-      <section id="logo-design-source-pack">
+      <section id="package">
         <div className="bg-section__bg_color">
           <div className="container px-4 flex flex-col md:flex-row justify-between items-center gap-5 py-10 xl:py-20">
             <div className="basis-[100%] md:basis-[50%]">
@@ -38,7 +31,7 @@ export default function Package() {
               </p>
               <h2 className="text-brand__font__size__lg">What you get</h2>
               <ul className="text-brand__font__size__xs leading-loose">
-                {whatYouGet.map((item, i) => (
+                {filteredPackage?.featuredItems.map((item, i) => (
                   <li
                     key={i}
                     className="flex items-center gap-2 text-brand__font__size__base"
@@ -49,11 +42,11 @@ export default function Package() {
                 ))}
               </ul>
               <h2 className="text-brand__font__size__lg">
-                Starting from $159.99
+                Starting from ${packagePriceConversion(filteredPackage)}
               </h2>
               <div className="flex items-center gap-5 mt-4">
                 <HashLink
-                  to="/order/brief/123#order-brief"
+                  to={`/order/brief/123#order-brief`}
                   scroll={(el) => scrollWithOffset(el, 130)}
                 >
                   <Button
@@ -75,7 +68,7 @@ export default function Package() {
             <div className="basis-[100%] md:basis-[50%]">
               <img
                 src={getImgUrl("image/hero-banner/churchlogo_slider_02.png")}
-                alt=""
+                alt="church_logo"
               />
             </div>
           </div>

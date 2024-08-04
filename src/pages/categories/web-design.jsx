@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import packagesData from "../../data/packages.json";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageIcon from "./components/PackageIcon";
@@ -14,7 +17,14 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryWebDesignScreen() {
   const scrollWithOffset = useScrollWithOffset();
+  const location = useLocation();
+  const { pathname } = location;
   const [iconColors, setIconColors] = useState({});
+  const category = pathname.split("categories/")[1];
+  const filteredPackages = packagesData.filter(
+    (item) => item.category === category
+  );
+  const pg = filteredPackages;
 
   const handleMouseEnter = (id) => {
     setIconColors((prevColors) => ({
@@ -44,19 +54,21 @@ export default function CategoryWebDesignScreen() {
           <div className="p-5 md:mt-4">
             <div className="flex flex-wrap max-w-[1024px] w-full mx-auto">
               <HashLink
-                to="/package/web-design/website-builders#website-builders"
+                to={`/package/${pg[0]?.id}#package`}
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[50%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack1")}
                 onMouseLeave={() => handleMouseLeave("pack1")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="mb-2 w-fit">
-                    <span className="flex items-center justify-center gap-1 text-brand__font__size__xs px-3 py-1 bg-primary rounded-full text-white">
-                      <FaStar />
-                      <span>Most Popular</span>
-                    </span>
-                  </div>
+                  {pg[0]?.isPopular && (
+                    <div className="mb-2 w-fit">
+                      <span className="flex items-center justify-center gap-1 text-brand__font__size__xs px-3 py-1 bg-primary rounded-full text-white">
+                        <FaStar />
+                        <span>Most Popular</span>
+                      </span>
+                    </div>
+                  )}
 
                   <div className="flex gap-2 mb-2">
                     <div className="text-brand__font__size__xl group-hover:text-primary duration-300 pt-2">
@@ -64,12 +76,12 @@ export default function CategoryWebDesignScreen() {
                     </div>
                     <div>
                       <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                        Website builders
+                        {pg[0]?.title}
                       </h1>
                       <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$249.99</span>
+                        <span>from US${packagePriceConversion(pg[0])}</span>
                         <span className="border border-primary py-0.5 px-4 rounded text-primary">
-                          Save 40%+
+                          Save {pg[0]?.savings}%+
                         </span>
                       </div>
                     </div>
@@ -77,193 +89,84 @@ export default function CategoryWebDesignScreen() {
 
                   <div>
                     <h2 className="text-brand__font__size__sm leading-tight mb-1">
-                      A logo plus digital and print essentials to kick-start
-                      your brand
+                      {pg[0]?.desc}
                     </h2>
                     <ul className="text-brand__font__size__xs leading-loose mt-2">
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Wordpress</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Functional website</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>6 pages</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Responsive design</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Content upload</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>7 plugins/extensions</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>E-commerce functionality</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>5 products</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Payment processing</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Speed optimization</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Hosting setup</span>
-                      </li>
-                      <li className="flex items-center gap-1">
-                        <FaCheck className="text-primary" />{" "}
-                        <span>Social media icons</span>
-                      </li>
+                      {pg[0]?.featuredItems.map((item) => (
+                        <li key={item} className="flex items-center gap-1">
+                          <FaCheck className="text-primary" />{" "}
+                          <span>{item}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/website-design#website-design"
+                to={`/package/${pg[1]?.id}#package`}
                 className="block md:border-l md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack2")}
                 onMouseLeave={() => handleMouseLeave("pack2")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack2"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack2"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[1]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[1])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Website Design
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$99.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    An unique card designed to build connections
+                    {pg[1]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Wordpress</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" /> <span>3 page</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>4 plugins/extensions 3D</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Hosting setup</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Social media icons</span>
-                    </li>
+                    {pg[1]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/website-development#website-development"
+                to={`/package/${pg[2]?.id}#package`}
                 className="block border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack3")}
                 onMouseLeave={() => handleMouseLeave("pack3")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack3"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack3"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[2]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[2])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Website development
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$349.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    An unique card designed to build connections
+                    {pg[2]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Wordpress</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" /> <span>10 pages</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Content upload</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions 3D</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>20 products</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Opt-in form</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Auto responder integration</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Hosting setup</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Social media icons</span>
-                    </li>
+                    {pg[2]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
@@ -277,181 +180,143 @@ export default function CategoryWebDesignScreen() {
                 />
               </div>
               <HashLink
-                to="/package/web-design/website-redesign#website-redesign"
+                to={`/package/${pg[3]?.id}#package`}
                 className="block md:border-l md:border-r border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack4")}
                 onMouseLeave={() => handleMouseLeave("pack4")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack4"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack4"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[3]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[3])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Website redesign
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$149.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    Letterhead and envelopes that send your brand&rsquo;s
-                    message
+                    {pg[3]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
+                    {pg[3]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/custom-website-development#custom-website-development"
+                to={`/package/${pg[4]?.id}#package`}
                 className="block border-b md:border-b-0 px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack5")}
                 onMouseLeave={() => handleMouseLeave("pack5")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack5"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack5"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[4]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[4])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Custom website development
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$649.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    Letterhead and envelopes that send your brand&rsquo;s
-                    message
+                    {pg[4]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
+                    {pg[4]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/existing-bug-fix#existing-bug-fix"
+                to={`/package/${pg[5]?.id}#package`}
                 className="block md:border-t md:border-r border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack6")}
                 onMouseLeave={() => handleMouseLeave("pack6")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack6"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack6"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[5]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[5])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Existing bug fix
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$74.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    A comprehensive guide of your brand&rsquo;s fonts, colors
-                    and style
+                    {pg[5]?.desc}
                   </div>
+                  <ul className="text-brand__font__size__xs leading-loose mt-2">
+                    {pg[5]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/landing-page-design#landing-page-design"
+                to={`/package/${pg[6]?.id}#package`}
                 className="block md:border-t border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack7")}
                 onMouseLeave={() => handleMouseLeave("pack7")}
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 <div>
-                  <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
-                    <PackageIcon fill={iconColors["pack7"] || "#031401"} />
+                  <div className="flex gap-2 mb-2">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
+                      <PackageIcon fill={iconColors["pack7"] || "#031401"} />
+                    </div>
+                    <div className="mb-1">
+                      <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
+                        {pg[6]?.title}
+                      </h1>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[6])}</span>
+                      </span>
+                    </div>
                   </div>
-                  <div className="mb-1">
-                    <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                      Landing page design
-                    </h1>
-                    <span className="text-brand__font__size__sm">
-                      from US$99.99
-                    </span>
-                  </div>
+
                   <div className="text-brand__font__size__sm leading-tight">
-                    Letterhead and envelopes that send your brand&rsquo;s
-                    message
+                    {pg[6]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
+                    {pg[6]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/blog#blog"
+                to={`/package/${pg[7]?.id}#package`}
                 className="block md:border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack8")}
                 onMouseLeave={() => handleMouseLeave("pack8")}
@@ -459,54 +324,33 @@ export default function CategoryWebDesignScreen() {
               >
                 <div>
                   <div className="flex gap-2 mb-2">
-                    <div className="text-brand__font__size__xl group-hover:text-primary duration-300">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
                       <PackageIcon fill={iconColors["pack8"] || "#031401"} />
                     </div>
-                    <div>
+                    <div className="mb-1">
                       <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                        Blog
+                        {pg[7]?.title}
                       </h1>
-                      <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$249.99</span>
-                      </div>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[7])}</span>
+                      </span>
                     </div>
                   </div>
 
-                  <div>
-                    <h2 className="text-brand__font__size__sm leading-tight mb-1">
-                      A strategically crafted brand
-                    </h2>
+                  <div className="text-brand__font__size__sm leading-tight">
+                    {pg[7]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
+                    {pg[7]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
               <HashLink
-                to="/package/web-design/full-service#full-service"
+                to={`/package/${pg[8]?.id}#package`}
                 className="block border-t md:border-l md:border-b px-5 py-10 basis-[100%] md:basis-[25%] hover:shadow-lg duration-300 group"
                 onMouseEnter={() => handleMouseEnter("pack9")}
                 onMouseLeave={() => handleMouseLeave("pack9")}
@@ -514,49 +358,28 @@ export default function CategoryWebDesignScreen() {
               >
                 <div>
                   <div className="flex gap-2 mb-2">
-                    <div className="text-brand__font__size__xl group-hover:text-primary duration-300">
+                    <div className="text-brand__font__size__xl mb-1 group-hover:text-primary duration-300">
                       <PackageIcon fill={iconColors["pack9"] || "#031401"} />
                     </div>
-                    <div>
+                    <div className="mb-1">
                       <h1 className="text-brand__font__size__md group-hover:text-primary duration-300">
-                        Full-Service website development
+                        {pg[8]?.title}
                       </h1>
-                      <div className="flex items-center gap-4 text-brand__font__size__sm">
-                        <span>from US$999.99</span>
-                      </div>
+                      <span className="text-brand__font__size__sm">
+                        <span>from US${packagePriceConversion(pg[8])}</span>
+                      </span>
                     </div>
                   </div>
 
-                  <div>
-                    <h2 className="text-brand__font__size__sm leading-tight mb-1">
-                      A strategically crafted brand
-                    </h2>
+                  <div className="text-brand__font__size__sm leading-tight">
+                    {pg[8]?.desc}
                   </div>
                   <ul className="text-brand__font__size__xs leading-loose mt-2">
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Functional website</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Responsive design</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>10 plugins/extensions</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>E-commerce functionality</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Payment processing</span>
-                    </li>
-                    <li className="flex items-center gap-1">
-                      <FaCheck className="text-primary" />{" "}
-                      <span>Speed optimization</span>
-                    </li>
+                    {pg[8]?.featuredItems.map((item) => (
+                      <li key={item} className="flex items-center gap-1">
+                        <FaCheck className="text-primary" /> <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </HashLink>
