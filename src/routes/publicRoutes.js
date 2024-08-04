@@ -86,6 +86,12 @@ const publicRoutes = [
     Component: () => import("../pages/categories/social-media-service"),
   },
   {
+    path: "package/:id",
+    name: "package/:id",
+    Component: () =>
+      import("../pages/packages"),
+  },
+  {
     path: "package/logo-design/logo-design-source-pack",
     name: "package/logo-design/logo-design-source-pack",
     Component: () =>
@@ -273,6 +279,16 @@ const publicRoutes = [
       import(
         "../pages/packages/business-advertising/other-business-advertising"
       ),
+  },
+  {
+    path: "order/brief/:id",
+    name: "order/brief",
+    Component: () => import("../pages/order/brief"),
+  },
+  {
+    path: "order/color",
+    name: "order/color",
+    Component: () => import("../pages/order/color"),
   },
 ];
 

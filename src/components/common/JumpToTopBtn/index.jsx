@@ -1,0 +1,27 @@
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import useJumpToTop from "../../../hooks/useJumpToTop";
+
+export default function JumpToTopBtn() {
+  const { distance } = useJumpToTop();
+
+  const handleJump = () => {
+    window.scrollTo(0, 0);
+  };
+
+  return (
+    <Box
+      onClick={() => handleJump()}
+      className={`bg-primary hover:bg-success hover:animate-jumpToTop text-white fixed right-4 z-50 rounded-md duration-300 cursor-pointer p-2 ${
+        distance >= 2000 ? "bottom-[70px]" : "-bottom-12"
+      }`}
+    >
+      {distance >= 2000 ? (
+        <ExpandLessIcon type="button" />
+      ) : (
+        <ExpandMoreIcon type="button" />
+      )}
+    </Box>
+  );
+}

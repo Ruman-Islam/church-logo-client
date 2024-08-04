@@ -1,0 +1,123 @@
+[
+  {
+    "id": "nVfRa2K3",
+    "category": "logo-design",
+    "title": "Logo design source pack",
+    "desc": "A logo plus digital and print essentials to kick-start your brand",
+    "isPopular": true,
+    "basePrice": 400,
+    "savings": 40,
+    "featuredItems": [
+      "3 logo concepts",
+      "Logo transparency",
+      "Printable file",
+      "Source file",
+      "Vector file",
+      "3D mockup",
+      "Social media kit"
+    ]
+  },
+  {
+    "id": "td2gNS1S",
+    "category": "logo-design",
+    "title": "Logo design",
+    "desc": "An unforgettable logo crafted for your brand",
+    "isPopular": false,
+    "basePrice": 25,
+    "savings": 0,
+    "featuredItems": ["2 logo concepts", "Logo transparency", "Printable file"]
+  },
+  {
+    "id": "lQ2Uqwqf",
+    "category": "logo-design",
+    "title": "Logo design & all",
+    "desc": "An unique card designed to build connections",
+    "isPopular": false,
+    "basePrice": 250,
+    "savings": 0,
+    "featuredItems": [
+      "4 logo concepts",
+      "Logo transparency",
+      "Printable file",
+      "Source file",
+      "Vector file",
+      "3D mockup",
+      "Social media kit"
+    ]
+  },
+  {
+    "id": "Hez72XSv",
+    "category": "logo-design",
+    "title": "Stationary design",
+    "desc": "Letterhead and envelopes that send your brand's message",
+    "isPopular": false,
+    "basePrice": 185,
+    "savings": 0,
+    "featuredItems": [
+      "3 logo concepts",
+      "Logo transparency",
+      "Printable file",
+      "Source file",
+      "Vector file",
+      "Stationery design"
+    ]
+  },
+  {
+    "id": "Oq8AQXk6",
+    "category": "logo-design",
+    "title": "Business card",
+    "desc": "Letterhead and envelopes that send your brand's message",
+    "isPopular": false,
+    "basePrice": 75,
+    "savings": 0,
+    "featuredItems": [
+      "3 logo concepts",
+      "Logo transparency",
+      "Printable file",
+      "Business card"
+    ]
+  },
+  {
+    "id": "WNO420HS",
+    "category": "logo-design",
+    "title": "Social media",
+    "desc": "A comprehensive guide of your brand's fonts, colors and style",
+    "isPopular": false,
+    "basePrice": 60,
+    "savings": 0,
+    "featuredItems": ["Logo transparency", "Printable file", "Social media kit"]
+  },
+  {
+    "id": "6pG4Rh0a",
+    "category": "logo-design",
+    "title": "Logo & website design",
+    "desc": "Letterhead and envelopes that send your brand's message",
+    "isPopular": false,
+    "basePrice": 175,
+    "savings": 0,
+    "featuredItems": [
+      "3 logo concepts",
+      "Logo transparency",
+      "Printable file",
+      "Source file",
+      "Vector file",
+      "Web design"
+    ]
+  },
+  {
+    "id": "eGIgz8Sz",
+    "category": "logo-design",
+    "title": "Full-service logo design package",
+    "desc": "A strategically crafted brand identity guided by your personal Creative Director from Church Logo Studio",
+    "isPopular": false,
+    "basePrice": 360,
+    "savings": 0,
+    "featuredItems": [
+      "All source file",
+      "All printable file",
+      "Stationery design",
+      "Social media kit",
+      "3D mockup"
+    ]
+  }
+]

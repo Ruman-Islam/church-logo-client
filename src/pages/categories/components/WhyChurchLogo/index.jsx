@@ -42,10 +42,10 @@ const RatingCard = (props) => {
   );
 };
 
-export default function WhyChurchLogo() {
+export default function WhyChurchLogo({ imgUrl }) {
   return (
     <div className="flex flex-col xl:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container">
-      <div className="basis-full xl:basis-[60%] p-5">
+      <div className="basis-full xl:basis-[60%] p-10">
         <div className="leading-tight">
           <h2 className="text-[24px] md:text-[32px]">
             So, why Church Logo for a brand identity design?
@@ -60,9 +60,11 @@ export default function WhyChurchLogo() {
           ))}
         </div>
       </div>
-      <div className="basis-full xl:basis-[40%] flex justify-center items-center">
+      <div className="basis-full xl:basis-[40%] flex justify-center items-center p-10">
         <img
-          src={getImgUrl("image/hero-banner/churchlogo_slider_02.png")}
+          src={getImgUrl(
+            imgUrl ? imgUrl : "image/hero-banner/churchlogo_slider_02.png"
+          )}
           alt="church_logo"
         />
       </div>

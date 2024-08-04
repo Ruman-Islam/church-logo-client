@@ -8,22 +8,26 @@ import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 function CategoryCard(props) {
   const scrollWithOffset = useScrollWithOffset();
-  const { category, cardContainerClass, imgClass, contentClass, route } = props;
+  const { category, route } = props;
   const { img, title, alt } = category;
 
   return (
-    <div className={cardContainerClass}>
-      <HashLink to={route} scroll={(el) => scrollWithOffset(el, 135)}>
-        <div className="relative">
-          <div className="overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
-            <img className={imgClass} src={getImgUrl(img)} alt={alt} />
-          </div>
-          <div className={contentClass}>
-            <p>{title}</p>
-          </div>
-        </div>
-      </HashLink>
-    </div>
+    <HashLink
+      className="block text-center group relative"
+      to={route}
+      scroll={(el) => scrollWithOffset(el, 135)}
+    >
+      <div className="overflow-hidden rounded-[30px]">
+        <img
+          className="group-hover:scale-125 duration-500"
+          src={getImgUrl(img)}
+          alt={alt}
+        />
+      </div>
+      <div className="py-3 bg-white rounded-[30px] absolute w-full bottom-0 text-brand__black__color font-brand__font__semibold group-hover:text-primary duration-300 shadow-md">
+        <p>{title}</p>
+      </div>
+    </HashLink>
   );
 }
 
@@ -43,14 +47,7 @@ export default function Categories() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-between mt-5">
           {data.map((d) => (
-            <CategoryCard
-              cardContainerClass="w-full h-full rounded-[30px] text-center group mb-6 lg:mb-6 xl:mb-0"
-              imgClass="w-full h-full rounded-tl-[30px] rounded-tr-[30px] object-cover group-hover:scale-125 duration-500"
-              contentClass="py-3 bg-white rounded-[30px] absolute w-full -bottom-6 text-brand__black__color font-brand__font__semibold group-hover:text-primary duration-300"
-              key={d.id}
-              route={d.route}
-              category={d}
-            />
+            <CategoryCard key={d.id} route={d.route} category={d} />
           ))}
         </div>
       </div>

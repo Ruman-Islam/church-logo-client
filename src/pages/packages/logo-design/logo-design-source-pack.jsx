@@ -42,7 +42,7 @@ export default function PackageLogoDesignSourcePackScreen() {
                     key={i}
                     className="flex items-center gap-2 text-brand__font__size__base"
                   >
-                    <FaCheck className="text-brand__black__color" />
+                    <FaCheck className="text-primary" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -51,18 +51,23 @@ export default function PackageLogoDesignSourcePackScreen() {
                 Starting from $159.99
               </h2>
               <div className="flex items-center gap-5 mt-4">
-                <Button
-                  className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
-                  variant="contained"
+                <HashLink
+                  to="/order/brief/123#order-brief"
+                  scroll={(el) => scrollWithOffset(el, 130)}
                 >
-                  Get started
-                </Button>
+                  <Button
+                    className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
+                    variant="contained"
+                  >
+                    Get started
+                  </Button>
+                </HashLink>
                 <HashLink
                   to="/package/logo-design/logo-design-source-pack#package-faq"
                   scroll={(el) => scrollWithOffset(el, 130)}
                   className="flex items-center gap-2 hover:underline duration-300 text-brand__font__size__md"
                 >
-                  <span>Learn more</span>
+                  Learn more
                 </HashLink>
               </div>
             </div>

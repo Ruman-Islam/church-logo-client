@@ -1,109 +1,188 @@
 [
   {
-    "user": "Jessica Miller",
-    "package": "USA",
-    "ratingPoints": 5,
-    "submittedDate": "Thu Jul 11 2024",
-    "productImageUrl": "",
-    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_the_magnolia_tree_of_hope_Logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 2,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_christ_tabernacle_apostolic_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 3,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_new_beginnings_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 4,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_new_bethel_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 5,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_one_faith_music_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 6,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_new_light_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 7,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_christmas_light_show_Logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 8,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_anthem_young_adults_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 9,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "Hey Church Logo Professionals, I wanted to take a second to introduce myself (and of course, show off my new signature logo) but before I do that, I also want to say it’s great to be here and that I am grateful to be part of this community. All the different logos and the ways in which you have used them are really amazing and also very inspiring."
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_bethesda_cogic_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   },
   {
-    "id": 10,
-    "customerName": "Jessica Miller",
-    "countryName": "USA",
-    "submittedDate": "Thu Jul 11 2024",
-    "profileImageUrl": "",
-    "productImageUrl": "",
-    "ratingPoints": 5,
-    "packageCategory": "logo-design",
-    "reviewText": "I feel so excited to launch the upgrade I had for my office. This is somewhat new and unique in the market. Thank you Church Logo. ❤️"
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_city_light_youth_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_esperanza_de_vida_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_grace_united_methodist_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_mt_olive_on_the_hill_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_well_life_ministry_Logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_new_life_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_shalom_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_faith_in_action_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_fedd_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_greater_harvest_fellowship_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_grounds_of_defense_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_hephzibah_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_holy_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_impact_student_ministries_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_invictus_ministries_inc_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_life_of_faith_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_lively_stone_pentecostal_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_restoring_hope_apostolic_ministries_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_resurrection_church_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_shiloh_worship_centre_Logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_the_sdg_by_zac_Logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
+  },
+  {
+    "title": "church_logo_personal_signature",
+    "url": "image/gallery/personal-signature/churchlogo_whcim_logo.jpg",
+    "alt": "church_logo_personal_signature",
+    "collection": "personal-signature"
   }
 ]

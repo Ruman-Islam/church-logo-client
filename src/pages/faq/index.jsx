@@ -5,6 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Layout from "../../components/common/Layout";
+import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/faq.json";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 
@@ -42,15 +43,13 @@ export default function FAQScreen() {
   return (
     <Layout title="FAQ">
       <section id="faq">
-        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
-          <h3 className="text-[37px]">FAQ</h3>
-        </div>
+        <SectionBanner heading="FAQ" desc="" />
         <div className="container px-4 py-5 md:py-10">
           {faqs.map((faq) => {
             return (
               <div
                 key={faq?.uniqueId}
-                className="flex flex-col lg:flex-row justify-between gap-5"
+                className="flex flex-col xl:flex-row justify-between gap-5"
               >
                 <div
                   className={`basis-[100%] ${faq?.imgUrl && "basis-[50%]"} ${

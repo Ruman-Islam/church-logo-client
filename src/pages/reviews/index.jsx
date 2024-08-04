@@ -15,6 +15,7 @@ import imagePlaceHolder from "../../assets/svg/icons/church_logo_image_placehold
 import manPlaceHolder from "../../assets/svg/icons/profile_placeholder_man.png";
 import womanPlaceHolder from "../../assets/svg/icons/profile_placeholder_woman.svg";
 import Layout from "../../components/common/Layout";
+import SectionBanner from "../../components/common/SectionBanner";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetReviewQuery } from "../../services/features/review/reviewApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -23,7 +24,7 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 320,
+    maxWidth: 340,
   },
 });
 
@@ -40,13 +41,11 @@ export default function ReviewsScreen() {
   return (
     <Layout title="Reviews">
       <section id="reviews">
-        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
-          <Typography className="text-[37px]">Reviews</Typography>
-          <Typography className=" md:text-[20px] mt-1 max-w-[600px] w-full">
-            Read all the real, honest reviews from thousands of professionals on
-            our Facebook Page and Trustpilot.
-          </Typography>
-        </div>
+        <SectionBanner
+          heading="Reviews"
+          desc="Read all the real, honest reviews from thousands of professionals on
+            our Facebook Page and Trustpilot."
+        />
 
         <div className="container px-4 flex flex-col gap-5 py-[20px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
@@ -116,6 +115,7 @@ export default function ReviewsScreen() {
                       subheader={item?.submittedDate}
                     />
                     <CardMedia
+                      className="border-t border-b"
                       component="img"
                       height="194"
                       image={getImgUrl(item?.productImageUrl)}

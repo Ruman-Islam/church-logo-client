@@ -26,7 +26,7 @@ export default function Footer() {
                     alt="churchlogo"
                   />
                 </HashLink>
-                <p className="text-brand__font__size__sm lg:font-semibold">
+                <p className="text-brand__font__size__sm lg:font-semibold text-gray-300">
                   Check out all the church branding services at Church Logo.
                   From logo design to all branding work and everything between.
                   Without compromising the quality we are doing some amazing
@@ -37,7 +37,7 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row flex-1 gap-5">
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__500 text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left text-gray-300">
                   Navigation
                 </p>
                 {footerData?.navigation.map((item, index) =>
@@ -45,7 +45,7 @@ export default function Footer() {
                     user ? (
                       <HashLink
                         key={index}
-                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light text-text__gray"
                         to="/profile"
                         scroll={(el) => scrollWithOffset(el, 135)}
                       >
@@ -54,7 +54,7 @@ export default function Footer() {
                     ) : (
                       <HashLink
                         key={index}
-                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                        className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light text-text__gray"
                         to={item.route}
                         scroll={(el) => scrollWithOffset(el, 135)}
                       >
@@ -64,7 +64,7 @@ export default function Footer() {
                   ) : (
                     <HashLink
                       key={index}
-                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                      className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light text-text__gray"
                       to={item.route}
                       scroll={(el) => scrollWithOffset(el, 135)}
                     >
@@ -75,13 +75,13 @@ export default function Footer() {
               </div>
 
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__500 text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left text-gray-300">
                   Product
                 </p>
                 {footerData?.product.map((item, index) => (
                   <HashLink
                     key={index}
-                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light text-text__gray"
                     to={item.route}
                     scroll={(el) => scrollWithOffset(el, 135)}
                   >
@@ -91,13 +91,13 @@ export default function Footer() {
               </div>
 
               <div className="flex-1">
-                <p className="text-2xl font-brand__font__500 text-center md:text-left">
+                <p className="text-2xl font-brand__font__500 text-center md:text-left text-gray-300">
                   Help
                 </p>
                 {footerData?.help.map((item, index) => (
                   <HashLink
                     key={index}
-                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light"
+                    className="block w-fit py-0.5 hover:underline duration-300 mx-auto md:mx-0 font-brand__font__light text-text__gray"
                     to={item.route}
                     scroll={(el) => scrollWithOffset(el, 135)}
                   >
@@ -111,15 +111,16 @@ export default function Footer() {
 
         <div className="border-b w-full mx-auto my-5"></div>
         <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-4.5">
-          <p className="flex items-center gap-x-2">
+          <p className="flex items-center gap-x-2 text-gray-300">
             <AiOutlineCopyrightCircle />
-            All rights reserved Churchlogo {year}
+            All rights reserved Church Logo {year}
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 text-gray-300">
             <a
               href="https://www.facebook.com/churchlogo"
               target="_blank"
               className="hover:text-primary duration-300"
+              title="Facebook"
             >
               <FaFacebook size={20} />
             </a>
@@ -127,6 +128,7 @@ export default function Footer() {
               href="https://www.instagram.com/churchlogo.co"
               target="_blank"
               className="hover:text-primary duration-300"
+              title="Instagram"
             >
               <AiFillInstagram size={23} />
             </a>
@@ -134,6 +136,7 @@ export default function Footer() {
               href="https://www.youtube.com/@ChurchLogo"
               target="_blank"
               className="hover:text-primary duration-300"
+              title="Youtube"
             >
               <FaYoutube size={20} />
             </a>
@@ -141,6 +144,7 @@ export default function Footer() {
               href="https://www.tiktok.com/@churchlogo.co"
               target="_blank"
               className="hover:text-primary duration-300"
+                 title="Tiktok"
             >
               <FaTiktok size={20} />
             </a>

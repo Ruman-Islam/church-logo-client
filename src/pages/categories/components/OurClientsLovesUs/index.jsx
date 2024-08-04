@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Rating from "@mui/material/Rating";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
 import imagePlaceHolder from "../../../../assets/svg/icons/church_logo_image_placeholder.svg";
@@ -70,15 +69,11 @@ export default function OurClientsLovesUs() {
     limit: 11,
   });
 
-  const { data, isLoading } = useGetReviewQuery(dynamicUrl);
-  const reviews = data?.data;
+  const { data } = useGetReviewQuery(dynamicUrl);
+  const reviews = data?.data || [];
 
-  if (isLoading) {
-    return <Skeleton variant="rectangular" height={318} />;
-  }
-
-  return (
-    <div className="h-fit py-5 md:py-10 overflow-hidden">
+  return !reviews.length ? null : (
+    <div className="h-fit py-5 md:py-16 overflow-hidden">
       <h1 className="text-brand__font__size__lg md:text-brand__font__size__xl leading-tight text-center mb-2">
         Our clients love us
       </h1>
@@ -151,7 +146,7 @@ export default function OurClientsLovesUs() {
                       alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
                     />
                   </div>
-                  <div className="leading-tight">
+                  <div className="leading-tight text-text__gray">
                     <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                     <small>Client</small>
                   </div>

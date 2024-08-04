@@ -4,7 +4,6 @@ import {
   CardContent,
   CardMedia,
   Rating,
-  Skeleton,
   Typography,
 } from "@mui/material";
 import Slider from "react-slick";
@@ -72,14 +71,10 @@ export default function OurClientsLovesUs() {
     limit: 11,
   });
 
-  const { data, isLoading } = useGetReviewQuery(dynamicUrl);
-  const reviews = data?.data;
+  const { data } = useGetReviewQuery(dynamicUrl);
+  const reviews = data?.data || [];
 
-  if (isLoading) {
-    return <Skeleton variant="rectangular" height={318} />;
-  }
-
-  return (
+  return !reviews.length ? null : (
     <div className="h-fit py-5 md:py-20 overflow-hidden">
       <h1 className="text-brand__font__size__lg md:text-brand__font__size__xl leading-tight text-center mb-2">
         Our clients love us

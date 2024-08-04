@@ -10,28 +10,22 @@ import { useState } from "react";
 export default function Faq() {
   const [index, setIndex] = useState(0);
 
-  const handleChange = (i) => {
-    setIndex(i);
-  };
-
   return (
     <section id="package-faq" className="bg-section__bg_color py-10">
       <div className="container px-4">
-        <h2 className="text-section__title__size">
+        <h2 className="text-section__title__size text-center">
           Your branding FAQs, answered.
         </h2>
 
-        <div className="flex justify-between gap-4">
-          <div className="basis-[100%] md:basis-[50%]">
+        <div className="max-w-[1024px] w-full mx-auto px-4 py-5 md:py-10">
+          <div>
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 1}
-              onChange={() => handleChange(1)}
+              onChange={() => setIndex(1)}
             >
               <AccordionSummary
                 expandIcon={
@@ -40,33 +34,30 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 1 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 1
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 1 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 1
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>
+
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 2}
-              onChange={() => handleChange(2)}
+              onChange={() => setIndex(2)}
             >
               <AccordionSummary
                 expandIcon={
@@ -75,33 +66,30 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 2 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 2
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 2 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 2
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>
+
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 3}
-              onChange={() => handleChange(3)}
+              onChange={() => setIndex(3)}
             >
               <AccordionSummary
                 expandIcon={
@@ -110,33 +98,30 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 3 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 3
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 3 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 3
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>
+
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 4}
-              onChange={() => handleChange(4)}
+              onChange={() => setIndex(4)}
             >
               <AccordionSummary
                 expandIcon={
@@ -145,33 +130,30 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 4 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 4
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 4 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 4
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>
+
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 5}
-              onChange={() => handleChange(5)}
+              onChange={() => setIndex(5)}
             >
               <AccordionSummary
                 expandIcon={
@@ -180,35 +162,30 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 5 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 5
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 5 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 5
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>
-          </div>
-          <div className="basis-[100%] md:basis-[50%]">
+
             <Accordion
               className="bg-transparent"
               sx={{
                 boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
               }}
               expanded={index === 6}
-              onChange={() => handleChange(6)}
+              onChange={() => setIndex(6)}
             >
               <AccordionSummary
                 expandIcon={
@@ -217,161 +194,19 @@ export default function Faq() {
                   />
                 }
               >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 6 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 6
-                  </span>
+                <Typography
+                  className={`font-brand__font__semibold md:text-brand__font__size__md  ${
+                    index === 6 ? "text-primary" : "text-text__gray"
+                  }`}
+                >
+                  Question 6
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              className="bg-transparent"
-              sx={{
-                boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
-              }}
-              expanded={index === 7}
-              onChange={() => handleChange(7)}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    className={`${index === 7 && "text-primary"}`}
-                  />
-                }
-              >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 7 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 7
-                  </span>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              className="bg-transparent"
-              sx={{
-                boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
-              }}
-              expanded={index === 8}
-              onChange={() => handleChange(8)}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    className={`${index === 8 && "text-primary"}`}
-                  />
-                }
-              >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 8 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 8
-                  </span>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              className="bg-transparent"
-              sx={{
-                boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
-              }}
-              expanded={index === 9}
-              onChange={() => handleChange(9)}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    className={`${index === 9 && "text-primary"}`}
-                  />
-                }
-              >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 9 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 9
-                  </span>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              className="bg-transparent"
-              sx={{
-                boxShadow: "none",
-                paddingTop: "10px",
-                paddingBottom: "10px",
-              }}
-              expanded={index === 10}
-              onChange={() => handleChange(10)}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMoreIcon
-                    className={`${index === 10 && "text-primary"}`}
-                  />
-                }
-              >
-                <Typography>
-                  <span
-                    className={`font-brand__font__semibold md:text-brand__font__size__md  ${
-                      index === 10 ? "text-primary" : "text-text__gray"
-                    }`}
-                  >
-                    Question 10
-                  </span>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  This branding package includes a custom logo design, a
-                  business card design, plus a letterhead, envelope and Facebook
-                  cover to show it all off.
+                <Typography className="text-brand__font__size__sm md:text-brand__font__size__base font-brand__font__light text-[#7a7a7a] text-justify">
+                  Our logo designers are vetted, creative professionals with
+                  verified industry experience who take the time to understand
+                  your business.
                 </Typography>
               </AccordionDetails>
             </Accordion>

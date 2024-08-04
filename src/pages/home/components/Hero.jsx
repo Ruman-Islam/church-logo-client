@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <section id="home" className="lg:pt-[20px] lg:pb-[40px]">
       <div className="container px-4">
-        <div className="flex flex-col-reverse md:flex-row justify-between">
+        <div className="flex flex-col-reverse lg:flex-row justify-between">
           <div className="basis-[30%] w-full flex justify-center items-center">
             <div
               id="hero-slider"
@@ -45,7 +45,7 @@ export default function Hero() {
           </div>
           <div className="flex-1 flex justify-center p-2.5">
             <div className="w-full xl:p-10">
-              <h2 className="text-brand__black__color text-[50px] lg:text-[60px] xl:text-[80px] leading-[55px] xl:leading-[80px] lg:leading-[65px] font-brand__font__semibold text-center md:text-left">
+              <h2 className="text-brand__black__color text-[40px] lg:text-[60px] xl:text-[80px] leading-[45px] xl:leading-[80px] lg:leading-[65px] font-brand__font__semibold text-center md:text-left">
                 Get Your Own <span className="text-primary">Custom Church</span>
                 <br /> Logo
               </h2>
@@ -57,7 +57,7 @@ export default function Hero() {
                 services.
               </p>
 
-              <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4">
+              <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4 text-brand__font__size__sm">
                 {/* {timeString} {dateString} */}
                 <HashLink
                   to="/categories/logo-design#logo-design"
@@ -73,7 +73,7 @@ export default function Hero() {
                 </HashLink>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-text__gray">
+              <div className="flex flex-wrap items-center gap-2 text-text__gray">
                 <div>
                   <span>Popular: </span>
                 </div>
@@ -82,7 +82,11 @@ export default function Hero() {
                     key={d.id}
                     to={d.route}
                     scroll={(el) => scrollWithOffset(el, 135)}
-                    className="hover:bg-section__bg_color hover:text-brand__black__color py-0.5 px-3 block rounded-md text-text__gray duration-300 text-brand__font__size__sm border text-center flex-grow"
+                    className={`hover:bg-section__bg_color py-0.5  block rounded-md text-text__gray duration-300 text-brand__font__size__sm border text-center ${
+                      d.id !== 4
+                        ? "flex-grow px-3"
+                        : "flex-grow-0 xl:flex-grow px-8 xl:px-5"
+                    }`}
                   >
                     {d.title}
                   </HashLink>

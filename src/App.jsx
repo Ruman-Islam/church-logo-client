@@ -3,16 +3,19 @@ import { Suspense, lazy } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./auth/RequireAuth";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import PersistLogin from "./components/PersistLogin";
+import JumpToTopBtn from "./components/common/JumpToTopBtn";
 import Loader from "./components/common/Loader";
 import NotFoundScreen from "./pages/not-found";
 import privateRoutes from "./routes/privateRoutes";
 import publicRoutes from "./routes/publicRoutes";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 
 function App() {
-  AOS.init();
+  AOS.init({
+    once: true,
+  });
   return (
     <>
       <Suspense
@@ -45,6 +48,7 @@ function App() {
             <Route path="*" element={<NotFoundScreen />} />
           </Route>
         </Routes>
+        <JumpToTopBtn />
         <Toaster />
       </Suspense>
     </>

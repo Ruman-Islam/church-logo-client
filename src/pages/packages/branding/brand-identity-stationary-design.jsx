@@ -42,7 +42,7 @@ export default function PackageBrandIdentityAndStationeryDesignScreen() {
                     key={i}
                     className="flex items-center gap-2 text-brand__font__size__base"
                   >
-                    <FaCheck className="text-brand__black__color" />
+                    <FaCheck className="text-primary" />
                     <span>{item}</span>
                   </li>
                 ))}

@@ -3,6 +3,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout/index";
+import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
@@ -23,9 +24,7 @@ export default function GallerySocialMediaServiceScreen() {
   return (
     <Layout title="Gallery & Examples">
       <section id="personal-signature">
-        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
-          <h3 className="text-[37px]">Gallery</h3>
-        </div>
+        <SectionBanner heading="Gallery" desc="" />
         <div className="container px-4 flex flex-col gap-5 py-[20px]">
           <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
             {galleryNavButtons.map((d) => (
@@ -53,7 +52,7 @@ export default function GallerySocialMediaServiceScreen() {
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}
                         src={getImgUrl(d?.url)}
-                        className="w-full h-full object-cover rounded-md hover:cursor-pointer"
+                        className="w-full h-full object-cover rounded-md hover:cursor-pointer border"
                       />
                     </PhotoView>
                   ) : (

@@ -10,7 +10,7 @@ export default function ZeroPlacePromotionalSpace() {
         </div>
         <div className="basis-[60%] flex flex-col items-center">
           <img className="w-[250px] xl:w-[350px]" src={img2} alt="" />
-          <h2 className="leading-tight my-2 text-brand__font__size__lg xl:text-brand__font__size__xl">
+          <h2 className="leading-tight my-2 text-brand__font__size__lg xl:text-brand__font__size__xl text-center">
             A promotional space of Zero Place
           </h2>
           <p className="text-brand__font__size__sm text-center">

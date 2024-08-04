@@ -49,14 +49,14 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
       <header className="z-[999]">
         {topBarEnable && (
           <div className="topBar-area bg-[#031401] text-white py-2 font-medium relative z-50">
-            <div className="container px-4 text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
+            <div className="container text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
               50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
             </div>
           </div>
         )}
 
         <div
-          className={`${bgColor} px-4 duration-200 w-full ${
+          className={`${bgColor} duration-200 w-full ${
             isVisible
               ? "fixed top-0 animate-headerDrop shadow h-[90px]"
               : "h-[90px]"

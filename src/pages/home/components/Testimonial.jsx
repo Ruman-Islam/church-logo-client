@@ -76,10 +76,6 @@ export default function Testimonial() {
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);
   const reviews = data?.data || [];
 
-  if (isLoading) {
-    return <Skeleton variant="rectangular" height={318} />;
-  }
-
   return (
     <section>
       <div id="testimonial-slider" className="w-full mx-auto px-10 bg-white">
@@ -99,107 +95,100 @@ export default function Testimonial() {
 
             <div className="flex-1">
               <div className="rounded-lg w-full">
-                <Slider
-                  {...settings}
-                  className="relative max-w-[350px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
-                >
-                  {(isLoading
-                    ? Array.from(new Array(dynamicUrl.limit))
-                    : reviews
-                  )
-                    ?.slice(0, dynamicUrl.limit)
-                    .map((item) =>
-                      item ? (
-                        <div
-                          key={item?._id}
-                          className="rounded-md w-full text-brand__black__color"
-                        >
-                          <div className="flex flex-col md:flex-row gap-2">
-                            <div className="basis-[100%] md:basis-[10%]">
-                              <div className="w-12 h-12 rounded-full border border-brand__black__color mx-auto">
-                                <img
-                                  className="w-full h-full rounded-full border-[2px] border-white"
-                                  src={
-                                    item?.user?.photo?.cloudinaryUrl
-                                      ? getImgUrl(
-                                          item?.user?.photo?.cloudinaryUrl
-                                        )
-                                      : !item?.user?.gender
-                                      ? imagePlaceHolder
-                                      : item?.user?.gender === "male"
-                                      ? manPlaceHolder
-                                      : womanPlaceHolder
-                                  }
-                                  alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
-                                />
-                              </div>
-                            </div>
-                            <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
-                              <div className="flex items-center gap-1">
-                                <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
-                                <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
-                              </div>
-                              <div className="flex items-center justify-center gap-1.5 my-1">
-                                <img
-                                  src={getCountryImgPath(item?.user?.country)}
-                                  className="w-4 h-4 rounded-full"
-                                  alt={item?.user?.country}
-                                />
-                                <p>{item?.user?.country}</p>
-                              </div>
-                              <div className="flex items-center justify-center md:justify-start gap-1">
-                                <Rating
-                                  name="read-only"
-                                  value={item?.ratingPoints || 5}
-                                  precision={0.5}
-                                  readOnly
-                                  style={{
-                                    fontSize: 20,
-                                  }}
-                                  emptyIcon={
-                                    <StarIcon
-                                      style={{
-                                        opacity: 0.55,
-                                        color: "#7a7a7a",
-                                      }}
-                                      fontSize="inherit"
-                                    />
-                                  }
-                                />
-                              </div>
-
-                              {item?.reviewText.length > 250 ? (
-                                <blockquote>
-                                  <span>&ldquo;</span>
-                                  <CustomWidthTooltip
-                                    title={item?.reviewText}
-                                    placement="top"
-                                  >
-                                    <span>
-                                      {`${item?.reviewText.slice(0, 250)}...`}
-                                    </span>
-                                  </CustomWidthTooltip>
-                                  <span>&rdquo;</span>
-                                </blockquote>
-                              ) : (
-                                <blockquote className="leading-snug mt-1.5">
-                                  <span>&ldquo;</span>
-                                  {item?.reviewText}
-                                  <span>&rdquo;</span>
-                                </blockquote>
-                              )}
+                {isLoading ? (
+                  <div className="py-[75px]">
+                    <Skeleton variant="rectangular" height={250} />
+                  </div>
+                ) : (
+                  <Slider
+                    {...settings}
+                    className="relative max-w-[350px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
+                  >
+                    {reviews.map((item) => (
+                      <div
+                        key={item?._id}
+                        className="rounded-md w-full text-brand__black__color"
+                      >
+                        <div className="flex flex-col md:flex-row gap-2">
+                          <div className="basis-[100%] md:basis-[10%]">
+                            <div className="w-12 h-12 rounded-full border border-brand__black__color mx-auto">
+                              <img
+                                className="w-full h-full rounded-full border-[2px] border-white"
+                                src={
+                                  item?.user?.photo?.cloudinaryUrl
+                                    ? getImgUrl(
+                                        item?.user?.photo?.cloudinaryUrl
+                                      )
+                                    : !item?.user?.gender
+                                    ? imagePlaceHolder
+                                    : item?.user?.gender === "male"
+                                    ? manPlaceHolder
+                                    : womanPlaceHolder
+                                }
+                                alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                              />
                             </div>
                           </div>
+                          <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
+                            <div className="flex items-center gap-1">
+                              <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
+                              <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                            </div>
+                            <div className="flex items-center justify-center gap-1.5 my-1">
+                              <img
+                                src={getCountryImgPath(item?.user?.country)}
+                                className="w-4 h-4 rounded-full"
+                                alt={item?.user?.country}
+                              />
+                              <p>{item?.user?.country}</p>
+                            </div>
+                            <div className="flex items-center justify-center md:justify-start gap-1">
+                              <Rating
+                                name="read-only"
+                                value={item?.ratingPoints || 5}
+                                precision={0.5}
+                                readOnly
+                                style={{
+                                  fontSize: 20,
+                                }}
+                                emptyIcon={
+                                  <StarIcon
+                                    style={{
+                                      opacity: 0.55,
+                                      color: "#7a7a7a",
+                                    }}
+                                    fontSize="inherit"
+                                  />
+                                }
+                              />
+                            </div>
+
+                            {item?.reviewText.length > 250 ? (
+                              <blockquote>
+                                <span>&ldquo;</span>
+                                <CustomWidthTooltip
+                                  title={item?.reviewText}
+                                  placement="top"
+                                >
+                                  <span>
+                                    {`${item?.reviewText.slice(0, 250)}...`}
+                                  </span>
+                                </CustomWidthTooltip>
+                                <span>&rdquo;</span>
+                              </blockquote>
+                            ) : (
+                              <blockquote className="leading-snug mt-1.5">
+                                <span>&ldquo;</span>
+                                {item?.reviewText}
+                                <span>&rdquo;</span>
+                              </blockquote>
+                            )}
+                          </div>
                         </div>
-                      ) : (
-                        <Skeleton
-                          key={item?._id}
-                          variant="rectangular"
-                          height={218}
-                        />
-                      )
-                    )}
-                </Slider>
+                      </div>
+                    ))}
+                  </Slider>
+                )}
               </div>
             </div>
           </div>

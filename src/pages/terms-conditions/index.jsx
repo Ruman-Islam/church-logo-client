@@ -1,13 +1,12 @@
 import Layout from "../../components/common/Layout";
+import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/termsConditions.json";
 
 export default function TermsAndConditionsScreen() {
   return (
     <Layout title="Term & Conditions">
       <section id="terms" className="mb-10">
-        <div className="bg-page_bg h-[150px] lg:h-[200px] xl:h-[300px] bg-no-repeat bg-center bg-cover flex flex-col justify-center items-center text-white text-center leading-tight py-2">
-          <h3 className="text-[37px]">Terms & Conditions</h3>
-        </div>
+        <SectionBanner heading="Terms & Conditions" desc="" />
         {/* Introduction */}
         <div className="bg-section__bg_color text-brand__black__color">
           <div className="container px-4 py-[30px] md:py-[60px]">

@@ -11,6 +11,7 @@ export default {
         brand__font__size__base: "16px",
         brand__font__size__md: "18px",
         brand__font__size__lg: "24px",
+        brand__font__size__lg2: "40px",
         brand__font__size__xl: "52px",
         brand__font__size__2xl: "74px",
         section__title__size: "32px",
@@ -69,10 +70,22 @@ export default {
             top: "0px",
           },
         },
+        jumpToTop: {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "50%": {
+            transform: "scale(1.1)",
+          },
+          "100%": {
+            transform: "scale(1)",
+          },
+        },
       },
       animation: {
         navMenuOpInOut: "navMenuOpInOut 0.5s linear 1",
         headerDrop: "headerDrop 0.5s linear 1",
+        jumpToTop: "jumpToTop 0.5s linear 1",
       },
       backgroundImage: {
         globe: "url('../src/assets/image/background/bg.png')",
