@@ -26,7 +26,7 @@ export default function AccountSidebar() {
           <HashLink to="/">My Orders</HashLink>
         </li>
         <li>
-          <HashLink to="/">Chat</HashLink>
+          <HashLink to="/profile/chat">Chat</HashLink>
         </li>
         <MuiIButton onClick={handleLogout} variant="outlined">
           Sign out

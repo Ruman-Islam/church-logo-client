@@ -9,6 +9,11 @@ const privateRoutes = [
     name: "profile/account-setting",
     Component: () => import("../pages/profile/account-setting"),
   },
+  {
+    path: "/profile/chat",
+    name: "profile/chat",
+    Component: () => import("../pages/profile/chat"),
+  },
 ];
 
 export default privateRoutes;

@@ -2,7 +2,7 @@ import Layout from "../../components/common/Layout";
 import { useAppSelector } from "../../services/hook";
 import AccountSidebar from "./components/AccountSidebar";
 import ProfileInfo from "./ProfileInfo";
-ProfileInfo
+import ChatBox from "./ChatBox";
 
 export default function ProfileScreen() {
   const {
