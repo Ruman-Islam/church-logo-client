@@ -11,8 +11,8 @@ export default function ChatBox({ user }) {
   const [messages, setMessages] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [file, setFile] = useState(null);
-  //const hiddenFileInput = useRef(null);
 
+  //-- Handle input events -- //
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
@@ -46,6 +46,7 @@ export default function ChatBox({ user }) {
     setAnchorEl(null);
   };
 
+  // -- Upload File Function -- //
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -84,8 +85,6 @@ export default function ChatBox({ user }) {
                 {message.file && !message.file.type.startsWith("image/") && (
                   <span>
                     {message.file.name}
-                    {/* (Unsupported file type:{" "}
-                    {message.file.type}) */}
                   </span>
                 )}
                 <a href={URL.createObjectURL(message.file)} download={message.file.name}>Download</a>
@@ -179,6 +178,14 @@ export default function ChatBox({ user }) {
 
       {/*---- ChatBox Input section ----*/}
       <div className="pt-4 mt-4">
+        {/* Uploaded file name will display here temporarily */}
+        <div>
+          {file && (
+            <div className="text-sm text-gray-500 bg-gray-100 p-2 rounded-lg">
+              {file.name}
+            </div>
+          )}
+        </div>
         <input
           type="text"
           placeholder="Send message..."
@@ -192,18 +199,18 @@ export default function ChatBox({ user }) {
             <div className="flex space-x-2">
               <FiSmile className="text-gray-500 w-4 h-4 cursor-pointer" />
               <div>
-                <FiPaperclip
-                  type="file"
-                  className="text-gray-500 w-4 h-4 cursor-pointer"
-                  //onClick={handleFileClick}
-                />
-                <input
-                  type="file"
-                  className="w-full border border-gray-300 rounded-lg py-2 px-4 text-sm"
-                  onChange={handleFileChange}
-                  //ref={hiddenFileInput}
-                  //style={{ display: "none" }}
-                />
+                <label
+                  className="flex items-center cursor-pointer"
+                  htmlFor="fileInput"
+                >
+                  <FiPaperclip className="text-gray-500 w-4 h-4" />
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileChange}
+                    id="fileInput"
+                  />
+                </label>
               </div>
               <FiZap className="text-gray-500 w-4 h-4 cursor-pointer" />
             </div>
@@ -212,7 +219,6 @@ export default function ChatBox({ user }) {
               Create an Offer
             </button>
           </div>
-
           <button
             className="ml-2 text-sm text-gray-800 cursor-pointer"
             onClick={handleSendMessage}
