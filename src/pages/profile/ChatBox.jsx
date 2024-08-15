@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FiSmile, FiPaperclip, FiZap } from "react-icons/fi";
+import {
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 
 export default function ChatBox({ user }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [file, setFile] = useState(null);
+  //const hiddenFileInput = useRef(null);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -15,9 +23,11 @@ export default function ChatBox({ user }) {
       role: "user",
       message: input,
       time: "",
+      file: file,
     };
     setMessages([...messages, newMessage]);
     setInput("");
+    setFile(null);
   };
 
   // -- Key Press Event to send message by pressing enter -- //
@@ -25,6 +35,19 @@ export default function ChatBox({ user }) {
     if (e.key === "Enter") {
       handleSendMessage();
     }
+  };
+
+  // -- Open Dropdown Menu -- //
+  const handleDropdownClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  // -- Close Dropdown Menu -- //
+  const handleDropdownClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   // -- Render Message Function -- //
@@ -40,13 +63,35 @@ export default function ChatBox({ user }) {
             : "justify-end items-start space-x-3"
         }`}
       >
-        <img src="" alt="" className="w-10 h-10 rounded-full"/>
+        <img src="" alt="" className="w-10 h-10 rounded-full" />
         <div className="text-md">
           <div className="">
             {isUserMessage ? user.firstName : "Admin"}
             <span className="text-gray-500 text-sm"> {message.time}</span>
           </div>
-          <div className="text-gray-500">{message.message}</div>
+          <div className="text-gray-500">
+            {message.message}
+            {message.file && (
+              <div>
+                {/* Render the file preview or download link */}
+                {message.file && message.file.type.startsWith("image/") && (
+                  <img
+                    src={URL.createObjectURL(message.file)}
+                    alt={message.file.name}
+                    className="w-24 h-24"
+                  />
+                )}
+                {message.file && !message.file.type.startsWith("image/") && (
+                  <span>
+                    {message.file.name}
+                    {/* (Unsupported file type:{" "}
+                    {message.file.type}) */}
+                  </span>
+                )}
+                <a href={URL.createObjectURL(message.file)} download={message.file.name}>Download</a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -112,7 +157,19 @@ export default function ChatBox({ user }) {
             Last seen: 1 day ago | Local time: 13 Aug 2024, 21:25
           </div>
         </div>
-        <div>...</div>
+        <IconButton onClick={handleDropdownClick}>
+          <span>...</span>
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleDropdownClose}
+        >
+          <MenuItem onClick={handleDropdownClose}>Action</MenuItem>
+          <MenuItem onClick={handleDropdownClose}>Another action</MenuItem>
+          <MenuItem onClick={handleDropdownClose}>Something else</MenuItem>
+        </Menu>
       </div>
 
       {/*---- ChatBox main section ----*/}
@@ -127,14 +184,27 @@ export default function ChatBox({ user }) {
           placeholder="Send message..."
           value={input}
           onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
           className="w-full border border-gray-300 rounded-lg py-2 px-4 text-sm"
         />
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center">
             <div className="flex space-x-2">
               <FiSmile className="text-gray-500 w-4 h-4 cursor-pointer" />
-              <FiPaperclip className="text-gray-500 w-4 h-4 cursor-pointer" />
+              <div>
+                <FiPaperclip
+                  type="file"
+                  className="text-gray-500 w-4 h-4 cursor-pointer"
+                  //onClick={handleFileClick}
+                />
+                <input
+                  type="file"
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 text-sm"
+                  onChange={handleFileChange}
+                  //ref={hiddenFileInput}
+                  //style={{ display: "none" }}
+                />
+              </div>
               <FiZap className="text-gray-500 w-4 h-4 cursor-pointer" />
             </div>
             <div className="border-l-2 border-gray-300 mx-4"></div>
@@ -142,6 +212,7 @@ export default function ChatBox({ user }) {
               Create an Offer
             </button>
           </div>
+
           <button
             className="ml-2 text-sm text-gray-800 cursor-pointer"
             onClick={handleSendMessage}
