@@ -17,7 +17,7 @@ export default function GalleryLogoDesignScreen() {
     collection: "logo-design",
   });
 
-  const { data, isLoading } = useGetGalleryImageQuery(dynamicUrl);
+  const { data, isFetching } = useGetGalleryImageQuery(dynamicUrl);
   const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
   const gallery = data?.data;
 
@@ -43,7 +43,7 @@ export default function GalleryLogoDesignScreen() {
           </div>
           <PhotoProvider>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4">
-              {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
+              {(isFetching ? Array.from(new Array(dynamicUrl.limit)) : gallery)
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
@@ -69,7 +69,7 @@ export default function GalleryLogoDesignScreen() {
                 className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
                 variant="contained"
               >
-                Load More
+                {isFetching ? "Loading..." : "Load More"}
               </Button>
             </div>
           ) : null}

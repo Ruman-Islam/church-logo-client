@@ -95,7 +95,7 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 </button>
               </div>
               <div
-                className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-xl lg:shadow-none ${
+                className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[325px]"

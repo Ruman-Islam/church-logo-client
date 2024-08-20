@@ -1,28 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
 
-const authSlice = createSlice({
+const getCart = () =>
+  localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : { cartItems: [] };
+
+const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    currentPackageId: null,
-    cart: Cookies.get("cart")
-      ? JSON.parse(Cookies.get("cart"))
-      : { cartItems: [] },
-  },
+  initialState: getCart(),
 
   reducers: {
-    setAuth: (state, action) => {
-      const { user, accessToken } = action.payload;
-      state.user = user;
-      state.token = accessToken;
+    setLogoDesignBrief: (state, action) => {
+      const newItem = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => item.category === newItem.category
+      );
+
+      const cartItems = existingItem
+        ? state.cartItems.map((item) =>
+            item.category === existingItem.category ? newItem : item
+          )
+        : [...state.cartItems, newItem];
+
+      localStorage.setItem("cart", JSON.stringify({ cartItems }));
+
+      return (state = { ...state, cartItems });
     },
-    addToCart: (state, action) => {},
   },
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setLogoDesignBrief } = cartSlice.actions;
 
-export default authSlice.reducer;
-
-export const selectCurrentUser = (state) => state.auth.user;
-export const selectCurrentToken = (state) => state.auth.token;
+export default cartSlice.reducer;

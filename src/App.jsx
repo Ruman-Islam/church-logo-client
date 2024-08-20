@@ -16,6 +16,7 @@ function App() {
   AOS.init({
     once: true,
   });
+
   return (
     <>
       <Suspense

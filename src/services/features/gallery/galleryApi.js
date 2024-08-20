@@ -5,7 +5,7 @@ const galleryApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getGalleryImage: builder.query({
       query: (query) => {
-        const url = generateServiceUrl("/image/gallery", query);
+        const url = generateServiceUrl("/public/image/gallery", query);
 
         return {
           url,

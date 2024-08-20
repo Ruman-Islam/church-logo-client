@@ -71,6 +71,8 @@ export default function Testimonial() {
   const [dynamicUrl] = useState({
     page: 1,
     limit: 10,
+    sortBy: "ratingPoints",
+    sortOrder: -1,
   });
 
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);

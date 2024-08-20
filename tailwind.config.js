@@ -2,6 +2,9 @@
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  safelist: [
+    "basis-[100%] md:basis-[50%] md:basis-[25%] border border-t border-b border-l border-r md:border-t md:border-b md:border-l md:border-r",
+  ],
   important: "#root",
   theme: {
     extend: {
@@ -51,7 +54,7 @@ export default {
         text__navy_blue: "#00306e",
         link__color: "#1976d2",
         text__gray: "#7a7a7a",
-        section__bg_color: "#f7f6f6",
+        section__bg_color: "#F8F8F8",
       },
       keyframes: {
         navMenuOpInOut: {

@@ -11,6 +11,7 @@ const settings = {
   slidesToScroll: 3,
   autoplay: false,
   arrows: false,
+  draggable: true,
   responsive: [
     {
       breakpoint: 1024,
@@ -62,7 +63,7 @@ export default function CustomersDoing() {
           />
         </div>
 
-        <div className="slider-container w-full">
+        <div className="slider-container w-full cursor-grab active:cursor-grabbing">
           <Slider {...settings} className="p-2">
             {data.map((content) => (
               <CustomersDoingCard key={content.id} content={content} />

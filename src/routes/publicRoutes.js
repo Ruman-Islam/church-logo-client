@@ -91,14 +91,29 @@ const publicRoutes = [
     Component: () => import("../pages/packages"),
   },
   {
-    path: "order/brief/:id",
-    name: "order/brief",
-    Component: () => import("../pages/order/brief"),
+    path: "order/logo-design/brief/:id",
+    name: "order/logo-design/brief/:id",
+    Component: () => import("../pages/order/logo-design/brief"),
   },
   {
-    path: "order/color",
-    name: "order/color",
-    Component: () => import("../pages/order/color"),
+    path: "order/logo-design/design",
+    name: "order/logo-design/design",
+    Component: () => import("../pages/order/logo-design/design"),
+  },
+  {
+    path: "order/logo-design/color",
+    name: "order/logo-design/color",
+    Component: () => import("../pages/order/logo-design/color"),
+  },
+  {
+    path: "order/logo-design/add-ons",
+    name: "order/logo-design/add-ons",
+    Component: () => import("../pages/order/logo-design/add-ons"),
+  },
+  {
+    path: "order/logo-design/review",
+    name: "order/logo-design/review",
+    Component: () => import("../pages/order/logo-design/review"),
   },
 ];
 

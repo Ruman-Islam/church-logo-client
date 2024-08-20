@@ -3,12 +3,12 @@ import Cookies from "js-cookie";
 import { logOut, setAuth } from "../features/auth/authSlice";
 
 // eslint-disable-next-line no-unused-vars
-const productionUrl = "https://church-logo-server.vercel.app/api/v1";
+const productionUrl = "https://church-logo-server-2.vercel.app/api/v1";
 // eslint-disable-next-line no-unused-vars
 const developmentUrl = "http://localhost:8080/api/v1";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: productionUrl,
+  baseUrl: developmentUrl,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -54,10 +54,6 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReAuth,
-  tagTypes: [
-    "user",
-    "gallery",
-    "review",
-  ],
+  tagTypes: ["user", "gallery", "review", "package", "system"],
   endpoints: () => ({}),
 });

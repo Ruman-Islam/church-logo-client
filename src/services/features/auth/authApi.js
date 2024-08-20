@@ -6,7 +6,7 @@ const authApi = api.injectEndpoints({
       query: ({ data }) => {
         console.log(data);
         return {
-          url: "/auth/sign-up",
+          url: "/public/auth/sign-up",
           method: "POST",
           body: data,
         };
@@ -14,14 +14,14 @@ const authApi = api.injectEndpoints({
     }),
     signIn: builder.mutation({
       query: ({ data }) => ({
-        url: "/auth/sign-in",
+        url: "/public/auth/sign-in",
         method: "POST",
         body: data,
       }),
     }),
     getRefreshToken: builder.mutation({
       query: ({ data }) => ({
-        url: "/auth/refresh/token",
+        url: "/public/auth/refresh/token",
         method: "POST",
         body: data,
       }),
