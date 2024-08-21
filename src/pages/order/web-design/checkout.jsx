@@ -43,7 +43,7 @@ export default function OrderCheckout() {
   const dispatch = useAppDispatch();
 
   const cartItem = useMemo(() => {
-    return cartItems?.find((item) => item.category === "logo-design");
+    return cartItems?.find((item) => item.category === "web-design");
   }, [cartItems]);
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
@@ -52,7 +52,12 @@ export default function OrderCheckout() {
   useEffect(() => {
     setValue("firstName", user?.firstName);
     setValue("lastName", user?.lastName);
-
+    setValue("phone", cartItem?.contactDetails?.phone);
+    setValue("companyName", cartItem?.contactDetails?.companyName);
+    setValue("countryCode", () => {
+      const split = cartItem?.contactDetails?.countryCode.split(" ");
+      return { country: split[0], code: split[1] };
+    });
     if (cartItem && user?.userId) {
       dispatch(
         setLogoDesignBrief({
@@ -76,16 +81,17 @@ export default function OrderCheckout() {
 
   const totalPriceOfAdditionalFeats = selectedAdditionalFeats
     ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue?.price,
+        (accumulator, currentValue) => accumulator + currentValue.price,
         0
       )
     : 0;
 
-  const totalPrice =
+  const totalPrice = Math.ceil(
     packagePriceConversion(packageData) +
-    totalPriceOfAdditionalDelivery +
-    totalPriceOfAdditionalRevision +
-    totalPriceOfAdditionalFeats;
+      totalPriceOfAdditionalDelivery +
+      totalPriceOfAdditionalRevision +
+      totalPriceOfAdditionalFeats
+  );
 
   const onSubmit = (formData) => {
     const order = {
@@ -94,7 +100,7 @@ export default function OrderCheckout() {
     };
 
     dispatch(setLogoDesignBrief(order));
-    navigate(`/order/logo-design/payment#payment`);
+    navigate(`/order/web-design/payment#payment`);
   };
 
   if (isLoading) {
@@ -103,8 +109,8 @@ export default function OrderCheckout() {
 
   return (
     <Layout title="Checkout">
-      <Box id="checkout" className="bg-section__bg_color h-full">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box id="checkout">
           <SectionBanner
             heading="Your details"
             desc="Fill out your details, pay and we'll post your contest in our marketplace."
@@ -211,6 +217,13 @@ export default function OrderCheckout() {
                         <FormControl fullWidth>
                           <Autocomplete
                             disablePortal
+                            defaultValue={() => {
+                              const split =
+                                cartItem?.contactDetails?.countryCode.split(
+                                  " "
+                                );
+                              return { country: split[0], code: split[1] };
+                            }}
                             options={countryCodes}
                             getOptionLabel={({ country, code }) =>
                               `${country} ${code}`
@@ -319,15 +332,15 @@ export default function OrderCheckout() {
                 <Button
                   type="submit"
                   onClick={handleSubmit}
-                  className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+                  className={`bg-brand__black__color hover:bg-[#313030] text-white px-4 rounded-full`}
                 >
                   Complete
                 </Button>
               </Box>
             </Toolbar>
           </AppBar>
-        </form>
-      </Box>
+        </Box>
+      </form>
     </Layout>
   );
 }

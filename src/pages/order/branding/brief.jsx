@@ -48,7 +48,7 @@ export default function OrderBriefScreen() {
   const [logoName, setLogoName] = useState("");
   const [logoDesc, setLogoDesc] = useState("");
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "branding");
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
@@ -88,7 +88,7 @@ export default function OrderBriefScreen() {
     const order = {
       ...cartItem,
       packageId: id,
-      category: "logo-design",
+      category: "branding",
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
       brief: {
@@ -102,7 +102,7 @@ export default function OrderBriefScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/logo-design/design#design`);
+    navigate(`/order/branding/design#design`);
   };
 
   if (isLoading) {

@@ -48,7 +48,7 @@ export default function OrderBriefScreen() {
   const [logoName, setLogoName] = useState("");
   const [logoDesc, setLogoDesc] = useState("");
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "web-design");
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
@@ -88,7 +88,7 @@ export default function OrderBriefScreen() {
     const order = {
       ...cartItem,
       packageId: id,
-      category: "logo-design",
+      category: "web-design",
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
       brief: {
@@ -102,7 +102,7 @@ export default function OrderBriefScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/logo-design/design#design`);
+    navigate(`/order/web-design/design#design`);
   };
 
   if (isLoading) {
@@ -111,7 +111,7 @@ export default function OrderBriefScreen() {
 
   return (
     <Layout title="Your design brief">
-      <Box id="order-brief" className="bg-section__bg_color h-full">
+      <Box id="order-brief" className="bg-section__bg_color">
         <SectionBanner
           heading="Logo & brand identity pack brief"
           desc="Fill out the brief so the designers know what you‘re looking for."
@@ -340,8 +340,8 @@ export default function OrderBriefScreen() {
                         className={`${
                           !email || !logoName || !logoDesc
                             ? "bg-text__gray"
-                            : "bg-primary hover:bg-brand__black__color"
-                        } text-white px-10 rounded-full font-brand__font__600`}
+                            : "bg-brand__black__color hover:bg-[#313030]"
+                        } text-white px-4 rounded-full`}
                       >
                         Continue
                       </Button>

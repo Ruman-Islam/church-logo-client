@@ -36,13 +36,17 @@ export default function CategoryPersonalSignatureScreen() {
         <div className="container px-4 py-5">
           <CategoryBtn />
           <div className="p-5 md:mt-4">
-            <div className="flex flex-wrap justify-center max-w-[1024px] w-full mx-auto">
+            <div
+              className={`flex flex-wrap max-w-[1024px] w-full mx-auto ${
+                isLoading && "justify-center"
+              }`}
+            >
               {(isLoading ? Array.from(new Array(9)) : packages).map((pg, i) =>
                 pg ? (
                   packages.length > 3 && i === 2 ? (
                     <Fragment key={pg?.packageId}>
                       <PackageCard
-                         i={i}
+                        i={i}
                         pg={pg}
                         iconColors={iconColors}
                         setIconColors={setIconColors}
@@ -59,7 +63,7 @@ export default function CategoryPersonalSignatureScreen() {
                     </Fragment>
                   ) : (
                     <PackageCard
-                       i={i}
+                      i={i}
                       key={pg?.packageId}
                       pg={pg}
                       iconColors={iconColors}

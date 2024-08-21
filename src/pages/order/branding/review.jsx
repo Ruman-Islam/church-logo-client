@@ -31,7 +31,7 @@ export default function OrderReviewScreen() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "branding");
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -48,7 +48,7 @@ export default function OrderReviewScreen() {
 
   const totalPriceOfAdditionalFeats = selectedAdditionalFeats
     ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue?.price,
+        (accumulator, currentValue) => accumulator + currentValue.price,
         0
       )
     : 0;
@@ -63,7 +63,7 @@ export default function OrderReviewScreen() {
   );
 
   const handleSubmit = () => {
-    navigate(`/order/logo-design/checkout#checkout`);
+    navigate(`/order/branding/checkout#checkout`);
   };
 
   const handleRemoveAdditionalFeat = (item) => {

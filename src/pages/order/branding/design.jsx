@@ -13,35 +13,35 @@ import { useGetSystemConfigQuery } from "../../../services/features/system/syste
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import OrderStepper2 from "../components/OrderStepper2";
 
-export default function OrderColorDesignScreen() {
+export default function OrderDesignScreen() {
   useAutomaticScrollWithOffset();
 
   const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "branding");
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [selectedColors, setSelectedColors] = useState(
-    cartItem?.preferredColors || []
+  const [selectedDesigns, setSelectedDesigns] = useState(
+    cartItem?.preferredDesigns || []
   );
 
   const { data, isLoading } = useGetSystemConfigQuery();
 
-  const colorSample = data?.data?.orderSettings?.colorSample;
+  const designSample = data?.data?.orderSettings?.designSample;
 
-  const handlePreferableColors = (img) => {
-    setSelectedColors((prev) => {
+  const handlePreferableDesigns = (img) => {
+    setSelectedDesigns((prev) => {
       const exist = prev.find((item) => item.publicId === img.publicId);
 
       if (exist) {
         return prev.filter((item) => item.publicId !== img.publicId);
       } else {
         if (prev.length >= 3) {
-          toast("⚠️ You can only select up to 3 colors");
+          toast("⚠️ You can only select up to 3 designs");
           return prev;
         } else {
           return [...prev, img];
@@ -53,35 +53,34 @@ export default function OrderColorDesignScreen() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (selectedColors.length === 0) {
-      return toast("⚠️ Please select at least one color.");
+    if (selectedDesigns.length === 0) {
+      return toast("⚠️ Please select at least one design.");
     }
 
     const order = {
       ...cartItem,
-      preferredColors: selectedColors,
+      preferredDesigns: selectedDesigns,
     };
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/logo-design/add-ons#add-ons`);
+    navigate(`/order/branding/color#color`);
   };
-
   return (
-    <Layout title="Choose palette">
-      <Box id="color" className="bg-section__bg_color h-full">
+    <Layout title="Choose design">
+      <Box id="design" className="bg-section__bg_color h-full">
         <SectionBanner
-          heading="Colors to explore"
-          desc="Pick up to three colors you'd like your designers to explore."
+          heading="Which designs do you like?"
+          desc="Let's start by helping your designers understand which styles you prefer."
         />
         <Box className="container py-10">
           <Box>
             <form onSubmit={onSubmit}>
               <Box className="max-w-[1000px] w-full mx-auto">
-                <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {(isLoading ? Array.from(new Array(6)) : colorSample).map(
+                <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {(isLoading ? Array.from(new Array(6)) : designSample).map(
                     (img, i) => {
-                      const isSelected = selectedColors.find(
+                      const isSelected = selectedDesigns.find(
                         (item) => item?.publicId === img?.publicId
                       );
 
@@ -90,8 +89,8 @@ export default function OrderColorDesignScreen() {
                           key={img?.publicId}
                           data-aos="flip-left"
                           data-aos-duration={`${i + 1 * 5}00`}
-                          onClick={() => handlePreferableColors(img)}
-                          className="hover:shadow-xl relative border cursor-pointer"
+                          onClick={() => handlePreferableDesigns(img)}
+                          className="hover:shadow-xl cursor-pointer relative border"
                         >
                           <Box
                             className={`absolute w-full h-full flex justify-end items-end p-2 text-primary duration-300 border-4 border-primary border-opacity-0 hover:border-opacity-100  ${
@@ -100,10 +99,7 @@ export default function OrderColorDesignScreen() {
                           >
                             {isSelected && <CheckCircleIcon />}
                           </Box>
-
                           <img src={img?.secureUrl} alt="church_logo" />
-
-                          <Box className="p-2">{img?.displayName}</Box>
                         </Box>
                       ) : (
                         <Skeleton key={i} variant="rectangular" height={218} />
@@ -119,13 +115,13 @@ export default function OrderColorDesignScreen() {
                 >
                   <Toolbar>
                     <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
-                      <OrderStepper2 value={40} />
+                      <OrderStepper2 value={20} />
 
                       <Button
-                        disabled={!selectedColors.length}
+                        disabled={!selectedDesigns.length}
                         type="submit"
                         className={`${
-                          !selectedColors.length
+                          !selectedDesigns.length
                             ? "bg-text__gray"
                             : "bg-primary hover:bg-brand__black__color"
                         } text-white px-10 rounded-full font-brand__font__600`}

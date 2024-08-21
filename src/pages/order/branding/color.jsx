@@ -20,7 +20,7 @@ export default function OrderColorDesignScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "branding");
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ export default function OrderColorDesignScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/logo-design/add-ons#add-ons`);
+    navigate(`/order/branding/add-ons#add-ons`);
   };
 
   return (

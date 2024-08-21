@@ -32,7 +32,7 @@ export default function OrderAddOnsScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item?.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item?.category === "branding");
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -85,10 +85,8 @@ export default function OrderAddOnsScreen() {
     };
 
     dispatch(setLogoDesignBrief(order));
-    navigate(`/order/logo-design/review#review`);
+    navigate(`/order/branding/review#review`);
   };
-
-  // console.log(selectedAdditionalFeats);
 
   if (isLoading) {
     return <Loader />;

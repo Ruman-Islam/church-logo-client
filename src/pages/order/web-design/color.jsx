@@ -20,7 +20,7 @@ export default function OrderColorDesignScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "web-design");
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -64,12 +64,12 @@ export default function OrderColorDesignScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/logo-design/add-ons#add-ons`);
+    navigate(`/order/web-design/add-ons#add-ons`);
   };
 
   return (
     <Layout title="Choose palette">
-      <Box id="color" className="bg-section__bg_color h-full">
+      <Box id="color" className="bg-section__bg_color">
         <SectionBanner
           heading="Colors to explore"
           desc="Pick up to three colors you'd like your designers to explore."
@@ -127,8 +127,8 @@ export default function OrderColorDesignScreen() {
                         className={`${
                           !selectedColors.length
                             ? "bg-text__gray"
-                            : "bg-primary hover:bg-brand__black__color"
-                        } text-white px-10 rounded-full font-brand__font__600`}
+                            : "bg-brand__black__color hover:bg-[#313030]"
+                        } text-white px-4 rounded-full`}
                       >
                         Continue
                       </Button>

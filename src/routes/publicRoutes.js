@@ -115,6 +115,56 @@ const publicRoutes = [
     name: "order/logo-design/review",
     Component: () => import("../pages/order/logo-design/review"),
   },
+  {
+    path: "order/web-design/brief/:id",
+    name: "order/web-design/brief/:id",
+    Component: () => import("../pages/order/web-design/brief"),
+  },
+  {
+    path: "order/web-design/design",
+    name: "order/web-design/design",
+    Component: () => import("../pages/order/web-design/design"),
+  },
+  {
+    path: "order/web-design/color",
+    name: "order/web-design/color",
+    Component: () => import("../pages/order/web-design/color"),
+  },
+  {
+    path: "order/web-design/add-ons",
+    name: "order/web-design/add-ons",
+    Component: () => import("../pages/order/web-design/add-ons"),
+  },
+  {
+    path: "order/web-design/review",
+    name: "order/web-design/review",
+    Component: () => import("../pages/order/web-design/review"),
+  },
+  {
+    path: "order/branding/brief/:id",
+    name: "order/branding/brief/:id",
+    Component: () => import("../pages/order/branding/brief"),
+  },
+  {
+    path: "order/branding/design",
+    name: "order/branding/design",
+    Component: () => import("../pages/order/branding/design"),
+  },
+  {
+    path: "order/branding/color",
+    name: "order/branding/color",
+    Component: () => import("../pages/order/branding/color"),
+  },
+  {
+    path: "order/branding/add-ons",
+    name: "order/branding/add-ons",
+    Component: () => import("../pages/order/branding/add-ons"),
+  },
+  {
+    path: "order/branding/review",
+    name: "order/branding/review",
+    Component: () => import("../pages/order/branding/review"),
+  },
 ];
 
 export default publicRoutes;

@@ -31,7 +31,7 @@ export default function OrderReviewScreen() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find((item) => item.category === "web-design");
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -48,22 +48,22 @@ export default function OrderReviewScreen() {
 
   const totalPriceOfAdditionalFeats = selectedAdditionalFeats
     ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue?.price,
+        (accumulator, currentValue) => accumulator + currentValue.price,
         0
       )
     : 0;
 
-  const totalPrice = Number(
-    (
-      packagePriceConversion(packageData) +
+  const totalPrice = Math.ceil(
+    packagePriceConversion(packageData) +
       totalPriceOfAdditionalDelivery +
       totalPriceOfAdditionalRevision +
       totalPriceOfAdditionalFeats
-    ).toFixed(2)
   );
 
+  console.log(totalPrice);
+
   const handleSubmit = () => {
-    navigate(`/order/logo-design/checkout#checkout`);
+    navigate(`/order/web-design/checkout#checkout`);
   };
 
   const handleRemoveAdditionalFeat = (item) => {
@@ -94,7 +94,7 @@ export default function OrderReviewScreen() {
 
   return (
     <Layout title="Overview">
-      <Box id="review" className="bg-section__bg_color h-full">
+      <Box id="review" className="bg-section__bg_color">
         <SectionBanner
           heading="Take a look at what you've added"
           desc="Pay and we'll post your contest in our marketplace."
@@ -145,7 +145,7 @@ export default function OrderReviewScreen() {
                     {packageData?.featuredItems.map((item) => (
                       <MenuItem
                         key={item}
-                        className="flex items-center gap-x-4"
+                        className="flex items-center gap-x-1 w-[200px]"
                       >
                         <span className="basis-[10%] text-primary">
                           <DoneIcon fontSize="" />
@@ -184,7 +184,7 @@ export default function OrderReviewScreen() {
                                   onClick={() =>
                                     handleRemoveAdditionalFeat(item)
                                   }
-                                  className="flex items-center gap-x-4"
+                                  className="flex items-center gap-x-1 w-[200px]"
                                 >
                                   <span className="basis-[10%] text-error">
                                     <RemoveIcon fontSize="" />
@@ -209,7 +209,7 @@ export default function OrderReviewScreen() {
                               <MenuItem
                                 key={item?.label}
                                 onClick={() => handleRemoveAdditionalRevision()}
-                                className="flex items-center gap-x-4"
+                                className="flex items-center gap-x-1 w-[200px]"
                               >
                                 <span className="basis-[10%] text-error">
                                   <RemoveIcon fontSize="" />
@@ -236,7 +236,7 @@ export default function OrderReviewScreen() {
                                 onClick={() =>
                                   handleRemoveAdditionalDeliverTime()
                                 }
-                                className="flex items-center gap-x-4"
+                                className="flex items-center gap-x-1 w-[200px]"
                               >
                                 <span className="basis-[10%] text-error">
                                   <RemoveIcon fontSize="" />
@@ -336,7 +336,7 @@ export default function OrderReviewScreen() {
 
                     <Button
                       onClick={handleSubmit}
-                      className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+                      className={`bg-brand__black__color hover:bg-[#313030] text-white px-4 rounded-full`}
                     >
                       Continue
                     </Button>

@@ -36,7 +36,11 @@ export default function CategoryLogoDesignScreen() {
         <div className="container px-4 py-5 text-brand__black__color">
           <CategoryBtn />
           <div className="p-5 md:mt-4">
-            <div className="flex flex-wrap max-w-[1024px] w-full mx-auto justify-center">
+            <div
+              className={`flex flex-wrap max-w-[1024px] w-full mx-auto ${
+                isLoading && "justify-center"
+              }`}
+            >
               {(isLoading ? Array.from(new Array(9)) : packages).map((pg, i) =>
                 pg ? (
                   packages.length > 3 && i === 2 ? (

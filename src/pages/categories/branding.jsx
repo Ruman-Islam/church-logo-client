@@ -36,7 +36,11 @@ export default function CategoryBrandingScreen() {
         <div className="container px-4 py-5">
           <CategoryBtn />
           <div className="p-5 md:mt-4">
-            <div className="flex flex-wrap justify-center max-w-[1024px] w-full mx-auto">
+            <div
+              className={`flex flex-wrap max-w-[1024px] w-full mx-auto ${
+                isLoading && "justify-center"
+              }`}
+            >
               {(isLoading ? Array.from(new Array(9)) : packages).map((pg, i) =>
                 pg ? (
                   packages.length > 3 && i === 2 ? (

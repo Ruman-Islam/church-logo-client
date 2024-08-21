@@ -68,6 +68,14 @@ const PackageCard = ({ i, pg, iconColors, setIconColors }) => {
             {pg?.desc}
           </h2>
           <ul className="text-brand__font__size__xs leading-loose mt-2">
+            <li className="flex items-center gap-1">
+              <FaCheck className="text-primary" />
+              <span>{pg?.featuredDeliveryTime}</span>
+            </li>
+            <li className="flex items-center gap-1">
+              <FaCheck className="text-primary" />
+              <span>{pg?.featuredRevision}</span>
+            </li>
             {pg?.featuredItems?.map((item) => (
               <li key={item} className="flex items-center gap-1">
                 <FaCheck className="text-primary" /> <span>{item}</span>

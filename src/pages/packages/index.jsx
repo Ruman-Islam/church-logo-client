@@ -1,5 +1,7 @@
-import { Button, Skeleton } from "@mui/material";
+import { Button, Chip, Skeleton } from "@mui/material";
+import { BsArrowRepeat } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
+import { IoMdTime } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
@@ -71,7 +73,7 @@ export default function Package() {
                     />
                   ) : (
                     <span
-                      data-aos="fade-down"
+                      data-aos="fade-right"
                       data-aos-delay="900"
                       data-aos-duration="500"
                       className="block"
@@ -102,10 +104,30 @@ export default function Package() {
                     height={20}
                   />
                 ) : (
-                  <h2 className="text-brand__font__size__lg">What you get</h2>
+                  <div className="font-brand__font__500 flex gap-4 capitalize mb-2 text-brand__black__color">
+                    <Chip
+                      sx={{
+                        px: 2,
+                        py: 2,
+                        fontSize: 16,
+                      }}
+                      icon={<IoMdTime size={22} />}
+                      label={`${packageInfo?.featuredDeliveryTime}`}
+                    />
+
+                    <Chip
+                      sx={{
+                        px: 2,
+                        py: 2,
+                        fontSize: 16,
+                      }}
+                      icon={<BsArrowRepeat size={22} />}
+                      label={`${packageInfo?.featuredRevision}`}
+                    />
+                  </div>
                 )}
 
-                <ul className="text-brand__font__size__xs leading-loose">
+                <ul className="text-brand__font__size__xs leading-loose text-text__gray">
                   {(isLoading ? Array.from(new Array(6)) : featuredItems).map(
                     (item, i) =>
                       item ? (
