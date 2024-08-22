@@ -37,7 +37,7 @@ export default function OrderReviewScreen() {
   const dispatch = useAppDispatch();
 
   const cartItem = cartItems?.find(
-    (item) => item.category === "personal-signature"
+    (item) => item.category === "business-advertising"
   );
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
@@ -70,7 +70,7 @@ export default function OrderReviewScreen() {
   );
 
   const handleSubmit = () => {
-    navigate(`/order/personal-signature/checkout#checkout`);
+    navigate(`/order/business-advertising/checkout#checkout`);
   };
 
   const handleRemoveAdditionalFeat = (item) => {
@@ -197,7 +197,7 @@ export default function OrderReviewScreen() {
                     ) : (
                       <MenuItem>
                         <HashLink
-                          to="/order/personal-signature/add-ons#add-ons"
+                          to="/order/business-advertising/add-ons#add-ons"
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="flex items-center gap-x-1 text-blue-500"
                         >
@@ -231,7 +231,7 @@ export default function OrderReviewScreen() {
                     ) : (
                       <MenuItem>
                         <HashLink
-                          to="/order/personal-signature/add-ons#add-ons"
+                          to="/order/business-advertising/add-ons#add-ons"
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="flex items-center gap-x-1 text-blue-500"
                         >
@@ -265,7 +265,7 @@ export default function OrderReviewScreen() {
                     ) : (
                       <MenuItem>
                         <HashLink
-                          to="/order/personal-signature/add-ons#add-ons"
+                          to="/order/business-advertising/add-ons#add-ons"
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="flex items-center gap-x-1 text-blue-500"
                         >

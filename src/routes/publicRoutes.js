@@ -180,6 +180,31 @@ const publicRoutes = [
     name: "order/personal-signature/review",
     Component: () => import("../pages/order/personal-signature/review"),
   },
+  {
+    path: "order/business-advertising/brief/:id",
+    name: "order/business-advertising/brief/:id",
+    Component: () => import("../pages/order/business-advertising/brief"),
+  },
+  {
+    path: "order/business-advertising/design",
+    name: "order/business-advertising/design",
+    Component: () => import("../pages/order/business-advertising/design"),
+  },
+  {
+    path: "order/business-advertising/color",
+    name: "order/business-advertising/color",
+    Component: () => import("../pages/order/business-advertising/color"),
+  },
+  {
+    path: "order/business-advertising/add-ons",
+    name: "order/business-advertising/add-ons",
+    Component: () => import("../pages/order/business-advertising/add-ons"),
+  },
+  {
+    path: "order/business-advertising/review",
+    name: "order/business-advertising/review",
+    Component: () => import("../pages/order/business-advertising/review"),
+  },
 ];
 
 export default publicRoutes;

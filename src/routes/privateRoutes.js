@@ -49,6 +49,16 @@ const privateRoutes = [
     name: "order/personal-signature/payment",
     Component: () => import("../pages/order/personal-signature/payment"),
   },
+  {
+    path: "order/business-advertising/checkout",
+    name: "order/business-advertising/checkout",
+    Component: () => import("../pages/order/business-advertising/checkout"),
+  },
+  {
+    path: "order/business-advertising/payment",
+    name: "order/business-advertising/payment",
+    Component: () => import("../pages/order/business-advertising/payment"),
+  },
 ];
 
 export default privateRoutes;
