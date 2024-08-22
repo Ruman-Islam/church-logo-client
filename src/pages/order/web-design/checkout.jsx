@@ -16,6 +16,7 @@ import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
 import SectionBanner from "../../../components/common/SectionBanner";
 import { countryCodes } from "../../../constants/countryCodes";
+import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
@@ -24,6 +25,7 @@ import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
 
 export default function OrderCheckout() {
+  useAutomaticScrollWithOffset();
   const {
     auth: { user },
   } = useAppSelector((state) => state);
@@ -52,12 +54,7 @@ export default function OrderCheckout() {
   useEffect(() => {
     setValue("firstName", user?.firstName);
     setValue("lastName", user?.lastName);
-    setValue("phone", cartItem?.contactDetails?.phone);
-    setValue("companyName", cartItem?.contactDetails?.companyName);
-    setValue("countryCode", () => {
-      const split = cartItem?.contactDetails?.countryCode.split(" ");
-      return { country: split[0], code: split[1] };
-    });
+
     if (cartItem && user?.userId) {
       dispatch(
         setLogoDesignBrief({
@@ -81,17 +78,16 @@ export default function OrderCheckout() {
 
   const totalPriceOfAdditionalFeats = selectedAdditionalFeats
     ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price,
+        (accumulator, currentValue) => accumulator + currentValue?.price,
         0
       )
     : 0;
 
-  const totalPrice = Math.ceil(
+  const totalPrice =
     packagePriceConversion(packageData) +
-      totalPriceOfAdditionalDelivery +
-      totalPriceOfAdditionalRevision +
-      totalPriceOfAdditionalFeats
-  );
+    totalPriceOfAdditionalDelivery +
+    totalPriceOfAdditionalRevision +
+    totalPriceOfAdditionalFeats;
 
   const onSubmit = (formData) => {
     const order = {
@@ -109,8 +105,8 @@ export default function OrderCheckout() {
 
   return (
     <Layout title="Checkout">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box id="checkout">
+      <Box id="checkout" className="bg-section__bg_color h-full">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <SectionBanner
             heading="Your details"
             desc="Fill out your details, pay and we'll post your contest in our marketplace."
@@ -217,13 +213,6 @@ export default function OrderCheckout() {
                         <FormControl fullWidth>
                           <Autocomplete
                             disablePortal
-                            defaultValue={() => {
-                              const split =
-                                cartItem?.contactDetails?.countryCode.split(
-                                  " "
-                                );
-                              return { country: split[0], code: split[1] };
-                            }}
                             options={countryCodes}
                             getOptionLabel={({ country, code }) =>
                               `${country} ${code}`
@@ -270,30 +259,6 @@ export default function OrderCheckout() {
                           />
                         </FormControl>
                       </Box>
-                      <Box className="flex-grow">
-                        <Typography variant="h6" component="h6">
-                          Company name
-                          <span className="text-error">*</span>
-                        </Typography>
-
-                        <FormControl fullWidth>
-                          <TextField
-                            {...register("companyName", {
-                              required: true,
-                            })}
-                            className="mt-2"
-                            variant="outlined"
-                            id="companyName"
-                            name="companyName"
-                            type="text"
-                            error={!!getAuthErrorMessage(errors, "companyName")}
-                            helperText={getAuthErrorMessage(
-                              errors,
-                              "companyName"
-                            )}
-                          />
-                        </FormControl>
-                      </Box>
                     </Box>
                   </Box>
                 </Box>
@@ -332,15 +297,15 @@ export default function OrderCheckout() {
                 <Button
                   type="submit"
                   onClick={handleSubmit}
-                  className={`bg-brand__black__color hover:bg-[#313030] text-white px-4 rounded-full`}
+                  className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
                 >
                   Complete
                 </Button>
               </Box>
             </Toolbar>
           </AppBar>
-        </Box>
-      </form>
+        </form>
+      </Box>
     </Layout>
   );
 }

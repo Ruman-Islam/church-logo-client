@@ -53,7 +53,7 @@ export default function CategoryWebDesignScreen() {
                       />
                       <div className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
                         <img
-                          className="max-w-[550px] w-full h-[450px] object-cover p-5"
+                          className="max-w-[550px] w-full h-[500px] object-cover p-5"
                           src={getImgUrl(
                             "image/package/churchlogo_website_design_2.png"
                           )}

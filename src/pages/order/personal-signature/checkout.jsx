@@ -45,7 +45,7 @@ export default function OrderCheckout() {
   const dispatch = useAppDispatch();
 
   const cartItem = useMemo(() => {
-    return cartItems?.find((item) => item.category === "logo-design");
+    return cartItems?.find((item) => item.category === "personal-signature");
   }, [cartItems]);
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
@@ -96,7 +96,7 @@ export default function OrderCheckout() {
     };
 
     dispatch(setLogoDesignBrief(order));
-    navigate(`/order/logo-design/payment#payment`);
+    navigate(`/order/personal-signature/payment#payment`);
   };
 
   if (isLoading) {

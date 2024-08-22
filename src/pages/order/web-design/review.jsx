@@ -1,3 +1,4 @@
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DoneIcon from "@mui/icons-material/Done";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {
@@ -16,7 +17,10 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import SectionBanner from "../../../components/common/SectionBanner";
 
+import { HashLink } from "react-router-hash-link";
 import Loader from "../../../components/common/Loader";
+import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
+import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
@@ -24,6 +28,8 @@ import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
 
 export default function OrderReviewScreen() {
+  useAutomaticScrollWithOffset();
+  const scrollWithOffset = useScrollWithOffset();
   const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
@@ -40,27 +46,31 @@ export default function OrderReviewScreen() {
   const selectedAdditionalRevision = cartItem?.selectedAdditionalRevision;
   const selectedAdditionalDeliveryTime =
     cartItem?.selectedAdditionalDeliveryTime;
+  const selectedProgrammingLang = cartItem?.selectedProgrammingLang;
 
   const totalPriceOfAdditionalDelivery =
     selectedAdditionalDeliveryTime?.price || 0;
 
   const totalPriceOfAdditionalRevision = selectedAdditionalRevision?.price || 0;
 
+  const totalLanguagePrice = selectedProgrammingLang?.price || 0;
+
   const totalPriceOfAdditionalFeats = selectedAdditionalFeats
     ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price,
+        (accumulator, currentValue) => accumulator + currentValue?.price,
         0
       )
     : 0;
 
-  const totalPrice = Math.ceil(
-    packagePriceConversion(packageData) +
+  const totalPrice = Number(
+    (
+      packagePriceConversion(packageData) +
       totalPriceOfAdditionalDelivery +
       totalPriceOfAdditionalRevision +
-      totalPriceOfAdditionalFeats
+      totalPriceOfAdditionalFeats +
+      totalLanguagePrice
+    ).toFixed(2)
   );
-
-  console.log(totalPrice);
 
   const handleSubmit = () => {
     navigate(`/order/web-design/checkout#checkout`);
@@ -88,13 +98,19 @@ export default function OrderReviewScreen() {
     );
   };
 
+  const handleRemoveProgrammingLang = () => {
+    dispatch(
+      setLogoDesignBrief({ ...cartItem, selectedProgrammingLang: null })
+    );
+  };
+
   if (isLoading) {
     return <Loader />;
   }
 
   return (
     <Layout title="Overview">
-      <Box id="review" className="bg-section__bg_color">
+      <Box id="review" className="bg-section__bg_color h-full">
         <SectionBanner
           heading="Take a look at what you've added"
           desc="Pay and we'll post your contest in our marketplace."
@@ -145,7 +161,7 @@ export default function OrderReviewScreen() {
                     {packageData?.featuredItems.map((item) => (
                       <MenuItem
                         key={item}
-                        className="flex items-center gap-x-1 w-[200px]"
+                        className="flex items-center gap-x-4"
                       >
                         <span className="basis-[10%] text-primary">
                           <DoneIcon fontSize="" />
@@ -157,102 +173,161 @@ export default function OrderReviewScreen() {
                 </Box>
               </Box>
 
-              {(selectedAdditionalFeats?.length > 0 ||
-                selectedAdditionalRevision ||
-                selectedAdditionalDeliveryTime) && (
-                <>
-                  <Divider className="my-10" />
-                  <Box className="flex justify-between">
-                    <Box className="basis-[35%] hidden lg:block">
-                      <Typography variant="h5" component="h5">
-                        Additional
-                      </Typography>
-                    </Box>
+              <Divider className="my-10" />
+              <Box className="flex justify-between">
+                <Box className="basis-[35%] hidden lg:block">
+                  <Typography variant="h5" component="h5">
+                    Additional
+                  </Typography>
+                </Box>
 
-                    <Box className="flex-grow flex flex-col items-end gap-5">
-                      {selectedAdditionalFeats &&
-                        selectedAdditionalFeats?.length > 0 && (
-                          <Box className="flex flex-col">
-                            <FormLabel className="text-end mr-4">
-                              Features
-                            </FormLabel>
-
-                            <List>
-                              {selectedAdditionalFeats.map((item) => (
-                                <MenuItem
-                                  key={item?.label}
-                                  onClick={() =>
-                                    handleRemoveAdditionalFeat(item)
-                                  }
-                                  className="flex items-center gap-x-1 w-[200px]"
-                                >
-                                  <span className="basis-[10%] text-error">
-                                    <RemoveIcon fontSize="" />
-                                  </span>
-                                  <span className="basis-[90%] text-end">
-                                    {item?.label} (${item?.price})
-                                  </span>
-                                </MenuItem>
-                              ))}
-                            </List>
-                          </Box>
-                        )}
-
-                      {selectedAdditionalRevision && (
-                        <Box className="flex flex-col">
-                          <FormLabel className="text-end mr-4">
-                            Revision
-                          </FormLabel>
-
-                          <List>
-                            {[selectedAdditionalRevision].map((item) => (
-                              <MenuItem
-                                key={item?.label}
-                                onClick={() => handleRemoveAdditionalRevision()}
-                                className="flex items-center gap-x-1 w-[200px]"
-                              >
-                                <span className="basis-[10%] text-error">
-                                  <RemoveIcon fontSize="" />
-                                </span>
-                                <span className="basis-[90%] text-end">
-                                  {item?.label} (${item?.price})
-                                </span>
-                              </MenuItem>
-                            ))}
-                          </List>
-                        </Box>
-                      )}
-
-                      {selectedAdditionalDeliveryTime && (
-                        <Box className="flex flex-col">
-                          <FormLabel className="text-end mr-4">
-                            Delivery
-                          </FormLabel>
-
-                          <List>
-                            {[selectedAdditionalDeliveryTime].map((item) => (
-                              <MenuItem
-                                key={item?.label}
-                                onClick={() =>
-                                  handleRemoveAdditionalDeliverTime()
-                                }
-                                className="flex items-center gap-x-1 w-[200px]"
-                              >
-                                <span className="basis-[10%] text-error">
-                                  <RemoveIcon fontSize="" />
-                                </span>
-                                <span className="basis-[90%] text-end">
-                                  {item?.label} (${item?.price})
-                                </span>
-                              </MenuItem>
-                            ))}
-                          </List>
-                        </Box>
-                      )}
-                    </Box>
+                <Box className="flex-grow flex flex-col items-end gap-5">
+                  <Box className="flex flex-col">
+                    <FormLabel className="text-end mr-4">Features</FormLabel>
+                    {selectedAdditionalFeats &&
+                    selectedAdditionalFeats?.length > 0 ? (
+                      <List>
+                        {selectedAdditionalFeats.map((item) => (
+                          <MenuItem
+                            key={item?.label}
+                            onClick={() => handleRemoveAdditionalFeat(item)}
+                            className="flex items-center gap-x-4"
+                          >
+                            <span className="basis-[10%] text-error">
+                              <RemoveIcon fontSize="" />
+                            </span>
+                            <span className="basis-[90%] text-end">
+                              {item?.label} (${item?.price})
+                            </span>
+                          </MenuItem>
+                        ))}
+                      </List>
+                    ) : (
+                      <MenuItem>
+                        <HashLink
+                          to="/order/web-design/add-ons#add-ons"
+                          scroll={(el) => scrollWithOffset(el, 135)}
+                          className="flex items-center gap-x-1 text-blue-500"
+                        >
+                          <AddCircleOutlineIcon fontSize="small" />
+                          <span>Add Item</span>
+                        </HashLink>
+                      </MenuItem>
+                    )}
                   </Box>
-                </>
-              )}
+
+                  <Box className="flex flex-col">
+                    <FormLabel className="text-end mr-4">Revision</FormLabel>
+                    {selectedAdditionalRevision ? (
+                      <List>
+                        {[selectedAdditionalRevision].map((item) => (
+                          <MenuItem
+                            key={item?.label}
+                            onClick={handleRemoveAdditionalRevision}
+                            className="flex items-center gap-x-4"
+                          >
+                            <span className="basis-[10%] text-error">
+                              <RemoveIcon fontSize="" />
+                            </span>
+                            <span className="basis-[90%] text-end">
+                              {item?.label} (${item?.price})
+                            </span>
+                          </MenuItem>
+                        ))}
+                      </List>
+                    ) : (
+                      <MenuItem>
+                        <HashLink
+                          to="/order/web-design/add-ons#add-ons"
+                          scroll={(el) => scrollWithOffset(el, 135)}
+                          className="flex items-center gap-x-1 text-blue-500"
+                        >
+                          <AddCircleOutlineIcon fontSize="small" />
+                          <span>Add Item</span>
+                        </HashLink>
+                      </MenuItem>
+                    )}
+                  </Box>
+
+                  <Box className="flex flex-col">
+                    <FormLabel className="text-end mr-4">Delivery</FormLabel>
+                    {selectedAdditionalDeliveryTime ? (
+                      <List>
+                        {[selectedAdditionalDeliveryTime].map((item) => (
+                          <MenuItem
+                            key={item?.label}
+                            onClick={handleRemoveAdditionalDeliverTime}
+                            className="flex items-center gap-x-4"
+                          >
+                            <span className="basis-[10%] text-error">
+                              <RemoveIcon fontSize="small" />
+                            </span>
+                            <span className="basis-[90%] text-end">
+                              {item?.label} (${item?.price})
+                            </span>
+                          </MenuItem>
+                        ))}
+                      </List>
+                    ) : (
+                      <MenuItem>
+                        <HashLink
+                          to="/order/web-design/add-ons#add-ons"
+                          scroll={(el) => scrollWithOffset(el, 135)}
+                          className="flex items-center gap-x-1 text-blue-500"
+                        >
+                          <AddCircleOutlineIcon fontSize="" />
+                          <span>Add Item</span>
+                        </HashLink>
+                      </MenuItem>
+                    )}
+                  </Box>
+                </Box>
+              </Box>
+
+              <Divider className="my-10" />
+
+              <Box className="flex justify-between">
+                <Box className="basis-[35%] hidden lg:block">
+                  <Typography variant="h5" component="h5">
+                    Technology language
+                  </Typography>
+                </Box>
+
+                <Box className="flex-grow flex flex-col items-end gap-5">
+                  <Box className="flex flex-col">
+                    <FormLabel className="text-end mr-4">Language</FormLabel>
+                    {selectedProgrammingLang ? (
+                      <List>
+                        {[selectedProgrammingLang].map((item) => (
+                          <MenuItem
+                            key={item?.label}
+                            onClick={handleRemoveProgrammingLang}
+                            className="flex items-center gap-x-4"
+                          >
+                            <span className="basis-[10%] text-error">
+                              <RemoveIcon fontSize="" />
+                            </span>
+                            <span className="basis-[90%] text-end">
+                              {item?.label} (${item?.price})
+                            </span>
+                          </MenuItem>
+                        ))}
+                      </List>
+                    ) : (
+                      <MenuItem>
+                        <HashLink
+                          to="/order/web-design/add-ons#add-ons"
+                          scroll={(el) => scrollWithOffset(el, 135)}
+                          className="flex items-center gap-x-1 text-blue-500"
+                        >
+                          <AddCircleOutlineIcon fontSize="" />
+                          <span>Add Item</span>
+                        </HashLink>
+                      </MenuItem>
+                    )}
+                  </Box>
+                </Box>
+              </Box>
 
               <Divider className="my-10" />
 
@@ -264,46 +339,6 @@ export default function OrderReviewScreen() {
                 </Box>
 
                 <Box className="flex-grow flex gap-y-5 flex-col items-end">
-                  <Box>
-                    <Typography
-                      variant="p"
-                      component="p"
-                      className="text-end mb-2"
-                    >
-                      Preferred Designs
-                    </Typography>
-                    <Box className="flex justify-end gap-1">
-                      {cartItem?.preferredDesigns.map((item) => (
-                        <img
-                          key={item?.serialId}
-                          className="max-w-[100px] w-full"
-                          src={item?.secureUrl}
-                        />
-                      ))}
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="p"
-                      component="p"
-                      className="text-end mb-2"
-                    >
-                      Color Palette
-                    </Typography>
-                    <Box className="flex justify-end gap-1">
-                      {cartItem?.preferredColors.map((item) => (
-                        <Box key={item?.serialId}>
-                          <img
-                            className="max-w-[100px] w-full"
-                            src={item?.secureUrl}
-                          />
-                          <span className="text-brand__font__size__sm">
-                            {item?.displayName}
-                          </span>
-                        </Box>
-                      ))}
-                    </Box>
-                  </Box>
                   <Box>
                     <Typography
                       variant="p"
@@ -335,8 +370,13 @@ export default function OrderReviewScreen() {
                     <OrderStepper2 value={80} />
 
                     <Button
+                      disabled={!selectedProgrammingLang}
                       onClick={handleSubmit}
-                      className={`bg-brand__black__color hover:bg-[#313030] text-white px-4 rounded-full`}
+                      className={`${
+                        !selectedProgrammingLang
+                          ? "bg-text__gray"
+                          : "bg-primary hover:bg-brand__black__color"
+                      } text-white px-10 rounded-full font-brand__font__600`}
                     >
                       Continue
                     </Button>

@@ -20,6 +20,11 @@ const privateRoutes = [
     Component: () => import("../pages/order/logo-design/payment"),
   },
   {
+    path: "order/web-design/checkout",
+    name: "order/web-design/checkout",
+    Component: () => import("../pages/order/web-design/checkout"),
+  },
+  {
     path: "order/web-design/payment",
     name: "order/web-design/payment",
     Component: () => import("../pages/order/web-design/payment"),
@@ -33,6 +38,16 @@ const privateRoutes = [
     path: "order/branding/payment",
     name: "order/branding/payment",
     Component: () => import("../pages/order/branding/payment"),
+  },
+  {
+    path: "order/personal-signature/checkout",
+    name: "order/personal-signature/checkout",
+    Component: () => import("../pages/order/personal-signature/checkout"),
+  },
+  {
+    path: "order/personal-signature/payment",
+    name: "order/personal-signature/payment",
+    Component: () => import("../pages/order/personal-signature/payment"),
   },
 ];
 

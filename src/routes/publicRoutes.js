@@ -121,16 +121,6 @@ const publicRoutes = [
     Component: () => import("../pages/order/web-design/brief"),
   },
   {
-    path: "order/web-design/design",
-    name: "order/web-design/design",
-    Component: () => import("../pages/order/web-design/design"),
-  },
-  {
-    path: "order/web-design/color",
-    name: "order/web-design/color",
-    Component: () => import("../pages/order/web-design/color"),
-  },
-  {
     path: "order/web-design/add-ons",
     name: "order/web-design/add-ons",
     Component: () => import("../pages/order/web-design/add-ons"),
@@ -164,6 +154,31 @@ const publicRoutes = [
     path: "order/branding/review",
     name: "order/branding/review",
     Component: () => import("../pages/order/branding/review"),
+  },
+  {
+    path: "order/personal-signature/brief/:id",
+    name: "order/personal-signature/brief/:id",
+    Component: () => import("../pages/order/personal-signature/brief"),
+  },
+  {
+    path: "order/personal-signature/design",
+    name: "order/personal-signature/design",
+    Component: () => import("../pages/order/personal-signature/design"),
+  },
+  {
+    path: "order/personal-signature/color",
+    name: "order/personal-signature/color",
+    Component: () => import("../pages/order/personal-signature/color"),
+  },
+  {
+    path: "order/personal-signature/add-ons",
+    name: "order/personal-signature/add-ons",
+    Component: () => import("../pages/order/personal-signature/add-ons"),
+  },
+  {
+    path: "order/personal-signature/review",
+    name: "order/personal-signature/review",
+    Component: () => import("../pages/order/personal-signature/review"),
   },
 ];
 

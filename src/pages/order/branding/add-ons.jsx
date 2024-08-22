@@ -37,21 +37,9 @@ export default function OrderAddOnsScreen() {
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
 
-  const additionalFeatures = packageData?.additionalFeatures.map((item) => ({
-    label: item.label,
-    value: item.label,
-    price: item.value,
-  }));
-  const additionalRevisions = packageData?.revisions.map((item) => ({
-    label: item.label,
-    value: item.label,
-    price: item.value,
-  }));
-  const additionalDeliveryTimes = packageData?.deliveryTimes.map((item) => ({
-    label: item.label,
-    value: item.label,
-    price: item.value,
-  }));
+  const additionalFeatures = packageData?.additionalFeatures;
+  const additionalRevisions = packageData?.revisions;
+  const additionalDeliveryTimes = packageData?.deliveryTimes;
 
   const [selectedAdditionalFeats, setSelectedAdditionalFeats] = useState(
     cartItem?.selectedAdditionalFeats?.length

@@ -1,3 +1,4 @@
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DoneIcon from "@mui/icons-material/Done";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {
@@ -13,10 +14,11 @@ import {
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
-import SectionBanner from "../../../components/common/SectionBanner";
-
 import Loader from "../../../components/common/Loader";
+import SectionBanner from "../../../components/common/SectionBanner";
+import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
@@ -24,6 +26,7 @@ import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
 
 export default function OrderReviewScreen() {
+  const scrollWithOffset = useScrollWithOffset();
   const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
@@ -157,102 +160,121 @@ export default function OrderReviewScreen() {
                 </Box>
               </Box>
 
-              {(selectedAdditionalFeats?.length > 0 ||
-                selectedAdditionalRevision ||
-                selectedAdditionalDeliveryTime) && (
-                <>
-                  <Divider className="my-10" />
-                  <Box className="flex justify-between">
-                    <Box className="basis-[35%] hidden lg:block">
-                      <Typography variant="h5" component="h5">
-                        Additional
-                      </Typography>
+              <>
+                <Divider className="my-10" />
+                <Box className="flex justify-between">
+                  <Box className="basis-[35%] hidden lg:block">
+                    <Typography variant="h5" component="h5">
+                      Additional
+                    </Typography>
+                  </Box>
+
+                  <Box className="flex-grow flex flex-col items-end gap-5">
+                    <Box className="flex flex-col">
+                      <FormLabel className="text-end mr-4">Features</FormLabel>
+
+                      {selectedAdditionalFeats &&
+                      selectedAdditionalFeats?.length > 0 ? (
+                        <List>
+                          {selectedAdditionalFeats.map((item) => (
+                            <MenuItem
+                              key={item?.label}
+                              onClick={() => handleRemoveAdditionalFeat(item)}
+                              className="flex items-center gap-x-4"
+                            >
+                              <span className="basis-[10%] text-error">
+                                <RemoveIcon fontSize="" />
+                              </span>
+                              <span className="basis-[90%] text-end">
+                                {item?.label} (${item?.price})
+                              </span>
+                            </MenuItem>
+                          ))}
+                        </List>
+                      ) : (
+                        <MenuItem>
+                          <HashLink
+                            to="/order/branding/add-ons#add-ons"
+                            scroll={(el) => scrollWithOffset(el, 135)}
+                            className="flex items-center gap-x-1 text-blue-500"
+                          >
+                            <AddCircleOutlineIcon fontSize="small" />
+                            <span>Add Item</span>
+                          </HashLink>
+                        </MenuItem>
+                      )}
                     </Box>
 
-                    <Box className="flex-grow flex flex-col items-end gap-5">
-                      {selectedAdditionalFeats &&
-                        selectedAdditionalFeats?.length > 0 && (
-                          <Box className="flex flex-col">
-                            <FormLabel className="text-end mr-4">
-                              Features
-                            </FormLabel>
+                    <Box className="flex flex-col">
+                      <FormLabel className="text-end mr-4">Revision</FormLabel>
 
-                            <List>
-                              {selectedAdditionalFeats.map((item) => (
-                                <MenuItem
-                                  key={item?.label}
-                                  onClick={() =>
-                                    handleRemoveAdditionalFeat(item)
-                                  }
-                                  className="flex items-center gap-x-4"
-                                >
-                                  <span className="basis-[10%] text-error">
-                                    <RemoveIcon fontSize="" />
-                                  </span>
-                                  <span className="basis-[90%] text-end">
-                                    {item?.label} (${item?.price})
-                                  </span>
-                                </MenuItem>
-                              ))}
-                            </List>
-                          </Box>
-                        )}
-
-                      {selectedAdditionalRevision && (
-                        <Box className="flex flex-col">
-                          <FormLabel className="text-end mr-4">
-                            Revision
-                          </FormLabel>
-
-                          <List>
-                            {[selectedAdditionalRevision].map((item) => (
-                              <MenuItem
-                                key={item?.label}
-                                onClick={() => handleRemoveAdditionalRevision()}
-                                className="flex items-center gap-x-4"
-                              >
-                                <span className="basis-[10%] text-error">
-                                  <RemoveIcon fontSize="" />
-                                </span>
-                                <span className="basis-[90%] text-end">
-                                  {item?.label} (${item?.price})
-                                </span>
-                              </MenuItem>
-                            ))}
-                          </List>
-                        </Box>
+                      {selectedAdditionalRevision ? (
+                        <List>
+                          {[selectedAdditionalRevision].map((item) => (
+                            <MenuItem
+                              key={item?.label}
+                              onClick={handleRemoveAdditionalRevision}
+                              className="flex items-center gap-x-4"
+                            >
+                              <span className="basis-[10%] text-error">
+                                <RemoveIcon fontSize="" />
+                              </span>
+                              <span className="basis-[90%] text-end">
+                                {item?.label} (${item?.price})
+                              </span>
+                            </MenuItem>
+                          ))}
+                        </List>
+                      ) : (
+                        <MenuItem>
+                          <HashLink
+                            to="/order/branding/add-ons#add-ons"
+                            scroll={(el) => scrollWithOffset(el, 135)}
+                            className="flex items-center gap-x-1 text-blue-500"
+                          >
+                            <AddCircleOutlineIcon fontSize="small" />
+                            <span>Add Item</span>
+                          </HashLink>
+                        </MenuItem>
                       )}
+                    </Box>
 
-                      {selectedAdditionalDeliveryTime && (
-                        <Box className="flex flex-col">
-                          <FormLabel className="text-end mr-4">
-                            Delivery
-                          </FormLabel>
+                    <Box className="flex flex-col">
+                      <FormLabel className="text-end mr-4">Delivery</FormLabel>
 
-                          <List>
-                            {[selectedAdditionalDeliveryTime].map((item) => (
-                              <MenuItem
-                                key={item?.label}
-                                onClick={() =>
-                                  handleRemoveAdditionalDeliverTime()
-                                }
-                                className="flex items-center gap-x-4"
-                              >
-                                <span className="basis-[10%] text-error">
-                                  <RemoveIcon fontSize="" />
-                                </span>
-                                <span className="basis-[90%] text-end">
-                                  {item?.label} (${item?.price})
-                                </span>
-                              </MenuItem>
-                            ))}
-                          </List>
-                        </Box>
+                      {selectedAdditionalDeliveryTime ? (
+                        <List>
+                          {[selectedAdditionalDeliveryTime].map((item) => (
+                            <MenuItem
+                              key={item?.label}
+                              onClick={handleRemoveAdditionalDeliverTime}
+                              className="flex items-center gap-x-4"
+                            >
+                              <span className="basis-[10%] text-error">
+                                <RemoveIcon fontSize="small" />
+                              </span>
+                              <span className="basis-[90%] text-end">
+                                {item?.label} (${item?.price})
+                              </span>
+                            </MenuItem>
+                          ))}
+                        </List>
+                      ) : (
+                        <MenuItem>
+                          <HashLink
+                            to="/order/branding/add-ons#add-ons"
+                            scroll={(el) => scrollWithOffset(el, 135)}
+                            className="flex items-center gap-x-1 text-blue-500"
+                          >
+                            <AddCircleOutlineIcon fontSize="" />
+                            <span>Add Item</span>
+                          </HashLink>
+                        </MenuItem>
                       )}
                     </Box>
                   </Box>
-                </>
-              )}
+                </Box>
+              </>
 
               <Divider className="my-10" />
 

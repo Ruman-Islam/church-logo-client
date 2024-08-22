@@ -36,7 +36,9 @@ export default function OrderReviewScreen() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const cartItem = cartItems?.find((item) => item.category === "logo-design");
+  const cartItem = cartItems?.find(
+    (item) => item.category === "personal-signature"
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -68,7 +70,7 @@ export default function OrderReviewScreen() {
   );
 
   const handleSubmit = () => {
-    navigate(`/order/logo-design/checkout#checkout`);
+    navigate(`/order/personal-signature/checkout#checkout`);
   };
 
   const handleRemoveAdditionalFeat = (item) => {

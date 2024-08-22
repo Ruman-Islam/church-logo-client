@@ -32,7 +32,9 @@ export default function OrderAddOnsScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item?.category === "logo-design");
+  const cartItem = cartItems?.find(
+    (item) => item?.category === "personal-signature"
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -73,7 +75,7 @@ export default function OrderAddOnsScreen() {
     };
 
     dispatch(setLogoDesignBrief(order));
-    navigate(`/order/logo-design/review#review`);
+    navigate(`/order/personal-signature/review#review`);
   };
 
   // console.log(selectedAdditionalFeats);

@@ -1,19 +1,13 @@
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import {
-  AppBar,
-  Box,
-  Button,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import ReactFileReader from "react-file-reader";
 import { useForm } from "react-hook-form";
@@ -49,26 +43,24 @@ export default function OrderBriefScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const [hasHostingSetup, setHasHostingSetup] = useState(false);
   const [referredImages, setReferredImages] = useState([]);
   const [email, setEmail] = useState("");
-  const [domainHostingData, setDomainHostingData] = useState("");
-  const [websiteDesc, setWebsiteDesc] = useState("");
+  const [logoName, setLogoName] = useState("");
+  const [logoDesc, setLogoDesc] = useState("");
 
-  const cartItem = cartItems?.find((item) => item.category === "web-design");
+  const cartItem = cartItems?.find((item) => item.category === "personal-signature");
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
   useEffect(() => {
     setValue("email", cartItem?.additionalEmail);
-    setValue("domain_hosting_data", cartItem?.brief?.domainHostingData);
-    setValue("demo_website_data", cartItem?.brief?.demoWebsiteData);
-    setValue("website_desc", cartItem?.brief?.websiteDesc);
-    setValue("website_note", cartItem?.brief?.websiteNote);
+    setValue("logo_name", cartItem?.brief?.logoName);
+    setValue("logo_slogan", cartItem?.brief?.logoSlogan);
+    setValue("logo_desc", cartItem?.brief?.logoDesc);
+    setValue("logo_note", cartItem?.brief?.logoNote);
     setEmail(cartItem?.additionalEmail);
-    setHasHostingSetup(!!cartItem?.brief?.domainHostingData);
-    setDomainHostingData(cartItem?.brief?.domainHostingData);
-    setWebsiteDesc(cartItem?.brief?.websiteDesc);
+    setLogoName(cartItem?.brief?.logoName);
+    setLogoDesc(cartItem?.brief?.logoDesc);
     setReferredImages(
       cartItem?.brief?.referredImages.length
         ? cartItem?.brief?.referredImages
@@ -96,21 +88,21 @@ export default function OrderBriefScreen() {
     const order = {
       ...cartItem,
       packageId: id,
-      category: "web-design",
+      category: "personal-signature",
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
       brief: {
-        demoWebsiteData: data.demo_website_data,
-        domainHostingData: data.domain_hosting_data,
-        websiteDesc: data.website_desc,
-        websiteNote: data.website_note,
+        logoName: data.logo_name,
+        logoSlogan: data.logo_slogan,
+        logoDesc: data.logo_desc,
+        logoNote: data.logo_note,
         referredImages: referredImages,
       },
     };
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/web-design/add-ons#add-ons`);
+    navigate(`/order/personal-signature/design#design`);
   };
 
   if (isLoading) {
@@ -183,155 +175,73 @@ export default function OrderBriefScreen() {
                   <Box className="flex-grow flex flex-col gap-10">
                     <Box>
                       <Typography variant="h6" component="h6">
-                        Do you have a setup domain and hosting?
-                      </Typography>
-
-                      <FormControl fullWidth>
-                        <RadioGroup
-                          value={hasHostingSetup}
-                          onChange={(e) =>
-                            setHasHostingSetup(e.target.value === "true")
-                          }
-                        >
-                          <Box>
-                            <FormControlLabel
-                              value={true}
-                              control={<Radio />}
-                              label="Yes"
-                            />
-                            <FormControlLabel
-                              value={false}
-                              control={<Radio />}
-                              label="No"
-                            />
-                          </Box>
-                        </RadioGroup>
-
-                        {hasHostingSetup ? (
-                          <Box className="mt-2">
-                            <Typography
-                              variant="p"
-                              component="p"
-                              className="text-brand__font__size__sm text-text__gray"
-                            >
-                              Please provide us your cPanel/hosting access
-                              <span className="text-error">*</span>
-                            </Typography>
-                            <Box>
-                              <TextField
-                                {...register("domain_hosting_data", {
-                                  required: true,
-                                })}
-                                onChange={(e) =>
-                                  setDomainHostingData(e.target.value)
-                                }
-                                className="mt-1 w-full"
-                                variant="outlined"
-                                id="domain_hosting_data"
-                                name="domain_hosting_data"
-                                type="text"
-                                multiline
-                                minRows={3}
-                                size="small"
-                                error={
-                                  !!getAuthErrorMessage(
-                                    errors,
-                                    "domain_hosting_data"
-                                  )
-                                }
-                                helperText={
-                                  getAuthErrorMessage(
-                                    errors,
-                                    "domain_hosting_data"
-                                  )
-                                    ? getAuthErrorMessage(
-                                        errors,
-                                        "domain_hosting_data"
-                                      )
-                                    : "Note: Enter the user name and password to gain access to the hosting root."
-                                }
-                              />
-                            </Box>
-                          </Box>
-                        ) : (
-                          <Typography
-                            variant="p"
-                            component="p"
-                            className="text-text__gray"
-                          >
-                            <small>
-                              <InfoOutlinedIcon fontSize="" /> Providing the
-                              hosting access details through guidelines is
-                              always an option.
-                            </small>
-                          </Typography>
-                        )}
-                      </FormControl>
-                    </Box>
-
-                    <Box>
-                      <Typography
-                        variant="h6"
-                        component="h6"
-                        className="leading-tight"
-                      >
-                        Share any inspirational, competitor or similar website
-                        link
+                        What name do you want in your logo?
+                        <span className="text-error">*</span>
                       </Typography>
 
                       <FormControl fullWidth>
                         <TextField
-                          {...register("demo_website_data", {
+                          {...register("logo_name", {
                             required: true,
                           })}
-                          className="mt-1 w-full"
+                          onChange={(e) => setLogoName(e.target.value)}
+                          className="mt-2"
                           variant="outlined"
-                          id="demo_website_data"
-                          name="demo_website_data"
+                          id="logo_name"
+                          name="logo_name"
                           type="text"
-                          multiline
-                          minRows={4}
-                          size="small"
-                          error={
-                            !!getAuthErrorMessage(errors, "demo_website_data")
-                          }
+                          error={!!getAuthErrorMessage(errors, "logo_name")}
                           helperText={
-                            getAuthErrorMessage(errors, "demo_website_data")
-                              ? getAuthErrorMessage(errors, "demo_website_data")
-                              : "Tip: Sharing a sample website can let our developer better understand how to make your product."
+                            getAuthErrorMessage(errors, "logo_name")
+                              ? getAuthErrorMessage(errors, "logo_name")
+                              : "E.g. Acme"
                           }
                         />
                       </FormControl>
                     </Box>
 
                     <Box>
-                      <Typography
-                        variant="h6"
-                        component="h6"
-                        className="leading-tight"
-                      >
-                        Briefly describe about your website
-                        <span className="text-error">*</span>
+                      <Typography variant="h6" component="h6">
+                        Do you have a slogan you want incorporated in your logo?
                       </Typography>
 
                       <FormControl fullWidth>
                         <TextField
-                          {...register("website_desc", {
-                            required: true,
-                          })}
-                          onChange={(e) => setWebsiteDesc(e.target.value)}
+                          {...register("logo_slogan")}
                           className="mt-2"
                           variant="outlined"
-                          id="website_desc"
-                          name="website_desc"
+                          id="logo_slogan"
+                          name="logo_slogan"
+                          type="text"
+                          helperText="Tip: Leave blank if you don't want one incorporated."
+                        />
+                      </FormControl>
+                    </Box>
+
+                    <Box>
+                      <Typography variant="h6" component="h6">
+                        Describe what your organization or product does and its
+                        target audience<span className="text-error">*</span>
+                      </Typography>
+
+                      <FormControl fullWidth>
+                        <TextField
+                          {...register("logo_desc", {
+                            required: true,
+                          })}
+                          onChange={(e) => setLogoDesc(e.target.value)}
+                          className="mt-2"
+                          variant="outlined"
+                          id="logo_desc"
+                          name="logo_desc"
                           type="text"
                           multiline
                           minRows={5}
                           size="large"
-                          error={!!getAuthErrorMessage(errors, "website_desc")}
+                          error={!!getAuthErrorMessage(errors, "logo_desc")}
                           helperText={
-                            getAuthErrorMessage(errors, "website_desc")
-                              ? getAuthErrorMessage(errors, "website_desc")
+                            getAuthErrorMessage(errors, "logo_desc")
+                              ? getAuthErrorMessage(errors, "logo_desc")
                               : "E.g. We sell anvils and other industrial goods to manufacturing companies and hobbyists all over the world."
                           }
                         />
@@ -350,22 +260,18 @@ export default function OrderBriefScreen() {
                   </Box>
                   <Box className="flex-grow flex flex-col gap-10">
                     <Box>
-                      <Typography
-                        variant="h6"
-                        component="h6"
-                        className="leading-tight"
-                      >
+                      <Typography variant="h6" component="h6">
                         Is there anything else you would like to communicate to
-                        the developer?
+                        the designers?
                       </Typography>
 
                       <FormControl fullWidth>
                         <TextField
-                          {...register("website_note")}
+                          {...register("logo_note")}
                           className="mt-2"
                           variant="outlined"
-                          id="website_note"
-                          name="website_note"
+                          id="logo_note"
+                          name="logo_note"
                           type="text"
                           multiline
                           minRows={5}
@@ -375,12 +281,9 @@ export default function OrderBriefScreen() {
                     </Box>
 
                     <Box>
-                      <Typography
-                        variant="h6"
-                        component="h6"
-                        className="leading-tight"
-                      >
-                        Do you have any images or logos that might be helpful?
+                      <Typography variant="h6" component="h6">
+                        Do you have any images, sketches or documents that might
+                        be helpful?
                       </Typography>
 
                       <AvatarInput className="mt-2.5 flex flex-wrap justify-center md:justify-start gap-1">
@@ -432,16 +335,10 @@ export default function OrderBriefScreen() {
                       <OrderStepper2 value={0} />
 
                       <Button
-                        disabled={
-                          !email ||
-                          !websiteDesc ||
-                          (hasHostingSetup ? !domainHostingData : false)
-                        }
+                        disabled={!email || !logoName || !logoDesc}
                         type="submit"
                         className={`${
-                          !email ||
-                          !websiteDesc ||
-                          (hasHostingSetup ? !domainHostingData : false)
+                          !email || !logoName || !logoDesc
                             ? "bg-text__gray"
                             : "bg-primary hover:bg-brand__black__color"
                         } text-white px-10 rounded-full font-brand__font__600`}

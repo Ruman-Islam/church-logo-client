@@ -20,7 +20,7 @@ export default function OrderDesignScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item.category === "web-design");
+  const cartItem = cartItems?.find((item) => item.category === "personal-signature");
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -64,11 +64,11 @@ export default function OrderDesignScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/web-design/color#color`);
+    navigate(`/order/personal-signature/color#color`);
   };
   return (
     <Layout title="Choose design">
-      <Box id="design" className="bg-section__bg_color">
+      <Box id="design" className="bg-section__bg_color h-full">
         <SectionBanner
           heading="Which designs do you like?"
           desc="Let's start by helping your designers understand which styles you prefer."
@@ -123,8 +123,8 @@ export default function OrderDesignScreen() {
                         className={`${
                           !selectedDesigns.length
                             ? "bg-text__gray"
-                            : "bg-brand__black__color hover:bg-[#313030]"
-                        } text-white px-4 rounded-full`}
+                            : "bg-primary hover:bg-brand__black__color"
+                        } text-white px-10 rounded-full font-brand__font__600`}
                       >
                         Continue
                       </Button>

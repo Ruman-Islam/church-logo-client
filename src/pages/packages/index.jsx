@@ -13,12 +13,48 @@ import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
+const titles = [
+  {
+    title: [
+      <span key={1}>Crafting timeless brand</span>,
+      <span key={2}>identities that resonate </span>,
+    ],
+    category: "logo-design",
+  },
+  {
+    title:
+      "Designing meticulously-crafted websites that seamlessly blend aesthetics and functionality.",
+    category: "web-design",
+  },
+  {
+    title:
+      "Unlock Your Brand’s Potential: Elevate Your Online Presence with Our Expert Design Services!",
+    category: "branding",
+  },
+  {
+    title:
+      "Designing bespoke logos and personal signatures that resonate with your brand’s essence.",
+    category: "personal-signature",
+  },
+  {
+    title:
+      "Transforming ideas into captivating visuals: our design services bring your brand to life!",
+    category: "business-advertising",
+  },
+  {
+    title:
+      "Boost your brand’s online presence with our captivating social media services!",
+    category: "social-media-service",
+  },
+];
+
 export default function Package() {
   const scrollWithOffset = useScrollWithOffset();
   const { id } = useParams();
   const { data, isLoading, isError } = useGetOnePackageQuery(id);
   const packageInfo = data?.data;
   const featuredItems = packageInfo ? packageInfo?.featuredItems : [];
+  const title = titles.find((item) => item?.category === packageInfo?.category);
 
   return (
     <Layout title="Logo design source pack">
@@ -41,7 +77,42 @@ export default function Package() {
                   ) : (
                     <span
                       data-aos="fade-right"
+                      data-aos-delay="0"
+                      data-aos-duration="500"
+                      className="block"
+                    >
+                      {title?.title[0]}
+                    </span>
+                  )}
+
+                  {isLoading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      className="mb-2 max-w-[450px] w-full"
+                      height={20}
+                    />
+                  ) : (
+                    <span
+                      data-aos="fade-left"
                       data-aos-delay="300"
+                      data-aos-duration="500"
+                      className="block"
+                    >
+                      {title?.title[1]}
+                    </span>
+                  )}
+                </h1>
+                {/* <h1 className="text-[48px] lg:text-[60px] leading-[50px] lg:leading-[60px]">
+                  {isLoading ? (
+                    <Skeleton
+                      variant="rectangular"
+                      className="mb-2 max-w-[600px] w-full"
+                      height={20}
+                    />
+                  ) : (
+                    <span
+                      data-aos="fade-right"
+                      data-aos-delay="0"
                       data-aos-duration="500"
                       className="block"
                     >
@@ -57,7 +128,7 @@ export default function Package() {
                   ) : (
                     <span
                       data-aos="fade-left"
-                      data-aos-delay="600"
+                      data-aos-delay="300"
                       data-aos-duration="500"
                       className="block"
                     >
@@ -74,7 +145,7 @@ export default function Package() {
                   ) : (
                     <span
                       data-aos="fade-right"
-                      data-aos-delay="900"
+                      data-aos-delay="600"
                       data-aos-duration="500"
                       className="block"
                     >
@@ -82,7 +153,7 @@ export default function Package() {
                       your business
                     </span>
                   )}
-                </h1>
+                </h1> */}
 
                 {isLoading ? (
                   <Skeleton
@@ -91,7 +162,7 @@ export default function Package() {
                     height={10}
                   />
                 ) : (
-                  <p className="my-4 leading-snug">
+                  <p className="my-5 leading-snug text-text__gray">
                     Connect with our creative experts and grow your business
                     with a professional, custom branding package.
                   </p>
@@ -104,7 +175,7 @@ export default function Package() {
                     height={20}
                   />
                 ) : (
-                  <div className="font-brand__font__500 flex gap-4 capitalize mb-2 text-brand__black__color">
+                  <div className="font-brand__font__500 flex gap-4 capitalize mb-4 text-brand__black__color">
                     <Chip
                       sx={{
                         px: 2,
@@ -127,7 +198,7 @@ export default function Package() {
                   </div>
                 )}
 
-                <ul className="text-brand__font__size__xs leading-loose text-text__gray">
+                <ul className="text-brand__font__size__xs leading-loose text-brand__black__color">
                   {(isLoading ? Array.from(new Array(6)) : featuredItems).map(
                     (item, i) =>
                       item ? (
@@ -155,7 +226,7 @@ export default function Package() {
                     height={20}
                   />
                 ) : (
-                  <h2 className="text-brand__font__size__lg">
+                  <h2 className="text-brand__font__size__lg mt-4">
                     Starting from ${packagePriceConversion(data?.data)}
                   </h2>
                 )}
