@@ -82,7 +82,7 @@ export default function OrderAddOnsScreen() {
 
   return (
     <Layout title="Add ons">
-      <Box className="bg-section__bg_color h-full">
+      <Box id="add-ons" className="bg-section__bg_color h-full">
         <SectionBanner
           heading="Want to add more items?"
           desc="Let's start by helping your designers understand which styles you prefer."
