@@ -1,5 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -47,39 +48,39 @@ export default function ReviewsScreen() {
             our Facebook Page and Trustpilot."
         />
 
-        <div className="container px-4 flex flex-col gap-5 py-[20px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
-            {isLoading ? (
-              <Skeleton variant="rectangular" height={218} />
-            ) : (
-              <Card className="shadow-none border rounded-md p-10">
-                <Typography className="text-brand__font__size__lg">
-                  3.8/5
-                </Typography>
-                <Typography>
-                  <Rating
-                    name="read-only"
-                    value={5}
-                    precision={0.5}
-                    readOnly
-                    style={{
-                      fontSize: 20,
-                    }}
-                    emptyIcon={
-                      <StarIcon
-                        style={{
-                          opacity: 0.55,
-                          color: "white",
-                        }}
-                        fontSize="inherit"
-                      />
-                    }
-                  />
-                </Typography>
-                <Typography>554 Real Customer Reviews</Typography>
-              </Card>
-            )}
+        <div className="container px-4 py-10 flex flex-col gap-5">
+          {isLoading ? (
+            <Skeleton variant="rectangular" height={218} />
+          ) : (
+            <Box className="underline p-5 w-fit mx-auto flex flex-wrap items-center gap-4">
+              <Typography className="text-brand__font__size__lg">
+                3.8/5
+              </Typography>
+              <Typography>
+                <Rating
+                  name="read-only"
+                  value={5}
+                  precision={0.5}
+                  readOnly
+                  style={{
+                    fontSize: 20,
+                  }}
+                  emptyIcon={
+                    <StarIcon
+                      style={{
+                        opacity: 0.55,
+                        color: "white",
+                      }}
+                      fontSize="inherit"
+                    />
+                  }
+                />
+              </Typography>
+              <Typography>554 Real Customer Reviews</Typography>
+            </Box>
+          )}
 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">
             {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : reviews)
               ?.slice(0, dynamicUrl.limit)
               .map((item, i) =>
@@ -123,7 +124,11 @@ export default function ReviewsScreen() {
                     />
                     <CardContent>
                       {item?.reviewText.length > 150 ? (
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                          variant="subtitle2"
+                          color="text.secondary"
+                          className="italic"
+                        >
                           <span>&ldquo;</span>
                           <CustomWidthTooltip
                             title={item?.reviewText}
@@ -136,7 +141,11 @@ export default function ReviewsScreen() {
                           <span>&rdquo;</span>
                         </Typography>
                       ) : (
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                          variant="subtitle2"
+                          color="text.secondary"
+                          className="italic"
+                        >
                           <span>&ldquo;</span>
                           {item?.reviewText}
                           <span>&rdquo;</span>

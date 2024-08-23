@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
+import { IoCloseOutline } from "react-icons/io5";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { handleAosDelay } from "../../../utils/handleAos";
@@ -78,7 +79,13 @@ const PackageCard = ({ i, pg, iconColors, setIconColors }) => {
             </li>
             {pg?.featuredItems?.map((item) => (
               <li key={item} className="flex items-center gap-1">
-                <FaCheck className="text-primary" /> <span>{item}</span>
+                {item.startsWith("X-") ? (
+                  <IoCloseOutline className="text-error" />
+                ) : (
+                  <FaCheck className="text-primary" />
+                )}
+
+                <span>{item.replace("X-", "")}</span>
               </li>
             ))}
           </ul>

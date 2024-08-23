@@ -18,7 +18,7 @@ export default function CategorySocialMediaServiceScreen() {
     limit: 100,
     sortBy: "serialId",
     sortOrder: 1,
-    category: "logo-design",
+    category: "social-media-service",
   });
 
   const { data, isLoading } = useGetPackageListQuery(query);

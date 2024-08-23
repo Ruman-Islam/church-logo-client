@@ -15,35 +15,28 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 const titles = [
   {
-    title: [
-      <span key={1}>Crafting timeless brand</span>,
-      <span key={2}>identities that resonate </span>,
-    ],
+    title: "Timeless brand identities through creativity and strategy.",
     category: "logo-design",
   },
   {
-    title:
-      "Designing meticulously-crafted websites that seamlessly blend aesthetics and functionality.",
+    title: "Meticulously crafted websites: aesthetics meets functionality.",
     category: "web-design",
   },
   {
-    title:
-      "Unlock Your Brand’s Potential: Elevate Your Online Presence with Our Expert Design Services!",
+    title: "Elevate Your Brand: Expert Design for a Powerful Online Presence!",
     category: "branding",
   },
   {
-    title:
-      "Designing bespoke logos and personal signatures that resonate with your brand’s essence.",
+    title: "Bespoke logos and signatures that capture your brand’s essence.",
     category: "personal-signature",
   },
   {
     title:
-      "Transforming ideas into captivating visuals: our design services bring your brand to life!",
+      "Turning ideas into visuals that bring your brand to life!",
     category: "business-advertising",
   },
   {
-    title:
-      "Boost your brand’s online presence with our captivating social media services!",
+    title: "Elevate your brand with captivating social media!",
     category: "social-media-service",
   },
 ];
@@ -66,94 +59,15 @@ export default function Package() {
         <section id="package">
           <div className="bg-section__bg_color">
             <div className="container px-4 flex flex-col md:flex-row justify-between items-center gap-5 py-10 xl:py-20">
-              <div className="basis-[100%] md:basis-[50%]">
-                <h1 className="text-[48px] lg:text-[60px] leading-[50px] lg:leading-[60px]">
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rectangular"
-                      className="mb-2 max-w-[600px] w-full"
-                      height={20}
-                    />
-                  ) : (
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="0"
-                      data-aos-duration="500"
-                      className="block"
-                    >
-                      {title?.title[0]}
-                    </span>
-                  )}
-
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rectangular"
-                      className="mb-2 max-w-[450px] w-full"
-                      height={20}
-                    />
-                  ) : (
-                    <span
-                      data-aos="fade-left"
-                      data-aos-delay="300"
-                      data-aos-duration="500"
-                      className="block"
-                    >
-                      {title?.title[1]}
-                    </span>
-                  )}
+              <div
+                data-aos="fade-right"
+                data-aos-delay="0"
+                data-aos-duration="500"
+                className="basis-[100%] md:basis-[50%]"
+              >
+                <h1 className="text-[48px] lg:text-[55px] leading-[50px] lg:leading-[60px]">
+                  {title?.title}
                 </h1>
-                {/* <h1 className="text-[48px] lg:text-[60px] leading-[50px] lg:leading-[60px]">
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rectangular"
-                      className="mb-2 max-w-[600px] w-full"
-                      height={20}
-                    />
-                  ) : (
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="0"
-                      data-aos-duration="500"
-                      className="block"
-                    >
-                      The complete logo
-                    </span>
-                  )}
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rectangular"
-                      className="mb-2 max-w-[450px] w-full"
-                      height={20}
-                    />
-                  ) : (
-                    <span
-                      data-aos="fade-left"
-                      data-aos-delay="300"
-                      data-aos-duration="500"
-                      className="block"
-                    >
-                      {" "}
-                      design source pack for
-                    </span>
-                  )}
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rectangular"
-                      className="mb-2 max-w-[250px] w-full"
-                      height={20}
-                    />
-                  ) : (
-                    <span
-                      data-aos="fade-right"
-                      data-aos-delay="600"
-                      data-aos-duration="500"
-                      className="block"
-                    >
-                      {" "}
-                      your business
-                    </span>
-                  )}
-                </h1> */}
 
                 {isLoading ? (
                   <Skeleton
@@ -272,7 +186,12 @@ export default function Package() {
                 </div>
               </div>
 
-              <div className="basis-[100%] md:basis-[50%] w-full mx-auto justify-center">
+              <div
+                data-aos="fade-left"
+                data-aos-delay="0"
+                data-aos-duration="500"
+                className="basis-[100%] md:basis-[50%] w-full mx-auto justify-center"
+              >
                 {isLoading ? (
                   <Skeleton
                     variant="rectangular"

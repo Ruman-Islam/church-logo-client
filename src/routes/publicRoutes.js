@@ -205,6 +205,31 @@ const publicRoutes = [
     name: "order/business-advertising/review",
     Component: () => import("../pages/order/business-advertising/review"),
   },
+  {
+    path: "order/social-media-service/brief/:id",
+    name: "order/social-media-service/brief/:id",
+    Component: () => import("../pages/order/social-media-service/brief"),
+  },
+  {
+    path: "order/social-media-service/design",
+    name: "order/social-media-service/design",
+    Component: () => import("../pages/order/social-media-service/design"),
+  },
+  {
+    path: "order/social-media-service/color",
+    name: "order/social-media-service/color",
+    Component: () => import("../pages/order/social-media-service/color"),
+  },
+  {
+    path: "order/social-media-service/add-ons",
+    name: "order/social-media-service/add-ons",
+    Component: () => import("../pages/order/social-media-service/add-ons"),
+  },
+  {
+    path: "order/social-media-service/review",
+    name: "order/social-media-service/review",
+    Component: () => import("../pages/order/social-media-service/review"),
+  },
 ];
 
 export default publicRoutes;

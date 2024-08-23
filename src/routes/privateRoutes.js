@@ -59,6 +59,16 @@ const privateRoutes = [
     name: "order/business-advertising/payment",
     Component: () => import("../pages/order/business-advertising/payment"),
   },
+  {
+    path: "order/social-media-service/checkout",
+    name: "order/social-media-service/checkout",
+    Component: () => import("../pages/order/social-media-service/checkout"),
+  },
+  {
+    path: "order/social-media-service/payment",
+    name: "order/social-media-service/payment",
+    Component: () => import("../pages/order/social-media-service/payment"),
+  },
 ];
 
 export default privateRoutes;
