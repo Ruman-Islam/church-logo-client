@@ -69,6 +69,11 @@ const privateRoutes = [
     name: "order/social-media-service/payment",
     Component: () => import("../pages/order/social-media-service/payment"),
   },
+  {
+    path: "/profile/chat",
+    name: "profile/chat",
+    Component: () => import("../pages/profile/chat"),
+  },
 ];
 
 export default privateRoutes;

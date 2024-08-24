@@ -1,9 +1,9 @@
 import Layout from "../../components/common/Layout";
 import { useAppSelector } from "../../services/hook";
 import AccountSidebar from "./components/AccountSidebar";
-import AccountSettingEdit from "./AccountSettingEdit";
+import ChatBox from "./ChatBox";
 
-export default function AccountSettingScreen() {
+export default function ChatScreen() {
   const {
     auth: { user },
   } = useAppSelector((state) => state);
@@ -18,7 +18,7 @@ export default function AccountSettingScreen() {
           <div className="flex gap-2">
             <AccountSidebar />
             <div className="border border-green-600 w-full flex items-center justify-center">
-              <AccountSettingEdit user={user}/>
+              <ChatBox user={user} />
             </div>
           </div>
         </div>

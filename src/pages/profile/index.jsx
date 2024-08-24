@@ -1,6 +1,8 @@
 import Layout from "../../components/common/Layout";
 import { useAppSelector } from "../../services/hook";
 import AccountSidebar from "./components/AccountSidebar";
+import ProfileInfo from "./ProfileInfo";
+import ChatBox from "./ChatBox";
 
 export default function ProfileScreen() {
   const {
@@ -17,7 +19,7 @@ export default function ProfileScreen() {
           <div className="flex gap-2">
             <AccountSidebar />
             <div className="border border-green-600 w-full flex items-center justify-center">
-              Profile
+              <ProfileInfo user={user}/>
             </div>
           </div>
         </div>
