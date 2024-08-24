@@ -45,21 +45,20 @@ export default function OrderBriefScreen() {
   const navigate = useNavigate();
   const [referredImages, setReferredImages] = useState([]);
   const [email, setEmail] = useState("");
-  const [logoName, setLogoName] = useState("");
   const [logoDesc, setLogoDesc] = useState("");
 
-  const cartItem = cartItems?.find((item) => item.category === "social-media-service");
+  const cartItem = cartItems?.find(
+    (item) => item.category === "social-media-service"
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
   useEffect(() => {
     setValue("email", cartItem?.additionalEmail);
-    setValue("logo_name", cartItem?.brief?.logoName);
-    setValue("logo_slogan", cartItem?.brief?.logoSlogan);
+    setValue("video_data", cartItem?.brief?.videoData);
     setValue("logo_desc", cartItem?.brief?.logoDesc);
     setValue("logo_note", cartItem?.brief?.logoNote);
     setEmail(cartItem?.additionalEmail);
-    setLogoName(cartItem?.brief?.logoName);
     setLogoDesc(cartItem?.brief?.logoDesc);
     setReferredImages(
       cartItem?.brief?.referredImages.length
@@ -92,8 +91,7 @@ export default function OrderBriefScreen() {
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
       brief: {
-        logoName: data.logo_name,
-        logoSlogan: data.logo_slogan,
+        videoData: data.video_data,
         logoDesc: data.logo_desc,
         logoNote: data.logo_note,
         referredImages: referredImages,
@@ -102,7 +100,7 @@ export default function OrderBriefScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/social-media-service/design#design`);
+    navigate(`/order/social-media-service/add-ons#add-ons`);
   };
 
   if (isLoading) {
@@ -175,45 +173,26 @@ export default function OrderBriefScreen() {
                   <Box className="flex-grow flex flex-col gap-10">
                     <Box>
                       <Typography variant="h6" component="h6">
-                        What name do you want in your logo?
-                        <span className="text-error">*</span>
+                        Share concept video link if any
                       </Typography>
 
                       <FormControl fullWidth>
                         <TextField
-                          {...register("logo_name", {
-                            required: true,
-                          })}
-                          onChange={(e) => setLogoName(e.target.value)}
-                          className="mt-2"
+                          {...register("video_data")}
+                          className="mt-1 w-full"
                           variant="outlined"
-                          id="logo_name"
-                          name="logo_name"
+                          id="video_data"
+                          name="video_data"
                           type="text"
-                          error={!!getAuthErrorMessage(errors, "logo_name")}
+                          multiline
+                          minRows={4}
+                          size="small"
+                          error={!!getAuthErrorMessage(errors, "video_data")}
                           helperText={
-                            getAuthErrorMessage(errors, "logo_name")
-                              ? getAuthErrorMessage(errors, "logo_name")
-                              : "E.g. Acme"
+                            getAuthErrorMessage(errors, "video_data")
+                              ? getAuthErrorMessage(errors, "video_data")
+                              : "Note: You can share your concept video through google drive or any, but make sure links are accessible."
                           }
-                        />
-                      </FormControl>
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h6" component="h6">
-                        Do you have a slogan you want incorporated in your logo?
-                      </Typography>
-
-                      <FormControl fullWidth>
-                        <TextField
-                          {...register("logo_slogan")}
-                          className="mt-2"
-                          variant="outlined"
-                          id="logo_slogan"
-                          name="logo_slogan"
-                          type="text"
-                          helperText="Tip: Leave blank if you don't want one incorporated."
                         />
                       </FormControl>
                     </Box>
@@ -335,10 +314,10 @@ export default function OrderBriefScreen() {
                       <OrderStepper2 value={0} />
 
                       <Button
-                        disabled={!email || !logoName || !logoDesc}
+                        disabled={!email || !logoDesc}
                         type="submit"
                         className={`${
-                          !email || !logoName || !logoDesc
+                          !email || !logoDesc
                             ? "bg-text__gray"
                             : "bg-primary hover:bg-brand__black__color"
                         } text-white px-10 rounded-full font-brand__font__600`}

@@ -36,7 +36,9 @@ export default function OrderReviewScreen() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const cartItem = cartItems?.find((item) => item.category === "social-media-service");
+  const cartItem = cartItems?.find(
+    (item) => item.category === "social-media-service"
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
@@ -286,46 +288,6 @@ export default function OrderReviewScreen() {
                 </Box>
 
                 <Box className="flex-grow flex gap-y-5 flex-col items-end">
-                  <Box>
-                    <Typography
-                      variant="p"
-                      component="p"
-                      className="text-end mb-2"
-                    >
-                      Preferred Designs
-                    </Typography>
-                    <Box className="flex justify-end gap-1">
-                      {cartItem?.preferredDesigns.map((item) => (
-                        <img
-                          key={item?.serialId}
-                          className="max-w-[100px] w-full"
-                          src={item?.secureUrl}
-                        />
-                      ))}
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="p"
-                      component="p"
-                      className="text-end mb-2"
-                    >
-                      Color Palette
-                    </Typography>
-                    <Box className="flex justify-end gap-1">
-                      {cartItem?.preferredColors.map((item) => (
-                        <Box key={item?.serialId}>
-                          <img
-                            className="max-w-[100px] w-full"
-                            src={item?.secureUrl}
-                          />
-                          <span className="text-brand__font__size__sm">
-                            {item?.displayName}
-                          </span>
-                        </Box>
-                      ))}
-                    </Box>
-                  </Box>
                   <Box>
                     <Typography
                       variant="p"

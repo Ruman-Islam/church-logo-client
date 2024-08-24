@@ -186,11 +186,6 @@ const publicRoutes = [
     Component: () => import("../pages/order/business-advertising/brief"),
   },
   {
-    path: "order/business-advertising/design",
-    name: "order/business-advertising/design",
-    Component: () => import("../pages/order/business-advertising/design"),
-  },
-  {
     path: "order/business-advertising/color",
     name: "order/business-advertising/color",
     Component: () => import("../pages/order/business-advertising/color"),
@@ -209,16 +204,6 @@ const publicRoutes = [
     path: "order/social-media-service/brief/:id",
     name: "order/social-media-service/brief/:id",
     Component: () => import("../pages/order/social-media-service/brief"),
-  },
-  {
-    path: "order/social-media-service/design",
-    name: "order/social-media-service/design",
-    Component: () => import("../pages/order/social-media-service/design"),
-  },
-  {
-    path: "order/social-media-service/color",
-    name: "order/social-media-service/color",
-    Component: () => import("../pages/order/social-media-service/color"),
   },
   {
     path: "order/social-media-service/add-ons",

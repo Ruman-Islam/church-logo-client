@@ -294,24 +294,6 @@ export default function OrderReviewScreen() {
                       component="p"
                       className="text-end mb-2"
                     >
-                      Preferred Designs
-                    </Typography>
-                    <Box className="flex justify-end gap-1">
-                      {cartItem?.preferredDesigns.map((item) => (
-                        <img
-                          key={item?.serialId}
-                          className="max-w-[100px] w-full"
-                          src={item?.secureUrl}
-                        />
-                      ))}
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="p"
-                      component="p"
-                      className="text-end mb-2"
-                    >
                       Color Palette
                     </Typography>
                     <Box className="flex justify-end gap-1">

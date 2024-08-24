@@ -12,7 +12,7 @@ export default function GalleryPersonalSignatureScreen() {
   const { pathname } = useLocation();
   const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
-    limit: 8,
+    limit: 9,
     sortBy: "serialId",
     sortOrder: 1,
     category: "logo-design",

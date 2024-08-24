@@ -45,21 +45,19 @@ export default function OrderBriefScreen() {
   const navigate = useNavigate();
   const [referredImages, setReferredImages] = useState([]);
   const [email, setEmail] = useState("");
-  const [logoName, setLogoName] = useState("");
   const [logoDesc, setLogoDesc] = useState("");
 
-  const cartItem = cartItems?.find((item) => item.category === "business-advertising");
+  const cartItem = cartItems?.find(
+    (item) => item.category === "business-advertising"
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
   useEffect(() => {
     setValue("email", cartItem?.additionalEmail);
-    setValue("logo_name", cartItem?.brief?.logoName);
-    setValue("logo_slogan", cartItem?.brief?.logoSlogan);
     setValue("logo_desc", cartItem?.brief?.logoDesc);
     setValue("logo_note", cartItem?.brief?.logoNote);
     setEmail(cartItem?.additionalEmail);
-    setLogoName(cartItem?.brief?.logoName);
     setLogoDesc(cartItem?.brief?.logoDesc);
     setReferredImages(
       cartItem?.brief?.referredImages.length
@@ -92,8 +90,6 @@ export default function OrderBriefScreen() {
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
       brief: {
-        logoName: data.logo_name,
-        logoSlogan: data.logo_slogan,
         logoDesc: data.logo_desc,
         logoNote: data.logo_note,
         referredImages: referredImages,
@@ -102,7 +98,7 @@ export default function OrderBriefScreen() {
 
     dispatch(setLogoDesignBrief(order));
 
-    navigate(`/order/business-advertising/design#design`);
+    navigate(`/order/business-advertising/color#color`);
   };
 
   if (isLoading) {
@@ -173,51 +169,6 @@ export default function OrderBriefScreen() {
                     </Typography>
                   </Box>
                   <Box className="flex-grow flex flex-col gap-10">
-                    <Box>
-                      <Typography variant="h6" component="h6">
-                        What name do you want in your logo?
-                        <span className="text-error">*</span>
-                      </Typography>
-
-                      <FormControl fullWidth>
-                        <TextField
-                          {...register("logo_name", {
-                            required: true,
-                          })}
-                          onChange={(e) => setLogoName(e.target.value)}
-                          className="mt-2"
-                          variant="outlined"
-                          id="logo_name"
-                          name="logo_name"
-                          type="text"
-                          error={!!getAuthErrorMessage(errors, "logo_name")}
-                          helperText={
-                            getAuthErrorMessage(errors, "logo_name")
-                              ? getAuthErrorMessage(errors, "logo_name")
-                              : "E.g. Acme"
-                          }
-                        />
-                      </FormControl>
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h6" component="h6">
-                        Do you have a slogan you want incorporated in your logo?
-                      </Typography>
-
-                      <FormControl fullWidth>
-                        <TextField
-                          {...register("logo_slogan")}
-                          className="mt-2"
-                          variant="outlined"
-                          id="logo_slogan"
-                          name="logo_slogan"
-                          type="text"
-                          helperText="Tip: Leave blank if you don't want one incorporated."
-                        />
-                      </FormControl>
-                    </Box>
-
                     <Box>
                       <Typography variant="h6" component="h6">
                         Describe what your organization or product does and its
@@ -335,10 +286,10 @@ export default function OrderBriefScreen() {
                       <OrderStepper2 value={0} />
 
                       <Button
-                        disabled={!email || !logoName || !logoDesc}
+                        disabled={!email || !logoDesc}
                         type="submit"
                         className={`${
-                          !email || !logoName || !logoDesc
+                          !email || !logoDesc
                             ? "bg-text__gray"
                             : "bg-primary hover:bg-brand__black__color"
                         } text-white px-10 rounded-full font-brand__font__600`}

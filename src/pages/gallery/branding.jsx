@@ -37,7 +37,7 @@ export default function GalleryBrandingScreen() {
   const [open, setOpen] = useState(false);
   const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
-    limit: 8,
+    limit: 9,
     collection: "logo-design",
   });
 
