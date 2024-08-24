@@ -1,3 +1,5 @@
+// import axios from "axios";
+// import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import data from "../../../data/hero.json";
@@ -5,25 +7,57 @@ import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import "../../../styles/hero-slider.css";
 import { getImgUrl } from "../../../utils/getImgUrl-utility.js";
 
+const settings = {
+  fade: true,
+  infinite: true,
+  speed: 2000,
+  autoplaySpeed: 5000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  arrows: false,
+  waitForAnimate: true,
+  cssEase: "linear",
+};
+
 export default function Hero() {
   const scrollWithOffset = useScrollWithOffset();
 
-  const settings = {
-    fade: true,
-    infinite: true,
-    speed: 2000,
-    autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    arrows: false,
-    waitForAnimate: true,
-    cssEase: "linear",
-  };
+  // const [selectedFiles, setSelectedFiles] = useState([]);
 
-  // const now = new Date("2024-07-11T05:44:17.565+00:00");
-  // const timeString = now.toTimeString();
-  // const dateString = now.toDateString();
+  // const handleFileChange = (e) => {
+  //   setSelectedFiles([...selectedFiles, ...Array.from(e.target.files)]);
+  // };
+
+  // const handleUpload = async () => {
+  //   const result = [];
+  //   for (const element of selectedFiles) {
+  //     const formData = new FormData();
+  //     formData.append("upload_preset", "h5wafal0");
+  //     formData.append("cloud_name", "dq7wrwmig");
+  //     formData.append("folder", "church-logo/gallery/logo-design");
+  //     formData.append("file", element);
+
+  //     try {
+  //       const response = await axios.post(
+  //         `https://api.cloudinary.com/v1_1/dq7wrwmig/upload`,
+  //         formData,
+  //         {
+  //           headers: {
+  //             "Content-Type": "multipart/form-data",
+  //           },
+  //         }
+  //       );
+  //       result.push(response.data);
+  //       // Handle success
+  //     } catch (error) {
+  //       console.error("Error uploading images:", error);
+  //       // Handle error
+  //     }
+  //   }
+
+  //   console.log(JSON.stringify(result));
+  // };
 
   return (
     <section id="home" className="lg:pt-[20px] lg:pb-[40px]">
@@ -58,7 +92,13 @@ export default function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4 text-brand__font__size__sm">
-                {/* {timeString} {dateString} */}
+                {/* <input type="file" multiple onChange={handleFileChange} />
+                <button
+                  className="border rounded-full p-2 hover:bg-primary hover:text-white"
+                  onClick={handleUpload}
+                >
+                  Upload
+                </button> */}
                 <HashLink
                   to="/categories/logo-design#logo-design"
                   className="px-4 py-1.5 inline-block rounded-full font-semibold bg-primary text-white hover:bg-brand__black__color duration-300"

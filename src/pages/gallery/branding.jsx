@@ -59,7 +59,7 @@ export default function GalleryBrandingScreen() {
         <section id="branding">
           <SectionBanner heading="Gallery" desc="" />
           <div className="container px-4 flex flex-col gap-5 py-[20px]">
-            <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
+            <div className="max-w-[1024px] w-full mx-auto flex flex-wrap gap-3 py-5 justify-center md:justify-start">
               {galleryNavButtons.map((d) => (
                 <HashLink
                   key={d.id}
@@ -75,7 +75,7 @@ export default function GalleryBrandingScreen() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4 p-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 max-w-[1024px] w-full mx-auto gap-4">
               {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>

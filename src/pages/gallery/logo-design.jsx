@@ -7,14 +7,15 @@ import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function GalleryLogoDesignScreen() {
   const { pathname } = useLocation();
   const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
     limit: 8,
-    collection: "logo-design",
+    sortBy: "serialId",
+    sortOrder: 1,
+    category: "logo-design",
   });
 
   const { data, isFetching } = useGetGalleryImageQuery(dynamicUrl);
@@ -26,7 +27,7 @@ export default function GalleryLogoDesignScreen() {
       <section id="logo-design">
         <SectionBanner heading="Gallery" desc="" />
         <div className="container px-4 flex flex-col gap-5 py-[20px]">
-          <div className="flex flex-wrap xl:justify-center items-center gap-3 py-5">
+          <div className="max-w-[1024px] w-full mx-auto flex flex-wrap gap-3 py-5 justify-center md:justify-start">
             {galleryNavButtons.map((d) => (
               <HashLink
                 key={d.id}
@@ -42,16 +43,16 @@ export default function GalleryLogoDesignScreen() {
             ))}
           </div>
           <PhotoProvider>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 xl:md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 max-w-[1024px] w-full mx-auto gap-4">
               {(isFetching ? Array.from(new Array(dynamicUrl.limit)) : gallery)
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
-                    <PhotoView key={d?._id} src={getImgUrl(d?.url)}>
+                    <PhotoView key={d?._id} src={d?.url}>
                       <img
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}
-                        src={getImgUrl(d?.url)}
+                        src={d?.url}
                         className="w-full h-full object-cover rounded-md hover:cursor-pointer border"
                       />
                     </PhotoView>
