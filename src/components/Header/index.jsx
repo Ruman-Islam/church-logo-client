@@ -1,14 +1,13 @@
+import { Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
-import MenuItems from "./MenuItems";
-
-import { Modal } from "@mui/material";
 import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
+import MenuItems from "./MenuItems";
 
 export default function Header({ topBarEnable, bgColor = "bg-white" }) {
   const {
@@ -98,10 +97,10 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
-                    : "-top-[325px]"
+                    : "-top-[350px]"
                 }`}
               >
-                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-4 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
+                <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-6 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
                   <MenuItems onModalOpen={handleModalOpen} />
                 </ul>
               </div>

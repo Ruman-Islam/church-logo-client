@@ -76,7 +76,6 @@ export default function OrderAddOnsScreen() {
     navigate(`/order/social-media-service/review#review`);
   };
 
-  // console.log(selectedAdditionalFeats);
 
   if (isLoading) {
     return <Loader />;

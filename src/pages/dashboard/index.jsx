@@ -7,23 +7,21 @@ import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useAppSelector } from "../../services/hook";
-import ProfileInfo from "./components/ProfileInfo";
+import AccountSettingEdit from "./components/AccountSettingEdit";
 
-export default function ProfileScreen() {
+export default function DashboardScreen() {
   const scrollWithOffset = useScrollWithOffset();
 
-  const {
-    auth: { user },
-  } = useAppSelector((state) => state);
+  const { auth } = useAppSelector((state) => state);
 
   return (
-    <Layout title="Profile">
-      <section id="profile">
-        <SectionBanner heading={`Hello, ${user.firstName}`} desc="" />
+    <Layout title="Dashboard">
+      <section id="dashboard">
+        <SectionBanner heading={`Hello, ${auth?.user.firstName}`} desc="" />
         <div className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-20">
           <div className="flex flex-col lg:flex-row gap-5">
             <div className="lg:max-w-[230px] w-full overflow-x-auto">
-              <Paper className="shadow-none h-full text-brand__black__color">
+              <Paper className="shadow-none h-full">
                 <MenuList className="flex flex-row lg:flex-col items-center lg:items-start lg:justify-center">
                   <MenuItem className="lg:w-full">
                     <HashLink
@@ -32,7 +30,9 @@ export default function ProfileScreen() {
                       className="inline-block w-full"
                     >
                       <ListItemText>
-                        <span>Dashboard</span>
+                        <span className="text-brand__font__size__md font-brand__font__semibold duration-300">
+                          Dashboard
+                        </span>
                       </ListItemText>
                     </HashLink>
                   </MenuItem>
@@ -43,9 +43,7 @@ export default function ProfileScreen() {
                       className="inline-block w-full"
                     >
                       <ListItemText>
-                        <span className="text-brand__font__size__md font-brand__font__semibold duration-300">
-                          Profile
-                        </span>
+                        <span>Profile</span>
                       </ListItemText>
                     </HashLink>
                   </MenuItem>
@@ -64,7 +62,7 @@ export default function ProfileScreen() {
               </Paper>
             </div>
             <div className="w-full flex items-center justify-center border-l">
-              <ProfileInfo user={user} />
+              <AccountSettingEdit auth={auth} />
             </div>
           </div>
         </div>

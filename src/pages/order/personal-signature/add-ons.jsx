@@ -78,8 +78,6 @@ export default function OrderAddOnsScreen() {
     navigate(`/order/personal-signature/review#review`);
   };
 
-  // console.log(selectedAdditionalFeats);
-
   if (isLoading) {
     return <Loader />;
   }

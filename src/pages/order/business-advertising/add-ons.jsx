@@ -78,7 +78,6 @@ export default function OrderAddOnsScreen() {
     navigate(`/order/business-advertising/review#review`);
   };
 
-  // console.log(selectedAdditionalFeats);
 
   if (isLoading) {
     return <Loader />;

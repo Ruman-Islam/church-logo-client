@@ -31,6 +31,16 @@
   },
   {
     "id": 6,
+    "title": "Notification",
+    "route": ""
+  },
+  {
+    "id": 7,
+    "title": "Profile",
+    "route": ""
+  },
+  {
+    "id": 8,
     "title": "Order Yours",
     "route": "/categories/logo-design#logo-design"
   }

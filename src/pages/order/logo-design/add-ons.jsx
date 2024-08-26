@@ -76,8 +76,6 @@ export default function OrderAddOnsScreen() {
     navigate(`/order/logo-design/review#review`);
   };
 
-  // console.log(selectedAdditionalFeats);
-
   if (isLoading) {
     return <Loader />;
   }

@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactFileReader from "react-file-reader";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,36 +37,31 @@ export default function OrderBriefScreen() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
+  const cartItem = cartItems?.find(
+    (item) => item.category === "personal-signature"
+  );
+
   const { id } = useParams();
   const navigate = useNavigate();
-  const [referredImages, setReferredImages] = useState([]);
-  const [email, setEmail] = useState("");
-  const [logoName, setLogoName] = useState("");
-  const [logoDesc, setLogoDesc] = useState("");
-
-  const cartItem = cartItems?.find((item) => item.category === "personal-signature");
+  const [logoName, setLogoName] = useState(cartItem?.brief?.logoName || "");
+  const [logoDesc, setLogoDesc] = useState(cartItem?.brief?.logoDesc || "");
+  const [logoSlogan, setLogoSlogan] = useState(
+    cartItem?.brief?.logoSlogan || ""
+  );
+  const [logoNote, setLogoNote] = useState(cartItem?.brief?.logoNote || "");
+  const [referredImages, setReferredImages] = useState(
+    cartItem?.brief?.referredImages.length
+      ? cartItem?.brief?.referredImages
+      : []
+  );
+  const [email, setEmail] = useState(
+    cartItem?.additionalEmail || user?.email || ""
+  );
 
   const { data, isLoading } = useGetOnePackageQuery(id);
-
-  useEffect(() => {
-    setValue("email", cartItem?.additionalEmail);
-    setValue("logo_name", cartItem?.brief?.logoName);
-    setValue("logo_slogan", cartItem?.brief?.logoSlogan);
-    setValue("logo_desc", cartItem?.brief?.logoDesc);
-    setValue("logo_note", cartItem?.brief?.logoNote);
-    setEmail(cartItem?.additionalEmail);
-    setLogoName(cartItem?.brief?.logoName);
-    setLogoDesc(cartItem?.brief?.logoDesc);
-    setReferredImages(
-      cartItem?.brief?.referredImages.length
-        ? cartItem?.brief?.referredImages
-        : []
-    );
-  }, [cartItem, setValue]);
 
   const handleImage = (files) => {
     setReferredImages((prev) => [
@@ -146,6 +141,7 @@ export default function OrderBriefScreen() {
                             message: "Enter valid email",
                           },
                         })}
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="mt-2"
                         variant="outlined"
@@ -184,6 +180,7 @@ export default function OrderBriefScreen() {
                           {...register("logo_name", {
                             required: true,
                           })}
+                          value={logoName}
                           onChange={(e) => setLogoName(e.target.value)}
                           className="mt-2"
                           variant="outlined"
@@ -208,6 +205,8 @@ export default function OrderBriefScreen() {
                       <FormControl fullWidth>
                         <TextField
                           {...register("logo_slogan")}
+                          value={logoSlogan}
+                          onChange={(e) => setLogoSlogan(e.target.value)}
                           className="mt-2"
                           variant="outlined"
                           id="logo_slogan"
@@ -229,6 +228,7 @@ export default function OrderBriefScreen() {
                           {...register("logo_desc", {
                             required: true,
                           })}
+                          value={logoDesc}
                           onChange={(e) => setLogoDesc(e.target.value)}
                           className="mt-2"
                           variant="outlined"
@@ -268,6 +268,8 @@ export default function OrderBriefScreen() {
                       <FormControl fullWidth>
                         <TextField
                           {...register("logo_note")}
+                          value={logoNote}
+                          onChange={(e) => setLogoNote(e.target.value)}
                           className="mt-2"
                           variant="outlined"
                           id="logo_note"

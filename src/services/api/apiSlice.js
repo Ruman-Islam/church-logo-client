@@ -8,7 +8,7 @@ const productionUrl = "https://church-logo-server-2.vercel.app/api/v1";
 const developmentUrl = "http://localhost:8080/api/v1";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: productionUrl,
+  baseUrl: developmentUrl,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {

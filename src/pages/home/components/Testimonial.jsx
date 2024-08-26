@@ -1,5 +1,6 @@
 import StarIcon from "@mui/icons-material/Star";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Avatar from "@mui/material/Avatar";
 import Rating from "@mui/material/Rating";
 import Skeleton from "@mui/material/Skeleton";
 import { styled } from "@mui/material/styles";
@@ -7,12 +8,10 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Slider from "react-slick";
-import imagePlaceHolder from "../../../assets/svg/icons/church_logo_image_placeholder.svg";
-import manPlaceHolder from "../../../assets/svg/icons/profile_placeholder_man.png";
-import womanPlaceHolder from "../../../assets/svg/icons/profile_placeholder_woman.svg";
 import { useGetReviewQuery } from "../../../services/features/review/reviewApi";
 import "../../../styles/testimonial-slider.css";
-import { getCountryImgPath, getImgUrl } from "../../../utils/getImgUrl-utility";
+import { generateRandomHexColor } from "../../../utils/generateRandomHexColor";
+import { getCountryImgPath } from "../../../utils/getImgUrl-utility";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -112,29 +111,23 @@ export default function Testimonial() {
                         className="rounded-md w-full text-brand__black__color"
                       >
                         <div className="flex flex-col md:flex-row gap-2">
-                          <div className="basis-[100%] md:basis-[10%]">
-                            <div className="w-12 h-12 rounded-full border border-brand__black__color mx-auto">
-                              <img
-                                className="w-full h-full rounded-full border-[2px] border-white"
-                                src={
-                                  item?.user?.photo?.cloudinaryUrl
-                                    ? getImgUrl(
-                                        item?.user?.photo?.cloudinaryUrl
-                                      )
-                                    : !item?.user?.gender
-                                    ? imagePlaceHolder
-                                    : item?.user?.gender === "male"
-                                    ? manPlaceHolder
-                                    : womanPlaceHolder
-                                }
-                                alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
-                              />
-                            </div>
+                          <div className="basis-[100%] md:basis-[10%] flex justify-center">
+                            <Avatar
+                              alt={item?.user?.firstName}
+                              src={
+                                item?.user?.photo?.url ||
+                                "/static/images/avatar/1.jpg"
+                              }
+                              sx={{ backgroundColor: generateRandomHexColor() }}
+                              className="w-8 h-8"
+                            />
                           </div>
                           <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
                             <div className="flex items-center gap-1">
                               <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
-                              <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                              {item?.user?.verified && (
+                                <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                              )}
                             </div>
                             <div className="flex items-center justify-center gap-1.5 my-1">
                               <img

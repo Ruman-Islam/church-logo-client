@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactFileReader from "react-file-reader";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,35 +37,28 @@ export default function OrderBriefScreen() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
-
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [referredImages, setReferredImages] = useState([]);
-  const [email, setEmail] = useState("");
-  const [logoDesc, setLogoDesc] = useState("");
 
   const cartItem = cartItems?.find(
     (item) => item.category === "social-media-service"
   );
 
-  const { data, isLoading } = useGetOnePackageQuery(id);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [referredImages, setReferredImages] = useState(
+    cartItem?.brief?.referredImages.length
+      ? cartItem?.brief?.referredImages
+      : []
+  );
+  const [email, setEmail] = useState(
+    cartItem?.additionalEmail || user?.email || ""
+  );
+  const [videoData, setVideoData] = useState(cartItem?.brief?.videoData || "");
+  const [logoDesc, setLogoDesc] = useState(cartItem?.brief?.logoDesc || "");
+  const [logoNote, setLogoNote] = useState(cartItem?.brief?.logoNote || "");
 
-  useEffect(() => {
-    setValue("email", cartItem?.additionalEmail);
-    setValue("video_data", cartItem?.brief?.videoData);
-    setValue("logo_desc", cartItem?.brief?.logoDesc);
-    setValue("logo_note", cartItem?.brief?.logoNote);
-    setEmail(cartItem?.additionalEmail);
-    setLogoDesc(cartItem?.brief?.logoDesc);
-    setReferredImages(
-      cartItem?.brief?.referredImages.length
-        ? cartItem?.brief?.referredImages
-        : []
-    );
-  }, [cartItem, setValue]);
+  const { data, isLoading } = useGetOnePackageQuery(id);
 
   const handleImage = (files) => {
     setReferredImages((prev) => [
@@ -144,6 +137,7 @@ export default function OrderBriefScreen() {
                             message: "Enter valid email",
                           },
                         })}
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="mt-2"
                         variant="outlined"
@@ -179,6 +173,8 @@ export default function OrderBriefScreen() {
                       <FormControl fullWidth>
                         <TextField
                           {...register("video_data")}
+                          value={videoData}
+                          onChange={(e) => setVideoData(e.target.value)}
                           className="mt-1 w-full"
                           variant="outlined"
                           id="video_data"
@@ -208,6 +204,7 @@ export default function OrderBriefScreen() {
                           {...register("logo_desc", {
                             required: true,
                           })}
+                          value={logoDesc}
                           onChange={(e) => setLogoDesc(e.target.value)}
                           className="mt-2"
                           variant="outlined"
@@ -247,6 +244,8 @@ export default function OrderBriefScreen() {
                       <FormControl fullWidth>
                         <TextField
                           {...register("logo_note")}
+                          value={logoNote}
+                          onChange={(e) => setLogoNote(e.target.value)}
                           className="mt-2"
                           variant="outlined"
                           id="logo_note"

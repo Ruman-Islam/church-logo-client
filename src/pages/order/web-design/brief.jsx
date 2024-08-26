@@ -14,7 +14,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactFileReader from "react-file-reader";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -43,38 +43,38 @@ export default function OrderBriefScreen() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [hasHostingSetup, setHasHostingSetup] = useState(false);
-  const [referredImages, setReferredImages] = useState([]);
-  const [email, setEmail] = useState("");
-  const [domainHostingData, setDomainHostingData] = useState("");
-  const [websiteDesc, setWebsiteDesc] = useState("");
-
   const cartItem = cartItems?.find((item) => item.category === "web-design");
 
-  const { data, isLoading } = useGetOnePackageQuery(id);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [referredImages, setReferredImages] = useState(
+    cartItem?.brief?.referredImages.length
+      ? cartItem?.brief?.referredImages
+      : []
+  );
+  const [demoWebsiteData, setDemoWebsiteData] = useState(
+    cartItem?.brief?.demoWebsiteData || ""
+  );
+  const [hasHostingSetup, setHasHostingSetup] = useState(
+    !!cartItem?.brief?.domainHostingData || false
+  );
+  const [email, setEmail] = useState(
+    cartItem?.additionalEmail || user?.email || ""
+  );
+  const [domainHostingData, setDomainHostingData] = useState(
+    cartItem?.brief?.domainHostingData || ""
+  );
+  const [websiteDesc, setWebsiteDesc] = useState(
+    cartItem?.brief?.websiteDesc || ""
+  );
+  const [websiteNote, setWebsiteNote] = useState(
+    cartItem?.brief?.websiteNote || ""
+  );
 
-  useEffect(() => {
-    setValue("email", cartItem?.additionalEmail);
-    setValue("domain_hosting_data", cartItem?.brief?.domainHostingData);
-    setValue("demo_website_data", cartItem?.brief?.demoWebsiteData);
-    setValue("website_desc", cartItem?.brief?.websiteDesc);
-    setValue("website_note", cartItem?.brief?.websiteNote);
-    setEmail(cartItem?.additionalEmail);
-    setHasHostingSetup(!!cartItem?.brief?.domainHostingData);
-    setDomainHostingData(cartItem?.brief?.domainHostingData);
-    setWebsiteDesc(cartItem?.brief?.websiteDesc);
-    setReferredImages(
-      cartItem?.brief?.referredImages.length
-        ? cartItem?.brief?.referredImages
-        : []
-    );
-  }, [cartItem, setValue]);
+  const { data, isLoading } = useGetOnePackageQuery(id);
 
   const handleImage = (files) => {
     setReferredImages((prev) => [
@@ -154,6 +154,7 @@ export default function OrderBriefScreen() {
                             message: "Enter valid email",
                           },
                         })}
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="mt-2"
                         variant="outlined"
@@ -222,6 +223,7 @@ export default function OrderBriefScreen() {
                                 {...register("domain_hosting_data", {
                                   required: true,
                                 })}
+                                value={domainHostingData}
                                 onChange={(e) =>
                                   setDomainHostingData(e.target.value)
                                 }
@@ -284,6 +286,8 @@ export default function OrderBriefScreen() {
                           {...register("demo_website_data", {
                             required: true,
                           })}
+                          value={demoWebsiteData}
+                          onChange={(e) => setDemoWebsiteData(e.target.value)}
                           className="mt-1 w-full"
                           variant="outlined"
                           id="demo_website_data"
@@ -319,6 +323,7 @@ export default function OrderBriefScreen() {
                           {...register("website_desc", {
                             required: true,
                           })}
+                          value={websiteDesc}
                           onChange={(e) => setWebsiteDesc(e.target.value)}
                           className="mt-2"
                           variant="outlined"
@@ -362,6 +367,8 @@ export default function OrderBriefScreen() {
                       <FormControl fullWidth>
                         <TextField
                           {...register("website_note")}
+                          value={websiteNote}
+                          onChange={(e) => setWebsiteNote(e.target.value)}
                           className="mt-2"
                           variant="outlined"
                           id="website_note"

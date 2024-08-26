@@ -1,13 +1,18 @@
 const privateRoutes = [
   {
     path: "/profile",
-    name: "profile",
+    name: "/profile",
     Component: () => import("../pages/profile"),
   },
   {
-    path: "/profile/account-setting",
-    name: "profile/account-setting",
-    Component: () => import("../pages/profile/account-setting"),
+    path: "/account-settings",
+    name: "/account-settings",
+    Component: () => import("../pages/account-settings"),
+  },
+  {
+    path: "/dashboard",
+    name: "/dashboard",
+    Component: () => import("../pages/dashboard"),
   },
   {
     path: "order/logo-design/checkout",
