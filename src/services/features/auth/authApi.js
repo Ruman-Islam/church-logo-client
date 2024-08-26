@@ -2,6 +2,22 @@ import { api } from "../../api/apiSlice";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    resetPassword: builder.mutation({
+      query: ({ data }) => ({
+        url: "/public/auth/reset-password",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    forgotPassword: builder.mutation({
+      query: ({ data }) => ({
+        url: "/public/auth/forgot-password",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
     editPassword: builder.mutation({
       query: ({ data }) => ({
         url: "/secure/profile/edit-password",
@@ -50,20 +66,6 @@ const authApi = api.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
-    // forgetPassword: builder.mutation({
-    //   query: ({ data }) => ({
-    //     url: "/auth/admin/forgot/password",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
-    // resetPassword: builder.mutation({
-    //   query: ({ data }) => ({
-    //     url: "/auth/admin/reset/password",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
     // changePassword: builder.mutation({
     //   query: ({ data }) => ({
     //     url: "/auth/admin/change/password",
@@ -75,13 +77,13 @@ const authApi = api.injectEndpoints({
 });
 
 export const {
+  useResetPasswordMutation,
+  useForgotPasswordMutation,
   useEditPasswordMutation,
   useEditProfileImageMutation,
   useEditProfileMutation,
   useSignUpMutation,
   useSignInMutation,
   useGetRefreshTokenMutation,
-  //   useForgetPasswordMutation,
-  //   useResetPasswordMutation,
   //   useChangePasswordMutation
 } = authApi;

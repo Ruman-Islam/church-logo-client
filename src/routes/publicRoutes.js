@@ -6,6 +6,16 @@ const publicRoutes = [
     Component: () => import("../pages/sign-in"),
   },
   {
+    path: "/forget-password",
+    name: "forget-password",
+    Component: () => import("../pages/forget-password"),
+  },
+  {
+    path: "/reset-password/:token",
+    name: "reset-password/:token",
+    Component: () => import("../pages/reset-password"),
+  },
+  {
     path: "/privacy-policy",
     name: "privacy-policy",
     Component: () => import("../pages/privacy-policy"),

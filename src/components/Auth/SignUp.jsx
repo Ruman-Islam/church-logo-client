@@ -6,9 +6,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCookie from "../../hooks/useCookie";
+import useToast from "../../hooks/useToast";
 import { useSignUpMutation } from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
@@ -17,6 +17,8 @@ import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 export default function SignUp({ showForm }) {
+  const { handleSuccess, handleError } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -46,13 +48,14 @@ export default function SignUp({ showForm }) {
 
   useEffect(() => {
     if (data?.statusCode === 200) {
-      toast.success("Registration successful");
+      handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));
     }
     if (error?.status === 400) {
-      toast.error(error?.data?.message);
+      handleError(error?.data?.message);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 
@@ -89,6 +92,7 @@ export default function SignUp({ showForm }) {
               variant="outlined"
               id="firstName"
               name="firstName"
+              size="small"
               type="text"
               label="First name"
               error={!!getAuthErrorMessage(errors, "firstName")}
@@ -105,6 +109,7 @@ export default function SignUp({ showForm }) {
               variant="outlined"
               id="lastName"
               name="lastName"
+              size="small"
               type="text"
               label="Last name"
               error={!!getAuthErrorMessage(errors, "lastName")}
@@ -126,6 +131,7 @@ export default function SignUp({ showForm }) {
             id="email"
             name="email"
             type="text"
+            size="small"
             label="Email Address"
             error={!!getAuthErrorMessage(errors, "email")}
             helperText={getAuthErrorMessage(errors, "email")}
@@ -145,6 +151,7 @@ export default function SignUp({ showForm }) {
             id="password"
             type={showPassword ? "text" : "password"}
             name="password"
+            size="small"
             label="Password"
             error={!!getAuthErrorMessage(errors, "password")}
             helperText={getAuthErrorMessage(errors, "password")}

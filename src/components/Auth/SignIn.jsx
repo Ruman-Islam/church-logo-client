@@ -4,12 +4,13 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useCookie from "../../hooks/useCookie";
+import useToast from "../../hooks/useToast";
 import { useSignInMutation } from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
@@ -18,6 +19,8 @@ import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
 
 export default function SignIn({ showForm }) {
+  const { handleSuccess, handleError } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -48,12 +51,12 @@ export default function SignIn({ showForm }) {
 
   useEffect(() => {
     if (data?.statusCode === 200) {
-      toast.success("Login successful");
+      handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));
     }
     if (error?.status === 400) {
-      toast.error(error?.data?.message);
+      handleError(error?.data?.message);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
@@ -92,6 +95,7 @@ export default function SignIn({ showForm }) {
             variant="outlined"
             id="email"
             name="email"
+            size="small"
             type="text"
             label="Email Address"
             error={!!getAuthErrorMessage(errors, "email")}
@@ -113,6 +117,7 @@ export default function SignIn({ showForm }) {
             type={showPassword ? "text" : "password"}
             name="password"
             label="Password"
+            size="small"
             error={!!getAuthErrorMessage(errors, "password")}
             helperText={getAuthErrorMessage(errors, "password")}
             InputProps={{
@@ -135,12 +140,11 @@ export default function SignIn({ showForm }) {
             {isLoading ? "Loading..." : "Submit"}
           </CustomButton>
 
-          <div className="mt-0.5 text-center">
-            <HashLink
-              className="text-brand__font__size__xs underline text-link__color"
-              to="/"
-            >
-              Forgot password?
+          <div className="mt-1.5 text-text__gray text-center hover:text-blue-400 duration-200">
+            <HashLink className="underline" to="/forget-password">
+              <Typography variant="overline" display="block">
+                Forgot password?
+              </Typography>
             </HashLink>
           </div>
         </div>

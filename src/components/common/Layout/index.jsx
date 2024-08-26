@@ -8,6 +8,7 @@ export default function Layout({
   showHeader = true,
   showFooter = true,
   headerBgColor,
+  sectionHeight = "140vh",
 }) {
   return (
     <>
@@ -17,7 +18,7 @@ export default function Layout({
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <section className="flex flex-col justify-between h-[140vh]">
+      <section className={`flex flex-col justify-between h-[${sectionHeight}]`}>
         {showHeader && <Header topBarEnable="enable" bgColor={headerBgColor} />}
         <main className="mb-auto flex-1">{children}</main>
         {showFooter && <Footer />}

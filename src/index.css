@@ -37,6 +37,12 @@ body {
   background-color: #b4b4b4;
 }
 
+.slick-slide {
+  div {
+    margin-inline: 5px;
+  }
+}
+
 /* ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;

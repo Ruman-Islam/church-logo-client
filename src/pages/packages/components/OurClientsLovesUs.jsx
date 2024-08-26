@@ -1,5 +1,7 @@
 import StarIcon from "@mui/icons-material/Star";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import {
+  Avatar,
   Card,
   CardContent,
   CardMedia,
@@ -7,13 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import Slider from "react-slick";
-import imagePlaceHolder from "../../../assets/svg/icons/church_logo_image_placeholder.svg";
-import manPlaceHolder from "../../../assets/svg/icons/profile_placeholder_man.png";
-import womanPlaceHolder from "../../../assets/svg/icons/profile_placeholder_woman.svg";
 import NextArrow from "../../../components/common/Arrow/nextArrow";
 import PrevArrow from "../../../components/common/Arrow/prevArrow";
 import useQueryParameter from "../../../hooks/useQueryParameter";
 import { useGetReviewQuery } from "../../../services/features/review/reviewApi";
+import { generateRandomHexColor } from "../../../utils/generateRandomHexColor";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 const settings = {
@@ -21,24 +21,24 @@ const settings = {
   infinite: true,
   speed: 1000,
   slidesToShow: 6,
-  slidesToScroll: 3,
-  autoplay: false,
+  slidesToScroll: 1,
+  autoplay: true,
   arrows: true,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
   responsive: [
     {
-      breakpoint: 1400,
+      breakpoint: 1440,
       settings: {
-        slidesToShow: 5,
-        slidesToScroll: 3,
+        slidesToShow: 4,
+        slidesToScroll: 1,
       },
     },
     {
       breakpoint: 1280,
       settings: {
-        slidesToShow: 4,
-        slidesToScroll: 2,
+        slidesToShow: 3,
+        slidesToScroll: 1,
       },
     },
     {
@@ -60,6 +60,7 @@ const settings = {
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
+        arrows: false,
       },
     },
   ],
@@ -81,7 +82,7 @@ export default function OurClientsLovesUs() {
       </h1>
 
       <div className="category-slide-container w-full">
-        <Slider {...settings} className="p-2">
+        <Slider {...settings} className="py-4">
           {reviews.map((item) => (
             <Card
               key={item?._id}
@@ -133,24 +134,24 @@ export default function OurClientsLovesUs() {
 
               <CardContent>
                 <div className="flex gap-2">
-                  <div className="w-10 h-10 rounded-full border border-brand__black__color">
-                    <img
-                      className="w-full h-full rounded-full border-[2px] border-white"
+                  <div className="w-10 h-10 rounded-full">
+                    <Avatar
+                      alt={item?.user?.firstName}
                       src={
-                        item?.user?.photo?.cloudinaryUrl
-                          ? getImgUrl(item?.user?.photo?.cloudinaryUrl)
-                          : !item?.user?.gender
-                          ? imagePlaceHolder
-                          : item?.user?.gender === "male"
-                          ? manPlaceHolder
-                          : womanPlaceHolder
+                        item?.user?.photo?.url || "/static/images/avatar/1.jpg"
                       }
-                      alt={`${item?.user?.firstName} ${item?.user?.lastName}`}
+                      sx={{ backgroundColor: generateRandomHexColor() }}
+                      className="w-full h-full border-2"
                     />
                   </div>
-                  <div className="leading-tight">
+                  <div>
                     <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
-                    <small>Client</small>
+                    {item?.user?.verified && (
+                      <p className="flex items-center gap-x-1 text-brand__font__size__sm mt-0.5">
+                        <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                        <span>verified</span>
+                      </p>
+                    )}
                   </div>
                 </div>
               </CardContent>

@@ -50,7 +50,7 @@ function App() {
           </Route>
         </Routes>
         <JumpToTopBtn />
-        <Toaster />
+        <Toaster position="bottom-center" />
       </Suspense>
     </>
   );

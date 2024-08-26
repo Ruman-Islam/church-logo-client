@@ -31,8 +31,7 @@ const titles = [
     category: "personal-signature",
   },
   {
-    title:
-      "Turning ideas into visuals that bring your brand to life!",
+    title: "Turning ideas into visuals that bring your brand to life!",
     category: "business-advertising",
   },
   {
@@ -65,7 +64,7 @@ export default function Package() {
                 data-aos-duration="500"
                 className="basis-[100%] md:basis-[50%]"
               >
-                <h1 className="text-[48px] lg:text-[55px] leading-[50px] lg:leading-[60px]">
+                <h1 className="text-[42px] md:text-[48px] lg:text-[55px] leading-[50px] lg:leading-[60px]">
                   {title?.title}
                 </h1>
 
@@ -89,7 +88,7 @@ export default function Package() {
                     height={20}
                   />
                 ) : (
-                  <div className="font-brand__font__500 flex gap-4 capitalize mb-4 text-brand__black__color">
+                  <div className="font-brand__font__500 flex gap-4 capitalize mb-4 text-brand__black__color flex-col md:flex-row">
                     <Chip
                       sx={{
                         px: 2,

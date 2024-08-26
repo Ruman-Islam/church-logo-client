@@ -1,6 +1,6 @@
 import Layout from "../../components/common/Layout";
 import { useAppSelector } from "../../services/hook";
-import AccountSidebar from "./components/AccountSidebar";
+// import AccountSidebar from "./components/AccountSidebar";
 import ChatBox from "./ChatBox";
 
 export default function ChatScreen() {
@@ -16,7 +16,7 @@ export default function ChatScreen() {
         </div>
         <div className="container px-4 py-5 border border-red-500">
           <div className="flex gap-2">
-            <AccountSidebar />
+            {/* <AccountSidebar /> */}
             <div className="border border-green-600 w-full flex items-center justify-center">
               <ChatBox user={user} />
             </div>
