@@ -1,5 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import VerifiedIcon from '@mui/icons-material/Verified';
 import {
   Avatar,
   Card,
@@ -148,7 +148,7 @@ export default function OurClientsLovesUs() {
                     <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                     {item?.user?.verified && (
                       <p className="flex items-center gap-x-1 text-brand__font__size__sm mt-0.5">
-                        <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                        <VerifiedIcon className="text-primary text-brand__font__size__sm mt-0.5" />
                         <span>verified</span>
                       </p>
                     )}

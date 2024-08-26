@@ -79,6 +79,11 @@ const privateRoutes = [
     name: "profile/chat",
     Component: () => import("../pages/profile/chat"),
   },
+  {
+    path: "/verify-email/:token",
+    name: "verify-email/:token",
+    Component: () => import("../pages/verify-email"),
+  },
 ];
 
 export default privateRoutes;

@@ -181,7 +181,7 @@ export default function OrderCheckout() {
                     <Box className="flex flex-col md:flex-row justify-between gap-5">
                       <Box className="flex-grow">
                         <Typography variant="h6" component="h6">
-                          Full Name
+                          First Name
                           <span className="text-error">*</span>
                         </Typography>
 
@@ -248,7 +248,10 @@ export default function OrderCheckout() {
                           name="email"
                           type="text"
                           error={!!getAuthErrorMessage(errors, "email")}
-                          helperText={getAuthErrorMessage(errors, "email")}
+                          helperText={
+                            getAuthErrorMessage(errors, "email") ||
+                            "Make sure your email is correct, an invoice will be sent."
+                          }
                         />
                       </FormControl>
                     </Box>
@@ -306,7 +309,10 @@ export default function OrderCheckout() {
                           name="phone"
                           type="text"
                           error={!!getAuthErrorMessage(errors, "phone")}
-                          helperText={getAuthErrorMessage(errors, "phone")}
+                          helperText={
+                            getAuthErrorMessage(errors, "phone") ||
+                            "Make sure your phone number is correct for further discussion."
+                          }
                         />
                       </FormControl>
                     </Box>

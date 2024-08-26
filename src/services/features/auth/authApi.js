@@ -2,6 +2,22 @@ import { api } from "../../api/apiSlice";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    confirmEmailVerification: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/profile/confirm-email-verification",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    verifyEmail: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/profile/verify-email",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
     resetPassword: builder.mutation({
       query: ({ data }) => ({
         url: "/public/auth/reset-password",
@@ -66,17 +82,12 @@ const authApi = api.injectEndpoints({
       }),
       providesTags: ["user"],
     }),
-    // changePassword: builder.mutation({
-    //   query: ({ data }) => ({
-    //     url: "/auth/admin/change/password",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
   }),
 });
 
 export const {
+  useConfirmEmailVerificationMutation,
+  useVerifyEmailMutation,
   useResetPasswordMutation,
   useForgotPasswordMutation,
   useEditPasswordMutation,
@@ -85,5 +96,4 @@ export const {
   useSignUpMutation,
   useSignInMutation,
   useGetRefreshTokenMutation,
-  //   useChangePasswordMutation
 } = authApi;

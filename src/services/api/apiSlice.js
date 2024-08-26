@@ -33,7 +33,7 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
       extraOptions
     );
 
-    if (refreshResult?.data?.statusCode === 200) {
+    if (refreshResult?.data) {
       // store the new token
       api.dispatch(setAuth(refreshResult?.data?.data));
       // retry the original query with new access token

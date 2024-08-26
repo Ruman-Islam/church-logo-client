@@ -52,12 +52,12 @@ export default function ResetPasswordScreen() {
   }, [auth.user, from, navigate]);
 
   useEffect(() => {
-    if (data?.statusCode === 200) {
+    if (data) {
       handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));
     }
-    if (error?.status === 400) {
+    if (error?.status) {
       handleError(error?.data?.message);
     }
 

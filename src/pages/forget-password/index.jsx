@@ -43,10 +43,10 @@ export default function ForgetPasswordScreen() {
   }, [auth.user, from, navigate]);
 
   useEffect(() => {
-    if (data?.statusCode === 200) {
+    if (data) {
       handleSuccess(data?.message);
     }
-    if (error?.status === 400) {
+    if (error) {
       handleError(error?.data?.message);
     }
 

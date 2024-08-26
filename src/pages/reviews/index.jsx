@@ -1,5 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import VerifiedIcon from '@mui/icons-material/Verified';
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -100,7 +100,7 @@ export default function ReviewsScreen() {
                         <div className="flex items-center gap-1">
                           <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                           {item?.user?.verified && (
-                            <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                            <VerifiedIcon className="text-primary text-brand__font__size__sm" />
                           )}
                         </div>
                       }

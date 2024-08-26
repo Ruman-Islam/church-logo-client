@@ -50,12 +50,12 @@ export default function SignIn({ showForm }) {
   }, [user, navigate]);
 
   useEffect(() => {
-    if (data?.statusCode === 200) {
+    if (data) {
       handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));
     }
-    if (error?.status === 400) {
+    if (error) {
       handleError(error?.data?.message);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

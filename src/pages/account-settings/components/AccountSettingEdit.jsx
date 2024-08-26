@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { countries } from "../../../constants/countries";
+import useToast from "../../../hooks/useToast";
 import {
   useEditPasswordMutation,
   useEditProfileImageMutation,
@@ -25,6 +26,8 @@ import { useAppDispatch } from "../../../services/hook";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 
 export default function AccountSettingEdit({ auth }) {
+  const { handleSuccess, handleError } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -84,12 +87,12 @@ export default function AccountSettingEdit({ auth }) {
   ] = useEditPasswordMutation();
 
   useEffect(() => {
-    if (profileEditedData?.statusCode === 200) {
+    if (profileEditedData) {
       dispatch(setAuth({ ...auth, user: profileEditedData?.data }));
-      toast.success(profileEditedData?.message);
+      handleSuccess(profileEditedData?.message);
     }
-    if (profileEditedError?.status === 400) {
-      toast.error(profileEditedError?.data?.message);
+    if (profileEditedError) {
+      handleError(profileEditedError?.data?.message);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,7 +105,7 @@ export default function AccountSettingEdit({ auth }) {
   ]);
 
   useEffect(() => {
-    if (profileImageEditedData?.statusCode === 200) {
+    if (profileImageEditedData) {
       dispatch(
         setAuth({
           ...auth,
@@ -112,10 +115,11 @@ export default function AccountSettingEdit({ auth }) {
           },
         })
       );
-      toast.success(profileImageEditedData?.message);
+
+      handleSuccess(profileImageEditedData?.message);
     }
-    if (profileImageEditedError?.status === 400) {
-      toast.error(profileImageEditedError?.data?.message);
+    if (profileImageEditedError) {
+      handleError(profileImageEditedError?.data?.message);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,12 +132,12 @@ export default function AccountSettingEdit({ auth }) {
   ]);
 
   useEffect(() => {
-    if (passwordEditedData?.statusCode === 200) {
+    if (passwordEditedData) {
       reset();
-      toast.success(passwordEditedData?.message);
+      handleSuccess(passwordEditedData?.message);
     }
-    if (passwordEditedError?.status === 400) {
-      toast.error(passwordEditedError?.data?.message);
+    if (passwordEditedError) {
+      handleError(passwordEditedError?.data?.message);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -216,17 +220,17 @@ export default function AccountSettingEdit({ auth }) {
   return (
     <Box className="w-full p-6 flex flex-col gap-10">
       <Box className="flex justify-center lg:justify-start">
-        <Box className="flex justify-between items-center w-[120px] h-[120px] flex-col relative cursor-pointer group shadow border-2 rounded-full p-1">
+        <Box className="flex justify-between items-center w-[120px] h-[120px] flex-col relative cursor-pointer group shadow rounded-full border-2 hover:border-0 p-1 hover:p-0">
           <Avatar
             alt={auth?.user?.firstName}
             src={image || "/static/images/avatar/1.jpg"}
             sx={{ backgroundColor: "#FF5722" }}
             className="w-full h-full text-brand__font__size__lg2"
           />
-          <Box className="text-white font-brand__font__semibold bg-brand__black__color bg-opacity-0 group-hover:bg-opacity-60 duration-300 absolute z-50 w-full h-full rounded-full flex items-center justify-center p-1">
+          <Box className="text-white font-brand__font__semibold bg-brand__black__color bg-opacity-0 group-hover:bg-opacity-60 duration-300 absolute z-50 w-full h-full rounded-full flex items-center justify-center p-1 hover:p-0">
             <label
               htmlFor="photo"
-              className="cursor-pointer items-center gap-x-1 opacity-0 group-hover:opacity-100 duration-300 border w-full h-full rounded-full flex justify-center"
+              className="cursor-pointer items-center gap-x-1 opacity-0 group-hover:opacity-100 duration-300  w-full h-full rounded-full flex justify-center"
             >
               <CloudUploadIcon />
               <span className="text-brand__font__size__sm">Upload</span>

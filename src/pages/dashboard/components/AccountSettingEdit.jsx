@@ -18,9 +18,9 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { countries } from "../../../constants/countries";
 import {
-  useEditPasswordMutation,
-  useEditProfileImageMutation,
-  useEditProfileMutation,
+    useEditPasswordMutation,
+    useEditProfileImageMutation,
+    useEditProfileMutation,
 } from "../../../services/features/auth/authApi";
 import { setAuth } from "../../../services/features/auth/authSlice";
 import { useAppDispatch } from "../../../services/hook";
@@ -80,11 +80,11 @@ export default function AccountSettingEdit({ auth }) {
   }, [auth, setValue]);
 
   useEffect(() => {
-    if (profileEditedData?.statusCode === 200) {
+    if (profileEditedData) {
       dispatch(setAuth({ ...auth, user: profileEditedData?.data }));
       toast.success(profileEditedData?.message);
     }
-    if (profileEditedError?.status === 400) {
+    if (profileEditedError) {
       toast.error(profileEditedError?.data?.message);
     }
 
@@ -98,7 +98,7 @@ export default function AccountSettingEdit({ auth }) {
   ]);
 
   useEffect(() => {
-    if (profileImageEditedData?.statusCode === 200) {
+    if (profileImageEditedData) {
       dispatch(
         setAuth({
           ...auth,
@@ -110,7 +110,7 @@ export default function AccountSettingEdit({ auth }) {
       );
       toast.success(profileImageEditedData?.message);
     }
-    if (profileImageEditedError?.status === 400) {
+    if (profileImageEditedError) {
       toast.error(profileImageEditedError?.data?.message);
     }
 
@@ -124,11 +124,11 @@ export default function AccountSettingEdit({ auth }) {
   ]);
 
   useEffect(() => {
-    if (passwordEditedData?.statusCode === 200) {
+    if (passwordEditedData) {
       reset();
       toast.success(passwordEditedData?.message);
     }
-    if (passwordEditedError?.status === 400) {
+    if (passwordEditedError) {
       toast.error(passwordEditedError?.data?.message);
     }
 

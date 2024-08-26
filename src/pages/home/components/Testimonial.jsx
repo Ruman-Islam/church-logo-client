@@ -1,5 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import Avatar from "@mui/material/Avatar";
 import Rating from "@mui/material/Rating";
 import Skeleton from "@mui/material/Skeleton";
@@ -126,7 +126,7 @@ export default function Testimonial() {
                             <div className="flex items-center gap-1">
                               <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                               {item?.user?.verified && (
-                                <VerifiedUserIcon className="text-primary text-brand__font__size__sm" />
+                                <VerifiedIcon className="text-primary text-brand__font__size__sm" />
                               )}
                             </div>
                             <div className="flex items-center justify-center gap-1.5 my-1">

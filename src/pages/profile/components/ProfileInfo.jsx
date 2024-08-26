@@ -1,17 +1,42 @@
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import VerifiedIcon from '@mui/icons-material/Verified';
 import WarningIcon from "@mui/icons-material/Warning";
 import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
+import { useEffect } from "react";
 import { countries } from "../../../constants/countries";
+import useToast from "../../../hooks/useToast";
+import { useVerifyEmailMutation } from "../../../services/features/auth/authApi";
 
 export default function ProfileInfo({ user }) {
   const country = countries.find(
     (c) => c?.country.toLowerCase() === user?.country.toLowerCase()
   );
+
+  const { handleSuccess, handleError } = useToast();
+
+  const [verifyEmail, { data, isLoading, error }] = useVerifyEmailMutation();
+
+  useEffect(() => {
+    if (data) {
+      handleSuccess(data?.message);
+    }
+    if (error?.status) {
+      handleError(error?.data?.message);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, error]);
+
+  const handleSendEmailVerification = async () => {
+    const data = {
+      email: user?.email,
+    };
+
+    await verifyEmail({ data });
+  };
 
   return (
     <Box className="w-full p-6">
@@ -20,39 +45,20 @@ export default function ProfileInfo({ user }) {
           <Typography className="font-brand__font__600">My profile</Typography>
         </Box>
 
-        <Box className="flex flex-col lg:flex-row justify-between">
-          <Box className="flex flex-col md:flex-row gap-4">
+        <Box className="flex flex-col md:flex-row justify-between">
+          <Box className="flex items-center gap-4">
             <Box className="flex justify-between items-center w-[120px] h-[120px] flex-col border-2 rounded-full p-1">
-              {!user?.verified ? (
-                <Avatar
-                  alt={user?.firstName}
-                  src={user?.photo?.url || "/static/images/avatar/1.jpg"}
-                  sx={{ backgroundColor: "#FF5722" }}
-                  className="w-full h-full text-brand__font__size__lg2"
-                />
-              ) : (
-                <Badge
-                  className="w-full h-full text-brand__font__size__lg2"
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                  badgeContent={
-                    <Box className="bg-white rounded-full text-primary text-brand__font__size__sm">
-                      <CheckCircleIcon className="text-[20px]" />
-                    </Box>
-                  }
-                >
-                  <Avatar
-                    alt={user?.firstName}
-                    src={user?.photo?.url || "/static/images/avatar/1.jpg"}
-                    sx={{ backgroundColor: "#FF5722" }}
-                    className="w-full h-full text-brand__font__size__lg2"
-                  />
-                </Badge>
-              )}
+              <Avatar
+                alt={user?.firstName}
+                src={user?.photo?.url || "/static/images/avatar/1.jpg"}
+                sx={{ backgroundColor: "#FF5722" }}
+                className="w-full h-full text-brand__font__size__lg2"
+              />
             </Box>
             <Box>
-              <Typography className="font-brand__font__600 mb-1">
-                {user?.firstName + " " + user?.lastName}
+              <Typography className="font-brand__font__600 flex items-center gap-x-1 mb-0.5">
+                <span>{user?.firstName + " " + user?.lastName}</span>
+                <VerifiedIcon className="text-[18px] text-primary" />
               </Typography>
 
               <Typography
@@ -84,13 +90,29 @@ export default function ProfileInfo({ user }) {
             </Box>
           </Box>
 
-          {!user?.verified && (
-            <MenuItem className="flex lg:items-start h-fit mt-2 lg:mt-0 w-fit">
-              <WarningIcon className="text-error" />
-              <span className="text-brand__font__size__sm">
-                Verify your account by email
-              </span>
-            </MenuItem>
+          {!user?.verified ? (
+            isLoading ? (
+              "Email sending..."
+            ) : (
+              <MenuItem
+                onClick={handleSendEmailVerification}
+                className="flex lg:items-start h-fit mt-2 md:mt-0 lg:mt-0 w-fit"
+              >
+                <WarningIcon className="text-error" />
+                <span className="text-brand__font__size__sm">
+                  Verify your account by email
+                </span>
+              </MenuItem>
+            )
+          ) : (
+            <Box className="text-brand__font__size__sm text-text__gray mt-2 md:mt-0">
+              <Typography variant="overline">
+                <span>Member since:</span>
+              </Typography>{" "}
+              <Typography variant="overline">
+                <span>{new Date(user?.createdAt).toDateString()}</span>
+              </Typography>
+            </Box>
           )}
         </Box>
       </Box>
