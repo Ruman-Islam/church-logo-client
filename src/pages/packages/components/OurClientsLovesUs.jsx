@@ -1,7 +1,8 @@
 import StarIcon from "@mui/icons-material/Star";
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import {
   Avatar,
+  Box,
   Card,
   CardContent,
   CardMedia,
@@ -124,17 +125,17 @@ export default function OurClientsLovesUs() {
                 <Typography variant="body2" color="text.secondary">
                   <span>&ldquo;</span>
                   <span className="italic">
-                    {item?.reviewText.length > 100
-                      ? `${item?.reviewText.slice(0, 100)}...`
+                    {item?.reviewText.length > 90
+                      ? `${item?.reviewText.slice(0, 90)}...`
                       : item?.reviewText}
                   </span>
                   <span>&rdquo;</span>
                 </Typography>
               </CardContent>
 
-              <CardContent>
-                <div className="flex gap-2">
-                  <div className="w-10 h-10 rounded-full">
+              <CardContent className="py-4 px-0">
+                <Box className="flex gap-2">
+                  <Box className="w-10 h-10 rounded-full">
                     <Avatar
                       alt={item?.user?.firstName}
                       src={
@@ -143,17 +144,25 @@ export default function OurClientsLovesUs() {
                       sx={{ backgroundColor: generateRandomHexColor() }}
                       className="w-full h-full border-2"
                     />
-                  </div>
-                  <div>
-                    <p>{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
-                    {item?.user?.verified && (
-                      <p className="flex items-center gap-x-1 text-brand__font__size__sm mt-0.5">
-                        <VerifiedIcon className="text-primary text-brand__font__size__sm mt-0.5" />
-                        <span>verified</span>
-                      </p>
-                    )}
-                  </div>
-                </div>
+                  </Box>
+                  <Box>
+                    <Box className="flex items-center gap-x-1 leading-tight">
+                      <span>{`${item?.user?.firstName} ${item?.user?.lastName}`}</span>
+                      {item?.user?.verified && (
+                        <VerifiedIcon className="text-primary text-brand__font__size__sm" />
+                      )}
+                    </Box>
+                    <Box>
+                      {item?.user?.designation ? (
+                        <small className="flex">
+                          {item?.user?.designation}
+                        </small>
+                      ) : (
+                        <small className="flex">Verified</small>
+                      )}
+                    </Box>
+                  </Box>
+                </Box>
               </CardContent>
             </Card>
           ))}

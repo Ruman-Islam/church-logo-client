@@ -10,15 +10,13 @@ export default function ZeroPlacePromotionalSpace() {
         </div>
         <div className="basis-[60%] flex flex-col items-center">
           <img className="w-[250px] xl:w-[350px]" src={img2} alt="" />
-          <h2 className="leading-tight my-2 text-brand__font__size__lg xl:text-brand__font__size__xl text-center">
+          <h2 className="leading-tight my-2 text-brand__font__size__lg xl:text-brand__font__size__xl text-center max-w-[300px] md:max-w-[700px]">
             A promotional space of Zero Place
           </h2>
           <p className="text-brand__font__size__sm text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
             itaque quia veniam dolores sint ab magni quaerat culpa corporis,
-            perferendis necessitatibus doloribus molestias nobis maxime, saepe
-            beatae eos consequatur, porro distinctio accusantium nulla nihil
-            eligendi reprehenderit quasi. Molestias iure nostrum iste.
+            perferendis necessitatibus doloribus molestias nobis maxime.
           </p>
           <div className="mt-5">
             <a

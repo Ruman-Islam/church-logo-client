@@ -1,4 +1,4 @@
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import WarningIcon from "@mui/icons-material/Warning";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -58,7 +58,9 @@ export default function ProfileInfo({ user }) {
             <Box>
               <Typography className="font-brand__font__600 flex items-center gap-x-1 mb-0.5">
                 <span>{user?.firstName + " " + user?.lastName}</span>
-                <VerifiedIcon className="text-[18px] text-primary" />
+                {user?.verified && (
+                  <VerifiedIcon className="text-[18px] text-primary" />
+                )}
               </Typography>
 
               <Typography

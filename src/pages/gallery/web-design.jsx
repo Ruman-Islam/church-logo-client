@@ -6,7 +6,6 @@ import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function GalleryWebDesignScreen() {
   const { pathname } = useLocation();
@@ -17,7 +16,6 @@ export default function GalleryWebDesignScreen() {
     sortOrder: 1,
     category: "web-design",
   });
-
   const { data, isLoading } = useGetGalleryImageQuery(dynamicUrl);
   const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
   const gallery = data?.data;
@@ -49,12 +47,12 @@ export default function GalleryWebDesignScreen() {
               .map((d, i) =>
                 d ? (
                   <div
-                    key={d?.id}
+                    key={d?.publicId}
                     className="w-full md:max-w-[800px] xl:max-w-[400px] text-center"
                   >
                     <div
                       style={{
-                        backgroundImage: `url(${getImgUrl(d.url)})`,
+                        backgroundImage: `url(${d.url})`,
                       }}
                       className={`w-full md:max-w-[800px] xl:max-w-[400px] h-[450px] bg-text__gray hover:duration-[10s] bg-top hover:bg-bottom cursor-pointer bg-cover shadow-lg border rounded-xl`}
                     ></div>
@@ -66,7 +64,7 @@ export default function GalleryWebDesignScreen() {
                   <Skeleton
                     key={i}
                     variant="rectangular"
-                    width={400}
+                    width={340}
                     height={450}
                   />
                 )

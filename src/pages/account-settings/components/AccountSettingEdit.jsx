@@ -44,6 +44,8 @@ export default function AccountSettingEdit({ auth }) {
   const dispatch = useAppDispatch();
 
   const [image, setImage] = useState(auth?.user?.photo?.url);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
@@ -62,6 +64,17 @@ export default function AccountSettingEdit({ auth }) {
   );
 
   const countryCode = filteredCountry?.dialCode;
+
+  const shouldUpdateBtnEnabled =
+    firstName === auth?.user?.firstName &&
+    lastName === auth?.user?.lastName &&
+    gender === auth?.user?.gender &&
+    address === auth?.user?.address &&
+    designation === auth?.user?.designation &&
+    phone === auth?.user?.phone &&
+    country.country === auth?.user?.country;
+
+  const shouldPassChangeBtnEnabled = !(currentPassword && newPassword);
 
   const [
     editProfile,
@@ -220,7 +233,7 @@ export default function AccountSettingEdit({ auth }) {
   return (
     <Box className="w-full p-6 flex flex-col gap-10">
       <Box className="flex justify-center lg:justify-start">
-        <Box className="flex justify-between items-center w-[120px] h-[120px] flex-col relative cursor-pointer group shadow rounded-full border-2 hover:border-0 p-1 hover:p-0">
+        <Box className="flex justify-between items-center w-[120px] h-[120px] flex-col relative cursor-pointer group shadow rounded-full ">
           <Avatar
             alt={auth?.user?.firstName}
             src={image || "/static/images/avatar/1.jpg"}
@@ -392,9 +405,13 @@ export default function AccountSettingEdit({ auth }) {
 
           <Box className="flex justify-end">
             <Button
-              disabled={profileEditedLoading}
+              disabled={profileEditedLoading || shouldUpdateBtnEnabled}
               type="submit"
-              className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+              className={`${
+                profileEditedLoading || shouldUpdateBtnEnabled
+                  ? "bg-text__gray"
+                  : "bg-primary hover:bg-brand__black__color"
+              } text-white px-10 rounded-full font-brand__font__600`}
             >
               {profileEditedLoading ? "Loading..." : "Update"}
             </Button>
@@ -410,6 +427,7 @@ export default function AccountSettingEdit({ auth }) {
             <TextField
               {...register2("currentPassword", {
                 required: true,
+                onChange: (e) => setCurrentPassword(e.target.value),
               })}
               InputProps={{
                 endAdornment: (
@@ -437,6 +455,7 @@ export default function AccountSettingEdit({ auth }) {
               {...register2("newPassword", {
                 required: true,
                 pattern: /^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{6,}$/,
+                onChange: (e) => setNewPassword(e.target.value),
               })}
               InputProps={{
                 endAdornment: (
@@ -465,9 +484,13 @@ export default function AccountSettingEdit({ auth }) {
 
           <Box className="flex justify-end">
             <Button
-              disabled={passwordEditedLoading}
+              disabled={passwordEditedLoading || shouldPassChangeBtnEnabled}
               type="submit"
-              className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+              className={`${
+                passwordEditedLoading || shouldPassChangeBtnEnabled
+                  ? "bg-text__gray"
+                  : "bg-primary hover:bg-brand__black__color"
+              } text-white px-10 rounded-full font-brand__font__600`}
             >
               {passwordEditedLoading ? "Loading..." : "Change"}
             </Button>

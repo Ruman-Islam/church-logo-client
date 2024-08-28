@@ -30,5 +30,21 @@
     "matchText": "personal-signature",
     "alt": "churchlogo_personal_signature",
     "route": "/categories/personal-signature#personal-signature"
+  },
+  {
+    "id": 5,
+    "img": "image/category/churchlogo_personal_signature.jpeg",
+    "title": "Business & Advertising",
+    "matchText": "business-advertising",
+    "alt": "churchlogo_business_advertising",
+    "route": "/categories/business-advertising#business-advertising"
+  },
+  {
+    "id": 6,
+    "img": "image/category/churchlogo_personal_signature.jpeg",
+    "title": "Social Media Service",
+    "matchText": "social-media-service",
+    "alt": "churchlogo_social_media_service",
+    "route": "/categories/social-media-service#social-media-service"
   }
 ]

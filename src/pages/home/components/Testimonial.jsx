@@ -110,8 +110,8 @@ export default function Testimonial() {
                         key={item?._id}
                         className="rounded-md w-full text-brand__black__color"
                       >
-                        <div className="flex flex-col md:flex-row gap-2">
-                          <div className="basis-[100%] md:basis-[10%] flex justify-center">
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-0">
+                          <div className="basis-[100%] md:basis-[0%] flex justify-center">
                             <Avatar
                               alt={item?.user?.firstName}
                               src={
@@ -119,10 +119,10 @@ export default function Testimonial() {
                                 "/static/images/avatar/1.jpg"
                               }
                               sx={{ backgroundColor: generateRandomHexColor() }}
-                              className="w-8 h-8"
+                              className="w-10 h-10 border"
                             />
                           </div>
-                          <div className="basis-[100%] md:basis-[90%] text-center md:text-start flex flex-col items-center md:items-start">
+                          <div className="basis-[100%] md:basis-[95%] text-center md:text-start flex flex-col items-center md:items-start">
                             <div className="flex items-center gap-1">
                               <p className="font-brand__font__600">{`${item?.user?.firstName} ${item?.user?.lastName}`}</p>
                               {item?.user?.verified && (

@@ -97,7 +97,7 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
-                    : "-top-[350px]"
+                    : "-top-[400px]"
                 }`}
               >
                 <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-6 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">

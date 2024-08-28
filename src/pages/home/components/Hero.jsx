@@ -1,5 +1,3 @@
-// import axios from "axios";
-// import { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import data from "../../../data/hero.json";
@@ -31,16 +29,24 @@ export default function Hero() {
 
   // const handleUpload = async () => {
   //   const result = [];
+  //   let count = 0;
   //   for (const element of selectedFiles) {
+  //     count++;
+
   //     const formData = new FormData();
-  //     formData.append("upload_preset", "h5wafal0");
-  //     formData.append("cloud_name", "dq7wrwmig");
-  //     formData.append("folder", "church-logo/gallery/logo-design");
+  //     formData.append(
+  //       "upload_preset",
+  //       import.meta.env.VITE_cloudinary_upload_preset
+  //     );
+  //     formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+  //     formData.append("folder", "church-logo/gallery/web-design");
   //     formData.append("file", element);
 
   //     try {
   //       const response = await axios.post(
-  //         `https://api.cloudinary.com/v1_1/dq7wrwmig/upload`,
+  //         `https://api.cloudinary.com/v1_1/${
+  //           import.meta.env.VITE_cloudinary_cloud_name
+  //         }/upload`,
   //         formData,
   //         {
   //           headers: {
@@ -48,11 +54,17 @@ export default function Hero() {
   //           },
   //         }
   //       );
-  //       result.push(response.data);
-  //       // Handle success
+  //       const obj = {
+  //         url: response?.data?.secure_url,
+  //         title: response?.data?.display_name,
+  //         category: "web-design",
+  //         publicId: response?.data?.public_id,
+  //         serialId: count,
+  //       };
+
+  //       result.push(obj);
   //     } catch (error) {
   //       console.error("Error uploading images:", error);
-  //       // Handle error
   //     }
   //   }
 

@@ -48,7 +48,7 @@ export default function GalleryBusinessAdvertisingScreen() {
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
-                    <PhotoView key={d?._id} src={d?.url}>
+                    <PhotoView key={d?.publicId} src={d?.url}>
                       <img
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}

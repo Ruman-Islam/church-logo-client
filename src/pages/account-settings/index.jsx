@@ -5,11 +5,13 @@ import Paper from "@mui/material/Paper";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useAppSelector } from "../../services/hook";
 import AccountSettingEdit from "./components/AccountSettingEdit";
 
 export default function AccountSettingsScreen() {
+  useAutomaticScrollWithOffset();
   const scrollWithOffset = useScrollWithOffset();
 
   const { auth } = useAppSelector((state) => state);
@@ -20,9 +22,9 @@ export default function AccountSettingsScreen() {
         <SectionBanner heading={`Hello, ${auth?.user.firstName}`} desc="" />
         <div className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-20">
           <div className="flex flex-col lg:flex-row gap-5">
-          <div className="lg:max-w-[230px] w-full overflow-x-auto">
+            <div className="lg:max-w-[230px] w-full overflow-x-auto">
               <Paper className="shadow-none h-full">
-              <MenuList className="flex flex-row lg:flex-col items-center lg:items-start lg:justify-center">
+                <MenuList className="flex flex-row lg:flex-col items-center lg:items-start lg:justify-center">
                   <MenuItem className="lg:w-full">
                     <HashLink
                       to="/dashboard#dashboard"
@@ -61,7 +63,7 @@ export default function AccountSettingsScreen() {
                 </MenuList>
               </Paper>
             </div>
-            <div className="w-full flex items-center justify-center border-l">
+            <div className="w-full flex items-center justify-center md:border-l">
               <AccountSettingEdit auth={auth} />
             </div>
           </div>

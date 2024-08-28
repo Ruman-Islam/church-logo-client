@@ -15,7 +15,7 @@ export default function GalleryPersonalSignatureScreen() {
     limit: 9,
     sortBy: "serialId",
     sortOrder: 1,
-    category: "logo-design",
+    category: "personal-signature",
   });
 
   const { data, isFetching } = useGetGalleryImageQuery(dynamicUrl);
@@ -48,7 +48,7 @@ export default function GalleryPersonalSignatureScreen() {
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
-                    <PhotoView key={d?._id} src={d?.url}>
+                    <PhotoView key={d?.publicId} src={d?.url}>
                       <img
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}

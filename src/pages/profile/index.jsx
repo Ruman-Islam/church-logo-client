@@ -5,11 +5,13 @@ import Paper from "@mui/material/Paper";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useAppSelector } from "../../services/hook";
 import ProfileInfo from "./components/ProfileInfo";
 
 export default function ProfileScreen() {
+  useAutomaticScrollWithOffset();
   const scrollWithOffset = useScrollWithOffset();
 
   const {
@@ -63,7 +65,7 @@ export default function ProfileScreen() {
                 </MenuList>
               </Paper>
             </div>
-            <div className="w-full flex items-center justify-center border-l">
+            <div className="w-full flex items-center justify-center md:border-l">
               <ProfileInfo user={user} />
             </div>
           </div>

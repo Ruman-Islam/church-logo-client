@@ -6,7 +6,7 @@ import data from "../../../data/categories.json";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
-function CategoryCard(props) {
+export function CategoryCard(props) {
   const scrollWithOffset = useScrollWithOffset();
   const { category, route } = props;
   const { img, title, alt } = category;
@@ -46,7 +46,7 @@ export default function Categories() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-between mt-5">
-          {data.map((d) => (
+          {data?.slice(0, 4).map((d) => (
             <CategoryCard key={d.id} route={d.route} category={d} />
           ))}
         </div>
