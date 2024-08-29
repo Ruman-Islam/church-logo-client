@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import SectionBanner from "../../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
-import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
+import { addToCart } from "../../../services/features/cart/cartSlice";
 import { useGetSystemConfigQuery } from "../../../services/features/system/systemApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import OrderStepper2 from "../components/OrderStepper2";
@@ -20,7 +20,9 @@ export default function OrderDesignScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
-  const cartItem = cartItems?.find((item) => item.category === "personal-signature");
+  const cartItem = cartItems?.find(
+    (item) => item.category === "personal-signature"
+  );
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -29,7 +31,7 @@ export default function OrderDesignScreen() {
     cartItem?.preferredDesigns || []
   );
 
-  const { data, isLoading } = useGetSystemConfigQuery();
+  const { data, isFetching } = useGetSystemConfigQuery();
 
   const designSample = data?.data?.orderSettings?.designSample;
 
@@ -62,10 +64,11 @@ export default function OrderDesignScreen() {
       preferredDesigns: selectedDesigns,
     };
 
-    dispatch(setLogoDesignBrief(order));
+    dispatch(addToCart(order));
 
     navigate(`/order/personal-signature/color#color`);
   };
+
   return (
     <Layout title="Choose design">
       <Box id="design" className="bg-section__bg_color h-full">
@@ -78,7 +81,7 @@ export default function OrderDesignScreen() {
             <form onSubmit={onSubmit}>
               <Box className="max-w-[1000px] w-full mx-auto">
                 <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                  {(isLoading ? Array.from(new Array(6)) : designSample).map(
+                  {(isFetching ? Array.from(new Array(6)) : designSample).map(
                     (img, i) => {
                       const isSelected = selectedDesigns.find(
                         (item) => item?.publicId === img?.publicId
@@ -114,7 +117,7 @@ export default function OrderDesignScreen() {
                   sx={{ top: "auto", bottom: 0 }}
                 >
                   <Toolbar>
-                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
+                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                       <OrderStepper2 value={20} />
 
                       <Button

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import SectionBanner from "../../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
-import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
+import { addToCart } from "../../../services/features/cart/cartSlice";
 import { useGetSystemConfigQuery } from "../../../services/features/system/systemApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import OrderStepper2 from "../components/OrderStepper2";
@@ -31,7 +31,7 @@ export default function OrderColorDesignScreen() {
     cartItem?.preferredColors || []
   );
 
-  const { data, isLoading } = useGetSystemConfigQuery();
+  const { data, isFetching } = useGetSystemConfigQuery();
 
   const colorSample = data?.data?.orderSettings?.colorSample;
 
@@ -64,7 +64,7 @@ export default function OrderColorDesignScreen() {
       preferredColors: selectedColors,
     };
 
-    dispatch(setLogoDesignBrief(order));
+    dispatch(addToCart(order));
 
     navigate(`/order/business-advertising/add-ons#add-ons`);
   };
@@ -81,7 +81,7 @@ export default function OrderColorDesignScreen() {
             <form onSubmit={onSubmit}>
               <Box className="max-w-[1000px] w-full mx-auto">
                 <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {(isLoading ? Array.from(new Array(6)) : colorSample).map(
+                  {(isFetching ? Array.from(new Array(6)) : colorSample).map(
                     (img, i) => {
                       const isSelected = selectedColors.find(
                         (item) => item?.publicId === img?.publicId
@@ -120,7 +120,7 @@ export default function OrderColorDesignScreen() {
                   sx={{ top: "auto", bottom: 0 }}
                 >
                   <Toolbar>
-                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
+                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                       <OrderStepper2 value={40} />
 
                       <Button

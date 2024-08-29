@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   initialState: getCart(),
 
   reducers: {
-    setLogoDesignBrief: (state, action) => {
+    addToCart: (state, action) => {
       const newItem = action.payload;
       const existingItem = state.cartItems.find(
         (item) => item.category === newItem.category
@@ -26,9 +26,20 @@ const cartSlice = createSlice({
 
       return (state = { ...state, cartItems });
     },
+
+    removeFromCart: (state, action) => {
+      const existingItem = action.payload;
+      const cartItems = state.cartItems.filter(
+        (item) => item.category !== existingItem.category
+      );
+
+      localStorage.removeItem("cart", JSON.stringify({ cartItems }));
+
+      return (state = { ...state, cartItems });
+    },
   },
 });
 
-export const { setLogoDesignBrief } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
