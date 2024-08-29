@@ -116,7 +116,7 @@ export default function OrderBriefScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/personal-signature/design#design`);
+    navigate(`/order/personal-signature/design/${id}#design`);
   };
 
   return (

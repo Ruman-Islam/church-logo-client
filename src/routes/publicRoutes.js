@@ -106,23 +106,23 @@ const publicRoutes = [
     Component: () => import("../pages/order/logo-design/brief"),
   },
   {
-    path: "order/logo-design/design",
-    name: "order/logo-design/design",
+    path: "order/logo-design/design/:id",
+    name: "order/logo-design/design/:id",
     Component: () => import("../pages/order/logo-design/design"),
   },
   {
-    path: "order/logo-design/color",
-    name: "order/logo-design/color",
+    path: "order/logo-design/color/:id",
+    name: "order/logo-design/color/:id",
     Component: () => import("../pages/order/logo-design/color"),
   },
   {
-    path: "order/logo-design/add-ons",
-    name: "order/logo-design/add-ons",
+    path: "order/logo-design/add-ons/:id",
+    name: "order/logo-design/add-ons/:id",
     Component: () => import("../pages/order/logo-design/add-ons"),
   },
   {
-    path: "order/logo-design/review",
-    name: "order/logo-design/review",
+    path: "order/logo-design/review/:id",
+    name: "order/logo-design/review/:id",
     Component: () => import("../pages/order/logo-design/review"),
   },
   {
@@ -131,13 +131,13 @@ const publicRoutes = [
     Component: () => import("../pages/order/web-design/brief"),
   },
   {
-    path: "order/web-design/add-ons",
-    name: "order/web-design/add-ons",
+    path: "order/web-design/add-ons/:id",
+    name: "order/web-design/add-ons/:id",
     Component: () => import("../pages/order/web-design/add-ons"),
   },
   {
-    path: "order/web-design/review",
-    name: "order/web-design/review",
+    path: "order/web-design/review/:id",
+    name: "order/web-design/review/:id",
     Component: () => import("../pages/order/web-design/review"),
   },
   {
@@ -146,23 +146,23 @@ const publicRoutes = [
     Component: () => import("../pages/order/branding/brief"),
   },
   {
-    path: "order/branding/design",
-    name: "order/branding/design",
+    path: "order/branding/design/:id",
+    name: "order/branding/design/:id",
     Component: () => import("../pages/order/branding/design"),
   },
   {
-    path: "order/branding/color",
-    name: "order/branding/color",
+    path: "order/branding/color/:id",
+    name: "order/branding/color/:id",
     Component: () => import("../pages/order/branding/color"),
   },
   {
-    path: "order/branding/add-ons",
-    name: "order/branding/add-ons",
+    path: "order/branding/add-ons/:id",
+    name: "order/branding/add-ons/:id",
     Component: () => import("../pages/order/branding/add-ons"),
   },
   {
-    path: "order/branding/review",
-    name: "order/branding/review",
+    path: "order/branding/review/:id",
+    name: "order/branding/review/:id",
     Component: () => import("../pages/order/branding/review"),
   },
   {
@@ -171,23 +171,23 @@ const publicRoutes = [
     Component: () => import("../pages/order/personal-signature/brief"),
   },
   {
-    path: "order/personal-signature/design",
-    name: "order/personal-signature/design",
+    path: "order/personal-signature/design/:id",
+    name: "order/personal-signature/design/:id",
     Component: () => import("../pages/order/personal-signature/design"),
   },
   {
-    path: "order/personal-signature/color",
-    name: "order/personal-signature/color",
+    path: "order/personal-signature/color/:id",
+    name: "order/personal-signature/color/:id",
     Component: () => import("../pages/order/personal-signature/color"),
   },
   {
-    path: "order/personal-signature/add-ons",
-    name: "order/personal-signature/add-ons",
+    path: "order/personal-signature/add-ons/:id",
+    name: "order/personal-signature/add-ons/:id",
     Component: () => import("../pages/order/personal-signature/add-ons"),
   },
   {
-    path: "order/personal-signature/review",
-    name: "order/personal-signature/review",
+    path: "order/personal-signature/review/:id",
+    name: "order/personal-signature/review/:id",
     Component: () => import("../pages/order/personal-signature/review"),
   },
   {
@@ -196,18 +196,18 @@ const publicRoutes = [
     Component: () => import("../pages/order/business-advertising/brief"),
   },
   {
-    path: "order/business-advertising/color",
-    name: "order/business-advertising/color",
+    path: "order/business-advertising/color/:id",
+    name: "order/business-advertising/color/:id",
     Component: () => import("../pages/order/business-advertising/color"),
   },
   {
-    path: "order/business-advertising/add-ons",
-    name: "order/business-advertising/add-ons",
+    path: "order/business-advertising/add-ons/:id",
+    name: "order/business-advertising/add-ons/:id",
     Component: () => import("../pages/order/business-advertising/add-ons"),
   },
   {
-    path: "order/business-advertising/review",
-    name: "order/business-advertising/review",
+    path: "order/business-advertising/review/:id",
+    name: "order/business-advertising/review/:id",
     Component: () => import("../pages/order/business-advertising/review"),
   },
   {
@@ -216,13 +216,13 @@ const publicRoutes = [
     Component: () => import("../pages/order/social-media-service/brief"),
   },
   {
-    path: "order/social-media-service/add-ons",
-    name: "order/social-media-service/add-ons",
+    path: "order/social-media-service/add-ons/:id",
+    name: "order/social-media-service/add-ons/:id",
     Component: () => import("../pages/order/social-media-service/add-ons"),
   },
   {
-    path: "order/social-media-service/review",
-    name: "order/social-media-service/review",
+    path: "order/social-media-service/review/:id",
+    name: "order/social-media-service/review/:id",
     Component: () => import("../pages/order/social-media-service/review"),
   },
 ];

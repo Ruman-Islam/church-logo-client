@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import SectionBanner from "../../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
@@ -22,6 +22,7 @@ export default function OrderColorDesignScreen() {
 
   const cartItem = cartItems?.find((item) => item.category === "logo-design");
 
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -64,7 +65,7 @@ export default function OrderColorDesignScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/logo-design/add-ons#add-ons`);
+    navigate(`/order/logo-design/add-ons/${id}#add-ons`);
   };
 
   return (

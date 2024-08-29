@@ -130,7 +130,7 @@ export default function OrderBriefScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/web-design/add-ons#add-ons`);
+    navigate(`/order/web-design/add-ons/${id}#add-ons`);
   };
 
 

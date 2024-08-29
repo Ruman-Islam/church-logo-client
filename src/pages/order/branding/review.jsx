@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
@@ -32,12 +32,13 @@ export default function OrderReviewScreen() {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const cartItem = cartItems?.find((item) => item.category === "branding");
 
-  const { data, isFetching } = useGetOnePackageQuery(cartItem?.packageId);
+  const { data, isFetching } = useGetOnePackageQuery(id);
   const packageData = data?.data;
 
   const additionalFeatureObj = calculateAdditionalItemPrice(
@@ -91,7 +92,7 @@ export default function OrderReviewScreen() {
   };
 
   const handleSubmit = () => {
-    navigate(`/order/branding/checkout#checkout`);
+    navigate(`/order/branding/checkout/${id}#checkout`);
   };
 
   return (
@@ -201,7 +202,7 @@ export default function OrderReviewScreen() {
                         ) : (
                           <MenuItem>
                             <HashLink
-                              to="/order/logo-design/add-ons#add-ons"
+                              to={`/order/logo-design/add-ons/${id}#add-ons`}
                               scroll={(el) => scrollWithOffset(el, 135)}
                               className="flex items-center gap-x-1 text-blue-500"
                             >
@@ -241,7 +242,7 @@ export default function OrderReviewScreen() {
                         ) : (
                           <MenuItem>
                             <HashLink
-                              to="/order/branding/add-ons#add-ons"
+                              to={`/order/branding/add-ons/${id}#add-ons`}
                               scroll={(el) => scrollWithOffset(el, 135)}
                               className="flex items-center gap-x-1 text-blue-500"
                             >
@@ -281,7 +282,7 @@ export default function OrderReviewScreen() {
                         ) : (
                           <MenuItem>
                             <HashLink
-                              to="/order/branding/add-ons#add-ons"
+                              to={`/order/branding/add-ons/${id}#add-ons`}
                               scroll={(el) => scrollWithOffset(el, 135)}
                               className="flex items-center gap-x-1 text-blue-500"
                             >

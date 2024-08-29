@@ -76,7 +76,7 @@ export default function OrderCheckout() {
 
   const countryCode = filteredCountry?.dialCode;
 
-  const { data, isFetching } = useGetOnePackageQuery(cartItem?.packageId);
+  const { data, isFetching } = useGetOnePackageQuery(id);
   const packageData = data?.data;
 
   const [

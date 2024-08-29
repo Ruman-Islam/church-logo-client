@@ -9,7 +9,7 @@ import {
 
 import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import Layout from "../../../components/common/Layout";
@@ -25,6 +25,7 @@ const animatedComponents = makeAnimated();
 
 export default function OrderAddOnsScreen() {
   useAutomaticScrollWithOffset();
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -36,7 +37,7 @@ export default function OrderAddOnsScreen() {
     (item) => item?.category === "personal-signature"
   );
 
-  const { data, isFetching } = useGetOnePackageQuery(cartItem?.packageId);
+  const { data, isFetching } = useGetOnePackageQuery(id);
   const packageData = data?.data;
 
   const additionalFeatures = packageData?.additionalFeatures;
@@ -81,7 +82,7 @@ export default function OrderAddOnsScreen() {
     };
 
     dispatch(addToCart(order));
-    navigate(`/order/personal-signature/review#review`);
+    navigate(`/order/personal-signature/review/${id}#review`);
   };
 
   return (

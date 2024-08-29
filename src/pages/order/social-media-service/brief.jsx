@@ -108,7 +108,7 @@ export default function OrderBriefScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/social-media-service/add-ons#add-ons`);
+    navigate(`/order/social-media-service/add-ons/${id}#add-ons`);
   };
 
   return (

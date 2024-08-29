@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
 import SectionBanner from "../../../components/common/SectionBanner";
@@ -48,6 +48,7 @@ export default function OrderCheckout() {
     formState: { errors },
   } = useForm();
 
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { handleSuccess, handleError } = useToast();
@@ -78,7 +79,7 @@ export default function OrderCheckout() {
 
   const countryCode = filteredCountry?.dialCode;
 
-  const { data, isFetching } = useGetOnePackageQuery(cartItem?.packageId);
+  const { data, isFetching } = useGetOnePackageQuery(id);
   const packageData = data?.data;
 
   const [

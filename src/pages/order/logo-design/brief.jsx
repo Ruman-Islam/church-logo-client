@@ -114,7 +114,7 @@ export default function OrderBriefScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/logo-design/design#design`);
+    navigate(`/order/logo-design/design/${id}#design`);
   };
 
   return (

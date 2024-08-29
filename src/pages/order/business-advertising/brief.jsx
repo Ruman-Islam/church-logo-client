@@ -102,7 +102,7 @@ export default function OrderBriefScreen() {
 
     dispatch(addToCart(order));
 
-    navigate(`/order/business-advertising/color#color`);
+    navigate(`/order/business-advertising/color/${id}#color`);
   };
 
   return (
