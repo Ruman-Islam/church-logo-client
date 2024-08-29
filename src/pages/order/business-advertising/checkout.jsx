@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithO
 import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
+import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditionalItemPrice";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
@@ -85,31 +87,29 @@ export default function OrderCheckout() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const selectedAdditionalFeats = cartItem?.selectedAdditionalFeats;
-  const selectedAdditionalRevision = cartItem?.selectedAdditionalRevision;
-  const selectedAdditionalDeliveryTime =
-    cartItem?.selectedAdditionalDeliveryTime;
+  const additionalFeatureObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalFeats
+  );
 
-  const totalPriceOfAdditionalDelivery =
-    selectedAdditionalDeliveryTime?.price || 0;
+  const additionalRevisionObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalRevision
+  );
 
-  const totalPriceOfAdditionalRevision = selectedAdditionalRevision?.price || 0;
+  const additionalDeliveryObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalDeliveryTime
+  );
 
-  const totalPriceOfAdditionalFeats = selectedAdditionalFeats
-    ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue?.price,
-        0
-      )
-    : 0;
+  const totalPrice = Number(
+    (
+      packagePriceConversion(packageData) +
+      additionalFeatureObj.totalPrice +
+      additionalRevisionObj.totalPrice +
+      additionalDeliveryObj.totalPrice
+    ).toFixed(2)
+  );
 
-  const totalPrice =
-    packagePriceConversion(packageData) +
-    totalPriceOfAdditionalDelivery +
-    totalPriceOfAdditionalRevision +
-    totalPriceOfAdditionalFeats;
-
-  const onSubmit = (formData) => {
-    const email = formData.email;
+  const onSubmit = async (formData) => {
+    const email = formData?.email;
     delete formData.email;
 
     const order = {
@@ -117,12 +117,61 @@ export default function OrderCheckout() {
       additionalEmail: email,
       contactDetails: {
         ...formData,
-        country: data?.country || country?.country,
+        country: country?.country,
+        phone: countryCode + "-" + formData?.phone,
       },
     };
 
-    dispatch(setLogoDesignBrief(order));
-    navigate(`/order/business-advertising/payment#payment`);
+    const referredImages =
+      order?.brief && order?.brief?.referredImages?.length > 0
+        ? order?.brief?.referredImages
+        : [];
+
+    const uploadedReferredImages = [];
+
+    for (const element of referredImages) {
+      const formData = new FormData();
+      formData.append(
+        "upload_preset",
+        import.meta.env.VITE_cloudinary_upload_preset
+      );
+      formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+      formData.append("folder", "church-logo/customer-order");
+      formData.append("file", element?.url);
+
+      try {
+        const { data } = await axios.post(
+          `https://api.cloudinary.com/v1_1/${
+            import.meta.env.VITE_cloudinary_cloud_name
+          }/upload`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        uploadedReferredImages.push({
+          displayName: data?.display_name,
+          publicId: data?.public_id,
+          secureUrl: data?.secure_url,
+        });
+      } catch (error) {
+        console.error("Error uploading images:", error);
+      }
+    }
+
+    order.brief = {
+      ...order.brief,
+      referredImages: uploadedReferredImages,
+    };
+
+    // console.log(order);
+    console.log(JSON.stringify(order));
+
+    // dispatch(setLogoDesignBrief(order));
+    // navigate(`/order/business-advertising/payment#payment`);
   };
 
   if (isLoading) {
@@ -328,7 +377,7 @@ export default function OrderCheckout() {
             sx={{ top: "auto", bottom: 0 }}
           >
             <Toolbar>
-              <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+              <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                 <OrderStepper2 value={100} />
 
                 <Button

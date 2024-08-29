@@ -21,6 +21,7 @@ import { useGetOnePackageQuery } from "../../../services/features/package/packag
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import { generateRandomId } from "../../../utils/generateRandomId";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
+import { tagFinder } from "../../../utils/tagFinder";
 import OrderStepper2 from "../components/OrderStepper2";
 
 const AvatarInput = styled.div``;
@@ -54,9 +55,9 @@ export default function OrderBriefScreen() {
   const [email, setEmail] = useState(
     cartItem?.additionalEmail || user?.email || ""
   );
-  const [videoData, setVideoData] = useState(cartItem?.brief?.videoData || "");
-  const [logoDesc, setLogoDesc] = useState(cartItem?.brief?.logoDesc || "");
-  const [logoNote, setLogoNote] = useState(cartItem?.brief?.logoNote || "");
+  const [videoData, setVideoData] = useState(tagFinder("video_data", cartItem));
+  const [logoDesc, setLogoDesc] = useState(tagFinder("logo_desc", cartItem));
+  const [logoNote, setLogoNote] = useState(tagFinder("logo_note", cartItem));
 
   const { data, isLoading } = useGetOnePackageQuery(id);
 
@@ -83,12 +84,26 @@ export default function OrderBriefScreen() {
       category: "social-media-service",
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
-      brief: {
-        videoData: data.video_data,
-        logoDesc: data.logo_desc,
-        logoNote: data.logo_note,
-        referredImages: referredImages,
-      },
+      referredImages: referredImages,
+      requirements: [
+        {
+          tag: "video_data",
+          question: "Share concept video link if any",
+          answer: data.video_data,
+        },
+        {
+          tag: "logo_desc",
+          question:
+            "Describe what your organization or product does and its target audience",
+          answer: data.logo_desc,
+        },
+        {
+          tag: "logo_note",
+          question:
+            "Is there anything else you would like to communicate to the designers?",
+          answer: data.logo_note,
+        },
+      ],
     };
 
     dispatch(setLogoDesignBrief(order));
@@ -309,7 +324,7 @@ export default function OrderBriefScreen() {
                   sx={{ top: "auto", bottom: 0 }}
                 >
                   <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                       <OrderStepper2 value={0} />
 
                       <Button

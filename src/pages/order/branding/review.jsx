@@ -22,6 +22,7 @@ import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { setLogoDesignBrief } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
+import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditionalItemPrice";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
 
@@ -39,39 +40,30 @@ export default function OrderReviewScreen() {
   const { data, isLoading } = useGetOnePackageQuery(cartItem?.packageId);
   const packageData = data?.data;
 
-  const selectedAdditionalFeats = cartItem?.selectedAdditionalFeats;
-  const selectedAdditionalRevision = cartItem?.selectedAdditionalRevision;
-  const selectedAdditionalDeliveryTime =
-    cartItem?.selectedAdditionalDeliveryTime;
+  const additionalFeatureObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalFeats
+  );
 
-  const totalPriceOfAdditionalDelivery =
-    selectedAdditionalDeliveryTime?.price || 0;
+  const additionalRevisionObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalRevision
+  );
 
-  const totalPriceOfAdditionalRevision = selectedAdditionalRevision?.price || 0;
-
-  const totalPriceOfAdditionalFeats = selectedAdditionalFeats
-    ? selectedAdditionalFeats.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.price,
-        0
-      )
-    : 0;
+  const additionalDeliveryObj = calculateAdditionalItemPrice(
+    cartItem?.selectedAdditionalDeliveryTime
+  );
 
   const totalPrice = Number(
     (
       packagePriceConversion(packageData) +
-      totalPriceOfAdditionalDelivery +
-      totalPriceOfAdditionalRevision +
-      totalPriceOfAdditionalFeats
+      additionalFeatureObj.totalPrice +
+      additionalRevisionObj.totalPrice +
+      additionalDeliveryObj.totalPrice
     ).toFixed(2)
   );
 
-  const handleSubmit = () => {
-    navigate(`/order/branding/checkout#checkout`);
-  };
-
   const handleRemoveAdditionalFeat = (item) => {
-    const filtered = selectedAdditionalFeats.filter(
-      (ft) => ft?.label !== item?.label
+    const filtered = additionalFeatureObj?.additionalItems.filter(
+      (item2) => item2?.label !== item?.label
     );
 
     dispatch(
@@ -79,16 +71,31 @@ export default function OrderReviewScreen() {
     );
   };
 
-  const handleRemoveAdditionalRevision = () => {
+  const handleRemoveAdditionalRevision = (item) => {
+    const filtered = additionalRevisionObj?.additionalItems.filter(
+      (item2) => item2?.label !== item?.label
+    );
+
     dispatch(
-      setLogoDesignBrief({ ...cartItem, selectedAdditionalRevision: null })
+      setLogoDesignBrief({ ...cartItem, selectedAdditionalRevision: filtered })
     );
   };
 
-  const handleRemoveAdditionalDeliverTime = () => {
-    dispatch(
-      setLogoDesignBrief({ ...cartItem, selectedAdditionalDeliveryTime: null })
+  const handleRemoveAdditionalDeliverTime = (item) => {
+    const filtered = additionalDeliveryObj?.additionalItems.filter(
+      (item2) => item2?.label !== item?.label
     );
+
+    dispatch(
+      setLogoDesignBrief({
+        ...cartItem,
+        selectedAdditionalDeliveryTime: filtered,
+      })
+    );
+  };
+
+  const handleSubmit = () => {
+    navigate(`/order/branding/checkout#checkout`);
   };
 
   if (isLoading) {
@@ -173,10 +180,9 @@ export default function OrderReviewScreen() {
                     <Box className="flex flex-col">
                       <FormLabel className="text-end mr-4">Features</FormLabel>
 
-                      {selectedAdditionalFeats &&
-                      selectedAdditionalFeats?.length > 0 ? (
+                      {additionalFeatureObj?.additionalItems?.length > 0 ? (
                         <List>
-                          {selectedAdditionalFeats.map((item) => (
+                          {additionalFeatureObj?.additionalItems.map((item) => (
                             <MenuItem
                               key={item?.label}
                               onClick={() => handleRemoveAdditionalFeat(item)}
@@ -194,7 +200,7 @@ export default function OrderReviewScreen() {
                       ) : (
                         <MenuItem>
                           <HashLink
-                            to="/order/branding/add-ons#add-ons"
+                            to="/order/logo-design/add-ons#add-ons"
                             scroll={(el) => scrollWithOffset(el, 135)}
                             className="flex items-center gap-x-1 text-blue-500"
                           >
@@ -208,22 +214,26 @@ export default function OrderReviewScreen() {
                     <Box className="flex flex-col">
                       <FormLabel className="text-end mr-4">Revision</FormLabel>
 
-                      {selectedAdditionalRevision ? (
+                      {additionalRevisionObj?.additionalItems?.length > 0 ? (
                         <List>
-                          {[selectedAdditionalRevision].map((item) => (
-                            <MenuItem
-                              key={item?.label}
-                              onClick={handleRemoveAdditionalRevision}
-                              className="flex items-center gap-x-4"
-                            >
-                              <span className="basis-[10%] text-error">
-                                <RemoveIcon fontSize="" />
-                              </span>
-                              <span className="basis-[90%] text-end">
-                                {item?.label} (${item?.price})
-                              </span>
-                            </MenuItem>
-                          ))}
+                          {additionalRevisionObj?.additionalItems.map(
+                            (item) => (
+                              <MenuItem
+                                key={item?.label}
+                                onClick={() =>
+                                  handleRemoveAdditionalRevision(item)
+                                }
+                                className="flex items-center gap-x-4"
+                              >
+                                <span className="basis-[10%] text-error">
+                                  <RemoveIcon fontSize="" />
+                                </span>
+                                <span className="basis-[90%] text-end">
+                                  {item?.label} (${item?.price})
+                                </span>
+                              </MenuItem>
+                            )
+                          )}
                         </List>
                       ) : (
                         <MenuItem>
@@ -242,22 +252,26 @@ export default function OrderReviewScreen() {
                     <Box className="flex flex-col">
                       <FormLabel className="text-end mr-4">Delivery</FormLabel>
 
-                      {selectedAdditionalDeliveryTime ? (
+                      {additionalDeliveryObj?.additionalItems?.length > 0 ? (
                         <List>
-                          {[selectedAdditionalDeliveryTime].map((item) => (
-                            <MenuItem
-                              key={item?.label}
-                              onClick={handleRemoveAdditionalDeliverTime}
-                              className="flex items-center gap-x-4"
-                            >
-                              <span className="basis-[10%] text-error">
-                                <RemoveIcon fontSize="small" />
-                              </span>
-                              <span className="basis-[90%] text-end">
-                                {item?.label} (${item?.price})
-                              </span>
-                            </MenuItem>
-                          ))}
+                          {additionalDeliveryObj?.additionalItems.map(
+                            (item) => (
+                              <MenuItem
+                                key={item?.label}
+                                onClick={() =>
+                                  handleRemoveAdditionalDeliverTime(item)
+                                }
+                                className="flex items-center gap-x-4"
+                              >
+                                <span className="basis-[10%] text-error">
+                                  <RemoveIcon fontSize="small" />
+                                </span>
+                                <span className="basis-[90%] text-end">
+                                  {item?.label} (${item?.price})
+                                </span>
+                              </MenuItem>
+                            )
+                          )}
                         </List>
                       ) : (
                         <MenuItem>
@@ -353,7 +367,7 @@ export default function OrderReviewScreen() {
                 sx={{ top: "auto", bottom: 0 }}
               >
                 <Toolbar>
-                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                     <OrderStepper2 value={80} />
 
                     <Button

@@ -12,7 +12,7 @@ import { useVerifyEmailMutation } from "../../../services/features/auth/authApi"
 
 export default function ProfileInfo({ user }) {
   const country = countries.find(
-    (c) => c?.country.toLowerCase() === user?.country.toLowerCase()
+    (c) => c?.country?.toLowerCase() === user?.country?.toLowerCase()
   );
 
   const { handleSuccess, handleError } = useToast();
@@ -195,7 +195,9 @@ export default function ProfileInfo({ user }) {
               gutterBottom
               className="text-[14px] font-brand__font__600"
             >
-              {country?.dialCode + " " + user?.phone || "N/A"}
+              {country?.dialCode && user?.phone
+                ? country?.dialCode + " " + user?.phone
+                : "N/A"}
             </Typography>
           </Box>
         </Box>

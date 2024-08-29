@@ -27,6 +27,7 @@ import { useGetOnePackageQuery } from "../../../services/features/package/packag
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import { generateRandomId } from "../../../utils/generateRandomId";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
+import { tagFinder } from "../../../utils/tagFinder";
 import OrderStepper2 from "../components/OrderStepper2";
 
 const AvatarInput = styled.div``;
@@ -50,28 +51,29 @@ export default function OrderBriefScreen() {
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState(
+    cartItem?.additionalEmail || user?.email || ""
+  );
+  const [demoWebsiteData, setDemoWebsiteData] = useState(
+    tagFinder("demo_website_data", cartItem)
+  );
+  const [hasHostingSetup, setHasHostingSetup] = useState(
+    !!tagFinder("domain_hosting_data", cartItem) || false
+  );
+  const [domainHostingData, setDomainHostingData] = useState(
+    tagFinder("domain_hosting_data", cartItem)
+  );
+  const [websiteDesc, setWebsiteDesc] = useState(
+    tagFinder("website_desc", cartItem)
+  );
+  const [websiteNote, setWebsiteNote] = useState(
+    tagFinder("website_note", cartItem)
+  );
   const [referredImages, setReferredImages] = useState(
     cartItem?.brief?.referredImages.length
       ? cartItem?.brief?.referredImages
       : []
-  );
-  const [demoWebsiteData, setDemoWebsiteData] = useState(
-    cartItem?.brief?.demoWebsiteData || ""
-  );
-  const [hasHostingSetup, setHasHostingSetup] = useState(
-    !!cartItem?.brief?.domainHostingData || false
-  );
-  const [email, setEmail] = useState(
-    cartItem?.additionalEmail || user?.email || ""
-  );
-  const [domainHostingData, setDomainHostingData] = useState(
-    cartItem?.brief?.domainHostingData || ""
-  );
-  const [websiteDesc, setWebsiteDesc] = useState(
-    cartItem?.brief?.websiteDesc || ""
-  );
-  const [websiteNote, setWebsiteNote] = useState(
-    cartItem?.brief?.websiteNote || ""
   );
 
   const { data, isLoading } = useGetOnePackageQuery(id);
@@ -99,13 +101,31 @@ export default function OrderBriefScreen() {
       category: "web-design",
       additionalEmail: data.email,
       userId: user?.userId ? user?.userId : null,
-      brief: {
-        demoWebsiteData: data.demo_website_data,
-        domainHostingData: data.domain_hosting_data,
-        websiteDesc: data.website_desc,
-        websiteNote: data.website_note,
-        referredImages: referredImages,
-      },
+      referredImages: referredImages,
+      requirements: [
+        {
+          tag: "domain_hosting_data",
+          question: "Do you have a setup domain and hosting?",
+          answer: data.domain_hosting_data || "",
+        },
+        {
+          tag: "demo_website_data",
+          question:
+            "Share any inspirational, competitor or similar website link",
+          answer: data.demo_website_data,
+        },
+        {
+          tag: "website_desc",
+          question: "Briefly describe about your website",
+          answer: data.website_desc,
+        },
+        {
+          tag: "website_note",
+          question:
+            "Is there anything else you would like to communicate to the developer?",
+          answer: data.website_note,
+        },
+      ],
     };
 
     dispatch(setLogoDesignBrief(order));
@@ -283,9 +303,7 @@ export default function OrderBriefScreen() {
 
                       <FormControl fullWidth>
                         <TextField
-                          {...register("demo_website_data", {
-                            required: true,
-                          })}
+                          {...register("demo_website_data")}
                           value={demoWebsiteData}
                           onChange={(e) => setDemoWebsiteData(e.target.value)}
                           className="mt-1 w-full"
@@ -435,7 +453,7 @@ export default function OrderBriefScreen() {
                   sx={{ top: "auto", bottom: 0 }}
                 >
                   <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                       <OrderStepper2 value={0} />
 
                       <Button

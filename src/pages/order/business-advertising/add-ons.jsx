@@ -49,21 +49,27 @@ export default function OrderAddOnsScreen() {
       : []
   );
   const [selectedAdditionalRevision, setSelectedAdditionalRevision] = useState(
-    cartItem?.selectedAdditionalRevision || null
+    cartItem?.selectedAdditionalRevision?.length
+      ? cartItem?.selectedAdditionalRevision
+      : []
   );
   const [selectedAdditionalDeliveryTime, setSelectedAdditionalDeliveryTime] =
-    useState(cartItem?.selectedAdditionalDeliveryTime || null);
+    useState(
+      cartItem?.selectedAdditionalDeliveryTime?.length
+        ? cartItem?.selectedAdditionalDeliveryTime
+        : []
+    );
 
   const handleAdditionalFeats = (value) => {
     setSelectedAdditionalFeats(value);
   };
 
   const handleAdditionalRevision = (value) => {
-    setSelectedAdditionalRevision(value);
+    setSelectedAdditionalRevision(value ? [value] : []);
   };
 
   const handleAdditionalDeliveryTime = (value) => {
-    setSelectedAdditionalDeliveryTime(value);
+    setSelectedAdditionalDeliveryTime(value ? [value] : []);
   };
 
   const handleSubmit = () => {
@@ -77,7 +83,6 @@ export default function OrderAddOnsScreen() {
     dispatch(setLogoDesignBrief(order));
     navigate(`/order/business-advertising/review#review`);
   };
-
 
   if (isLoading) {
     return <Loader />;
@@ -233,7 +238,7 @@ export default function OrderAddOnsScreen() {
                 sx={{ top: "auto", bottom: 0 }}
               >
                 <Toolbar>
-                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                     <OrderStepper2 value={60} />
 
                     <Button

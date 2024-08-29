@@ -51,12 +51,20 @@ export default function OrderAddOnsScreen() {
       : []
   );
   const [selectedAdditionalRevision, setSelectedAdditionalRevision] = useState(
-    cartItem?.selectedAdditionalRevision || null
+    cartItem?.selectedAdditionalRevision?.length
+      ? cartItem?.selectedAdditionalRevision
+      : []
   );
   const [selectedAdditionalDeliveryTime, setSelectedAdditionalDeliveryTime] =
-    useState(cartItem?.selectedAdditionalDeliveryTime || null);
+    useState(
+      cartItem?.selectedAdditionalDeliveryTime?.length
+        ? cartItem?.selectedAdditionalDeliveryTime
+        : []
+    );
   const [selectedProgrammingLang, setSelectedProgrammingLang] = useState(
-    cartItem?.selectedProgrammingLang || null
+    cartItem?.selectedProgrammingLang?.length
+      ? cartItem?.selectedProgrammingLang
+      : []
   );
 
   const handleAdditionalFeats = (value) => {
@@ -64,19 +72,19 @@ export default function OrderAddOnsScreen() {
   };
 
   const handleAdditionalRevision = (value) => {
-    setSelectedAdditionalRevision(value);
+    setSelectedAdditionalRevision(value ? [value] : []);
   };
 
   const handleAdditionalDeliveryTime = (value) => {
-    setSelectedAdditionalDeliveryTime(value);
+    setSelectedAdditionalDeliveryTime(value ? [value] : []);
   };
 
   const handleProgrammingLang = (value) => {
-    setSelectedProgrammingLang(value);
+    setSelectedProgrammingLang(value ? [value] : []);
   };
 
   const handleSubmit = () => {
-    if (!selectedProgrammingLang) {
+    if (!selectedProgrammingLang.length) {
       return toast("⚠️ You must select a language");
     }
 
@@ -116,7 +124,7 @@ export default function OrderAddOnsScreen() {
                   <Box className="flex flex-col md:flex-row justify-between gap-y-5 mb-10 md:mb-0">
                     <Box className="basis-[100%] md:basis-[35%]">
                       <Typography variant="h5" component="h5">
-                        Language platforms
+                        Language platforms<span className="text-error">*</span>
                       </Typography>
 
                       <Divider className="md:max-w-[250px] w-full my-1" />
@@ -290,14 +298,14 @@ export default function OrderAddOnsScreen() {
                 sx={{ top: "auto", bottom: 0 }}
               >
                 <Toolbar>
-                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                     <OrderStepper2 value={30} />
 
                     <Button
-                      disabled={!selectedProgrammingLang}
+                      disabled={!selectedProgrammingLang.length}
                       onClick={handleSubmit}
                       className={`${
-                        !selectedProgrammingLang
+                        !selectedProgrammingLang.length
                           ? "bg-text__gray"
                           : "bg-primary hover:bg-brand__black__color"
                       } text-white px-10 rounded-full font-brand__font__600`}

@@ -118,7 +118,7 @@ export default function OrderColorDesignScreen() {
                   sx={{ top: "auto", bottom: 0 }}
                 >
                   <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center">
+                  <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
                       <OrderStepper2 value={40} />
 
                       <Button

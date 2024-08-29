@@ -340,9 +340,11 @@ export default function AccountSettingEdit({ auth }) {
                       {countryCode}
                     </InputAdornment>
                   ),
+                  readOnly: countryCode ? false : true,
                 }}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                helperText={countryCode ? "" : "Please choose country."}
               />
             </FormControl>
           </Box>
