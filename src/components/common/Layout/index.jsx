@@ -20,7 +20,10 @@ export default function Layout({
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <section className={`flex flex-col justify-between h-[${height}]`}>
+      <section
+        className={`flex flex-col justify-between`}
+        style={{ height: height }}
+      >
         {showHeader && <Header topBarEnable="enable" bgColor={headerBgColor} />}
         <main className="mb-auto flex-1">{children}</main>
         {showFooter && <Footer />}

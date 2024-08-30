@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
+import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
@@ -111,9 +112,7 @@ export default function OrderReviewScreen() {
           />
 
           {!data && !isFetching ? (
-            <Box className="flex justify-center items-center w-full h-[10vh]">
-              No data found!
-            </Box>
+            <NoDataFound />
           ) : (
             <Box className="container py-10">
               <Box className="max-w-[1000px] w-full mx-auto">
@@ -329,7 +328,7 @@ export default function OrderReviewScreen() {
                         Reference
                       </Typography>
                       <Box className="flex justify-end gap-1">
-                        {cartItem?.brief?.referredImages.map((item) => (
+                        {cartItem?.referredImages.map((item) => (
                           <img
                             key={item?.id}
                             className="max-w-[100px] w-full"

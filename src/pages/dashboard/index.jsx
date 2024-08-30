@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
@@ -8,6 +10,7 @@ import SectionBanner from "../../components/common/SectionBanner";
 import categoryData from "../../data/categories.json";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
+import { useGetOrderListQuery } from "../../services/features/order/orderApi";
 import { useAppSelector } from "../../services/hook";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import Content from "./components/Content";
@@ -96,17 +99,36 @@ const settings = {
 export default function DashboardScreen() {
   useAutomaticScrollWithOffset();
 
-  const { auth } = useAppSelector((state) => state);
+  const {
+    auth: { user },
+  } = useAppSelector((state) => state);
+
+  const [query] = useState({
+    page: 1,
+    limit: 100,
+  });
+
+  const { data, isFetching } = useGetOrderListQuery(query);
 
   return (
     <Layout title="Dashboard">
       <Box id="dashboard" className="bg-section__bg_color h-full">
         <SectionBanner heading="Welcome" desc="" />
-        <Box className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-20">
-          <Box className="flex flex-col lg:flex-row gap-5">
-            <Sidebar auth={auth} />
-            <Content />
-          </Box>
+        <Box className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-10">
+          {isFetching ? (
+            <Box className="flex flex-col lg:flex-row gap-5">
+              <Skeleton
+                variant="rectangular"
+                className="lg:max-w-[250px] w-full h-[10vh] lg:h-[60vh]"
+              />
+              <Skeleton variant="rectangular" className="flex-grow h-[60vh]" />
+            </Box>
+          ) : (
+            <Box className="flex flex-col lg:flex-row gap-5">
+              <Sidebar user={user} data={data?.data} />
+              <Content data={data?.data} />
+            </Box>
+          )}
 
           <Box className="w-full p-2">
             <Box className="flex flex-col gap-4 py-5">

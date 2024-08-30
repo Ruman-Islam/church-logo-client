@@ -31,6 +31,7 @@ import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditional
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
+import NoDataFound from "../../../components/common/NoDataFound";
 
 export default function OrderCheckout() {
   useAutomaticScrollWithOffset();
@@ -203,9 +204,7 @@ export default function OrderCheckout() {
             />
 
             {!data && !isFetching ? (
-              <Box className="flex justify-center items-center w-full h-[10vh]">
-                No data found!
-              </Box>
+            <NoDataFound />
             ) : (
               <Box className="container py-10">
                 <Box className="max-w-[1000px] w-full mx-auto">

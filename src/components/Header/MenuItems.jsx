@@ -23,6 +23,7 @@ import MuiIButton from "../../components/UI/MuiButton";
 import { default as navItems } from "../../data/navigation.json";
 import useCookie from "../../hooks/useCookie";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
+import { api } from "../../services/api/apiSlice";
 import { logOut } from "../../services/features/auth/authSlice.js";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 
@@ -107,6 +108,7 @@ const MenuItems = ({ onModalOpen }) => {
   const open2 = Boolean(anchorEl2);
 
   const handleLogout = () => {
+    dispatch(api.util.resetApiState());
     dispatch(logOut());
     handleRemoveCookie();
   };

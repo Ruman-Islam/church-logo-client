@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
+import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
 import { countries } from "../../../constants/countries";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
@@ -201,9 +202,7 @@ export default function OrderCheckout() {
             />
 
             {!data && !isFetching ? (
-              <Box className="flex justify-center items-center w-full h-[10vh]">
-                No data found!
-              </Box>
+              <NoDataFound />
             ) : (
               <Box className="container py-10">
                 <Box className="max-w-[1000px] w-full mx-auto">

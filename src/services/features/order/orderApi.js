@@ -3,6 +3,17 @@ import { api } from "../../api/apiSlice";
 
 const orderApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getOrderList: builder.query({
+      query: (query) => {
+        const url = generateServiceUrl("/secure/order/order-list", query);
+
+        return {
+          url,
+          method: "GET",
+        };
+      },
+      providesTags: ["order"],
+    }),
     getOneOrder: builder.query({
       query: (query) => {
         const url = generateServiceUrl("/secure/order/", query);
@@ -25,4 +36,8 @@ const orderApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetOneOrderQuery, useSubmitOrderMutation } = orderApi;
+export const {
+  useGetOrderListQuery,
+  useGetOneOrderQuery,
+  useSubmitOrderMutation,
+} = orderApi;

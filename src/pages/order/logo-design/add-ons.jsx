@@ -14,6 +14,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
+import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import { addToCart } from "../../../services/features/cart/cartSlice";
@@ -94,9 +95,7 @@ export default function OrderAddOnsScreen() {
             desc="Let's start by helping your designers understand which styles you prefer."
           />
           {!data ? (
-            <Box className="flex justify-center items-center w-full h-[10vh]">
-              No data found!
-            </Box>
+            <NoDataFound />
           ) : (
             <Box className="container py-10">
               <Box className="max-w-[1000px] w-full mx-auto">

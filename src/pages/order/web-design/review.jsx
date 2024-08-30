@@ -110,7 +110,7 @@ export default function OrderReviewScreen() {
   const handleSubmit = () => {
     navigate(`/order/web-design/checkout/${id}#checkout`);
   };
-
+ 
   return (
     <Layout title="Overview">
       {isFetching ? (
@@ -366,7 +366,7 @@ export default function OrderReviewScreen() {
                         Reference
                       </Typography>
                       <Box className="flex justify-end gap-1">
-                        {cartItem?.brief?.referredImages.map((item) => (
+                        {cartItem?.referredImages.map((item) => (
                           <img
                             key={item?.id}
                             className="max-w-[100px] w-full"

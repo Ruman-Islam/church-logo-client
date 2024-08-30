@@ -23,6 +23,7 @@ import { generateRandomId } from "../../../utils/generateRandomId";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { tagFinder } from "../../../utils/tagFinder";
 import OrderStepper2 from "../components/OrderStepper2";
+import NoDataFound from "../../../components/common/NoDataFound";
 
 const AvatarInput = styled.div``;
 
@@ -116,9 +117,7 @@ export default function OrderBriefScreen() {
             desc="Fill out the brief so the designers know what you‘re looking for."
           />
           {!data && !isFetching ? (
-            <Box className="flex justify-center items-center w-full h-[50vh]">
-              No data found!
-            </Box>
+           <NoDataFound />
           ) : (
             <Box className="container py-10">
               <form onSubmit={handleSubmit(onSubmit)}>

@@ -15,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
+import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
 import { addToCart } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
@@ -128,9 +129,7 @@ export default function OrderBriefScreen() {
             desc="Fill out the brief so the designers know what you‘re looking for."
           />
           {!data && !isFetching ? (
-            <Box className="flex justify-center items-center w-full h-[50vh]">
-              No data found!
-            </Box>
+            <NoDataFound />
           ) : (
             <Box className="container py-10">
               <form onSubmit={handleSubmit(onSubmit)}>

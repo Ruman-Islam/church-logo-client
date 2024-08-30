@@ -5,6 +5,7 @@ import { IoMdTime } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
+import NoDataFound from "../../components/common/NoDataFound";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useGetOnePackageQuery } from "../../services/features/package/packageApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -51,9 +52,7 @@ export default function Package() {
   return (
     <Layout title="Logo design source pack">
       {isError ? (
-        <div className="flex justify-center items-center w-full h-full">
-          No data found!
-        </div>
+        <NoDataFound />
       ) : (
         <section id="package">
           <div className="bg-section__bg_color">
