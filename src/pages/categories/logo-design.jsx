@@ -28,9 +28,8 @@ export default function CategoryLogoDesignScreen() {
     <Layout title="Categories">
       <section id="logo-design" className="bg-white">
         <SectionBanner
-          heading="The Signature Collection"
-          desc="A handcrafted, uniquely tailored signature logo to suit your unique
-            personality."
+          heading="The complete logo design package for Your Church"
+          desc="Crafting timeless brand identities that resonate with your audience, blending creativity, psychology, and strategic thinking."
         />
 
         <div className="container px-4 py-5 text-brand__black__color">

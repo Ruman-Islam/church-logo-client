@@ -31,6 +31,7 @@ import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditional
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
+import { env } from "../../../config/env";
 
 export default function OrderCheckout() {
   useAutomaticScrollWithOffset();
@@ -152,19 +153,14 @@ export default function OrderCheckout() {
 
     for (const element of referredImages) {
       const formData = new FormData();
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_cloudinary_upload_preset
-      );
-      formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+      formData.append("upload_preset", env?.cloud_upload_preset);
+      formData.append("cloud_name", env?.cloud_upload_name);
       formData.append("folder", "church-logo/customer-order");
       formData.append("file", element?.url);
 
       try {
         const { data } = await axios.post(
-          `https://api.cloudinary.com/v1_1/${
-            import.meta.env.VITE_cloudinary_cloud_name
-          }/upload`,
+          `https://api.cloudinary.com/v1_1/${env?.cloud_upload_name}/upload`,
           formData,
           {
             headers: {

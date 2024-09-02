@@ -28,9 +28,8 @@ export default function CategorySocialMediaServiceScreen() {
     <Layout title="Categories">
       <section id="personal-signature" className="bg-white">
         <SectionBanner
-          heading="The Signature Collection"
-          desc="A handcrafted, uniquely tailored signature logo to suit your unique
-            personality."
+          heading="All of your social media service packages for Your Church"
+          desc="Boost your brand’s online presence with our captivating social media services!"
         />
 
         <div className="container px-4 py-5">

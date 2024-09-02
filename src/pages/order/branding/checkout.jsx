@@ -18,6 +18,7 @@ import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
 import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
+import { env } from "../../../config/env";
 import { countries } from "../../../constants/countries";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import useToast from "../../../hooks/useToast";
@@ -153,19 +154,14 @@ export default function OrderCheckout() {
 
     for (const element of referredImages) {
       const formData = new FormData();
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_cloudinary_upload_preset
-      );
-      formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+      formData.append("upload_preset", env?.cloud_upload_preset);
+      formData.append("cloud_name", env?.cloud_upload_name);
       formData.append("folder", "church-logo/customer-order");
       formData.append("file", element?.url);
 
       try {
         const { data } = await axios.post(
-          `https://api.cloudinary.com/v1_1/${
-            import.meta.env.VITE_cloudinary_cloud_name
-          }/upload`,
+          `https://api.cloudinary.com/v1_1/${env?.cloud_upload_name}/upload`,
           formData,
           {
             headers: {

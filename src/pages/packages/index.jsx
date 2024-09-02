@@ -14,40 +14,12 @@ import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
 
-const titles = [
-  {
-    title: "Timeless brand identities through creativity and strategy.",
-    category: "logo-design",
-  },
-  {
-    title: "Meticulously crafted websites: aesthetics meets functionality.",
-    category: "web-design",
-  },
-  {
-    title: "Elevate Your Brand: Expert Design for a Powerful Online Presence!",
-    category: "branding",
-  },
-  {
-    title: "Bespoke logos and signatures that capture your brand’s essence.",
-    category: "personal-signature",
-  },
-  {
-    title: "Turning ideas into visuals that bring your brand to life!",
-    category: "business-advertising",
-  },
-  {
-    title: "Elevate your brand with captivating social media!",
-    category: "social-media-service",
-  },
-];
-
 export default function Package() {
   const scrollWithOffset = useScrollWithOffset();
   const { id } = useParams();
   const { data, isLoading, isError } = useGetOnePackageQuery(id);
   const packageInfo = data?.data;
   const featuredItems = packageInfo ? packageInfo?.featuredItems : [];
-  const title = titles.find((item) => item?.category === packageInfo?.category);
 
   return (
     <Layout title="Logo design source pack">
@@ -64,7 +36,7 @@ export default function Package() {
                 className="basis-[100%] md:basis-[50%]"
               >
                 <h1 className="text-[42px] md:text-[48px] lg:text-[55px] leading-[50px] lg:leading-[60px]">
-                  {title?.title}
+                  {packageInfo?.headTitle}
                 </h1>
 
                 {isLoading ? (
@@ -75,8 +47,7 @@ export default function Package() {
                   />
                 ) : (
                   <p className="my-5 leading-snug text-text__gray">
-                    Connect with our creative experts and grow your business
-                    with a professional, custom branding package.
+                    {packageInfo?.subTitle}
                   </p>
                 )}
 

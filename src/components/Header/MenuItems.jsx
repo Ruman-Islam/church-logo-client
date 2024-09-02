@@ -25,7 +25,7 @@ import useCookie from "../../hooks/useCookie";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { api } from "../../services/api/apiSlice";
 import { logOut } from "../../services/features/auth/authSlice.js";
-import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { useAppDispatch } from "../../services/hook";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -89,12 +89,8 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-const MenuItems = ({ onModalOpen }) => {
+const MenuItems = ({ onModalOpen, user }) => {
   const scrollWithOffset = useScrollWithOffset();
-
-  const {
-    auth: { user },
-  } = useAppSelector((state) => state);
 
   const location = useLocation();
   const { pathname } = location;
@@ -208,7 +204,7 @@ const MenuItems = ({ onModalOpen }) => {
               >
                 <Avatar
                   alt={user?.firstName}
-                  src={user?.photo?.url || "/static/images/avatar/1.jpg"}
+                  src={user?.photo?.url}
                   sx={{ backgroundColor: "#FF5722" }}
                   className="w-8 h-8 border border-brand__black__color"
                 />

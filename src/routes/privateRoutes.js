@@ -99,6 +99,11 @@ const privateRoutes = [
     name: "/order/order-requirements/:id",
     Component: () => import("../pages/order/order-requirements"),
   },
+  {
+    path: "/dashboard/chat/:id",
+    name: "/dashboard/chat/:id",
+    Component: () => import("../pages/dashboard/chat.jsx"),
+  },
 ];
 
 export default privateRoutes;

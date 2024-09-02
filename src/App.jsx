@@ -12,11 +12,11 @@ import NotFoundScreen from "./pages/not-found";
 import privateRoutes from "./routes/privateRoutes";
 import publicRoutes from "./routes/publicRoutes";
 
-function App() {
-  AOS.init({
-    once: true,
-  });
+AOS.init({
+  once: true,
+});
 
+function App() {
   return (
     <>
       <Suspense

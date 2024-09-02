@@ -14,6 +14,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { env } from "../../../config/env";
 import { countries } from "../../../constants/countries";
 import useToast from "../../../hooks/useToast";
 import {
@@ -183,19 +184,14 @@ export default function AccountSettingEdit({ auth }) {
       onLoadImage(setImage, reader);
     }
 
-    formData.append(
-      "upload_preset",
-      import.meta.env.VITE_cloudinary_upload_preset
-    );
-    formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+    formData.append("upload_preset", env?.cloud_upload_preset);
+    formData.append("cloud_name", env?.cloud_upload_name);
     formData.append("folder", "church-logo/profile-images");
     formData.append("file", e.target.files[0]);
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${
-          import.meta.env.VITE_cloudinary_cloud_name
-        }/upload`,
+        `https://api.cloudinary.com/v1_1/${env?.cloud_upload_name}/upload`,
         formData,
         {
           headers: {

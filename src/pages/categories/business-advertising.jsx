@@ -28,9 +28,8 @@ export default function CategoryPersonalSignatureScreen() {
     <Layout title="Categories">
       <section id="personal-signature" className="bg-white">
         <SectionBanner
-          heading="The Signature Collection"
-          desc="A handcrafted, uniquely tailored signature logo to suit your unique
-            personality."
+          heading="Full business & advertising package for Your Church"
+          desc="Transforming ideas into captivating visuals: our design services bring your brand to life!"
         />
 
         <div className="container px-4 py-5">

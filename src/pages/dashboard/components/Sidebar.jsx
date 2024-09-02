@@ -8,15 +8,24 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Typography from "@mui/material/Typography";
 import { HashLink } from "react-router-hash-link";
+import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import checkIsOnline from "../../../utils/checkIsOnline";
 
-export default function Sidebar({ user, data }) {
-  const activeOrders = data?.filter(
+export default function Sidebar({
+  user,
+  onlineUsers,
+  orders = [],
+  inbox = [],
+}) {
+  const scrollWithOffset = useScrollWithOffset();
+
+  const activeOrders = orders.filter(
     (item) => item?.orderStatus === "in progress"
   );
-  const revisionOrders = data?.filter(
+  const revisionOrders = orders.filter(
     (item) => item?.orderStatus === "revision"
   );
-  const completedOrders = data?.filter(
+  const completedOrders = orders.filter(
     (item) => item?.orderStatus === "completed"
   );
 
@@ -29,7 +38,7 @@ export default function Sidebar({ user, data }) {
               alt={user?.firstName}
               src={user?.photo?.url || "/static/images/avatar/1.jpg"}
               sx={{ backgroundColor: "#FF5722" }}
-              className="w-full h-full text-brand__font__size__lg2"
+              className="w-full h-full text-brand__font__size__lg"
             />
           </Box>
           <Box className="flex flex-col text-brand__font__size__sm">
@@ -73,7 +82,7 @@ export default function Sidebar({ user, data }) {
         </Box>
       </Box>
 
-      <Box className="border bg-white">
+      <Box className="border bg-white w-full">
         <List
           sx={{
             width: "100%",
@@ -84,17 +93,39 @@ export default function Sidebar({ user, data }) {
           <ListSubheader className="border-b">
             <Typography variant="caption">Inbox (1)</Typography>
           </ListSubheader>
-          <ListItem alignItems="flex-start" className="cursor-pointer">
-            <ListItemAvatar>
-              <Avatar alt="Admin" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primaryTypographyProps={{ fontSize: "14px" }}
-              secondaryTypographyProps={{ fontSize: "12px" }}
-              primary="Admin"
-              secondary={"I'll be in your neighborhood doing errands this…"}
-            />
-          </ListItem>
+          {inbox.map((item) => (
+            <ListItem key={item?._id} alignItems="flex-start" className="p-0">
+              <HashLink
+                scroll={(el) => scrollWithOffset(el, 130)}
+                to={`/dashboard/chat/${item?._id}#chat`}
+                className="flex w-full p-3 hover:bg-section__bg_color duration-200"
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    alt={item?.participant?.firstName}
+                    src="/static/images/avatar/1.jpg"
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primaryTypographyProps={{ fontSize: "14px" }}
+                  secondaryTypographyProps={{ fontSize: "12px" }}
+                  primary={
+                    <Box className="flex items-center gap-x-1">
+                      <span>{item?.participant?.firstName}</span>
+                      <Box
+                        className={`w-2 h-2 rounded-full mb-0.5 ${
+                          checkIsOnline(onlineUsers, item?.participant?.userId)
+                            ? "bg-primary"
+                            : "bg-text__gray"
+                        }`}
+                      ></Box>
+                    </Box>
+                  }
+                  secondary={"I'll be in your neighborhood doing errands this…"}
+                />
+              </HashLink>
+            </ListItem>
+          ))}
         </List>
       </Box>
     </Box>

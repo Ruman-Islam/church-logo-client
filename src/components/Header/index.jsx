@@ -1,13 +1,17 @@
 import { Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import io from "socket.io-client";
 import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
+import { env } from "../../config/env";
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 import MenuItems from "./MenuItems";
+
+export let socket = null;
 
 export default function Header({ topBarEnable, bgColor = "bg-white" }) {
   const {
@@ -39,6 +43,16 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
 
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
+
+  useEffect(() => {
+     socket = io.connect(env?.app_url);
+
+    if (user) {
+      socket.emit("addUser", user?.userId);
+    }
+
+    return () => socket.disconnect();
+  }, [user]);
 
   const handleModalOpen = () => setIsModalOpen(true);
   const handleModalClose = () => setIsModalOpen(false);
@@ -101,7 +115,7 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 }`}
               >
                 <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-6 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
-                  <MenuItems onModalOpen={handleModalOpen} />
+                  <MenuItems onModalOpen={handleModalOpen} user={user} />
                 </ul>
               </div>
             </nav>

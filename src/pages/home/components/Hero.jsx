@@ -36,16 +36,16 @@ export default function Hero() {
   //     const formData = new FormData();
   //     formData.append(
   //       "upload_preset",
-  //       import.meta.env.VITE_cloudinary_upload_preset
+  //       env?.cloud_upload_preset
   //     );
-  //     formData.append("cloud_name", import.meta.env.VITE_cloudinary_cloud_name);
+  //     formData.append("cloud_name", env?.cloud_upload_name);
   //     formData.append("folder", "church-logo/gallery/web-design");
   //     formData.append("file", element);
 
   //     try {
   //       const response = await axios.post(
   //         `https://api.cloudinary.com/v1_1/${
-  //           import.meta.env.VITE_cloudinary_cloud_name
+  //           env?.cloud_upload_name
   //         }/upload`,
   //         formData,
   //         {

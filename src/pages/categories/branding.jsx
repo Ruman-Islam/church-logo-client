@@ -28,9 +28,8 @@ export default function CategoryBrandingScreen() {
     <Layout title="Categories">
       <section id="branding" className="bg-white">
         <SectionBanner
-          heading="The Signature Collection"
-          desc=" A handcrafted, uniquely tailored signature logo to suit your unique
-            personality."
+          heading="The complete brand identity package for Your Church"
+          desc="Unlock Your Brand’s Potential: Elevate Your Online Presence with Our Expert Design Services!"
         />
 
         <div className="container px-4 py-5">

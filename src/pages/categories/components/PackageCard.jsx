@@ -66,7 +66,7 @@ const PackageCard = ({ i, pg, iconColors, setIconColors }) => {
 
         <div>
           <h2 className="text-brand__font__size__sm text-text__gray leading-tight mb-1">
-            {pg?.desc}
+            {pg?.previewTitle}
           </h2>
           <ul className="text-brand__font__size__xs leading-loose mt-2">
             <li className="flex items-center gap-1">

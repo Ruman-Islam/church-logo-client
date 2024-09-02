@@ -97,8 +97,8 @@ export function OrderCard({ order }) {
   );
 }
 
-export default function Content({ data }) {
-  const activeOrders = data?.filter(
+export default function Content({ order = [] }) {
+  const activeOrders = order?.filter(
     (item) => item?.orderStatus === "in progress"
   );
 
@@ -107,7 +107,7 @@ export default function Content({ data }) {
     0
   );
 
-  const deliveredOrders = data?.filter(
+  const deliveredOrders = order?.filter(
     (item) => item?.orderStatus === "delivered"
   );
 
@@ -121,13 +121,13 @@ export default function Content({ data }) {
         <Box className="bg-white p-3 border">
           <Typography
             variant="h6"
-            className="text-brand__font__size__md w-full flex justify-between"
+            className="text-brand__font__size__sm lg:text-brand__font__size__md w-full flex justify-between"
           >
             <span>Active Orders : {activeOrders.length} </span>
             <span className="flex gap-1">
               <span>Total:</span>
               <span>
-                <FaDollarSign className="inline text-brand__font__size__base" />
+                <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
                 {totalActiveOrderPrice}
               </span>
             </span>

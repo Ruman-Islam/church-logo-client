@@ -1,14 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
+import { env } from "../../config/env";
 import { logOut, setAuth } from "../features/auth/authSlice";
 
-// eslint-disable-next-line no-unused-vars
-const productionUrl = "https://church-logo-server-2.vercel.app/api/v1";
-// eslint-disable-next-line no-unused-vars
-const developmentUrl = "http://localhost:8080/api/v1";
-
 const baseQuery = fetchBaseQuery({
-  baseUrl: developmentUrl,
+  baseUrl: env?.app_route_url,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -54,6 +50,6 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ["user", "gallery", "review", "package", "system", "order"],
+  tagTypes: ["user", "gallery", "review", "package", "system", "order", "chat"],
   endpoints: () => ({}),
 });

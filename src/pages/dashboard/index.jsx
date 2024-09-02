@@ -1,15 +1,16 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
-import SectionBanner from "../../components/common/SectionBanner";
+import { socket } from "../../components/Header";
 import categoryData from "../../data/categories.json";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
+import { useGetInboxQuery } from "../../services/features/chat/chatApi";
 import { useGetOrderListQuery } from "../../services/features/order/orderApi";
 import { useAppSelector } from "../../services/hook";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -103,19 +104,27 @@ export default function DashboardScreen() {
     auth: { user },
   } = useAppSelector((state) => state);
 
-  const [query] = useState({
+  const [onlineUsers, setOnlineUsers] = useState([]);
+
+  const query = {
     page: 1,
     limit: 100,
-  });
+  };
 
-  const { data, isFetching } = useGetOrderListQuery(query);
+  const { data: order, isFetching: orderFetching } =
+    useGetOrderListQuery(query);
+  const { data: conversation, isFetching: conversationFetching } =
+    useGetInboxQuery(query);
+
+  useEffect(() => {
+    socket.on("getOnlineUsers", (data) => setOnlineUsers(data));
+  }, []);
 
   return (
     <Layout title="Dashboard">
       <Box id="dashboard" className="bg-section__bg_color h-full">
-        <SectionBanner heading="Welcome" desc="" />
         <Box className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-10">
-          {isFetching ? (
+          {orderFetching || conversationFetching ? (
             <Box className="flex flex-col lg:flex-row gap-5">
               <Skeleton
                 variant="rectangular"
@@ -125,8 +134,13 @@ export default function DashboardScreen() {
             </Box>
           ) : (
             <Box className="flex flex-col lg:flex-row gap-5">
-              <Sidebar user={user} data={data?.data} />
-              <Content data={data?.data} />
+              <Sidebar
+                user={user}
+                onlineUsers={onlineUsers}
+                orders={order?.data}
+                inbox={conversation?.data?.docs}
+              />
+              <Content order={order?.data} />
             </Box>
           )}
 

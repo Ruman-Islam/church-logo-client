@@ -28,9 +28,8 @@ export default function CategoryWebDesignScreen() {
     <Layout title="Categories">
       <section id="web-design" className="bg-white">
         <SectionBanner
-          heading="The Signature Collection"
-          desc="A handcrafted, uniquely tailored signature logo to suit your unique
-            personality."
+          heading="The complete web design package for Your Church"
+          desc="Designing meticulously-crafted websites that seamlessly blend aesthetics and functionality."
         />
 
         <div className="container px-4 py-5 text-brand__black__color">
