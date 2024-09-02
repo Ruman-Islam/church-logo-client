@@ -75,11 +75,6 @@ const privateRoutes = [
     Component: () => import("../pages/order/social-media-service/payment"),
   },
   {
-    path: "/profile/chat",
-    name: "/profile/chat",
-    Component: () => import("../pages/profile/chat"),
-  },
-  {
     path: "/verify-email/:token",
     name: "/verify-email/:token",
     Component: () => import("../pages/verify-email"),
