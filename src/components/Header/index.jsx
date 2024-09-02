@@ -1,17 +1,13 @@
 import { Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
-import io from "socket.io-client";
 import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
-import { env } from "../../config/env";
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 import MenuItems from "./MenuItems";
-
-export let socket = null;
 
 export default function Header({ topBarEnable, bgColor = "bg-white" }) {
   const {
@@ -43,16 +39,6 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
 
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
-
-  useEffect(() => {
-     socket = io.connect(env?.app_url);
-
-    if (user) {
-      socket.emit("addUser", user?.userId);
-    }
-
-    return () => socket.disconnect();
-  }, [user]);
 
   const handleModalOpen = () => setIsModalOpen(true);
   const handleModalClose = () => setIsModalOpen(false);

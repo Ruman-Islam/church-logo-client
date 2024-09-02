@@ -13,13 +13,13 @@ import { useForm } from "react-hook-form";
 import { MdAddPhotoAlternate, MdOutlineInsertEmoticon } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { socket } from "../../../components/Header";
 import { env } from "../../../config/env";
 import useToast from "../../../hooks/useToast";
 import {
   useGetMessagesQuery,
   useSendMessageMutation,
 } from "../../../services/features/chat/chatApi";
+import { socket } from "../../../socket";
 import checkIsOnline from "../../../utils/checkIsOnline";
 import dateAndTime from "../../../utils/dateAndTime";
 
@@ -57,7 +57,7 @@ export default function Chat({ user, onlineUsers }) {
         return prevMessages;
       });
     });
-  }, [user?.userId]);
+  }, [user]);
 
   useEffect(() => {
     if (postMessage?.statusCode === 200) {
@@ -68,9 +68,7 @@ export default function Chat({ user, onlineUsers }) {
         }
         return prevMessages;
       });
-      socket.emit("sendMessage", {
-        ...postMessage?.data,
-      });
+      socket.emit("sendMessage", postMessage?.data);
     }
   }, [postMessage]);
 

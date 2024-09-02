@@ -1,8 +1,6 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
-import { useEffect, useState } from "react";
 import Layout from "../../components/common/Layout";
-import { socket } from "../../components/Header";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import { useGetInboxQuery } from "../../services/features/chat/chatApi";
 import { useGetOrderListQuery } from "../../services/features/order/orderApi";
@@ -14,10 +12,8 @@ export default function ChatScreen() {
   useAutomaticScrollWithOffset();
 
   const {
-    auth: { user },
+    auth: { user, onlineUsers },
   } = useAppSelector((state) => state);
-
-  const [onlineUsers, setOnlineUsers] = useState([]);
 
   const query = {
     page: 1,
@@ -27,10 +23,6 @@ export default function ChatScreen() {
   const { data: order, isFetching: orderFetching } =
     useGetOrderListQuery(query);
   const { data: inbox, isFetching: inboxFetching } = useGetInboxQuery(query);
-
-  useEffect(() => {
-    socket.on("getOnlineUsers", (data) => setOnlineUsers(data));
-  }, []);
 
   return (
     <Layout title="Chat">

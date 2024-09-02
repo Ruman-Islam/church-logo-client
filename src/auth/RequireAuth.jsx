@@ -11,7 +11,6 @@ const RequireAuth = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Assume that if user is null, we are still loading
     if (user === null || user === undefined) {
       setLoading(true);
     } else {
@@ -20,7 +19,7 @@ const RequireAuth = () => {
   }, [user]);
 
   if (loading) {
-    return <Loader />; // Replace with your own loading spinner or component
+    return <Loader />;
   }
 
   return user?.userId ? (

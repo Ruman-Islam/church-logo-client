@@ -12,6 +12,7 @@ import useToast from "../../hooks/useToast";
 import { useSignUpMutation } from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { socket } from "../../socket";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
@@ -48,6 +49,7 @@ export default function SignUp({ showForm }) {
 
   useEffect(() => {
     if (data) {
+      socket.emit("addUser", data?.data?.user?.userId);
       handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));

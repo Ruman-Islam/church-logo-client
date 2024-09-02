@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import useRefreshToken from "../../hooks/useRefreshToken.js";
 import { useAppSelector } from "../../services/hook.js";
+import { socket } from "../../socket.js";
 import Loader from "../common/Loader";
 
 const PersistLogin = () => {
@@ -9,6 +10,12 @@ const PersistLogin = () => {
   const { auth } = useAppSelector((state) => state);
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    if (auth?.user) {
+      socket.emit("addUser", auth?.user?.userId);
+    }
+  }, [auth?.user]);
+  
   useEffect(() => {
     // isMounted is using for no memory leak
     let isMounted = true;

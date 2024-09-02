@@ -26,6 +26,7 @@ import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { api } from "../../services/api/apiSlice";
 import { logOut } from "../../services/features/auth/authSlice.js";
 import { useAppDispatch } from "../../services/hook";
+import { socket } from "../../socket";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -104,6 +105,7 @@ const MenuItems = ({ onModalOpen, user }) => {
   const open2 = Boolean(anchorEl2);
 
   const handleLogout = () => {
+    socket.emit("disconnection");
     dispatch(api.util.resetApiState());
     dispatch(logOut());
     handleRemoveCookie();

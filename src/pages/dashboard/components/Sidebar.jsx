@@ -13,9 +13,9 @@ import checkIsOnline from "../../../utils/checkIsOnline";
 
 export default function Sidebar({
   user,
-  onlineUsers,
-  orders = [],
   inbox = [],
+  orders = [],
+  onlineUsers = [],
 }) {
   const scrollWithOffset = useScrollWithOffset();
 

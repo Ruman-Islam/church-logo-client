@@ -1,12 +1,10 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
-import { socket } from "../../components/Header";
 import categoryData from "../../data/categories.json";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
@@ -101,24 +99,18 @@ export default function DashboardScreen() {
   useAutomaticScrollWithOffset();
 
   const {
-    auth: { user },
+    auth: { user, onlineUsers },
   } = useAppSelector((state) => state);
-
-  const [onlineUsers, setOnlineUsers] = useState([]);
 
   const query = {
     page: 1,
     limit: 100,
   };
-
+console.log(onlineUsers)
   const { data: order, isFetching: orderFetching } =
     useGetOrderListQuery(query);
   const { data: conversation, isFetching: conversationFetching } =
     useGetInboxQuery(query);
-
-  useEffect(() => {
-    socket.on("getOnlineUsers", (data) => setOnlineUsers(data));
-  }, []);
 
   return (
     <Layout title="Dashboard">

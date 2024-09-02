@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
+import { socket } from "../../socket";
 
 export default function SignIn({ showForm }) {
   const { handleSuccess, handleError } = useToast();
@@ -51,6 +52,7 @@ export default function SignIn({ showForm }) {
 
   useEffect(() => {
     if (data) {
+      socket.emit("addUser", data?.data?.user?.userId);
       handleSuccess(data?.message);
       handleSetCookie(data?.data?.refreshToken);
       dispatch(setAuth(data?.data));

@@ -1,59 +1,24 @@
 import AOS from "aos";
-import { Suspense, lazy } from "react";
-import { Toaster } from "react-hot-toast";
-import { Route, Routes } from "react-router-dom";
-import RequireAuth from "./auth/RequireAuth";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import PersistLogin from "./components/PersistLogin";
-import JumpToTopBtn from "./components/common/JumpToTopBtn";
-import Loader from "./components/common/Loader";
-import NotFoundScreen from "./pages/not-found";
-import privateRoutes from "./routes/privateRoutes";
-import publicRoutes from "./routes/publicRoutes";
+import { useEffect } from "react";
+import Routers from "./Routers";
+import { setOnlineUsers } from "./services/features/auth/authSlice";
+import { useAppDispatch } from "./services/hook.js";
+import { socket } from "./socket";
 
 AOS.init({
   once: true,
 });
 
 function App() {
-  return (
-    <>
-      <Suspense
-        fallback={
-          <>
-            <Header topBarEnable="enable" />
-            <Loader />
-            <Footer />
-          </>
-        }
-      >
-        <Routes>
-          <Route element={<PersistLogin />}>
-            {publicRoutes.map(({ path, name, Component }) => {
-              const LazyComponent = lazy(Component);
-              return (
-                <Route key={name} path={path} element={<LazyComponent />} />
-              );
-            })}
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    socket.connect();
+    socket.on("getOnlineUsers", (data) => dispatch(setOnlineUsers(data)));
 
-            <Route element={<RequireAuth />}>
-              {privateRoutes.map(({ path, name, Component }) => {
-                const LazyComponent = lazy(Component);
-                return (
-                  <Route key={name} path={path} element={<LazyComponent />} />
-                );
-              })}
-            </Route>
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-            <Route path="*" element={<NotFoundScreen />} />
-          </Route>
-        </Routes>
-        <JumpToTopBtn />
-        <Toaster position="bottom-center" />
-      </Suspense>
-    </>
-  );
+  return <Routers />;
 }
 
 export default App;
