@@ -10,11 +10,6 @@ const privateRoutes = [
     Component: () => import("../pages/account-settings"),
   },
   {
-    path: "/dashboard",
-    name: "/dashboard",
-    Component: () => import("../pages/dashboard"),
-  },
-  {
     path: "/order/logo-design/checkout/:id",
     name: "/order/logo-design/checkout/:id",
     Component: () => import("../pages/order/logo-design/checkout"),
@@ -93,11 +88,6 @@ const privateRoutes = [
     path: "/order/order-requirements/:id",
     name: "/order/order-requirements/:id",
     Component: () => import("../pages/order/order-requirements"),
-  },
-  {
-    path: "/dashboard/chat/:id",
-    name: "/dashboard/chat/:id",
-    Component: () => import("../pages/dashboard/chat.jsx"),
   },
 ];
 

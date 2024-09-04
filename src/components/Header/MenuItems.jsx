@@ -93,9 +93,9 @@ const ITEM_HEIGHT = 48;
 const MenuItems = ({ onModalOpen, user }) => {
   const scrollWithOffset = useScrollWithOffset();
 
+  const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
-  const navigate = useNavigate();
   const { handleRemoveCookie } = useCookie();
   const dispatch = useAppDispatch();
 
@@ -109,10 +109,7 @@ const MenuItems = ({ onModalOpen, user }) => {
     dispatch(api.util.resetApiState());
     dispatch(logOut());
     handleRemoveCookie();
-  };
-
-  const handleNav = (route) => {
-    navigate(`/${route}`);
+    navigate("/");
   };
 
   return (
@@ -216,25 +213,32 @@ const MenuItems = ({ onModalOpen, user }) => {
                 open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                <MenuItem onClick={() => handleNav("dashboard#dashboard")}>
-                  <ListItemIcon>
-                    <DashboardIcon fontSize="small" />
-                  </ListItemIcon>
-                  Dashboard
+                <MenuItem>
+                  <HashLink to="/dashboard" className="flex items-center">
+                    <ListItemIcon>
+                      <DashboardIcon fontSize="small" />
+                    </ListItemIcon>
+                    Dashboard
+                  </HashLink>
                 </MenuItem>
-                <MenuItem onClick={() => handleNav("profile#profile")}>
-                  <ListItemIcon>
-                    <AccountBoxIcon fontSize="small" />
-                  </ListItemIcon>
-                  Profile
+                <MenuItem>
+                  <HashLink to="/profile#profile" className="flex items-center">
+                    <ListItemIcon>
+                      <AccountBoxIcon fontSize="small" />
+                    </ListItemIcon>
+                    Profile
+                  </HashLink>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => handleNav("account-settings#account-settings")}
-                >
-                  <ListItemIcon>
-                    <Settings fontSize="small" />
-                  </ListItemIcon>
-                  Account Settings
+                <MenuItem>
+                  <HashLink
+                    to="/account-settings#account-settings"
+                    className="flex items-center"
+                  >
+                    <ListItemIcon>
+                      <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Account Settings
+                  </HashLink>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleLogout}>

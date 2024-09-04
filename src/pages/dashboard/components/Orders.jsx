@@ -9,6 +9,7 @@ import { HashLink } from "react-router-hash-link";
 
 import { useEffect, useState } from "react";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
 import startCountdown from "../../../utils/countdown";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
@@ -97,7 +98,17 @@ export function OrderCard({ order }) {
   );
 }
 
-export default function Content({ order = [] }) {
+export default function Orders() {
+  const query = {
+    page: 1,
+    limit: 100,
+  };
+
+  const { data: orderData, } =
+    useGetOrderListQuery(query);
+    
+  const order = orderData?.data || [];
+
   const activeOrders = order?.filter(
     (item) => item?.orderStatus === "in progress"
   );

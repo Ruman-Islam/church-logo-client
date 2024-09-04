@@ -6,28 +6,59 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
+import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
+import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
 
-export default function Sidebar({
-  user,
-  inbox = [],
-  orders = [],
-  onlineUsers = [],
-}) {
+function findOppositeParticipant(userObject, userId) {
+  const { creator, participant } = userObject;
+
+  if (creator.userId === userId) {
+    return participant;
+  } else if (participant.userId === userId) {
+    return creator;
+  } else {
+    return null; // Return null or handle the case where neither ID matches
+  }
+}
+
+export default function Sidebar() {
   const scrollWithOffset = useScrollWithOffset();
 
-  const activeOrders = orders.filter(
-    (item) => item?.orderStatus === "in progress"
-  );
-  const revisionOrders = orders.filter(
-    (item) => item?.orderStatus === "revision"
-  );
-  const completedOrders = orders.filter(
-    (item) => item?.orderStatus === "completed"
-  );
+  const {
+    auth: { user },
+    chat: { onlineUsers },
+  } = useAppSelector((state) => state);
+
+  const query = {
+    page: 1,
+    limit: 100,
+  };
+
+  const { /* data: order,  */ isFetching: orderFetching } =
+    useGetOrderListQuery(query);
+
+  const { data: conversation, isFetching: conversationFetching } =
+    useGetInboxQuery(query);
+
+  // const activeOrders = order?.data.filter(
+  //   (item) => item?.orderStatus === "in progress"
+  // );
+  // const revisionOrders = order?.data.filter(
+  //   (item) => item?.orderStatus === "revision"
+  // );
+  // const completedOrders = order?.data.filter(
+  //   (item) => item?.orderStatus === "completed"
+  // );
+
+  if (orderFetching || conversationFetching) {
+    return <Skeleton variant="square" className="w-[250px] h-[600px]" />;
+  }
 
   return (
     <Box className="lg:max-w-[250px] w-full flex flex-col gap-5">
@@ -56,15 +87,15 @@ export default function Sidebar({
         <Box className="mt-2 text-brand__font__size__sm">
           <Box className="flex justify-between py-1">
             <Typography variant="p">Complete Order</Typography>
-            <Typography variant="p">{completedOrders.length}</Typography>
+            <Typography variant="p">{0}</Typography>
           </Box>
           <Box className="flex justify-between py-1">
             <Typography variant="p">Pending Order</Typography>
-            <Typography variant="p">{activeOrders.length}</Typography>
+            <Typography variant="p">{0}</Typography>
           </Box>
           <Box className="flex justify-between py-1">
             <Typography variant="p">Revision</Typography>
-            <Typography variant="p">{revisionOrders.length}</Typography>
+            <Typography variant="p">{0}</Typography>
           </Box>
         </Box>
       </Box>
@@ -91,41 +122,48 @@ export default function Sidebar({
           className="max-h-[350px] h-full overflow-y-auto"
         >
           <ListSubheader className="border-b">
-            <Typography variant="caption">Inbox (1)</Typography>
+            <Typography variant="caption">Inbox (0)</Typography>
           </ListSubheader>
-          {inbox.map((item) => (
-            <ListItem key={item?._id} alignItems="flex-start" className="p-0">
-              <HashLink
-                scroll={(el) => scrollWithOffset(el, 130)}
-                to={`/dashboard/chat/${item?._id}#chat`}
-                className="flex w-full p-3 hover:bg-section__bg_color duration-200"
-              >
-                <ListItemAvatar>
-                  <Avatar
-                    alt={item?.participant?.firstName}
-                    src="/static/images/avatar/1.jpg"
+          {conversation?.data?.docs.map((item) => {
+            const participant = findOppositeParticipant(item, user?.userId);
+            return (
+              <ListItem key={item?._id} alignItems="flex-start" className="p-0">
+                <HashLink
+                  scroll={(el) => scrollWithOffset(el, 130)}
+                  to={`/dashboard/inbox/${item?._id}#chat`}
+                  className="flex w-full p-3 hover:bg-section__bg_color duration-200"
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      alt={participant?.firstName}
+                      src="/static/images/avatar/1.jpg"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primaryTypographyProps={{ fontSize: "14px" }}
+                    secondaryTypographyProps={{ fontSize: "12px" }}
+                    primary={
+                      <Box className="flex items-center gap-x-1">
+                        <span>
+                          {participant?.firstName} {participant?.lastName}
+                        </span>
+                        <Box
+                          className={`w-2 h-2 rounded-full mb-0.5 ${
+                            checkIsOnline(onlineUsers, participant?.userId)
+                              ? "bg-primary"
+                              : "bg-text__gray"
+                          }`}
+                        ></Box>
+                      </Box>
+                    }
+                    secondary={
+                      "I'll be in your neighborhood doing errands this…"
+                    }
                   />
-                </ListItemAvatar>
-                <ListItemText
-                  primaryTypographyProps={{ fontSize: "14px" }}
-                  secondaryTypographyProps={{ fontSize: "12px" }}
-                  primary={
-                    <Box className="flex items-center gap-x-1">
-                      <span>{item?.participant?.firstName}</span>
-                      <Box
-                        className={`w-2 h-2 rounded-full mb-0.5 ${
-                          checkIsOnline(onlineUsers, item?.participant?.userId)
-                            ? "bg-primary"
-                            : "bg-text__gray"
-                        }`}
-                      ></Box>
-                    </Box>
-                  }
-                  secondary={"I'll be in your neighborhood doing errands this…"}
-                />
-              </HashLink>
-            </ListItem>
-          ))}
+                </HashLink>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
     </Box>

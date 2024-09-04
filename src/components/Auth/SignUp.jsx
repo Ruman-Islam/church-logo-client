@@ -58,6 +58,7 @@ export default function SignUp({ showForm }) {
       handleError(error?.data?.message);
     }
 
+    return () => socket.off("addUser");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error]);
 

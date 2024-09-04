@@ -1,18 +1,15 @@
 import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Outlet } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
 import categoryData from "../../data/categories.json";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
-import { useGetInboxQuery } from "../../services/features/chat/chatApi";
-import { useGetOrderListQuery } from "../../services/features/order/orderApi";
-import { useAppSelector } from "../../services/hook";
+
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-import Content from "./components/Content";
 import Sidebar from "./components/Sidebar";
 
 const PrevArrow = ({ ...props }) => {
@@ -98,43 +95,16 @@ const settings = {
 export default function DashboardScreen() {
   useAutomaticScrollWithOffset();
 
-  const {
-    auth: { user, onlineUsers },
-  } = useAppSelector((state) => state);
-
-  const query = {
-    page: 1,
-    limit: 100,
-  };
-console.log(onlineUsers)
-  const { data: order, isFetching: orderFetching } =
-    useGetOrderListQuery(query);
-  const { data: conversation, isFetching: conversationFetching } =
-    useGetInboxQuery(query);
-
   return (
     <Layout title="Dashboard">
-      <Box id="dashboard" className="bg-section__bg_color h-full">
-        <Box className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-10">
-          {orderFetching || conversationFetching ? (
-            <Box className="flex flex-col lg:flex-row gap-5">
-              <Skeleton
-                variant="rectangular"
-                className="lg:max-w-[250px] w-full h-[10vh] lg:h-[60vh]"
-              />
-              <Skeleton variant="rectangular" className="flex-grow h-[60vh]" />
+      <Box id="dashboard" className="bg-section__bg_color">
+        <Box className="max-w-[1024px] w-full h-full mx-auto px-4 py-5 lg:py-10">
+          <Box className="flex flex-col lg:flex-row gap-5">
+            <Sidebar />
+            <Box className="flex-1">
+              <Outlet />
             </Box>
-          ) : (
-            <Box className="flex flex-col lg:flex-row gap-5">
-              <Sidebar
-                user={user}
-                onlineUsers={onlineUsers}
-                orders={order?.data}
-                inbox={conversation?.data?.docs}
-              />
-              <Content order={order?.data} />
-            </Box>
-          )}
+          </Box>
 
           <Box className="w-full p-2">
             <Box className="flex flex-col gap-4 py-5">

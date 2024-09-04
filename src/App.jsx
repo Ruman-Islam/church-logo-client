@@ -1,7 +1,7 @@
 import AOS from "aos";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Routers from "./Routers";
-import { setOnlineUsers } from "./services/features/auth/authSlice";
+import { addMessage, setOnlineUsers } from "./services/features/chat/chatSlice";
 import { useAppDispatch } from "./services/hook.js";
 import { socket } from "./socket";
 
@@ -11,12 +11,31 @@ AOS.init({
 
 function App() {
   const dispatch = useAppDispatch();
+
+  const handleSetOnlineUsers = useCallback(
+    (res) => {
+      dispatch(setOnlineUsers(res));
+    },
+    [dispatch]
+  );
+
+  const handleAddMessage = useCallback(
+    (res) => {
+      dispatch(addMessage(res));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     socket.connect();
-    socket.on("getOnlineUsers", (data) => dispatch(setOnlineUsers(data)));
+    socket.on("getOnlineUsers", handleSetOnlineUsers);
+    socket.on("getMessage", handleAddMessage);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      socket.off("getOnlineUsers");
+      socket.off("getMessage");
+    };
+  }, [handleSetOnlineUsers, handleAddMessage]);
 
   return <Routers />;
 }

@@ -14,6 +14,8 @@ const PersistLogin = () => {
     if (auth?.user) {
       socket.emit("addUser", auth?.user?.userId);
     }
+
+    return () => socket.off("addUser");
   }, [auth?.user]);
   
   useEffect(() => {
