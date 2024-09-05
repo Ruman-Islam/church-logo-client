@@ -2,6 +2,14 @@ import { api } from "../../api/apiSlice";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    tracking: builder.mutation({
+      query: ({ data }) => ({
+        url: "/public/tracking",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
     confirmEmailVerification: builder.mutation({
       query: ({ data }) => ({
         url: "/secure/profile/confirm-email-verification",
@@ -86,6 +94,7 @@ const authApi = api.injectEndpoints({
 });
 
 export const {
+  useTrackingMutation,
   useConfirmEmailVerificationMutation,
   useVerifyEmailMutation,
   useResetPasswordMutation,

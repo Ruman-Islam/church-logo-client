@@ -1,5 +1,6 @@
 import AOS from "aos";
 import { useCallback, useEffect } from "react";
+import useTracking from "./hooks/useTracking";
 import Routers from "./Routers";
 import { addMessage, setOnlineUsers } from "./services/features/chat/chatSlice";
 import { useAppDispatch } from "./services/hook.js";
@@ -10,6 +11,7 @@ AOS.init({
 });
 
 function App() {
+  useTracking();
   const dispatch = useAppDispatch();
 
   const handleSetOnlineUsers = useCallback(

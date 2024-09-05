@@ -9,8 +9,10 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
+import useTracking from "../../hooks/useTracking";
 
 export default function CategorySocialMediaServiceScreen() {
+  useTracking();
   const [iconColors, setIconColors] = useState({});
 
   const [query] = useState({

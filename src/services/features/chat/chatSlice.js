@@ -5,7 +5,7 @@ const chatSlice = createSlice({
   initialState: {
     messages: [],
     onlineUsers: [],
-    messageNotification: [],
+    unreadMessages: [],
   },
   reducers: {
     addMessage: (state, action) => {

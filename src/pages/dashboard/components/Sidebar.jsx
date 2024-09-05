@@ -10,7 +10,10 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
-import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
+import {
+  useGetInboxQuery,
+  useGetUnreadMessagesQuery,
+} from "../../../services/features/chat/chatApi";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
 import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
@@ -46,6 +49,11 @@ export default function Sidebar() {
   const { data: conversation, isFetching: conversationFetching } =
     useGetInboxQuery(query);
 
+  const { data: unreadMessages, isFetching: UnreadMessagesFetching } =
+    useGetUnreadMessagesQuery({
+      refetchOnMountOrArgChange: true,
+    });
+  // console.log(messages)
   // const activeOrders = order?.data.filter(
   //   (item) => item?.orderStatus === "in progress"
   // );
@@ -56,7 +64,7 @@ export default function Sidebar() {
   //   (item) => item?.orderStatus === "completed"
   // );
 
-  if (orderFetching || conversationFetching) {
+  if (orderFetching || conversationFetching || UnreadMessagesFetching) {
     return <Skeleton variant="square" className="w-[250px] h-[600px]" />;
   }
 
@@ -122,7 +130,9 @@ export default function Sidebar() {
           className="max-h-[350px] h-full overflow-y-auto"
         >
           <ListSubheader className="border-b">
-            <Typography variant="caption">Inbox (0)</Typography>
+            <Typography variant="caption">
+              Inbox ({unreadMessages?.data?.length})
+            </Typography>
           </ListSubheader>
           {conversation?.data?.docs.map((item) => {
             const participant = findOppositeParticipant(item, user?.userId);

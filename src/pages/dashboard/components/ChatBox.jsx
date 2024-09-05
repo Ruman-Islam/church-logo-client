@@ -46,7 +46,7 @@ export default function ChatBox() {
 
   const [query, setQuery] = useState({
     page: 1,
-    limit: 15,
+    limit: 20,
     sortBy: "dateTime",
     sortOrder: -1,
     conversationId: id,
@@ -100,8 +100,8 @@ export default function ChatBox() {
     if (unreadMessages.length) {
       socket.emit("seenMessages", { unreadMessages, receiverId: user?.userId });
     }
+
     socket.on("getSeenMessages", (res) => {
-      console.log(res)
       const updatedMessages = messages.map((item) => {
         const matchingItem = res.find((obj) => obj?._id === item?._id);
         return matchingItem ? matchingItem : item;
@@ -184,7 +184,7 @@ export default function ChatBox() {
         </Box>
 
         <Box>
-          <ScrollToBottom className="flex-1 px-4 h-[620px] mt-4">
+          <ScrollToBottom className="flex-1 px-4 h-[450px] mt-4">
             {hasShowMore && (
               <Box
                 className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
@@ -219,7 +219,7 @@ export default function ChatBox() {
                             : `${item?.sender?.firstName} ${item?.sender?.lastName}`}
                         </span>
                         <em className="text-brand__font__size__xs">
-                          {/* {dateAndTime(item?.dateTime).date}{" "} */}
+                          {dateAndTime(item?.dateTime).date}{" "}
                           {dateAndTime(item?.dateTime).time}
                         </em>
                         {item?.sender?.userId === user?.userId && (
@@ -227,10 +227,10 @@ export default function ChatBox() {
                             {item?.isRead ? (
                               <IoCheckmarkDoneSharp
                                 size={14}
-                                className="text-blue-400 font-brand__font__semibold"
+                                className="text-blue-400 font-brand__font__semibold mb-0.5"
                               />
                             ) : (
-                              <IoCheckmarkSharp size={14} />
+                              <IoCheckmarkSharp size={14} className="mb-0.5" />
                             )}
                           </span>
                         )}

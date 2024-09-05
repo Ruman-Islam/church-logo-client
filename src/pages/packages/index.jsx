@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa6";
 import { IoMdTime } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import Swal from "sweetalert2";
 import Layout from "../../components/common/Layout";
 import NoDataFound from "../../components/common/NoDataFound";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
@@ -13,8 +14,10 @@ import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
+import useTracking from "../../hooks/useTracking";
 
 export default function Package() {
+  useTracking();
   const scrollWithOffset = useScrollWithOffset();
   const { id } = useParams();
   const { data, isLoading, isError } = useGetOnePackageQuery(id);
@@ -123,17 +126,37 @@ export default function Package() {
                       height={20}
                     />
                   ) : (
-                    <HashLink
-                      to={`/order/${packageInfo?.category}/brief/${id}#order-brief`}
-                      scroll={(el) => scrollWithOffset(el, 130)}
+                    // <HashLink
+                    //   to={`/order/${packageInfo?.category}/brief/${id}#order-brief`}
+                    //   scroll={(el) => scrollWithOffset(el, 130)}
+                    // >
+                    //   <Button
+                    //     className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
+                    //     variant="contained"
+                    //   >
+                    //     Get started
+                    //   </Button>
+                    // </HashLink>
+
+                    <Button
+                      onClick={() => {
+                        return Swal.fire({
+                          title: "<strong>Under construction</strong>",
+                          icon: "info",
+                          html: `
+                            Contact us on: <a style="color:blue" href="https://www.facebook.com/churchlogo/">Facebook</a>, <a style="color:blue" href="https://www.instagram.com/churchlogo.co/">Instagram</a>
+                          `,
+                          showCloseButton: true,
+                          showCancelButton: true,
+                          focusConfirm: false,
+                          cancelButtonAriaLabel: "Thumbs down",
+                        });
+                      }}
+                      className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
+                      variant="contained"
                     >
-                      <Button
-                        className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
-                        variant="contained"
-                      >
-                        Get started
-                      </Button>
-                    </HashLink>
+                      Get started
+                    </Button>
                   )}
 
                   {isLoading ? (

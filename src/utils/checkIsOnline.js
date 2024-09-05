@@ -1,7 +1,12 @@
 const checkIsOnline = (onlineUsers, userId) => {
-  const isExists = onlineUsers.find((user) => user?.userId === userId);
+  let isTrue = false;
 
-  return isExists ? true : false;
+  if (onlineUsers.length) {
+    const isExists = onlineUsers.find((user) => user?.userId === userId);
+    isTrue = isExists ? true : false;
+  }
+
+  return isTrue;
 };
 
 export default checkIsOnline;

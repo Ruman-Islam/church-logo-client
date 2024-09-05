@@ -17,6 +17,7 @@ import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import useTracking from "../../hooks/useTracking";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -330,6 +331,7 @@ const images = [
 ];
 
 export default function GalleryBrandingScreen() {
+  useTracking();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState({});

@@ -7,8 +7,10 @@ import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
+import useTracking from "../../hooks/useTracking";
 
 export default function GallerySocialMediaServiceScreen() {
+  useTracking();
   const { pathname } = useLocation();
   const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
