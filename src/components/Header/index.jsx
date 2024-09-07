@@ -12,6 +12,7 @@ import MenuItems from "./MenuItems";
 export default function Header({ topBarEnable, bgColor = "bg-white" }) {
   const {
     auth: { user },
+    chat: { unreadMessages },
   } = useAppSelector((state) => state);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -101,7 +102,11 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 }`}
               >
                 <ul className="flex flex-col lg:flex-row justify-end lg:items-center gap-x-6 text-brand__black__color font-brand__font__600 text-brand__font__size__sm md:text-brand__font__size__base">
-                  <MenuItems onModalOpen={handleModalOpen} user={user} />
+                  <MenuItems
+                    onModalOpen={handleModalOpen}
+                    user={user}
+                    unreadMessages={unreadMessages}
+                  />
                 </ul>
               </div>
             </nav>

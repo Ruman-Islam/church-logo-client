@@ -19,6 +19,7 @@ import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetReviewQuery } from "../../services/features/review/reviewApi";
 import { generateRandomHexColor } from "../../utils/generateRandomHexColor";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import useTracking from "../../hooks/useTracking";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -29,6 +30,7 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 });
 
 export default function ReviewsScreen() {
+  useTracking();
   const { dynamicUrl, handleShowMoreItems } = useQueryParameter({
     page: 1,
     limit: 9,

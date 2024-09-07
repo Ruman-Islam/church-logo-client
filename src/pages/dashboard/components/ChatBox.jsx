@@ -24,7 +24,9 @@ import {
 } from "../../../services/features/chat/chatApi";
 import {
   addMessage,
+  setCurrentConversationId,
   setMessages,
+  setUnreadMessages,
 } from "../../../services/features/chat/chatSlice";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import { socket } from "../../../socket";
@@ -39,7 +41,7 @@ export default function ChatBox() {
 
   const {
     auth: { user },
-    chat: { messages, onlineUsers },
+    chat: { messages, onlineUsers, unreadMessages },
   } = useAppSelector((state) => state);
 
   const { id } = useParams();
@@ -63,8 +65,14 @@ export default function ChatBox() {
 
   const handleSetMessages = useCallback(
     (res) => {
+      const filtered = unreadMessages.filter(
+        (item) => item?.conversationId?._id !== id
+      );
       dispatch(setMessages(res));
+      dispatch(setUnreadMessages(filtered));
     },
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dispatch]
   );
 
@@ -75,20 +83,28 @@ export default function ChatBox() {
     [dispatch]
   );
 
+  const handleSetCurrentConversationId = useCallback(
+    (id) => {
+      dispatch(setCurrentConversationId(id));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     handleSetMessages(data?.data?.docs || []);
-  }, [data, handleSetMessages]);
+    handleSetCurrentConversationId(id);
+
+    return () => handleSetCurrentConversationId(null);
+  }, [id, data, handleSetMessages, handleSetCurrentConversationId]);
 
   useEffect(() => {
     if (postMessage?.statusCode === 200) {
       handleAddMessage(postMessage?.data);
-      socket.emit("sendMessage", postMessage?.data);
     }
     if (postMessageError) {
       handleError(postMessageError?.data?.message);
     }
 
-    return () => socket.off("sendMessage");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postMessage, postMessageError, handleAddMessage]);
 
@@ -97,7 +113,7 @@ export default function ChatBox() {
       (msg) => !msg?.isRead && msg?.receiver?.userId === user?.userId
     );
 
-    if (unreadMessages.length) {
+    if (unreadMessages?.length) {
       socket.emit("seenMessages", { unreadMessages, receiverId: user?.userId });
     }
 
@@ -175,7 +191,7 @@ export default function ChatBox() {
         <Box className="flex items-center justify-between border-b py-2.5 px-4">
           <Box className="text-brand__font__size__xs text-text__gray flex items-center gap-x-1">
             <Box
-              className={`w-2 h-2 rounded-full ${
+              className={`w-1.5 h-1.5 rounded-full ${
                 isOnline ? "bg-primary" : "bg-text__gray"
               } `}
             ></Box>{" "}

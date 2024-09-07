@@ -13,11 +13,15 @@ const PersistLogin = () => {
   useEffect(() => {
     if (auth?.user) {
       socket.emit("addUser", auth?.user?.userId);
+      socket.emit("requestUnreadMessages", auth?.user?.userId);
     }
 
-    return () => socket.off("addUser");
+    return () => {
+      socket.off("addUser");
+      socket.off("requestUnreadMessages");
+    };
   }, [auth?.user]);
-  
+
   useEffect(() => {
     // isMounted is using for no memory leak
     let isMounted = true;

@@ -3,17 +3,6 @@ import { api } from "../../api/apiSlice";
 
 const chatApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getUnreadMessages: builder.query({
-      query: () => {
-        const url = "/secure/get-unread-messages";
-
-        return {
-          url,
-          method: "GET",
-        };
-      },
-      // providesTags: ["chat"],
-    }),
     sendMessage: builder.mutation({
       query: ({ data }) => ({
         url: "/secure/send-message",
@@ -47,9 +36,5 @@ const chatApi = api.injectEndpoints({
   }),
 });
 
-export const {
-  useGetUnreadMessagesQuery,
-  useSendMessageMutation,
-  useGetMessagesQuery,
-  useGetInboxQuery,
-} = chatApi;
+export const { useSendMessageMutation, useGetMessagesQuery, useGetInboxQuery } =
+  chatApi;

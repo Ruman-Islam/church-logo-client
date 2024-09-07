@@ -10,10 +10,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
-import {
-  useGetInboxQuery,
-  useGetUnreadMessagesQuery,
-} from "../../../services/features/chat/chatApi";
+import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
 import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
@@ -35,7 +32,7 @@ export default function Sidebar() {
 
   const {
     auth: { user },
-    chat: { onlineUsers },
+    chat: { onlineUsers, unreadMessages, messages },
   } = useAppSelector((state) => state);
 
   const query = {
@@ -47,13 +44,10 @@ export default function Sidebar() {
     useGetOrderListQuery(query);
 
   const { data: conversation, isFetching: conversationFetching } =
-    useGetInboxQuery(query);
-
-  const { data: unreadMessages, isFetching: UnreadMessagesFetching } =
-    useGetUnreadMessagesQuery({
+    useGetInboxQuery(query, {
       refetchOnMountOrArgChange: true,
     });
-  // console.log(messages)
+
   // const activeOrders = order?.data.filter(
   //   (item) => item?.orderStatus === "in progress"
   // );
@@ -64,7 +58,7 @@ export default function Sidebar() {
   //   (item) => item?.orderStatus === "completed"
   // );
 
-  if (orderFetching || conversationFetching || UnreadMessagesFetching) {
+  if (orderFetching || conversationFetching) {
     return <Skeleton variant="square" className="w-[250px] h-[600px]" />;
   }
 
@@ -131,11 +125,20 @@ export default function Sidebar() {
         >
           <ListSubheader className="border-b">
             <Typography variant="caption">
-              Inbox ({unreadMessages?.data?.length})
+              Inbox ({unreadMessages?.length})
             </Typography>
           </ListSubheader>
           {conversation?.data?.docs.map((item) => {
             const participant = findOppositeParticipant(item, user?.userId);
+            const unreadMsg = unreadMessages.filter(
+              (msg) => msg?.conversationId?._id === item?._id
+            );
+            const currentConvoMsgs = messages.filter(
+              (msg) => msg?.conversationId?._id === item?._id
+            );
+            const lastMsg =
+              currentConvoMsgs[currentConvoMsgs.length - 1]?.text || "";
+
             return (
               <ListItem key={item?._id} alignItems="flex-start" className="p-0">
                 <HashLink
@@ -145,6 +148,7 @@ export default function Sidebar() {
                 >
                   <ListItemAvatar>
                     <Avatar
+                      className="w-8 h-8 rounded-full text-brand__font__size__sm"
                       alt={participant?.firstName}
                       src="/static/images/avatar/1.jpg"
                     />
@@ -154,11 +158,11 @@ export default function Sidebar() {
                     secondaryTypographyProps={{ fontSize: "12px" }}
                     primary={
                       <Box className="flex items-center gap-x-1">
-                        <span>
+                        <Box>
                           {participant?.firstName} {participant?.lastName}
-                        </span>
+                        </Box>
                         <Box
-                          className={`w-2 h-2 rounded-full mb-0.5 ${
+                          className={`w-1.5 h-1.5 rounded-full mb-0.5 ${
                             checkIsOnline(onlineUsers, participant?.userId)
                               ? "bg-primary"
                               : "bg-text__gray"
@@ -167,7 +171,20 @@ export default function Sidebar() {
                       </Box>
                     }
                     secondary={
-                      "I'll be in your neighborhood doing errands this…"
+                      <Box className="flex items-end justify-between gap-x-1 mt-1">
+                        <Box className="basis-[90%] w-full">
+                          {lastMsg.length > 22
+                            ? lastMsg.slice(0, 22) + " " + "..."
+                            : lastMsg}
+                        </Box>
+                        {unreadMsg?.length > 0 && (
+                          <Box
+                            className={`w-4 h-4 rounded-full flex items-center justify-center bg-[#1976D2] text-white text-[10px]`}
+                          >
+                            {unreadMsg?.length}
+                          </Box>
+                        )}
+                      </Box>
                     }
                   />
                 </HashLink>

@@ -6,21 +6,36 @@ const chatSlice = createSlice({
     messages: [],
     onlineUsers: [],
     unreadMessages: [],
+    currentConversationId: null,
   },
   reducers: {
+    setCurrentConversationId: (state, action) => {
+      return (state = { ...state, currentConversationId: action.payload });
+    },
+
+    setUnreadMessages: (state, action) => {
+      const unreadMessages = [...action.payload];
+      unreadMessages.sort((a, b) => new Date(a?.dateTime) - new Date(b?.dateTime));
+
+      return (state = { ...state, unreadMessages });
+    },
+
     addMessage: (state, action) => {
       const message = action.payload;
+      const isExist = state.messages.some((item) => item?._id === message?._id);
 
-      const isExist = state.messages.find((item) => item?._id === message?._id);
+      if (isExist) return state;
 
-      if (!isExist) {
-        return (state = {
-          ...state,
-          messages: [...state.messages, message],
-        });
+      const updatedState = {
+        ...state,
+        messages: [...state.messages, message],
+      };
+
+      if (state.currentConversationId !== message.conversationId.id) {
+        updatedState.unreadMessages = [...state.unreadMessages, message];
       }
 
-      return (state = [...state.messages]);
+      return updatedState;
     },
 
     setMessages: (state, action) => {
@@ -36,6 +51,12 @@ const chatSlice = createSlice({
   },
 });
 
-export const { addMessage, setMessages, setOnlineUsers } = chatSlice.actions;
+export const {
+  setCurrentConversationId,
+  setUnreadMessages,
+  addMessage,
+  setMessages,
+  setOnlineUsers,
+} = chatSlice.actions;
 
 export default chatSlice.reducer;

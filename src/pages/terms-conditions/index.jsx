@@ -1,8 +1,10 @@
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/termsConditions.json";
+import useTracking from "../../hooks/useTracking";
 
 export default function TermsAndConditionsScreen() {
+  useTracking();
   return (
     <Layout title="Term & Conditions">
       <section id="terms" className="mb-10">

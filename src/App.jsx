@@ -2,7 +2,11 @@ import AOS from "aos";
 import { useCallback, useEffect } from "react";
 import useTracking from "./hooks/useTracking";
 import Routers from "./Routers";
-import { addMessage, setOnlineUsers } from "./services/features/chat/chatSlice";
+import {
+  addMessage,
+  setOnlineUsers,
+  setUnreadMessages,
+} from "./services/features/chat/chatSlice";
 import { useAppDispatch } from "./services/hook.js";
 import { socket } from "./socket";
 
@@ -13,6 +17,13 @@ AOS.init({
 function App() {
   useTracking();
   const dispatch = useAppDispatch();
+
+  const handleSetUnreadMessages = useCallback(
+    (res) => {
+      dispatch(setUnreadMessages(res));
+    },
+    [dispatch]
+  );
 
   const handleSetOnlineUsers = useCallback(
     (res) => {
@@ -30,14 +41,16 @@ function App() {
 
   useEffect(() => {
     socket.connect();
-    socket.on("getOnlineUsers", handleSetOnlineUsers);
     socket.on("getMessage", handleAddMessage);
+    socket.on("getOnlineUsers", handleSetOnlineUsers);
+    socket.on("getUnreadMessages", handleSetUnreadMessages);
 
     return () => {
-      socket.off("getOnlineUsers");
       socket.off("getMessage");
+      socket.off("getOnlineUsers");
+      socket.off("getUnreadMessages");
     };
-  }, [handleSetOnlineUsers, handleAddMessage]);
+  }, [handleSetOnlineUsers, handleAddMessage, handleSetUnreadMessages]);
 
   return <Routers />;
 }

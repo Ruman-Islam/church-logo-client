@@ -1,8 +1,10 @@
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/privacyPolicy.json";
+import useTracking from "../../hooks/useTracking";
 
 export default function PrivacyPolicyScreen() {
+  useTracking();
   const replaceUrlWithAnchor = (text) => {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, (url) => {

@@ -8,8 +8,10 @@ import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/faq.json";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
+import useTracking from "../../hooks/useTracking";
 
 export default function FAQScreen() {
+  useTracking();
   const [faqs] = useState(data);
 
   const initializeIndexes = (faqs) => {

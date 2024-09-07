@@ -71,26 +71,26 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
+// const options = [
+//   "None",
+//   "Atria",
+//   "Callisto",
+//   "Dione",
+//   "Ganymede",
+//   "Hangouts Call",
+//   "Luna",
+//   "Oberon",
+//   "Phobos",
+//   "Pyxis",
+//   "Sedna",
+//   "Titania",
+//   "Triton",
+//   "Umbriel",
+// ];
 
 const ITEM_HEIGHT = 48;
 
-const MenuItems = ({ onModalOpen, user }) => {
+const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
   const scrollWithOffset = useScrollWithOffset();
 
   const navigate = useNavigate();
@@ -145,8 +145,7 @@ const MenuItems = ({ onModalOpen, user }) => {
                 <Badge
                   color="primary"
                   overlap="circular"
-                  badgeContent=" "
-                  variant="dot"
+                  badgeContent={unreadMessages?.length}
                 >
                   <NotificationsIcon />
                 </Badge>
@@ -174,17 +173,30 @@ const MenuItems = ({ onModalOpen, user }) => {
                       Notification center
                     </Typography>
                   </ListSubheader>
-                  {options.map((option) => (
+                  {unreadMessages.length > 0 && (
+                    <ListItem className="border-b">
+                      <ListItemAvatar>
+                        <Avatar
+                          className="w-8 h-8 rounded-full text-brand__font__size__sm"
+                          src="/static/images/avatar/3.jpg"
+                        />
+                      </ListItemAvatar>
+                      You have new message
+                    </ListItem>
+                  )}
+
+                  {/* {options.map((option) => (
                     <ListItem className="border-b" key={option}>
                       <ListItemAvatar>
                         <Avatar
+                          className="w-8 h-8 rounded-full text-brand__font__size__sm"
                           alt={option}
                           src="/static/images/avatar/3.jpg"
                         />
                       </ListItemAvatar>
                       {option}
                     </ListItem>
-                  ))}
+                  ))} */}
                 </List>
               </StyledMenu>
             </li>
