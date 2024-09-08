@@ -23,12 +23,16 @@
   ],
   "product": [
     {
-      "title": "Order My Church Logo",
-      "route": "/"
+      "title": "Blog",
+      "route": "/blog#blog"
+    },
+    {
+      "title": "Signature Logo",
+      "route": "/categories/logo-design#logo-design"
     },
     {
       "title": "How to Use Your Church Logo",
-      "route": "/"
+      "route": "/how-to-use-your-churchlogo#church"
     }
   ],
   "help": [

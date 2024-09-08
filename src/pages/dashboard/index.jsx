@@ -12,7 +12,7 @@ import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import Sidebar from "./components/Sidebar";
 
-const PrevArrow = ({ ...props }) => {
+export const PrevArrow = ({ ...props }) => {
   const { onClick } = props;
   return (
     <Box
@@ -24,7 +24,7 @@ const PrevArrow = ({ ...props }) => {
   );
 };
 
-const NextArrow = ({ ...props }) => {
+export const NextArrow = ({ ...props }) => {
   const { onClick } = props;
   return (
     <Box
@@ -36,7 +36,7 @@ const NextArrow = ({ ...props }) => {
   );
 };
 
-function CategoryCard(props) {
+export function CategoryCard(props) {
   const scrollWithOffset = useScrollWithOffset();
   const { category, route } = props;
   const { img, title, alt } = category;

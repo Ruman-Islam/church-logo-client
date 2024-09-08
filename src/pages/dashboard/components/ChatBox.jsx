@@ -12,8 +12,9 @@ import ReactFileReader from "react-file-reader";
 import { useForm } from "react-hook-form";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { FaCloudDownloadAlt } from "react-icons/fa";
+import { IoMdSend } from "react-icons/io";
 import { IoCheckmarkDoneSharp, IoCheckmarkSharp } from "react-icons/io5";
-import { MdAddPhotoAlternate, MdOutlineInsertEmoticon } from "react-icons/md";
+import { MdAddPhotoAlternate } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { env } from "../../../config/env";
@@ -189,13 +190,16 @@ export default function ChatBox() {
     <Box className="w-full">
       <Box className="flex flex-col border justify-between bg-white">
         <Box className="flex items-center justify-between border-b py-2.5 px-4">
-          <Box className="text-brand__font__size__xs text-text__gray flex items-center gap-x-1">
-            <Box
-              className={`w-1.5 h-1.5 rounded-full ${
-                isOnline ? "bg-primary" : "bg-text__gray"
-              } `}
-            ></Box>{" "}
-            <Box>{isOnline ? "Online" : "Offline"}</Box>
+          <Box>
+            <Box>{data?.data?.participantName}</Box>
+            <Box className="text-brand__font__size__xs text-text__gray flex items-center gap-x-1">
+              <Box
+                className={`w-1.5 h-1.5 rounded-full ${
+                  isOnline ? "bg-primary" : "bg-text__gray"
+                } `}
+              ></Box>{" "}
+              <Box>{isOnline ? "Online" : "Offline"}</Box>
+            </Box>
           </Box>
         </Box>
 
@@ -312,11 +316,8 @@ export default function ChatBox() {
                 endAdornment={
                   <InputAdornment
                     position="end"
-                    className="flex flex-col justify-center"
+                    className="flex flex-col justify-center relative"
                   >
-                    <IconButton>
-                      <MdOutlineInsertEmoticon />
-                    </IconButton>
                     <IconButton>
                       <ReactFileReader
                         base64={true}
@@ -334,10 +335,11 @@ export default function ChatBox() {
               <Box></Box>
               <Button
                 type="submit"
-                className="text-sm w-fit border-primary text-primary"
-                variant="outlined"
+                className="text-sm w-fit bg-primary text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
+                variant="primary"
               >
                 Send
+                <IoMdSend />
               </Button>
             </Box>
           </Box>

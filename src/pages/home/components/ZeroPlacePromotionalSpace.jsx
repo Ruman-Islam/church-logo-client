@@ -1,5 +1,5 @@
 import img1 from "../../../assets/image/banner/zero_place.png";
-import img2 from "../../../assets/logo/zeroplace_logo_web.png";
+import img2 from "../../../assets/logo/zeroplace.jpg";
 
 export default function ZeroPlacePromotionalSpace() {
   return (
@@ -9,7 +9,7 @@ export default function ZeroPlacePromotionalSpace() {
           <img className="w-[250px] md:w-[450px]" src={img1} alt="" />
         </div>
         <div className="basis-[60%] flex flex-col items-center">
-          <img className="w-[250px] xl:w-[350px]" src={img2} alt="" />
+          <img className="max-w-[100px]" src={img2} alt="" />
           <h2 className="leading-tight my-2 text-brand__font__size__lg xl:text-brand__font__size__xl text-center max-w-[300px] md:max-w-[700px]">
             A promotional space of Zero Place
           </h2>

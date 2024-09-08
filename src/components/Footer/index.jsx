@@ -26,7 +26,7 @@ export default function Footer() {
                     alt="churchlogo"
                   />
                 </HashLink>
-                <p className="text-brand__font__size__sm lg:font-semibold text-gray-300">
+                <p className="text-brand__font__size__xs xl:text-brand__font__size__sm lg:font-semibold text-gray-300">
                   Check out all the church branding services at Church Logo.
                   From logo design to all branding work and everything between.
                   Without compromising the quality we are doing some amazing
@@ -35,7 +35,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row flex-1 gap-5">
+            <div className="flex flex-col md:flex-row flex-1 gap-5 text-brand__font__size__sm justify-end xl:pl-20">
               <div className="flex-1">
                 <p className="text-2xl font-brand__font__500 text-center md:text-left text-gray-300">
                   Navigation
@@ -144,7 +144,7 @@ export default function Footer() {
               href="https://www.tiktok.com/@churchlogo.co"
               target="_blank"
               className="hover:text-primary duration-300"
-                 title="Tiktok"
+              title="Tiktok"
             >
               <FaTiktok size={20} />
             </a>

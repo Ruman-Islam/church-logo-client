@@ -217,7 +217,7 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
                   alt={user?.firstName}
                   src={user?.photo?.url}
                   sx={{ backgroundColor: "#FF5722" }}
-                  className="w-8 h-8 border border-brand__black__color"
+                  className="w-8 h-8 border border-text__gray"
                 />
               </IconButton>
               <StyledMenu

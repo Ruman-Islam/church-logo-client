@@ -74,7 +74,7 @@ export default function PersonalSignature() {
             <div className="duration-300 bg-primary hover:bg-brand__black__color rounded-full text-white w-fit mt-5 mx-auto md:ml-2">
               <HashLink
                 className="px-8 py-3 w-full inline-block"
-                to="/"
+                to="/categories/logo-design#logo-design"
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 Only $24.99 - Order Now

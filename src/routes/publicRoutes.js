@@ -225,6 +225,16 @@ const publicRoutes = [
     name: "order/social-media-service/review/:id",
     Component: () => import("../pages/order/social-media-service/review"),
   },
+  {
+    path: "how-to-use-your-churchlogo",
+    name: "how-to-use-your-churchlogo",
+    Component: () => import("../pages/how-to-use-your-church-logo/index"),
+  },
+  {
+    path: "blog",
+    name: "blog",
+    Component: () => import("../pages/blog/index"),
+  },
 ];
 
 export default publicRoutes;
