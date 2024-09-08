@@ -2,6 +2,7 @@ import StarIcon from "@mui/icons-material/Star";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import Box from "@mui/material/Box";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 const ratingData = [
@@ -12,8 +13,8 @@ const ratingData = [
   },
   {
     Icon: <SupportAgentIcon fontSize="large" />,
-    title: "100% money-back guarantee for contests",
-    text: "Great design, guaranteed. Love your final design or get your money back. T&Cs apply.",
+    title: "Order special support",
+    text: "24/7 order special support on a specific ordered product.",
   },
   {
     Icon: <ThumbUpIcon fontSize="large" />,
@@ -30,42 +31,44 @@ const ratingData = [
 const RatingCard = (props) => {
   const { Icon, title, text } = props;
   return (
-    <div className="basis-full md:basis-[48%] flex gap-2">
-      <div>{Icon}</div>
-      <div>
+    <Box className="basis-full md:basis-[48%] flex gap-2">
+      <Box className="text-primary">{Icon}</Box>
+      <Box>
         <h2 className="font-brand__font__600 text-brand__font__size__md">
           {title}
         </h2>
-        <p className="mt-2 text-text__gray">{text}</p>
-      </div>
-    </div>
+        <p className="mt-2 text-text__gray text-brand__font__size__sm">
+          {text}
+        </p>
+      </Box>
+    </Box>
   );
 };
 
 export default function WhyChurchLogo() {
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container">
-      <div className="basis-full lg:basis-[40%] hidden lg:flex justify-center items-center">
+    <Box className="flex flex-col lg:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container">
+      <Box className="basis-full lg:basis-[40%] hidden lg:flex justify-center items-center">
         <img
           src={getImgUrl("image/hero-banner/churchlogo_slider_02.png")}
           alt="church_logo"
         />
-      </div>
-      <div className="basis-full lg:basis-[60%] p-5">
-        <div className="leading-tight">
+      </Box>
+      <Box className="basis-full lg:basis-[60%] p-5">
+        <Box className="leading-tight">
           <h2 className="text-[24px] md:text-[32px]">
-            So, why Church Logo for a brand identity design?
+            So, why Church Logo?
           </h2>
-          <h3 className="leading-[60px]">
+          <h2 className="leading-[40px]">
             We live and breathe design, and folks think that’s pretty rad.
-          </h3>
-        </div>
-        <div className="flex flex-wrap gap-5 py-5">
+          </h2>
+        </Box>
+        <Box className="flex flex-wrap gap-5 py-5">
           {ratingData.map((item) => (
             <RatingCard key={item?.title} {...item} />
           ))}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }

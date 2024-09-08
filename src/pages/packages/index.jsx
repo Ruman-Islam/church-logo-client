@@ -8,13 +8,13 @@ import Swal from "sweetalert2";
 import Layout from "../../components/common/Layout";
 import NoDataFound from "../../components/common/NoDataFound";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
+import useTracking from "../../hooks/useTracking";
 import { useGetOnePackageQuery } from "../../services/features/package/packageApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function Package() {
   useTracking();
@@ -203,7 +203,7 @@ export default function Package() {
           </div>
 
           <WhyChurchLogo />
-          <Faq />
+          <Faq category={packageInfo?.category} />
           <OurClientsLovesUs />
         </section>
       )}

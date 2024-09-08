@@ -8,21 +8,21 @@ const useTracking = () => {
   const [tracking] = useTrackingMutation();
 
   useEffect(() => {
-    // fetch(
-    //   "https://api.ipdata.co?api-key=3237d91128dc72fe1b19788966740c1da311e8d160aff29dfd5fcbe3"
-    // )
-    //   .then((response) => response.json())
-    //   .then(async (data) => {
-    //     const newData = {
-    //       pathname,
-    //       user: data,
-    //     };
-    //     await tracking({ data: newData });
-    //     console.log("User location:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching user location:", error);
-    //   });
+    fetch(
+      "https://api.ipdata.co?api-key=3237d91128dc72fe1b19788966740c1da311e8d160aff29dfd5fcbe3"
+    )
+      .then((response) => response.json())
+      .then(async (data) => {
+        const newData = {
+          pathname,
+          user: data,
+        };
+        await tracking({ data: newData });
+        console.log("User location:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user location:", error);
+      });
   }, []);
 };
 
