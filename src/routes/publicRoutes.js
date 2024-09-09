@@ -235,6 +235,11 @@ const publicRoutes = [
     name: "blog",
     Component: () => import("../pages/blog/index"),
   },
+  {
+    path: "blog/analyzing-spotify-music-ui-ux",
+    name: "blog/analyzing-spotify-music-ui-ux",
+    Component: () => import("../pages/blog/pages/blog1"),
+  },
 ];
 
 export default publicRoutes;

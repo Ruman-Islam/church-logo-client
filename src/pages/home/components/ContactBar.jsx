@@ -6,7 +6,7 @@ import { getImgUrl } from "../../../utils/getImgUrl-utility";
 export default function ContactBar() {
   return (
     <section>
-      <div className="py-5 md:py-10 bg-section__bg_color w-full md:h-[280px] xl:h-[430px] flex items-center justify-center md:px-4">
+      <div className="py-5 md:py-10 bg-section__bg_color w-full md:h-[280px] xl:h-[330px] flex items-center justify-center md:px-4">
         <div className="flex-1 flex items-end container text-brand__black__color md:gap-5">
           <div className="basis-[0%] xl:basis-[30%]">
             <div className="max-w-[300px] hidden xl:block">
