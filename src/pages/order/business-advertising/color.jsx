@@ -77,70 +77,70 @@ export default function OrderColorDesignScreen() {
           heading="Colors to explore"
           desc="Pick up to three colors you'd like your designers to explore."
         />
-        <Box className="container py-10">
-          <Box>
-            <form onSubmit={onSubmit}>
-              <Box className="max-w-[1000px] w-full mx-auto">
-                <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
-                  {(isFetching ? Array.from(new Array(6)) : colorSample).map(
-                    (img, i) => {
-                      const isSelected = selectedColors.find(
-                        (item) => item?.publicId === img?.publicId
-                      );
 
-                      return img ? (
-                        <Box
-                          key={img?.publicId}
-                          data-aos="flip-left"
-                          data-aos-duration={`${i + 1 * 5}00`}
-                          onClick={() => handlePreferableColors(img)}
-                          className="hover:shadow-xl relative border cursor-pointer"
-                        >
-                          <Box
-                            className={`absolute w-full h-full flex justify-end items-end p-2 text-primary duration-300 border-4 border-primary border-opacity-0 hover:border-opacity-100  ${
-                              isSelected && "border-opacity-100"
-                            }`}
-                          >
-                            {isSelected && <CheckCircleIcon />}
-                          </Box>
+        <Box>
+          <form onSubmit={onSubmit} className="flex flex-col gap-10">
+            <Box className="max-w-[1000px] w-full mx-auto py-10 container">
+              <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+                {(isFetching ? Array.from(new Array(6)) : colorSample).map(
+                  (img, i) => {
+                    const isSelected = selectedColors.find(
+                      (item) => item?.publicId === img?.publicId
+                    );
 
-                          <img src={img?.secureUrl} alt="church_logo" />
-
-                          <Box className="p-2">{img?.displayName}</Box>
-                        </Box>
-                      ) : (
-                        <Skeleton key={i} variant="rectangular" height={218} />
-                      );
-                    }
-                  )}
-                </Box>
-
-                <AppBar
-                  position="fixed"
-                  className="bg-white"
-                  sx={{ top: "auto", bottom: 0 }}
-                >
-                  <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                      <OrderStepper2 value={40} />
-
-                      <Button
-                        disabled={!selectedColors.length}
-                        type="submit"
-                        className={`${
-                          !selectedColors.length
-                            ? "bg-text__gray"
-                            : "bg-primary hover:bg-brand__black__color"
-                        } text-white px-10 rounded-full font-brand__font__600`}
+                    return img ? (
+                      <Box
+                        key={img?.publicId}
+                        data-aos="flip-left"
+                        data-aos-duration={`${i + 1 * 5}00`}
+                        onClick={() => handlePreferableColors(img)}
+                        className="hover:shadow-xl relative border cursor-pointer"
                       >
-                        Continue
-                      </Button>
-                    </Box>
-                  </Toolbar>
-                </AppBar>
+                        <Box
+                          className={`absolute w-full h-full flex justify-end items-end p-2 text-primary duration-300 border-4 border-primary border-opacity-0 hover:border-opacity-100  ${
+                            isSelected && "border-opacity-100"
+                          }`}
+                        >
+                          {isSelected && <CheckCircleIcon />}
+                        </Box>
+
+                        <img src={img?.secureUrl} alt="church_logo" />
+
+                        <Box className="p-2">{img?.displayName}</Box>
+                      </Box>
+                    ) : (
+                      <Skeleton key={i} variant="rectangular" height={218} />
+                    );
+                  }
+                )}
               </Box>
-            </form>
-          </Box>
+            </Box>
+            <AppBar className="bg-white sticky bottom-0 w-full">
+              <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                  <Button
+                    onClick={() => navigate(-1)}
+                    className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                  >
+                    Back
+                  </Button>
+                  <OrderStepper2 value={40} />
+
+                  <Button
+                    disabled={!selectedColors.length}
+                    type="submit"
+                    className={`${
+                      !selectedColors.length
+                        ? "bg-text__gray"
+                        : "bg-primary hover:bg-brand__black__color"
+                    } text-white px-10 rounded-full font-brand__font__600`}
+                  >
+                    Continue
+                  </Button>
+                </Box>
+              </Toolbar>
+            </AppBar>
+          </form>
         </Box>
       </Box>
     </Layout>

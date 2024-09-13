@@ -15,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
+import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
 import { addToCart } from "../../../services/features/cart/cartSlice";
 import { useGetOnePackageQuery } from "../../../services/features/package/packageApi";
@@ -23,7 +24,6 @@ import { generateRandomId } from "../../../utils/generateRandomId";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { tagFinder } from "../../../utils/tagFinder";
 import OrderStepper2 from "../components/OrderStepper2";
-import NoDataFound from "../../../components/common/NoDataFound";
 
 const AvatarInput = styled.div``;
 
@@ -117,11 +117,14 @@ export default function OrderBriefScreen() {
             desc="Fill out the brief so the designers know what you‘re looking for."
           />
           {!data && !isFetching ? (
-           <NoDataFound />
+            <NoDataFound />
           ) : (
-            <Box className="container py-10">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Box className="max-w-[1000px] w-full mx-auto">
+            <Box>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-10"
+              >
+                <Box className="max-w-[1000px] w-full mx-auto py-10 container">
                   <Box className="flex justify-between">
                     <Box className="basis-[35%] hidden lg:block">
                       <Typography variant="h5" component="h5">
@@ -282,31 +285,32 @@ export default function OrderBriefScreen() {
                       </Box>
                     </Box>
                   </Box>
-
-                  <AppBar
-                    position="fixed"
-                    className="bg-white"
-                    sx={{ top: "auto", bottom: 0 }}
-                  >
-                    <Toolbar>
-                      <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                        <OrderStepper2 value={0} />
-
-                        <Button
-                          disabled={!email || !logoDesc}
-                          type="submit"
-                          className={`${
-                            !email || !logoDesc
-                              ? "bg-text__gray"
-                              : "bg-primary hover:bg-brand__black__color"
-                          } text-white px-10 rounded-full font-brand__font__600`}
-                        >
-                          Continue
-                        </Button>
-                      </Box>
-                    </Toolbar>
-                  </AppBar>
                 </Box>
+                <AppBar className="bg-white sticky bottom-0 w-full">
+                  <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                    <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                      <Button
+                        onClick={() => navigate(-1)}
+                        className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                      >
+                        Back
+                      </Button>
+                      <OrderStepper2 value={0} />
+
+                      <Button
+                        disabled={!email || !logoDesc}
+                        type="submit"
+                        className={`${
+                          !email || !logoDesc
+                            ? "bg-text__gray"
+                            : "bg-primary hover:bg-brand__black__color"
+                        } text-white px-10 rounded-full font-brand__font__600`}
+                      >
+                        Continue
+                      </Button>
+                    </Box>
+                  </Toolbar>
+                </AppBar>
               </form>
             </Box>
           )}

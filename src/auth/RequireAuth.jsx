@@ -11,11 +11,7 @@ const RequireAuth = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (user === null || user === undefined) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
+    setLoading(false);
   }, [user]);
 
   if (loading) {

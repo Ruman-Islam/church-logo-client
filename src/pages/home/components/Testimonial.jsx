@@ -103,14 +103,14 @@ export default function Testimonial() {
                 ) : (
                   <Slider
                     {...settings}
-                    className="relative max-w-[350px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
+                    className="relative max-w-[400px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
                   >
                     {reviews.map((item) => (
                       <div
                         key={item?._id}
                         className="rounded-md w-full text-brand__black__color"
                       >
-                        <div className="flex flex-col md:flex-row md:gap-0">
+                        <div className="flex flex-col md:flex-row gap-3 md:gap-0 items-center md:items-start">
                           <div className="flex justify-center border-2 rounded-full w-fit h-fit">
                             <Avatar
                               alt={item?.user?.firstName}
@@ -159,7 +159,7 @@ export default function Testimonial() {
                             </div>
 
                             {item?.reviewText.length > 250 ? (
-                              <blockquote>
+                              <blockquote className="text-brand__font__size__sm">
                                 <span>&ldquo;</span>
                                 <CustomWidthTooltip
                                   title={item?.reviewText}
@@ -172,7 +172,7 @@ export default function Testimonial() {
                                 <span>&rdquo;</span>
                               </blockquote>
                             ) : (
-                              <blockquote className="leading-snug mt-1.5">
+                              <blockquote className="leading-snug mt-1.5 text-brand__font__size__sm">
                                 <span>&ldquo;</span>
                                 {item?.reviewText}
                                 <span>&rdquo;</span>

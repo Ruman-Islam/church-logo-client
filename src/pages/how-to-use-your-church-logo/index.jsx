@@ -84,7 +84,7 @@ export default function HowToUseYourChurchLogoScreen() {
                     CANVA
                   </Typography>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to Apply Your Church Logo® with Canva
+                    How to Apply Your Church Logo with Canva
                   </Typography>
                 </Box>
 
@@ -92,11 +92,11 @@ export default function HowToUseYourChurchLogoScreen() {
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  Canva is one of the most beginner-friendly tools out there. It
-                  has an impressive array of graphic design tools available on
-                  the web. Plus, it’s also available on Android and iOS. You can
-                  use it to DIY everything from slideshows to social media
-                  posts.{" "}
+                  Canva is one of the most beginner-friendly tools out there,
+                  offering an impressive array of graphic design features right
+                  on the web. Plus, it’s available on both Android and iOS,
+                  making it easy to DIY everything from slideshows to social
+                  media posts.
                 </Typography>
 
                 <Typography
@@ -104,7 +104,7 @@ export default function HowToUseYourChurchLogoScreen() {
                   className="text-brand__font__size__sm"
                 >
                   In this guide, we’ll show you how to apply your Church Logo
-                  using Canva in 5 easy steps
+                  using Canva in 5 easy steps.
                 </Typography>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
@@ -115,14 +115,15 @@ export default function HowToUseYourChurchLogoScreen() {
                 />
               </Box>
             </Box>
+
             <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    CANVA
+                    APPLE WATCH
                   </Typography>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to Apply Your Church Logo® with Canva
+                    Customize Your Apple Watch With Your Church Logo
                   </Typography>
                 </Box>
 
@@ -130,19 +131,24 @@ export default function HowToUseYourChurchLogoScreen() {
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  Canva is one of the most beginner-friendly tools out there. It
-                  has an impressive array of graphic design tools available on
-                  the web. Plus, it’s also available on Android and iOS. You can
-                  use it to DIY everything from slideshows to social media
-                  posts.{" "}
+                  As you’ve seen, your Church Logo is incredibly versatile and
+                  fits a wide range of uses. But there’s even more to explore.
                 </Typography>
 
                 <Typography
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  In this guide, we’ll show you how to apply your Church Logo
-                  using Canva in 5 easy steps
+                  Customizing your watch is just one of the many ideas we
+                  suggest to help you unlock the full potential and
+                  possibilities that your Church Logo offers.
+                </Typography>
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Together, we’ll discover how to transform the face of your
+                  watch, making it even more personal and unique.
                 </Typography>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
@@ -153,14 +159,15 @@ export default function HowToUseYourChurchLogoScreen() {
                 />
               </Box>
             </Box>
+
             <Box className="w-full flex items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    CANVA
+                    MOBILE
                   </Typography>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to Apply Your Church Logo® with Canva
+                    How To Use Your Church Logo on Your Mobile
                   </Typography>
                 </Box>
 
@@ -168,19 +175,10 @@ export default function HowToUseYourChurchLogoScreen() {
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  Canva is one of the most beginner-friendly tools out there. It
-                  has an impressive array of graphic design tools available on
-                  the web. Plus, it’s also available on Android and iOS. You can
-                  use it to DIY everything from slideshows to social media
-                  posts.{" "}
-                </Typography>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  In this guide, we’ll show you how to apply your Church Logo
-                  using Canva in 5 easy steps
+                  Got a photo you want to share in a snap? Protect your valuable
+                  work on the go! Adding your signature logo is a breeze. In
+                  just a few seconds, you’ll be hitting that post button and
+                  captivating your followers.
                 </Typography>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
@@ -191,14 +189,15 @@ export default function HowToUseYourChurchLogoScreen() {
                 />
               </Box>
             </Box>
+
             <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    CANVA
+                    ANIMATED
                   </Typography>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to Apply Your Church Logo® with Canva
+                    How to apply your Animated Church Logo
                   </Typography>
                 </Box>
 
@@ -206,19 +205,145 @@ export default function HowToUseYourChurchLogoScreen() {
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  Canva is one of the most beginner-friendly tools out there. It
-                  has an impressive array of graphic design tools available on
-                  the web. Plus, it’s also available on Android and iOS. You can
-                  use it to DIY everything from slideshows to social media
-                  posts.{" "}
+                  By itself, your Church Logo is already a work of art.
                 </Typography>
 
                 <Typography
                   component="p"
                   className="text-brand__font__size__sm"
                 >
-                  In this guide, we’ll show you how to apply your Church Logo
-                  using Canva in 5 easy steps
+                  But why stop there? Let’s take that masterpiece and make it
+                  even more impressive. It’s simple—just add one thing: motion.
+                  Movement makes your logo more exciting and eye-catching.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Discover all the places you can use your Animated Church Logo
+                  and the best applications to bring it to life.
+                </Typography>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    PHOTOSHOP
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    How to apply your Church Logo in Photoshop
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  In the world of digital art, Adobe Photoshop is undeniably the
+                  industry standard. It’s the go-to tool for image editing and
+                  photo retouching.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Even though Photoshop wasn’t specifically designed for this,
+                  you can still manually apply your Church Logo to your designs
+                  using the available tools in Photoshop.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Here’s a super simple step-by-step guide to help you out.
+                </Typography>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    LIGHTROOM
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    How to apply your Church Logo in Lightroom
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Adobe Lightroom is another great way to add your Church Logo
+                  to photos and graphics. You can easily use the watermarking
+                  feature in the app.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  So, if you’re a Lightroom user but aren’t familiar with their
+                  watermarking tool, here’s the simplest way to apply your
+                  Church Logo in Lightroom.
+                </Typography>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    PHOTOPOLISH
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    How To Apply Your Church Logo in Photopolish
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Add your new logo with ease and save precious time by using
+                  Photopolish. Photopolish is perfect if you want to add your
+                  Church Logo to multiple photos quickly. You can use the bulk
+                  watermarking feature to process all of your designs at once.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Learn to apply your Church Logo in Photopolish like a pro with
+                  this easy-to-follow four-step tutorial.
                 </Typography>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">

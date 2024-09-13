@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const chatSlice = createSlice({
   name: "chat",
   initialState: {
+    conversations: [],
     messages: [],
     onlineUsers: [],
     unreadMessages: [],
@@ -15,7 +16,9 @@ const chatSlice = createSlice({
 
     setUnreadMessages: (state, action) => {
       const unreadMessages = [...action.payload];
-      unreadMessages.sort((a, b) => new Date(a?.dateTime) - new Date(b?.dateTime));
+      unreadMessages.sort(
+        (a, b) => new Date(a?.dateTime) - new Date(b?.dateTime)
+      );
 
       return (state = { ...state, unreadMessages });
     },
@@ -45,6 +48,15 @@ const chatSlice = createSlice({
       return (state = { ...state, messages });
     },
 
+    setConversations: (state, action) => {
+      const conversations = [...action.payload];
+      conversations.sort(
+        (a, b) => new Date(a?.createdAt) - new Date(b?.createdAt)
+      );
+
+      return (state = { ...state, conversations });
+    },
+
     setOnlineUsers: (state, action) => {
       return (state = { ...state, onlineUsers: action.payload });
     },
@@ -52,6 +64,7 @@ const chatSlice = createSlice({
 });
 
 export const {
+  setConversations,
   setCurrentConversationId,
   setUnreadMessages,
   addMessage,

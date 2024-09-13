@@ -157,34 +157,34 @@ export default function Sidebar() {
                     primaryTypographyProps={{ fontSize: "14px" }}
                     secondaryTypographyProps={{ fontSize: "12px" }}
                     primary={
-                      <Box className="flex items-center gap-x-1">
-                        <Box>
+                      <span className="flex items-center gap-x-1">
+                        <span>
                           {participant?.firstName} {participant?.lastName}
-                        </Box>
-                        <Box
+                        </span>
+                        <span
                           className={`w-1.5 h-1.5 rounded-full mb-0.5 ${
                             checkIsOnline(onlineUsers, participant?.userId)
                               ? "bg-primary"
                               : "bg-text__gray"
                           }`}
-                        ></Box>
-                      </Box>
+                        ></span>
+                      </span>
                     }
                     secondary={
-                      <Box className="flex items-end justify-between gap-x-1 mt-1">
-                        <Box className="basis-[90%] w-full">
+                      <span className="flex items-end justify-between gap-x-1 mt-1">
+                        <span className="basis-[90%] w-full">
                           {lastMsg.length > 22
                             ? lastMsg.slice(0, 22) + " " + "..."
                             : lastMsg}
-                        </Box>
+                        </span>
                         {unreadMsg?.length > 0 && (
-                          <Box
+                          <span
                             className={`w-4 h-4 rounded-full flex items-center justify-center bg-[#1976D2] text-white text-[10px]`}
                           >
                             {unreadMsg?.length}
-                          </Box>
+                          </span>
                         )}
-                      </Box>
+                      </span>
                     }
                   />
                 </HashLink>

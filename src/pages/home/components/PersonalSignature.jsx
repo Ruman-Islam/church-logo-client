@@ -26,48 +26,46 @@ export default function PersonalSignature() {
           </div>
           <div className="flex-1 text-white">
             <ul className="flex flex-col gap-4 text-brand__font__size__md leading-tight">
-              <li className="flex items-center gap-3">
+              <li className="flex gap-3">
                 <span>
                   <TiTick size={30} className="text-primary" />
                 </span>
                 <span>
-                  You want to build a strong personal brand that communicates
-                  trust
+                  You want to build a personal brand that radiates trust and
+                  authenticity.
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex gap-3">
                 <span>
                   <TiTick size={30} className="text-primary" />
                 </span>
                 <span>
-                  You want to have a logo that looks very personal, hand-made,
-                  and unique
+                  You want a logo that feels hand-crafted and uniquely yours.
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex gap-3">
                 <span>
                   <TiTick size={30} className="text-primary" />
                 </span>
                 <span>
-                  You want to be perfect to put on your social media, website,
-                  emails and much much more.
+                  You want cohesive branding that shines on social media, your
+                  website, and beyond.
                 </span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex gap-3">
                 <span>
                   <TiTick size={30} className="text-primary" />
                 </span>
                 <span>
-                  You want people to quickly identify and remember you.
+                  You want to be instantly recognizable and memorable.
                 </span>
               </li>
-              <li className="flex justify-between items-center gap-3">
+              <li className="flex gap-3">
                 <span>
                   <TiTick size={30} className="text-primary" />
                 </span>
                 <span>
-                  You want visitors to get a more ‘premium’ feel to your name
-                  and give you a more professional look.
+                  You want a professional look that exudes a premium feel.
                 </span>
               </li>
             </ul>

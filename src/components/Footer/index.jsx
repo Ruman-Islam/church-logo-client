@@ -111,10 +111,6 @@ export default function Footer() {
 
         <div className="border-b w-full mx-auto my-5"></div>
         <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-4.5">
-          <p className="flex items-center gap-x-2 text-gray-300">
-            <AiOutlineCopyrightCircle />
-            All rights reserved Church Logo {year}
-          </p>
           <div className="flex items-center gap-5 text-gray-300">
             <a
               href="https://www.facebook.com/churchlogo"
@@ -147,6 +143,22 @@ export default function Footer() {
               title="Tiktok"
             >
               <FaTiktok size={20} />
+            </a>
+          </div>
+          <div>
+            <p className="flex items-center gap-x-2 text-gray-300">
+              <AiOutlineCopyrightCircle />
+              All rights reserved Church Logo {year}
+            </p>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <span className="text-brand__font__size__sm">by</span>
+            <a href="https://zeroplace.co/" target="_blank">
+              <img
+                className="w-[80px]"
+                src={getImgUrl("logo/zeroplace_logo_web.png")}
+                alt="church_logo"
+              />
             </a>
           </div>
         </div>

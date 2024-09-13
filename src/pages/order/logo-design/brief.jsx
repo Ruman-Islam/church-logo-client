@@ -131,10 +131,13 @@ export default function OrderBriefScreen() {
           {!data && !isFetching ? (
             <NoDataFound />
           ) : (
-            <Box className="container py-10">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Box className="max-w-[1000px] w-full mx-auto">
-                  <Box className="flex justify-between">
+            <Box>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-10"
+              >
+                <Box className="max-w-[1000px] w-full h-full mx-auto container">
+                  <Box className="flex justify-between py-10">
                     <Box className="basis-[35%] hidden lg:block">
                       <Typography variant="h5" component="h5">
                         Email
@@ -343,31 +346,33 @@ export default function OrderBriefScreen() {
                       </Box>
                     </Box>
                   </Box>
-
-                  <AppBar
-                    position="fixed"
-                    className="bg-white"
-                    sx={{ top: "auto", bottom: 0 }}
-                  >
-                    <Toolbar>
-                      <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                        <OrderStepper2 value={0} />
-
-                        <Button
-                          disabled={!email || !logoName || !logoDesc}
-                          type="submit"
-                          className={`${
-                            !email || !logoName || !logoDesc
-                              ? "bg-text__gray"
-                              : "bg-primary hover:bg-brand__black__color"
-                          } text-white px-10 rounded-full font-brand__font__600`}
-                        >
-                          Continue
-                        </Button>
-                      </Box>
-                    </Toolbar>
-                  </AppBar>
                 </Box>
+                <AppBar className="bg-white sticky bottom-0 w-full">
+                  <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                    <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                      <Button
+                        onClick={() => navigate(-1)}
+                        className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                      >
+                        Back
+                      </Button>
+
+                      <OrderStepper2 value={0} />
+
+                      <Button
+                        disabled={!email || !logoName || !logoDesc}
+                        type="submit"
+                        className={`${
+                          !email || !logoName || !logoDesc
+                            ? "bg-text__gray"
+                            : "bg-primary hover:bg-brand__black__color"
+                        } text-white px-10 rounded-full font-brand__font__600`}
+                      >
+                        Continue
+                      </Button>
+                    </Box>
+                  </Toolbar>
+                </AppBar>
               </form>
             </Box>
           )}

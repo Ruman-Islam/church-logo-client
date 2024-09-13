@@ -65,7 +65,7 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
           <div className="container h-full">
             <nav className="flex items-center justify-between h-full relative">
               <div className="flex justify-between flex-1 h-full items-center z-50">
-                <div className="logo w-[220px] md:w-[280px] xl:w-[350px]">
+                <div className="logo w-[220px] md:w-[250px] xl:w-[300px]">
                   {isVisible ? (
                     <HashLink to="/#" className="logo-text">
                       <img

@@ -14,9 +14,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
 import SectionBanner from "../../../components/common/SectionBanner";
+import { env } from "../../../config/env";
 import { countries } from "../../../constants/countries";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import useToast from "../../../hooks/useToast";
@@ -31,15 +33,11 @@ import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditional
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
-import { env } from "../../../config/env";
 
 export default function OrderCheckout() {
   useAutomaticScrollWithOffset();
   const {
     auth: { user },
-  } = useAppSelector((state) => state);
-
-  const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
 
@@ -103,7 +101,22 @@ export default function OrderCheckout() {
     if (submitData) {
       dispatch(removeFromCart(cartItem));
       handleSuccess(submitData?.message);
-      navigate("/dashboard#dashboard");
+      // navigate("/dashboard#dashboard");
+      Swal.fire({
+        title: "<strong>Order has been placed!</strong>",
+        icon: "success",
+        html: `
+        <div>
+          <p style="margin-bottom:10px">Hi, ${user?.firstName} ${user?.lastName}</p>
+          <p style="margin-bottom:10px">Thanks for your order! We'll get to this as soon as we can.</p>
+            Contact us:
+            <a style="text-decoration:underline;" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=churchlogo.info@gmail.com" target="_blank">Email</a> /
+            <a style="text-decoration:underline;" href="/dashboard#dashboard">Live chat</a>
+        </div>
+        `,
+        showCloseButton: true,
+        confirmButtonText: `<a href="/dashboard#dashboard">Dashboard</a>`,
+      });
     }
     if (submitError) {
       handleError(submitError?.data?.message);
@@ -190,19 +203,22 @@ export default function OrderCheckout() {
         <Loader />
       ) : (
         <Box id="checkout" className="bg-section__bg_color h-full">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <SectionBanner
-              heading="Your details"
-              desc="Fill out your details, pay and we'll post your contest in our marketplace."
-            />
+          <SectionBanner
+            heading="Your details"
+            desc="Fill out your details, pay and we'll post your contest in our marketplace."
+          />
 
-            {!data && !isFetching ? (
-              <Box className="flex justify-center items-center w-full h-[10vh]">
-                No data found!
-              </Box>
-            ) : (
-              <Box className="container py-10">
-                <Box className="max-w-[1000px] w-full mx-auto">
+          {!data && !isFetching ? (
+            <Box className="flex justify-center items-center w-full h-[10vh]">
+              No data found!
+            </Box>
+          ) : (
+            <Box>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-10"
+              >
+                <Box className="max-w-[1000px] w-full mx-auto py-10 container">
                   <Box className="flex justify-between">
                     <Box className="basis-[35%] hidden lg:block">
                       <Typography variant="h5" component="h5">
@@ -384,48 +400,49 @@ export default function OrderCheckout() {
                     </Box>
                   </Box>
                 </Box>
-              </Box>
-            )}
+                <AppBar className="bg-white sticky bottom-0 w-full">
+                  <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                    <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                      <Button
+                        onClick={() => navigate(-1)}
+                        className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                      >
+                        Back
+                      </Button>
+                      <OrderStepper2 value={100} />
 
-            <AppBar
-              position="fixed"
-              className="bg-section__bg_color"
-              sx={{ top: "auto", bottom: 0 }}
-            >
-              <Toolbar>
-                <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                  <OrderStepper2 value={100} />
-
-                  <Button
-                    type="submit"
-                    disabled={
-                      !firstName ||
-                      !lastName ||
-                      !email ||
-                      !phone ||
-                      !country?.country ||
-                      !countryCode ||
-                      submitLoading
-                    }
-                    onClick={handleSubmit}
-                    className={`${
-                      !firstName ||
-                      !lastName ||
-                      !email ||
-                      !phone ||
-                      !country?.country ||
-                      !countryCode ||
-                      submitLoading
-                        ? "bg-text__gray"
-                        : "bg-primary hover:bg-brand__black__color"
-                    } text-white px-10 rounded-full font-brand__font__600`}
-                  >
-                    {submitLoading ? "Loading..." : "Complete"}
-                  </Button>
-                </Box>
-              </Toolbar>
-            </AppBar>
-          </form>
+                      <Button
+                        type="submit"
+                        disabled={
+                          !firstName ||
+                          !lastName ||
+                          !email ||
+                          !phone ||
+                          !country?.country ||
+                          !countryCode ||
+                          submitLoading
+                        }
+                        onClick={handleSubmit}
+                        className={`${
+                          !firstName ||
+                          !lastName ||
+                          !email ||
+                          !phone ||
+                          !country?.country ||
+                          !countryCode ||
+                          submitLoading
+                            ? "bg-text__gray"
+                            : "bg-primary hover:bg-brand__black__color"
+                        } text-white px-10 rounded-full font-brand__font__600`}
+                      >
+                        {submitLoading ? "Loading..." : "Complete"}
+                      </Button>
+                    </Box>
+                  </Toolbar>
+                </AppBar>
+              </form>
+            </Box>
+          )}
         </Box>
       )}
     </Layout>

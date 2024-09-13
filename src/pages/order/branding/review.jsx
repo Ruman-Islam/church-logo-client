@@ -110,8 +110,8 @@ export default function OrderReviewScreen() {
           {!data && !isFetching ? (
             <NoDataFound />
           ) : (
-            <Box className="container py-10">
-              <Box className="max-w-[1000px] w-full mx-auto">
+            <Box className="flex flex-col gap-10">
+              <Box className="max-w-[1000px] w-full mx-auto py-10 container">
                 <Box className="flex justify-between">
                   <Box className="basis-[35%] hidden lg:block">
                     <Typography variant="h5" component="h5">
@@ -365,26 +365,28 @@ export default function OrderReviewScreen() {
                     </Box>
                   </Box>
                 </Box>
-
-                <AppBar
-                  position="fixed"
-                  className="bg-white"
-                  sx={{ top: "auto", bottom: 0 }}
-                >
-                  <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                      <OrderStepper2 value={80} />
-
-                      <Button
-                        onClick={handleSubmit}
-                        className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
-                      >
-                        Continue
-                      </Button>
-                    </Box>
-                  </Toolbar>
-                </AppBar>
               </Box>
+              <AppBar className="bg-white sticky bottom-0 w-full">
+                <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                  <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                    <Button
+                      onClick={() => navigate(-1)}
+                      className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                    >
+                      Back
+                    </Button>
+
+                    <OrderStepper2 value={80} />
+
+                    <Button
+                      onClick={handleSubmit}
+                      className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+                    >
+                      Continue
+                    </Button>
+                  </Box>
+                </Toolbar>
+              </AppBar>
             </Box>
           )}
         </Box>

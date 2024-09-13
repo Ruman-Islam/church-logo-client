@@ -100,8 +100,8 @@ export default function OrderAddOnsScreen() {
               No data found!
             </Box>
           ) : (
-            <Box className="container py-10">
-              <Box className="max-w-[1000px] w-full mx-auto">
+            <Box>
+              <Box className="max-w-[1000px] w-full mx-auto py-10 container">
                 {additionalFeatures && additionalFeatures?.length > 0 && (
                   <>
                     <Box className="flex flex-col md:flex-row justify-between gap-y-5 mb-10 md:mb-0">
@@ -231,26 +231,27 @@ export default function OrderAddOnsScreen() {
                       </Box>
                     </>
                   )}
-
-                <AppBar
-                  position="fixed"
-                  className="bg-white"
-                  sx={{ top: "auto", bottom: 0 }}
-                >
-                  <Toolbar>
-                    <Box className="max-w-[1000px] w-full mx-auto flex justify-between items-center gap-3">
-                      <OrderStepper2 value={60} />
-
-                      <Button
-                        onClick={handleSubmit}
-                        className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
-                      >
-                        Continue
-                      </Button>
-                    </Box>
-                  </Toolbar>
-                </AppBar>
               </Box>
+              <AppBar className="bg-white sticky bottom-0 w-full">
+                <Toolbar className="max-w-[1000px] w-full mx-auto py-5 lg:py-8">
+                  <Box className="w-full mx-auto flex justify-between items-center gap-4">
+                    <Button
+                      onClick={() => navigate(-1)}
+                      className="bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600 hidden md:block"
+                    >
+                      Back
+                    </Button>
+                    <OrderStepper2 value={60} />
+
+                    <Button
+                      onClick={handleSubmit}
+                      className={`bg-primary hover:bg-brand__black__color text-white px-10 rounded-full font-brand__font__600`}
+                    >
+                      Continue
+                    </Button>
+                  </Box>
+                </Toolbar>
+              </AppBar>
             </Box>
           )}
         </Box>

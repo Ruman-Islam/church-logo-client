@@ -7,6 +7,11 @@ import { FaDollarSign } from "react-icons/fa6";
 import { IoMdTime } from "react-icons/io";
 import { HashLink } from "react-router-hash-link";
 
+import CloseIcon from "@mui/icons-material/Close";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
 import { useEffect, useState } from "react";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
@@ -87,7 +92,7 @@ export function OrderCard({ order }) {
         </Box>
         <Box className="basis-[25%] text-center text-primary">
           <HashLink
-            to={`/order/order-activities/${order?._id}#activities`}
+            to={`/order/order-details/${order?._id}#details`}
             scroll={(el) => scrollWithOffset(el, 135)}
           >
             <Typography variant="p">View</Typography>
@@ -99,14 +104,15 @@ export function OrderCard({ order }) {
 }
 
 export default function Orders() {
+  const [open, setOpen] = useState(true);
+
   const query = {
     page: 1,
     limit: 100,
   };
 
-  const { data: orderData, } =
-    useGetOrderListQuery(query);
-    
+  const { data: orderData } = useGetOrderListQuery(query);
+
   const order = orderData?.data || [];
 
   const activeOrders = order?.filter(
@@ -129,6 +135,26 @@ export default function Orders() {
           activeOrders.length > 2 ? "h-fit" : "lg:h-[282px]"
         }`}
       >
+        <Collapse in={open} className="border">
+          <Alert
+            severity="info"
+            action={
+              <IconButton
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            <AlertTitle>Notice</AlertTitle>
+            Click the close icon to see the Collapse transition in action!
+          </Alert>
+        </Collapse>
+
         <Box className="bg-white p-3 border">
           <Typography
             variant="h6"
@@ -139,7 +165,7 @@ export default function Orders() {
               <span>Total:</span>
               <span>
                 <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
-                {totalActiveOrderPrice}
+                {totalActiveOrderPrice.toFixed(2)}
               </span>
             </span>
           </Typography>
