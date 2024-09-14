@@ -160,7 +160,7 @@ export default function OrderCheckout() {
       },
     };
 
-    const referredImages = order?.referredImages;
+    const referredImages = order?.referredImages || [];
 
     const uploadedReferredImages = [];
 
