@@ -151,7 +151,11 @@ export default function Orders() {
             }
           >
             <AlertTitle>Notice</AlertTitle>
-            Click the close icon to see the Collapse transition in action!
+            We’ve received your order! If we need any more information from you,
+            we’ll reach out via email. Likewise, if you have any questions for
+            us, we’ll let you know through email. And if you have any questions,
+            feel free to contact us via email, live chat, or Instagram. We’re
+            here to help!
           </Alert>
         </Collapse>
 

@@ -231,6 +231,47 @@ const publicRoutes = [
     Component: () => import("../pages/how-to-use-your-church-logo/index"),
   },
   {
+    path: "how-to-use-your-churchlogo/canva",
+    name: "how-to-use-your-churchlogo/canva",
+    Component: () => import("../pages/how-to-use-your-church-logo/pages/canva"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/photoshop",
+    name: "how-to-use-your-churchlogo/photoshop",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/photoshop"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/lightroom",
+    name: "how-to-use-your-churchlogo/lightroom",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/lightroom"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/photopolish",
+    name: "how-to-use-your-churchlogo/photopolish",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/photopolish"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/apple-watch",
+    name: "how-to-use-your-churchlogo/apple-watch",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/applewatch"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/mobile",
+    name: "how-to-use-your-churchlogo/mobile",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/mobile"),
+  },
+  {
+    path: "how-to-use-your-churchlogo/animated",
+    name: "how-to-use-your-churchlogo/animated",
+    Component: () =>
+      import("../pages/how-to-use-your-church-logo/pages/animated"),
+  },
+  {
     path: "blog",
     name: "blog",
     Component: () => import("../pages/blog/index"),

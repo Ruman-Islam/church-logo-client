@@ -1,5 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { FiChevronsRight } from "react-icons/fi";
+import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner/index";
@@ -8,7 +10,21 @@ import categoryData from "../../data/categories.json";
 import data from "../../data/customersDoing.json";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
 import { CategoryCard, NextArrow, PrevArrow } from "../dashboard";
-import Card from "./components/Card";
+
+function Card(props) {
+  const { content } = props;
+  return (
+    <Box className="w-full h-full rounded-lg bg-white aspect-[1.3/1] text-center p-2 cursor-grab active:cursor-grabbing">
+      <Box className="mb-2">
+        <img
+          src={getImgUrl(content?.img)}
+          alt="church_logo"
+          className="rounded-tl-lg rounded-tr-lg"
+        />
+      </Box>
+    </Box>
+  );
+}
 
 const settings = {
   dots: false,
@@ -106,6 +122,13 @@ export default function HowToUseYourChurchLogoScreen() {
                   In this guide, we’ll show you how to apply your Church Logo
                   using Canva in 5 easy steps.
                 </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/canva"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
                 <img
@@ -120,125 +143,7 @@ export default function HowToUseYourChurchLogoScreen() {
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    APPLE WATCH
-                  </Typography>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    Customize Your Apple Watch With Your Church Logo
-                  </Typography>
-                </Box>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  As you’ve seen, your Church Logo is incredibly versatile and
-                  fits a wide range of uses. But there’s even more to explore.
-                </Typography>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  Customizing your watch is just one of the many ideas we
-                  suggest to help you unlock the full potential and
-                  possibilities that your Church Logo offers.
-                </Typography>
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  Together, we’ll discover how to transform the face of your
-                  watch, making it even more personal and unique.
-                </Typography>
-              </Box>
-              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
-                <img
-                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
-                  alt="church_logo"
-                  className="w-full h-full rounded-lg"
-                />
-              </Box>
-            </Box>
-
-            <Box className="w-full flex items-center justify-between gap-2">
-              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
-                <Box>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    MOBILE
-                  </Typography>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How To Use Your Church Logo on Your Mobile
-                  </Typography>
-                </Box>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  Got a photo you want to share in a snap? Protect your valuable
-                  work on the go! Adding your signature logo is a breeze. In
-                  just a few seconds, you’ll be hitting that post button and
-                  captivating your followers.
-                </Typography>
-              </Box>
-              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
-                <img
-                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
-                  alt="church_logo"
-                  className="w-full h-full rounded-lg"
-                />
-              </Box>
-            </Box>
-
-            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
-              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
-                <Box>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    ANIMATED
-                  </Typography>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to apply your Animated Church Logo
-                  </Typography>
-                </Box>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  By itself, your Church Logo is already a work of art.
-                </Typography>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  But why stop there? Let’s take that masterpiece and make it
-                  even more impressive. It’s simple—just add one thing: motion.
-                  Movement makes your logo more exciting and eye-catching.
-                </Typography>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  Discover all the places you can use your Animated Church Logo
-                  and the best applications to bring it to life.
-                </Typography>
-              </Box>
-              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
-                <img
-                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
-                  alt="church_logo"
-                  className="w-full h-full rounded-lg"
-                />
-              </Box>
-            </Box>
-
-            <Box className="w-full flex flex-row items-center justify-between gap-2">
-              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
-                <Box>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    PHOTOSHOP
+                    Photoshop
                   </Typography>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
                     How to apply your Church Logo in Photoshop
@@ -262,13 +167,19 @@ export default function HowToUseYourChurchLogoScreen() {
                   you can still manually apply your Church Logo to your designs
                   using the available tools in Photoshop.
                 </Typography>
-
                 <Typography
                   component="p"
                   className="text-brand__font__size__sm"
                 >
                   Here’s a super simple step-by-step guide to help you out.
                 </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/photoshop"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
                 <img
@@ -279,7 +190,7 @@ export default function HowToUseYourChurchLogoScreen() {
               </Box>
             </Box>
 
-            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
+            <Box className="w-full flex items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
@@ -298,7 +209,6 @@ export default function HowToUseYourChurchLogoScreen() {
                   to photos and graphics. You can easily use the watermarking
                   feature in the app.
                 </Typography>
-
                 <Typography
                   component="p"
                   className="text-brand__font__size__sm"
@@ -307,6 +217,13 @@ export default function HowToUseYourChurchLogoScreen() {
                   watermarking tool, here’s the simplest way to apply your
                   Church Logo in Lightroom.
                 </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/lightroom"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
                 <img
@@ -317,7 +234,7 @@ export default function HowToUseYourChurchLogoScreen() {
               </Box>
             </Box>
 
-            <Box className="w-full flex flex-row items-center justify-between gap-2">
+            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
@@ -345,6 +262,153 @@ export default function HowToUseYourChurchLogoScreen() {
                   Learn to apply your Church Logo in Photopolish like a pro with
                   this easy-to-follow four-step tutorial.
                 </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/photopolish"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    APPLE WATCH
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    Customize Your Apple Watch With Your Church Logo
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  As you’ve seen, your Church Logo is incredibly versatile and
+                  fits a wide range of uses. But there’s even more to explore.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Customizing your watch is just one of the many ideas we
+                  suggest to help you unlock the full potential and
+                  possibilities that your Church Logo offers.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Together, we’ll discover how to transform the face of your
+                  watch, making it even more personal and unique.
+                </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/apple-watch"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    MOBILE
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    How To Use Your Church Logo on Your Mobile
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Got a photo you want to share in a snap? Protect your valuable
+                  work on the go! Adding your signature logo is a breeze. In
+                  just a few seconds, you’ll be hitting that post button and
+                  captivating your followers.
+                </Typography>
+
+                <HashLink
+                  to="/how-to-use-your-churchlogo/mobile"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
+              </Box>
+              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                <img
+                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
+                  alt="church_logo"
+                  className="w-full h-full rounded-lg"
+                />
+              </Box>
+            </Box>
+
+            <Box className="w-full flex flex-row items-center justify-between gap-2">
+              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                <Box>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                    ANIMATED
+                  </Typography>
+                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                    How to apply your Animated Church Logo
+                  </Typography>
+                </Box>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  By itself, your Church Logo is already a work of art.
+                </Typography>
+
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  But why stop there? Let’s take that masterpiece and make it
+                  even more impressive. It’s simple—just add one thing: motion.
+                  Movement makes your logo more exciting and eye-catching.
+                </Typography>
+                <Typography
+                  component="p"
+                  className="text-brand__font__size__sm"
+                >
+                  Discover all the places you can use your Animated Church Logo
+                  and the best applications to bring it to life
+                </Typography>
+                <HashLink
+                  to="/how-to-use-your-churchlogo/animated"
+                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                >
+                  <span>Learn More</span>
+                  <FiChevronsRight />
+                </HashLink>
               </Box>
               <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
                 <img
