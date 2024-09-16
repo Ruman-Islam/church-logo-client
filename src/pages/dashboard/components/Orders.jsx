@@ -132,7 +132,7 @@ export default function Orders() {
     <Box className="w-full flex flex-col gap-5">
       <Box
         className={`flex flex-col gap-4 ${
-          activeOrders.length > 2 ? "h-fit" : "lg:h-[282px]"
+          activeOrders.length > 0 ? "h-fit" : "lg:h-[282px]"
         }`}
       >
         <Collapse in={open} className="border">
@@ -151,11 +151,13 @@ export default function Orders() {
             }
           >
             <AlertTitle>Notice</AlertTitle>
-            We’ve received your order! If we need any more information from you,
-            we’ll reach out via email. Likewise, if you have any questions for
-            us, we’ll let you know through email. And if you have any questions,
-            feel free to contact us via email, live chat, or Instagram. We’re
-            here to help!
+            <span className="text-text__gray">
+              We’ve received your order! If we need any more information from
+              you, we’ll reach out via email. Likewise, if you have any
+              questions for us, we’ll let you know through email. And if you
+              have any questions, feel free to contact us via email, live chat,
+              or Instagram. We’re here to help!
+            </span>
           </Alert>
         </Collapse>
 
@@ -164,12 +166,12 @@ export default function Orders() {
             variant="h6"
             className="text-brand__font__size__sm lg:text-brand__font__size__md w-full flex justify-between"
           >
-            <span>Active Orders : {activeOrders.length} </span>
+            <span>Active Orders : {activeOrders?.length} </span>
             <span className="flex gap-1">
               <span>Total:</span>
               <span>
                 <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
-                {totalActiveOrderPrice.toFixed(2)}
+                {totalActiveOrderPrice?.toFixed(2)}
               </span>
             </span>
           </Typography>

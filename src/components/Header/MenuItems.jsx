@@ -140,10 +140,10 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
             >
               <IconButton
                 onClick={(e) => setAnchorEl2(e.currentTarget)}
-                size="small"
+                sx={{ p: 0, color: "primary.main" }}
               >
                 <Badge
-                  color="primary"
+                  color="error"
                   overlap="circular"
                   badgeContent={unreadMessages?.length}
                 >
@@ -211,7 +211,7 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
             >
               <IconButton
                 onClick={(e) => setAnchorEl(e.currentTarget)}
-                size="small"
+                sx={{ p: 0 }}
               >
                 <Avatar
                   alt={user?.firstName}

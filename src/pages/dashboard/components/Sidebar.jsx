@@ -3,11 +3,11 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import { useEffect, useRef } from "react";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
@@ -40,13 +40,27 @@ export default function Sidebar() {
     limit: 100,
   };
 
+  const prevMessagesLength = useRef(messages.length);
+
   const { /* data: order,  */ isFetching: orderFetching } =
     useGetOrderListQuery(query);
 
-  const { data: conversation, isFetching: conversationFetching } =
-    useGetInboxQuery(query, {
-      refetchOnMountOrArgChange: true,
-    });
+  const {
+    data: conversation,
+    isLoading: conversationFetching,
+    refetch,
+  } = useGetInboxQuery(query, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    if (messages.length > prevMessagesLength.current) {
+      // If the new length is greater, refetch the conversation
+      refetch();
+    }
+    // Update the previous messages length
+    prevMessagesLength.current = messages.length;
+  }, [messages.length, refetch]);
 
   // const activeOrders = order?.data.filter(
   //   (item) => item?.orderStatus === "in progress"
@@ -108,7 +122,11 @@ export default function Sidebar() {
             <Typography variant="p"> Switch to</Typography>
           </Box>
           <Box className="bg-white rounded-full border-l flex-1">
-            <HashLink className="px-10 py-1 inline-block" to="/profile#profile">
+            <HashLink
+              className="px-10 py-1 inline-block"
+              to="/profile#profile"
+              scroll={(el) => scrollWithOffset(el, 130)}
+            >
               <Typography variant="p">Profile</Typography>
             </HashLink>
           </Box>
@@ -123,70 +141,79 @@ export default function Sidebar() {
           }}
           className="max-h-[350px] h-full overflow-y-auto"
         >
-          <ListSubheader className="border-b">
+          <ListSubheader>
             <Typography variant="caption">
-              Inbox ({unreadMessages?.length})
+              Unread ({unreadMessages?.length})
             </Typography>
           </ListSubheader>
           {conversation?.data?.docs.map((item) => {
             const participant = findOppositeParticipant(item, user?.userId);
-            const unreadMsg = unreadMessages.filter(
+            const unreadMsgs = unreadMessages.filter(
               (msg) => msg?.conversationId?._id === item?._id
             );
-            const currentConvoMsgs = messages.filter(
-              (msg) => msg?.conversationId?._id === item?._id
-            );
-            const lastMsg =
-              currentConvoMsgs[currentConvoMsgs.length - 1]?.text || "";
 
             return (
-              <ListItem key={item?._id} alignItems="flex-start" className="p-0">
+              <ListItem
+                key={item?._id}
+                alignItems="flex-start"
+                className="p-0 border-t"
+              >
                 <HashLink
                   scroll={(el) => scrollWithOffset(el, 130)}
                   to={`/dashboard/inbox/${item?._id}#chat`}
-                  className="flex w-full p-3 hover:bg-section__bg_color duration-200"
+                  className="flex w-full p-3 hover:bg-section__bg_color duration-200 justify-between gap-x-2"
                 >
-                  <ListItemAvatar>
+                  <Box className="basis-[5%] flex items-center">
                     <Avatar
-                      className="w-8 h-8 rounded-full text-brand__font__size__sm"
+                      className="w-8 h-8 rounded-full text-brand__font__size__sm p-0 m-0"
                       alt={participant?.firstName}
-                      src="/static/images/avatar/1.jpg"
+                      src={
+                        participant?.photo?.url || "/static/images/avatar/1.jpg"
+                      }
                     />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primaryTypographyProps={{ fontSize: "14px" }}
-                    secondaryTypographyProps={{ fontSize: "12px" }}
-                    primary={
-                      <span className="flex items-center gap-x-1">
-                        <span>
-                          {participant?.firstName} {participant?.lastName}
-                        </span>
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full mb-0.5 ${
-                            checkIsOnline(onlineUsers, participant?.userId)
-                              ? "bg-primary"
-                              : "bg-text__gray"
-                          }`}
-                        ></span>
-                      </span>
-                    }
-                    secondary={
-                      <span className="flex items-end justify-between gap-x-1 mt-1">
-                        <span className="basis-[90%] w-full">
-                          {lastMsg.length > 22
-                            ? lastMsg.slice(0, 22) + " " + "..."
-                            : lastMsg}
-                        </span>
-                        {unreadMsg?.length > 0 && (
-                          <span
-                            className={`w-4 h-4 rounded-full flex items-center justify-center bg-[#1976D2] text-white text-[10px]`}
-                          >
-                            {unreadMsg?.length}
+                  </Box>
+                  <Box className="flex-grow">
+                    <ListItemText
+                      primaryTypographyProps={{ fontSize: "14px" }}
+                      secondaryTypographyProps={{ fontSize: "12px" }}
+                      primary={
+                        <span className="flex items-center gap-x-1 leading-tight">
+                          <span>
+                            {participant?.firstName} {participant?.lastName}
                           </span>
-                        )}
-                      </span>
-                    }
-                  />
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full mb-0.5 ${
+                              checkIsOnline(onlineUsers, participant?.userId)
+                                ? "bg-primary"
+                                : "bg-text__gray"
+                            }`}
+                          ></span>
+                        </span>
+                      }
+                      secondary={
+                        <span className="flex justify-between gap-x-1 mt-1 leading-tight">
+                          <span className="basis-[90%] w-full flex gap-x-2">
+                            <span>
+                              {item?.lastMessage
+                                ? item?.lastMessage?.length > 22
+                                  ? item?.lastMessage?.slice(0, 22) +
+                                    " " +
+                                    "..."
+                                  : item?.lastMessage
+                                : "No message"}
+                            </span>
+                          </span>
+                          {unreadMsgs?.length > 0 && (
+                            <span
+                              className={`w-3.5 h-3.5 rounded-full flex items-center justify-center bg-error text-white text-[8px]`}
+                            >
+                              {unreadMsgs?.length}
+                            </span>
+                          )}
+                        </span>
+                      }
+                    />
+                  </Box>
                 </HashLink>
               </ListItem>
             );

@@ -9,7 +9,7 @@ import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 import MenuItems from "./MenuItems";
 
-export default function Header({ topBarEnable, bgColor = "bg-white" }) {
+export default function Header({ topBarEnable, bgColor = "white" }) {
   const {
     auth: { user },
     chat: { unreadMessages },
@@ -56,7 +56,8 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
         )}
 
         <div
-          className={`${bgColor} duration-200 w-full ${
+          style={{ backgroundColor: bgColor }}
+          className={`duration-200 w-full ${
             isVisible
               ? "fixed top-0 animate-headerDrop shadow h-[90px]"
               : "h-[90px]"
@@ -95,7 +96,8 @@ export default function Header({ topBarEnable, bgColor = "bg-white" }) {
                 </button>
               </div>
               <div
-                className={`${bgColor} absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
+                style={{ backgroundColor: bgColor }}
+                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[400px]"

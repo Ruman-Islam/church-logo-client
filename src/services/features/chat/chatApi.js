@@ -9,7 +9,7 @@ const chatApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      // invalidatesTags: ["chat"],
+      invalidatesTags: ["chat"],
     }),
     getMessages: builder.query({
       query: (query) => {
@@ -20,7 +20,7 @@ const chatApi = api.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["chat"],
+      // providesTags: ["chat"],
     }),
     getInbox: builder.query({
       query: (query) => {

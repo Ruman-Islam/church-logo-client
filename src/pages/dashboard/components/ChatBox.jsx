@@ -94,6 +94,10 @@ export default function ChatBox() {
   useEffect(() => {
     handleSetMessages(data?.data?.docs || []);
     handleSetCurrentConversationId(id);
+    setQuery((prevQuery) => ({
+      ...prevQuery,
+      conversationId: id,
+    }));
 
     return () => handleSetCurrentConversationId(null);
   }, [id, data, handleSetMessages, handleSetCurrentConversationId]);
@@ -111,7 +115,10 @@ export default function ChatBox() {
 
   useEffect(() => {
     const unreadMessages = messages.filter(
-      (msg) => !msg?.isRead && msg?.receiver?.userId === user?.userId
+      (msg) =>
+        !msg?.isRead &&
+        msg?.conversationId?._id === id &&
+        msg?.receiver?.userId === user?.userId
     );
 
     if (unreadMessages?.length) {
@@ -131,7 +138,7 @@ export default function ChatBox() {
       socket.off("seenMessages");
       socket.off("getSeenMessages");
     };
-  }, [messages, user?.userId, handleSetMessages]);
+  }, [messages, user?.userId, handleSetMessages, id]);
 
   const handleImage = async (files) => {
     const attachmentPromises = files.base64.map(async (file) => {
@@ -185,6 +192,9 @@ export default function ChatBox() {
   };
 
   const isOnline = checkIsOnline(onlineUsers, data?.data?.participantId);
+  const currentConversationMessages = messages.filter(
+    (item) => item?.conversationId?._id === id
+  );
 
   return (
     <Box className="w-full">
@@ -214,8 +224,8 @@ export default function ChatBox() {
               </Box>
             )}
             <Box className="flex flex-col gap-y-5 h-full">
-              {messages?.length > 0 ? (
-                messages.map((item) => (
+              {currentConversationMessages?.length > 0 ? (
+                currentConversationMessages.map((item) => (
                   <Box
                     key={item._id}
                     className="w-fit h-fit rounded-md text-brand__font__size__sm pr-2 flex gap-2"
@@ -239,7 +249,8 @@ export default function ChatBox() {
                             : `${item?.sender?.firstName} ${item?.sender?.lastName}`}
                         </span>
                         <em className="text-brand__font__size__xs">
-                          {dateAndTime(item?.dateTime).date}{" "}
+                          {dateAndTime(item?.dateTime).date}
+                          {" - "}
                           {dateAndTime(item?.dateTime).time}
                         </em>
                         {item?.sender?.userId === user?.userId && (
@@ -335,7 +346,7 @@ export default function ChatBox() {
               <Box></Box>
               <Button
                 type="submit"
-                className="text-sm w-fit bg-primary text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
+                className="text-sm w-fit bg-primary hover:bg-brand__black__color text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
                 variant="primary"
               >
                 Send

@@ -4,7 +4,6 @@ import MenuList from "@mui/material/MenuList";
 import Paper from "@mui/material/Paper";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
-import SectionBanner from "../../components/common/SectionBanner";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { useAppSelector } from "../../services/hook";
@@ -19,9 +18,9 @@ export default function ProfileScreen() {
   } = useAppSelector((state) => state);
 
   return (
-    <Layout title="Profile">
+    <Layout title="Profile" headerBgColor="#F8F8F8">
       <section id="profile">
-        <SectionBanner heading={`Hello, ${user.firstName}`} desc="" />
+
         <div className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-20">
           <div className="flex flex-col lg:flex-row gap-5">
             <div className="lg:max-w-[230px] w-full overflow-x-auto">
@@ -45,7 +44,7 @@ export default function ProfileScreen() {
                       className="inline-block w-full"
                     >
                       <ListItemText>
-                        <span className="text-brand__font__size__md font-brand__font__semibold duration-300">
+                        <span className="text-brand__font__size__md font-brand__font__semibold duration-300 text-primary">
                           Profile
                         </span>
                       </ListItemText>

@@ -1,6 +1,7 @@
 import AOS from "aos";
-import { useCallback, useEffect } from "react";
-import useTracking from "./hooks/useTracking";
+import { Fragment, useCallback, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+import JumpToTopBtn from "./components/common/JumpToTopBtn";
 import Routers from "./Routers";
 import {
   addMessage,
@@ -15,7 +16,6 @@ AOS.init({
 });
 
 function App() {
-  useTracking();
   const dispatch = useAppDispatch();
 
   const handleSetUnreadMessages = useCallback(
@@ -52,7 +52,13 @@ function App() {
     };
   }, [handleSetOnlineUsers, handleAddMessage, handleSetUnreadMessages]);
 
-  return <Routers />;
+  return (
+    <Fragment>
+      <Routers />
+      <JumpToTopBtn />
+      <Toaster position="bottom-center" />
+    </Fragment>
+  );
 }
 
 export default App;

@@ -1,11 +1,9 @@
-import { Suspense, lazy } from "react";
-import { Toaster } from "react-hot-toast";
+import { Fragment, Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import RequireAuth from "./auth/RequireAuth";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PersistLogin from "./components/PersistLogin";
-import JumpToTopBtn from "./components/common/JumpToTopBtn";
 import Loader from "./components/common/Loader";
 import DashboardScreen from "./pages/dashboard";
 import NotFoundScreen from "./pages/not-found";
@@ -15,14 +13,14 @@ import publicRoutes from "./routes/publicRoutes";
 
 export default function Routers() {
   return (
-    <>
+    <Fragment>
       <Suspense
         fallback={
-          <>
+          <Fragment>
             <Header topBarEnable="enable" />
             <Loader />
             <Footer />
-          </>
+          </Fragment>
         }
       >
         <Routes>
@@ -60,10 +58,7 @@ export default function Routers() {
             <Route path="*" element={<NotFoundScreen />} />
           </Route>
         </Routes>
-
-        <JumpToTopBtn />
-        <Toaster position="bottom-center" />
       </Suspense>
-    </>
+    </Fragment>
   );
 }

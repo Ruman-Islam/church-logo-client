@@ -7,7 +7,10 @@ export default function JumpToTopBtn() {
   const { distance } = useJumpToTop();
 
   const handleJump = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
