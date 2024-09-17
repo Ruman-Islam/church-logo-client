@@ -4,6 +4,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material/styles";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import "aos/dist/aos.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -13,6 +14,7 @@ import { BrowserRouter } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import App from "./App.jsx";
+import { env } from "./config/env.js";
 import "./index.css";
 import store from "./services/store.js";
 
@@ -47,7 +49,9 @@ ReactDOM.createRoot(rootElement).render(
       <BrowserRouter>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
-            <App />
+            <GoogleOAuthProvider clientId={env.google_client_id}>
+              <App />
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </StyledEngineProvider>
       </BrowserRouter>

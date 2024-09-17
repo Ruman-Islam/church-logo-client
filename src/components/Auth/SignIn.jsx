@@ -5,19 +5,23 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useCookie from "../../hooks/useCookie";
 import useToast from "../../hooks/useToast";
-import { useSignInMutation } from "../../services/features/auth/authApi";
+import {
+  useGoogleSignInMutation,
+  useSignInMutation,
+} from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
+import { socket } from "../../socket";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 import CustomButton from "../UI/CustomButton";
 import GoogleLoginButton from "./GoogleLoginButton";
-import { socket } from "../../socket";
 
 export default function SignIn({ showForm }) {
   const { handleSuccess, handleError } = useToast();
@@ -41,6 +45,8 @@ export default function SignIn({ showForm }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const [signIn, { data, error, isLoading }] = useSignInMutation();
+  const [googleSignIn, { data: googleSignInData, error: googleSignInError }] =
+    useGoogleSignInMutation();
 
   useEffect(() => {
     if (user) {
@@ -51,19 +57,25 @@ export default function SignIn({ showForm }) {
   }, [user, navigate]);
 
   useEffect(() => {
-    if (data) {
-      socket.emit("addUser", data?.data?.user?.userId);
-      handleSuccess(data?.message);
-      handleSetCookie(data?.data?.refreshToken);
-      dispatch(setAuth(data?.data));
+    if (data || googleSignInData) {
+      socket.emit(
+        "addUser",
+        data?.data?.user?.userId || googleSignInData?.data?.user?.userId
+      );
+      handleSuccess(data?.message || googleSignInData?.message);
+      handleSetCookie(
+        data?.data?.refreshToken || googleSignInData?.data?.refreshToken
+      );
+      dispatch(setAuth(data?.data || googleSignInData?.data));
     }
-    if (error) {
-      handleError(error?.data?.message);
+    if (error || googleSignInError) {
+      handleError(error?.data?.message || googleSignInError?.data?.message);
     }
 
     return () => socket.off("addUser");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error]);
+  }, [data, error, googleSignInData, googleSignInError]);
 
   const onSubmit = async (signInData) => {
     const options = {
@@ -71,6 +83,16 @@ export default function SignIn({ showForm }) {
     };
     await signIn(options);
   };
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async ({ code }) => {
+      await googleSignIn({ data: { code } });
+    },
+    flow: "auth-code",
+    onError: () => {
+      handleError(400, "Something went wrong!");
+    },
+  });
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 
@@ -80,7 +102,7 @@ export default function SignIn({ showForm }) {
         isSignIn ? "translate-x-0 opacity-1" : "-translate-x-[100%] opacity-0"
       }`}
     >
-      <GoogleLoginButton />
+      <GoogleLoginButton onGoogleLogin={handleGoogleLogin} />
 
       <div className="text-center mb-2.5 text-brand__black__color font-brand__font__500 text-brand__font__size__lg">
         <h3>Sign In</h3>

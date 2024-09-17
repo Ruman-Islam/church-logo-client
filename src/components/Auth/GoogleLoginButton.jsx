@@ -1,11 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
 import CustomButton from "../UI/CustomButton";
 
-export default function GoogleLoginButton() {
+export default function GoogleLoginButton({ onGoogleLogin }) {
   return (
     <div>
       <CustomButton
-        type="submit"
+        type="button"
+        onClick={onGoogleLogin}
         className="flex items-center justify-center gap-2 border w-full py-2.5 duration-1000 rounded-full hover:border-brand__black__color"
       >
         <FcGoogle size={25} />

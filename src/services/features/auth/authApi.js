@@ -82,6 +82,14 @@ const authApi = api.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+    googleSignIn: builder.mutation({
+      query: ({ data }) => ({
+        url: "/public/auth/google-sign-in",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["user"],
+    }),
     getRefreshToken: builder.mutation({
       query: ({ data }) => ({
         url: "/public/auth/refresh/token",
@@ -104,5 +112,6 @@ export const {
   useEditProfileMutation,
   useSignUpMutation,
   useSignInMutation,
+  useGoogleSignInMutation,
   useGetRefreshTokenMutation,
 } = authApi;

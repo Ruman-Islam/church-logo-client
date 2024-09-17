@@ -10,4 +10,5 @@ export const env = {
       : import.meta.env.VITE_APP_ROUTE_URL_DEV,
   cloud_upload_preset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
   cloud_upload_name: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+  google_client_id: import.meta.env.VITE_APP_GOOGLE_CLIENT_ID,
 };
