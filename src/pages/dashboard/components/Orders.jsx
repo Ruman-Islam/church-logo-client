@@ -1,18 +1,16 @@
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
-import Typography from "@mui/material/Typography";
-
-import { FaDollarSign } from "react-icons/fa6";
-import { IoMdTime } from "react-icons/io";
-import { HashLink } from "react-router-hash-link";
-
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
+import { FaDollarSign } from "react-icons/fa6";
+import { IoMdTime } from "react-icons/io";
+import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
 import startCountdown from "../../../utils/countdown";
@@ -129,13 +127,9 @@ export default function Orders() {
   );
 
   return (
-    <Box className="w-full flex flex-col gap-5">
-      <Box
-        className={`flex flex-col gap-4 ${
-          activeOrders.length > 0 ? "h-fit" : "lg:h-[282px]"
-        }`}
-      >
-        <Collapse in={open} className="border">
+    <Box>
+      {order?.length > 0 ? (
+        <Collapse in={open} className={`border ${open && "mb-3"}`}>
           <Alert
             severity="info"
             action={
@@ -160,46 +154,58 @@ export default function Orders() {
             </span>
           </Alert>
         </Collapse>
+      ) : null}
 
-        <Box className="bg-white p-3 border">
-          <Typography
-            variant="h6"
-            className="text-brand__font__size__sm lg:text-brand__font__size__md w-full flex justify-between"
-          >
-            <span>Active Orders : {activeOrders?.length} </span>
-            <span className="flex gap-1">
-              <span>Total:</span>
-              <span>
-                <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
-                {totalActiveOrderPrice?.toFixed(2)}
+      <Box className="w-full flex flex-col gap-5">
+        <Box className="flex flex-col gap-3">
+          <Box className="bg-white p-3 border">
+            <Typography
+              variant="h6"
+              className="text-brand__font__size__sm lg:text-brand__font__size__md w-full flex justify-between"
+            >
+              <span>Active Orders : {activeOrders?.length} </span>
+              <span className="flex gap-1">
+                <span>Total:</span>
+                <span>
+                  <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
+                  {totalActiveOrderPrice?.toFixed(2)}
+                </span>
               </span>
-            </span>
-          </Typography>
-        </Box>
-
-        <Box className="flex flex-col gap-1">
-          {activeOrders?.map((order) => (
-            <OrderCard key={order?.orderId} order={order} />
-          ))}
-        </Box>
-      </Box>
-
-      {deliveredOrders.length > 0 && (
-        <Box className="flex flex-col gap-4">
-          <Box className="flex items-center">
-            <Box className="max-w-[140px] w-full">
-              <Typography variant="p">Awaiting response</Typography>
-            </Box>
-            <Box className="border-t w-full flex-grow"></Box>
+            </Typography>
           </Box>
 
-          <Box className="flex flex-col gap-1">
-            {deliveredOrders?.map((order) => (
+          <Box
+            className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
+              activeOrders?.length > 4 ? "max-h-[365px]" : "h-fit"
+            }`}
+          >
+            {activeOrders?.map((order) => (
               <OrderCard key={order?.orderId} order={order} />
             ))}
           </Box>
         </Box>
-      )}
+
+        {deliveredOrders.length > 0 && (
+          <Box className="flex flex-col gap-4">
+            <Box className="flex items-center">
+              <Box className="max-w-[140px] w-full">
+                <Typography variant="p">Awaiting response</Typography>
+              </Box>
+              <Box className="border-t w-full flex-grow"></Box>
+            </Box>
+
+            <Box
+              className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
+                deliveredOrders?.length > 4 ? "max-h-[350px]" : "h-fit"
+              }`}
+            >
+              {deliveredOrders?.map((order) => (
+                <OrderCard key={order?.orderId} order={order} />
+              ))}
+            </Box>
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 }

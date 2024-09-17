@@ -1,29 +1,88 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import ListSubheader from "@mui/material/ListSubheader";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import ReactFileReader from "react-file-reader";
+import { useForm } from "react-hook-form";
 import { FaQuestionCircle } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
 import { HiSupport } from "react-icons/hi";
+import { IoMdSend } from "react-icons/io";
+import { MdAddPhotoAlternate } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
 import NoDataFound from "../../../components/common/NoDataFound";
 import SectionBanner from "../../../components/common/SectionBanner";
+import { env } from "../../../config/env";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
+import useToast from "../../../hooks/useToast";
 import { useGetOneOrderQuery } from "../../../services/features/order/orderApi";
 import dateAndTime from "../../../utils/dateAndTime";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 export default function OrderActivityScreen() {
   const scrollWithOffset = useScrollWithOffset();
+  const { register, handleSubmit, reset } = useForm();
+  const { handleError } = useToast();
   const { id } = useParams();
   const { data, isFetching } = useGetOneOrderQuery(id);
   const orderInfo = data?.data;
   const packageTitle = orderInfo?.package?.title;
 
   const { date } = dateAndTime(orderInfo?.deliveryDateUTC);
+
+  const handleImage = async (files) => {
+    const attachmentPromises = files.base64.map(async (file) => {
+      const formData = new FormData();
+      formData.append("upload_preset", env?.cloud_upload_preset);
+      formData.append("cloud_name", env?.cloud_upload_name);
+      formData.append("folder", "church-logo/inbox");
+      formData.append("file", file);
+
+      try {
+        const { data } = await axios.post(
+          `https://api.cloudinary.com/v1_1/${env?.cloud_upload_name}/upload`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        return data?.secure_url;
+      } catch (error) {
+        handleError("Something went wrong!");
+        return null; // Return null in case of an error
+      }
+    });
+
+    // Wait for all promises to resolve
+    const attachment = await Promise.all(attachmentPromises);
+
+    // Filter out any null values in case some uploads failed
+    const validAttachments = attachment.filter((url) => url !== null);
+
+    // await sendMessage({
+    //   data: { conversationId: id, text: "", attachment: validAttachments },
+    // });
+  };
+
+  const onSubmit = async ({ message }) => {
+    // await sendMessage({
+    //   data: { conversationId: id, text: message, attachment: [] },
+    // });
+    reset();
+  };
 
   return (
     <Layout title="Order Activity">
@@ -246,7 +305,58 @@ export default function OrderActivityScreen() {
                       className="border bg-white overflow-y-auto max-h-[80vh] p-4 h-full flex flex-col justify-between"
                     >
                       <Box>Content area</Box>
-                      <Box>Chat box</Box>
+                      <Box>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                          <Box className="flex flex-col gap-2">
+                            <FormControl fullWidth>
+                              <OutlinedInput
+                                {...register("message", {
+                                  required: true,
+                                })}
+                                className=""
+                                id="message"
+                                name="message"
+                                placeholder="Type your message here"
+                                type="text"
+                                multiline
+                                rows="5"
+                                endAdornment={
+                                  <InputAdornment
+                                    position="end"
+                                    className="flex flex-col justify-center relative"
+                                  >
+                                    <IconButton>
+                                      <ReactFileReader
+                                        base64={true}
+                                        multipleFiles
+                                        handleFiles={handleImage}
+                                      >
+                                        <MdAddPhotoAlternate />
+                                      </ReactFileReader>
+                                    </IconButton>
+                                  </InputAdornment>
+                                }
+                              />
+                            </FormControl>
+                            <Box className="flex justify-between items-center w-full">
+                              <Box>
+                                <Typography className="text-brand__font__size__xs text-link__color flex  items-center gap-x-1">
+                                  <span>Offer more extras</span>
+                                  <FiChevronDown size={16} />
+                                </Typography>
+                              </Box>
+                              <Button
+                                type="submit"
+                                className="text-sm w-fit bg-primary hover:bg-brand__black__color text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
+                                variant="primary"
+                              >
+                                Send
+                                <IoMdSend />
+                              </Button>
+                            </Box>
+                          </Box>
+                        </form>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>

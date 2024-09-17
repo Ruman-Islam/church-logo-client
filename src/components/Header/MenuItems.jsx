@@ -209,8 +209,8 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
                                       {item?.sender?.lastName}:
                                     </span>{" "}
                                     <span>
-                                      {item?.text?.length > 45
-                                        ? item?.text?.slice(0, 45) + " " + "..."
+                                      {item?.text?.length > 40
+                                        ? item?.text?.slice(0, 40) + " " + "..."
                                         : item?.text}
                                     </span>
                                   </span>

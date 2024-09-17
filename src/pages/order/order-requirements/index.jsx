@@ -221,13 +221,13 @@ export default function OrderRequirementsScreen() {
                   <Box component="div" className="flex-1 flex flex-col gap-5">
                     <ListSubheader className="bg-transparent">
                       <Box className="flex uppercase text-text__gray font-brand__font__semibold gap-6 border-b">
-                        {/* <HashLink
+                        <HashLink
                           to={`/order/order-activities/${id}#activities`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary"
                         >
                           Activity
-                        </HashLink> */}
+                        </HashLink>
                         <HashLink
                           to={`/order/order-details/${id}#details`}
                           scroll={(el) => scrollWithOffset(el, 135)}
