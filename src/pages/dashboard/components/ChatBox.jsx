@@ -193,7 +193,7 @@ export default function ChatBox() {
 
   const isOnline = checkIsOnline(onlineUsers, data?.data?.participantId);
   const currentConversationMessages = messages.filter(
-    (item) => item?.conversationId?._id === id
+    (item) => item?.conversationId?._id === id && item?.text !== "No messages"
   );
 
   return (
@@ -214,7 +214,10 @@ export default function ChatBox() {
         </Box>
 
         <Box>
-          <ScrollToBottom className="flex-1 px-4 h-[450px] mt-4">
+          <ScrollToBottom
+            className="flex-1 px-4 h-[450px] mt-4"
+            scrollViewClassName="custom-scrollbar"
+          >
             {hasShowMore && (
               <Box
                 className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"

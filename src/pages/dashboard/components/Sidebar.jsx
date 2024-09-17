@@ -133,19 +133,19 @@ export default function Sidebar() {
         </Box>
       </Box>
 
-      <Box className="border bg-white w-full">
-        <List
-          sx={{
-            width: "100%",
-            padding: 0,
-          }}
-          className="max-h-[350px] h-full overflow-y-auto"
-        >
-          <ListSubheader>
-            <Typography variant="caption">
-              Unread ({unreadMessages?.length})
-            </Typography>
-          </ListSubheader>
+      <List
+        sx={{
+          width: "100%",
+          padding: 0,
+        }}
+        className="bg-white border h-fit"
+      >
+        <ListSubheader>
+          <Typography variant="caption">
+            Unread ({unreadMessages?.length})
+          </Typography>
+        </ListSubheader>
+        <Box className="max-h-[221px] h-fit overflow-y-auto bg-white custom-scrollbar">
           {conversation?.data?.docs.map((item) => {
             const participant = findOppositeParticipant(item, user?.userId);
             const unreadMsgs = unreadMessages.filter(
@@ -194,13 +194,17 @@ export default function Sidebar() {
                         <span className="flex justify-between gap-x-1 mt-1 leading-tight">
                           <span className="basis-[90%] w-full flex gap-x-2">
                             <span>
-                              {item?.lastMessage
-                                ? item?.lastMessage?.length > 22
-                                  ? item?.lastMessage?.slice(0, 22) +
-                                    " " +
-                                    "..."
-                                  : item?.lastMessage
-                                : "No message"}
+                              <span className="font-brand__font__semibold">
+                                {item?.lastMessage?.senderDetails?.userId ===
+                                  user?.userId &&
+                                  item?.lastMessage?.text !== "No messages" &&
+                                  "You: "}
+                              </span>
+                              {item?.lastMessage?.text?.length > 20
+                                ? item?.lastMessage?.text?.slice(0, 20) +
+                                  " " +
+                                  "..."
+                                : item?.lastMessage?.text}
                             </span>
                           </span>
                           {unreadMsgs?.length > 0 && (
@@ -218,8 +222,8 @@ export default function Sidebar() {
               </ListItem>
             );
           })}
-        </List>
-      </Box>
+        </Box>
+      </List>
     </Box>
   );
 }

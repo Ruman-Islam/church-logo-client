@@ -23,7 +23,7 @@ export default function ProfileScreen() {
 
         <div className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-20">
           <div className="flex flex-col lg:flex-row gap-5">
-            <div className="lg:max-w-[230px] w-full overflow-x-auto">
+            <div className="lg:max-w-[230px] w-full overflow-x-auto border-l h-fit">
               <Paper className="shadow-none h-full text-brand__black__color">
                 <MenuList className="flex flex-row lg:flex-col items-center lg:items-start lg:justify-center">
                   <MenuItem className="lg:w-full">
