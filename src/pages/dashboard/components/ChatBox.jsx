@@ -15,6 +15,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import { IoCheckmarkDoneSharp, IoCheckmarkSharp } from "react-icons/io5";
 import { MdAddPhotoAlternate } from "react-icons/md";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { env } from "../../../config/env";
@@ -32,8 +33,8 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import { socket } from "../../../socket";
 import checkIsOnline from "../../../utils/checkIsOnline";
-import dateAndTime from "../../../utils/dateAndTime";
 import generatePhotoDownloadLink from "../../../utils/generatePhotoDownloadLink";
+import getTimeDifference from "../../../utils/getTimeDifference";
 
 export default function ChatBox() {
   const { register, handleSubmit, reset } = useForm();
@@ -61,8 +62,10 @@ export default function ChatBox() {
 
   const hasShowMore = data?.data?.totalDocs > data?.data?.docs?.length;
 
-  const [sendMessage, { data: postMessage, error: postMessageError }] =
-    useSendMessageMutation();
+  const [
+    sendMessage,
+    { data: postMessage, error: postMessageError, isLoading },
+  ] = useSendMessageMutation();
 
   const handleSetMessages = useCallback(
     (res) => {
@@ -213,120 +216,129 @@ export default function ChatBox() {
           </Box>
         </Box>
 
-        <Box>
-          <ScrollToBottom
-            className="flex-1 px-4 h-[450px] mt-4"
-            scrollViewClassName="custom-scrollbar"
-          >
-            {hasShowMore && (
-              <Box
-                className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
-                onClick={handleLoadMore}
-              >
-                {isFetching ? "Loading..." : "Load more"}
-              </Box>
-            )}
-            <Box className="flex flex-col gap-y-5 h-full">
-              {currentConversationMessages?.length > 0 ? (
-                currentConversationMessages.map((item) => (
-                  <Box
-                    key={item._id}
-                    className="w-fit h-fit rounded-md text-brand__font__size__sm pr-2 flex gap-2"
-                  >
-                    <Box>
-                      <Avatar
-                        alt={item?.sender?.firstName}
-                        src={
-                          item?.sender?.photo?.url ||
-                          "/static/images/avatar/1.jpg"
-                        }
-                        sx={{ backgroundColor: "#FF5722" }}
-                        className="w-7 h-7 text-brand__font__size__sm"
-                      />
-                    </Box>
-                    <Box className="text-text__gray text-brand__font__size__sm flex flex-col gap-1">
-                      <p className="flex items-center gap-x-1.5">
-                        <span className="font-brand__font__semibold text-brand__black__color">
-                          {item?.sender?.userId === user?.userId
-                            ? "You"
-                            : `${item?.sender?.firstName} ${item?.sender?.lastName}`}
-                        </span>
-                        <em className="text-brand__font__size__xs">
-                          {dateAndTime(item?.dateTime).date}
-                          {" - "}
-                          {dateAndTime(item?.dateTime).time}
-                        </em>
-                        {item?.sender?.userId === user?.userId && (
-                          <span>
-                            {item?.isRead ? (
-                              <IoCheckmarkDoneSharp
-                                size={14}
-                                className="text-blue-400 font-brand__font__semibold mb-0.5"
-                              />
-                            ) : (
-                              <IoCheckmarkSharp size={14} className="mb-0.5" />
-                            )}
-                          </span>
-                        )}
-                      </p>
-                      {item?.attachment?.length > 0 ? (
-                        <Box className="flex items-center flex-wrap my-1 gap-1 h-full">
-                          {item?.attachment.map((url) => (
-                            <Box
-                              className="max-w-[200px] w-full max-h-[200px] h-full group relative"
-                              key={url}
-                            >
-                              <img
-                                className="max-w-[200px] w-full max-h-[200px] h-full object-cover"
-                                src={url}
-                                alt="church_logo"
-                              />
-                              <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
-                              <a
-                                key={url}
-                                href={generatePhotoDownloadLink(url)}
-                                download
-                              >
-                                <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__lg" />
-                              </a>
-                            </Box>
-                          ))}
-                        </Box>
-                      ) : (
-                        <p>{item?.text}</p>
-                      )}
-                    </Box>
-                  </Box>
-                ))
-              ) : (
-                <Box className="flex flex-col items-center gap-2 h-full w-full justify-center text-brand__font__size__lg text-text__gray">
-                  <Typography
-                    component="p"
-                    className="flex items-center gap-x-2"
-                  >
-                    <BiSolidMessageDetail size={20} />{" "}
-                    <span>No conversation</span>
-                  </Typography>
+        <Box className="flex-grow px-3">
+          <PhotoProvider>
+            <ScrollToBottom
+              className="h-[535px] custom-scrollbar py-2"
+              scrollViewClassName="custom-scrollbar"
+            >
+              {hasShowMore && (
+                <Box
+                  className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
+                  onClick={handleLoadMore}
+                >
+                  {isFetching ? "Loading..." : "Load more"}
                 </Box>
               )}
-            </Box>
-          </ScrollToBottom>
+              <Box className="flex flex-col gap-5 h-full">
+                {currentConversationMessages?.length > 0 ? (
+                  currentConversationMessages.map((item) => (
+                    <Box
+                      key={item._id}
+                      className="text-brand__font__size__sm flex items-start gap-x-1.5"
+                    >
+                      <Box>
+                        <Avatar
+                          alt={item?.sender?.firstName}
+                          src={
+                            item?.sender?.photo?.url ||
+                            "/static/images/avatar/1.jpg"
+                          }
+                          sx={{ backgroundColor: "#FF5722" }}
+                          className="w-7 h-7 text-brand__font__size__sm"
+                        />
+                      </Box>
+
+                      <Box className="flex-1">
+                        <p className="flex items-center gap-x-1.5">
+                          <span className="font-brand__font__semibold text-brand__black__color">
+                            {item?.sender?.userId === user?.userId
+                              ? "You"
+                              : `${item?.sender?.firstName} ${item?.sender?.lastName}`}
+                          </span>
+                          <em className="text-brand__font__size__xs capitalize">
+                            {getTimeDifference(item?.dateTime)}
+                          </em>
+                          {item?.sender?.userId === user?.userId && (
+                            <span>
+                              {item?.isRead ? (
+                                <IoCheckmarkDoneSharp
+                                  size={14}
+                                  className="text-blue-400 font-brand__font__semibold mb-0.5"
+                                />
+                              ) : (
+                                <IoCheckmarkSharp
+                                  size={14}
+                                  className="mb-0.5"
+                                />
+                              )}
+                            </span>
+                          )}
+                        </p>
+                        {item?.attachment?.length > 0 ? (
+                          <Box className="flex items-center flex-wrap my-1 gap-1 h-full">
+                            {item?.attachment.map((url) => (
+                              <PhotoView key={url} src={url}>
+                                <Box
+                                  className="max-w-[200px] w-full max-h-[200px] h-full group relative border cursor-pointer"
+                                  key={url}
+                                >
+                                  <img
+                                    className="w-[200px] h-[200px] object-cover"
+                                    src={url}
+                                    alt="church_logo"
+                                  />
+
+                                  <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
+                                  <a
+                                    key={url}
+                                    href={generatePhotoDownloadLink(url)}
+                                    download
+                                  >
+                                    <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__lg hover:text-link__color" />
+                                  </a>
+                                </Box>
+                              </PhotoView>
+                            ))}
+                          </Box>
+                        ) : (
+                          <p className="text-text__gray max-w-[650px] w-full">
+                            {item?.text}
+                          </p>
+                        )}
+                      </Box>
+                    </Box>
+                  ))
+                ) : (
+                  <Box className="flex flex-col items-center gap-2 h-full w-full justify-center text-brand__font__size__lg text-text__gray">
+                    <Typography
+                      component="p"
+                      className="flex items-center gap-x-2"
+                    >
+                      <BiSolidMessageDetail size={20} />{" "}
+                      <span>No conversation</span>
+                    </Typography>
+                  </Box>
+                )}
+              </Box>
+            </ScrollToBottom>
+          </PhotoProvider>
         </Box>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="p-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="pt-4 pb-2 px-4">
           <Box className="flex flex-col gap-2">
             <FormControl fullWidth>
               <OutlinedInput
                 {...register("message", {
                   required: true,
                 })}
-                className=""
+                className="text-brand__font__size__sm"
                 id="message"
                 name="message"
                 placeholder="Type your message here"
                 type="text"
                 multiline
-                rows="5"
+                rows="3"
                 endAdornment={
                   <InputAdornment
                     position="end"
@@ -352,8 +364,14 @@ export default function ChatBox() {
                 className="text-sm w-fit bg-primary hover:bg-brand__black__color text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
                 variant="primary"
               >
-                Send
-                <IoMdSend />
+                {isLoading ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    Send
+                    <IoMdSend />
+                  </>
+                )}
               </Button>
             </Box>
           </Box>

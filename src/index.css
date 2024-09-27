@@ -21,7 +21,8 @@ body {
 
 /* For Webkit browsers (e.g., Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,27 +30,30 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d6d6d6;
+  background-color: #919eab;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #b4b4b4;
+  background-color: #252b3b;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+  width: 0; /* Hide the scrollbar by default */
+  height: 0; /* Hide the scrollbar by default */
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.custom-scrollbar:hover::-webkit-scrollbar {
+  width: 5px; /* Show scrollbar on hover */
+  height: 5px; /* Show scrollbar on hover */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #d6d6d6;
+  background-color: #919eab; /* Scrollbar thumb color */
+  border-radius: 3px; /* Rounded scrollbar thumb */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #b4b4b4;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Background for the scrollbar track */
 }
 
 .slick-slide {
