@@ -4,7 +4,7 @@ const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     tracking: builder.mutation({
       query: ({ data }) => ({
-        url: "/public/tracking",
+        url: "/public/lead",
         method: "POST",
         body: data,
       }),

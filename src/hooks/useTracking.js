@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { env } from "../config/env";
 import { useTrackingMutation } from "../services/features/auth/authApi";
 
 const useTracking = () => {
@@ -8,17 +9,15 @@ const useTracking = () => {
   const [tracking] = useTrackingMutation();
 
   useEffect(() => {
-    fetch(
-      "https://api.ipdata.co?api-key=3237d91128dc72fe1b19788966740c1da311e8d160aff29dfd5fcbe3"
-    )
+    fetch(env.ip_url)
       .then((response) => response.json())
       .then(async (data) => {
         const newData = {
           pathname,
-          user: data,
+          data,
         };
+
         await tracking({ data: newData });
-        console.log("User location:", data);
       })
       .catch((error) => {
         console.error("Error fetching user location:", error);
