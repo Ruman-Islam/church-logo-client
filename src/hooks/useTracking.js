@@ -30,7 +30,7 @@ const useTracking = () => {
       .catch((error) => {
         console.error("Error fetching user location:", error);
       });
-  }, []);
+  }, [pathname, tracking]);
 };
 
 export default useTracking;
