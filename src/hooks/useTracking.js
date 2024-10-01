@@ -14,7 +14,15 @@ const useTracking = () => {
       .then(async (data) => {
         const newData = {
           pathname,
-          data,
+          ip: data?.ip,
+          city: data?.city,
+          region: data?.region,
+          regionType: data?.region_type,
+          countryName: data?.country_name,
+          continentName: data?.continent_name,
+          latitude: data?.latitude,
+          longitude: data?.longitude,
+          postal: data?.postal,
         };
 
         await tracking({ data: newData });
