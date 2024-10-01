@@ -12,17 +12,21 @@ const useTracking = () => {
     fetch(env.ip_url)
       .then((response) => response.json())
       .then(async (data) => {
+
         const newData = {
           pathname,
-          ip: data?.ip,
-          city: data?.city,
-          region: data?.region,
-          regionType: data?.region_type,
-          countryName: data?.country_name,
-          continentName: data?.continent_name,
-          latitude: data?.latitude,
-          longitude: data?.longitude,
-          postal: data?.postal,
+          ip: data?.ip || "",
+          city: data?.city || "",
+          region: data?.region || "",
+          regionType: data?.region_type || "",
+          countryName: data?.country_name || "",
+          continentName: data?.continent_name || "",
+          latitude: data?.latitude || 0,
+          longitude: data?.longitude || 0,
+          postal: data?.postal || "",
+          callingCode: data?.calling_code || "",
+          flag: data?.flag || "",
+          currentTime: data?.time_zone?.current_time || "",
         };
 
         await tracking({ data: newData });

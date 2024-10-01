@@ -17,7 +17,7 @@ export default function Layout({
       <Helmet>
         <meta charSet="utf-8" />
         <title>{title ? title + " - Church Logo" : "Church Logo"}</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <link rel="canonical" href="https://churchlogo.co" />
       </Helmet>
 
       <section
