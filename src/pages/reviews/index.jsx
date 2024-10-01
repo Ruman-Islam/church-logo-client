@@ -112,7 +112,7 @@ export default function ReviewsScreen() {
                       className="border-t border-b"
                       component="img"
                       height="194"
-                      image={getImgUrl(item?.productImageUrl)}
+                      image={item?.productImageUrl}
                       alt="church_logo"
                     />
                     <CardContent>
