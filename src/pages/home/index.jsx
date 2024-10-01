@@ -5,6 +5,7 @@ import CustomersDoing from "./components/CustomersDoing";
 import Hero from "./components/Hero";
 // import OtherPromotionalSpace from "./components/OtherPromotionalSpace";
 import useTracking from "../../hooks/useTracking";
+import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
 import PersonalSignature from "./components/PersonalSignature";
 import Portfolio from "./components/Portfolio";
 import Services from "./components/Services";
@@ -14,9 +15,11 @@ import ZeroPlacePromotionalSpace from "./components/ZeroPlacePromotionalSpace";
 
 export default function HomeScreen() {
   useTracking();
+
+  const { data } = useGetSystemConfigQuery();
   return (
     <Layout title="A handcrafted signature logo to suit your unique personality">
-      <Hero />
+      <Hero systemData={data?.data} />
       <Categories />
       <Services />
       <Portfolio />

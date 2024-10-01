@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import data from "../../../data/hero.json";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import "../../../styles/hero-slider.css";
-import { getImgUrl } from "../../../utils/getImgUrl-utility.js";
 
 const settings = {
   fade: true,
@@ -18,58 +17,8 @@ const settings = {
   cssEase: "linear",
 };
 
-export default function Hero() {
+export default function Hero({ systemData }) {
   const scrollWithOffset = useScrollWithOffset();
-
-  // const [selectedFiles, setSelectedFiles] = useState([]);
-
-  // const handleFileChange = (e) => {
-  //   setSelectedFiles([...selectedFiles, ...Array.from(e.target.files)]);
-  // };
-
-  // const handleUpload = async () => {
-  //   const result = [];
-  //   let count = 0;
-  //   for (const element of selectedFiles) {
-  //     count++;
-
-  //     const formData = new FormData();
-  //     formData.append(
-  //       "upload_preset",
-  //       env?.cloud_upload_preset
-  //     );
-  //     formData.append("cloud_name", env?.cloud_upload_name);
-  //     formData.append("folder", "church-logo/gallery/web-design");
-  //     formData.append("file", element);
-
-  //     try {
-  //       const response = await axios.post(
-  //         `https://api.cloudinary.com/v1_1/${
-  //           env?.cloud_upload_name
-  //         }/upload`,
-  //         formData,
-  //         {
-  //           headers: {
-  //             "Content-Type": "multipart/form-data",
-  //           },
-  //         }
-  //       );
-  //       const obj = {
-  //         url: response?.data?.secure_url,
-  //         title: response?.data?.display_name,
-  //         category: "web-design",
-  //         publicId: response?.data?.public_id,
-  //         serialId: count,
-  //       };
-
-  //       result.push(obj);
-  //     } catch (error) {
-  //       console.error("Error uploading images:", error);
-  //     }
-  //   }
-
-  //   console.log(JSON.stringify(result));
-  // };
 
   return (
     <section id="home" className="lg:pt-[20px] lg:pb-[40px]">
@@ -81,9 +30,9 @@ export default function Hero() {
               className="max-w-[450px] xl:max-w-[560px] w-full p-10 lg:p-0"
             >
               <Slider {...settings}>
-                {data.map((d) => (
-                  <div key={d.id}>
-                    <img src={getImgUrl(d.img)} />
+                {systemData?.homeSettings?.bannerImages.map((d) => (
+                  <div key={d.uid}>
+                    <img src={d.url} alt="church_logo" />
                   </div>
                 ))}
               </Slider>
@@ -92,15 +41,31 @@ export default function Hero() {
           <div className="flex-1 flex justify-center p-2.5">
             <div className="w-full xl:p-10">
               <h2 className="text-brand__black__color text-[40px] lg:text-[60px] xl:text-[80px] leading-[45px] xl:leading-[80px] lg:leading-[65px] font-brand__font__semibold text-center md:text-left">
-                Get Your Own <span className="text-primary">Custom Church</span>
-                <br /> Logo
+                {systemData?.homeSettings?.bannerTitle && (
+                  <>
+                    {/* First two words */}
+                    {systemData?.homeSettings?.bannerTitle
+                      .split(" ")
+                      .slice(0, 3)
+                      .join(" ")}{" "}
+                    {/* Style third to fifth words */}
+                    <span className="text-primary">
+                      {systemData?.homeSettings?.bannerTitle
+                        .split(" ")
+                        .slice(3, 5)
+                        .join(" ")}
+                    </span>{" "}
+                    {/* Remaining words after the fifth */}
+                    {systemData?.homeSettings?.bannerTitle
+                      .split(" ")
+                      .slice(5)
+                      .join(" ")}
+                  </>
+                )}
               </h2>
               <br />
               <p className="leading-snug text-[#7a7a7a] lg:max-w-[40rem] w-full font-brand__font__500 text-brand__font__size__sm lg:text-brand__font__size__base text-center md:text-left">
-                &ldquo;Church Logo&rdquo; a branding agency provides unique,
-                quick, and demonstrative service for a church brand creation. We
-                also provide web development, graphics design and other
-                services.
+                {systemData?.homeSettings?.bannerDescription}
               </p>
 
               <div className="flex flex-wrap gap-2 w-full items-center justify-center md:justify-start my-4 text-brand__font__size__sm">

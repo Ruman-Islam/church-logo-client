@@ -5,6 +5,7 @@ import {
   default as normalLogo,
   default as stickyLogo,
 } from "../../assets/logo/churchlogo.png";
+import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
 import MenuItems from "./MenuItems";
@@ -18,6 +19,8 @@ export default function Header({ topBarEnable, bgColor = "white" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data } = useGetSystemConfigQuery();
 
   const setModal = useCallback(() => {
     setIsModalOpen(false);
@@ -47,20 +50,18 @@ export default function Header({ topBarEnable, bgColor = "white" }) {
   return (
     <>
       <header className="z-[999]">
-        {topBarEnable && (
+        {topBarEnable && data?.data?.homeSettings?.offerText && (
           <div className="topBar-area bg-[#031401] text-white py-2 font-medium relative z-50">
             <div className="container text-center  text-brand__font__size__xs md:text-brand__font__size__sm">
-              50% off | was $100 – now $49 | Hurry, we’re nearly fully booked
+              {data?.data?.homeSettings?.offerText}
             </div>
           </div>
         )}
 
         <div
           style={{ backgroundColor: bgColor }}
-          className={`duration-200 w-full ${
-            isVisible
-              ? "fixed top-0 animate-headerDrop shadow h-[90px]"
-              : "h-[90px]"
+          className={`duration-200 w-full shadow-sm ${
+            isVisible ? "fixed top-0 animate-headerDrop h-[90px]" : "h-[90px]"
           }`}
         >
           <div className="container h-full">

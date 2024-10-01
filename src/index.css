@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* ul, */
+  /* li, */
+  ol {
+    list-style: revert;
+  }
+}
+
 html,
 body {
   font-family: "Gabarito", sans-serif;

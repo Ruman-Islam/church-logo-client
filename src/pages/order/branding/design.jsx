@@ -32,7 +32,7 @@ export default function OrderDesignScreen() {
 
   const { data, isFetching } = useGetSystemConfigQuery();
 
-  const designSample = data?.data?.orderSettings?.designSample;
+  const designSample = data?.data?.orderSettings?.designSample || [];
 
   const handlePreferableDesigns = (img) => {
     setSelectedDesigns((prev) => {
@@ -76,7 +76,10 @@ export default function OrderDesignScreen() {
         />
 
         <Box>
-          <form onSubmit={onSubmit} className="flex flex-col gap-10">
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-10 justify-between h-full"
+          >
             <Box className="max-w-[1000px] w-full mx-auto py-10 container">
               <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {(isFetching ? Array.from(new Array(6)) : designSample).map(
@@ -100,7 +103,7 @@ export default function OrderDesignScreen() {
                         >
                           {isSelected && <CheckCircleIcon />}
                         </Box>
-                        <img src={img?.secureUrl} alt="church_logo" />
+                        <img src={img?.url} alt="church_logo" />
                       </Box>
                     ) : (
                       <Skeleton key={i} variant="rectangular" height={218} />

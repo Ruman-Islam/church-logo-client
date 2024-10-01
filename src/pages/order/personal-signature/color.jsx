@@ -79,7 +79,10 @@ export default function OrderColorDesignScreen() {
         />
 
         <Box>
-          <form onSubmit={onSubmit} className="flex flex-col gap-10">
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-10 justify-between h-full"
+          >
             <Box className="max-w-[1000px] w-full mx-auto py-10 container">
               <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
                 {(isFetching ? Array.from(new Array(6)) : colorSample).map(
@@ -104,9 +107,7 @@ export default function OrderColorDesignScreen() {
                           {isSelected && <CheckCircleIcon />}
                         </Box>
 
-                        <img src={img?.secureUrl} alt="church_logo" />
-
-                        <Box className="p-2">{img?.displayName}</Box>
+                        <img src={img?.url} alt="church_logo" />
                       </Box>
                     ) : (
                       <Skeleton key={i} variant="rectangular" height={218} />
