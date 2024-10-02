@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -9,7 +10,6 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategoryBrandingScreen() {
   useTracking();
@@ -27,7 +27,10 @@ export default function CategoryBrandingScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Branding - Complete Church Branding Solutions for Growth"
+      description="Strengthen your church’s identity with cohesive branding. From logos to marketing materials, we create a consistent and impactful brand."
+    >
       <section id="branding" className="bg-white">
         <SectionBanner
           heading="The complete brand identity package for Your Church"

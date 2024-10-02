@@ -21,7 +21,10 @@ export default function GalleryWebDesignScreen() {
   const gallery = data?.data;
 
   return (
-    <Layout title="Gallery & Examples">
+    <Layout
+      title="Church Logo Design Gallery - Browse Creative Custom Logos"
+      description="Explore our gallery of unique, custom church logos. Get inspired by top designs for your church branding."
+    >
       <section id="web-design">
         <SectionBanner heading="Gallery" desc="" />
         <div className="container px-4 flex flex-col gap-5 py-[20px]">

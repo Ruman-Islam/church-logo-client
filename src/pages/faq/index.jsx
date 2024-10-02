@@ -7,8 +7,8 @@ import { useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import data from "../../data/faq.json";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 import useTracking from "../../hooks/useTracking";
+import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function FAQScreen() {
   useTracking();
@@ -43,7 +43,10 @@ export default function FAQScreen() {
   // };
 
   return (
-    <Layout title="FAQ">
+    <Layout
+      title="Church Logo FAQ - All Your Logo Design Questions Answered"
+      description="Got questions about our church logo design process? Check out our FAQ for quick answers and all the information you need before getting started."
+    >
       <section id="faq">
         <SectionBanner heading="FAQ" desc="" />
         <div className="container px-4 py-5 md:py-10">

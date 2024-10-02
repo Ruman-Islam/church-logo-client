@@ -8,7 +8,10 @@ export default function TermsAndConditionsScreen() {
   const { data } = useGetSystemConfigQuery();
 
   return (
-    <Layout title="Term & Conditions">
+    <Layout
+      title="Terms & Conditions - Know the Details of Our Services"
+      description="Understand the terms and conditions of our services. Get clear information on your rights and our responsibilities to you."
+    >
       <section id="terms" className="mb-10">
         <SectionBanner heading="Terms & Conditions" desc="" />
         {/* Introduction */}

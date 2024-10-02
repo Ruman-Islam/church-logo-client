@@ -18,7 +18,7 @@ export default function HomeScreen() {
 
   const { data } = useGetSystemConfigQuery();
   return (
-    <Layout title="A handcrafted signature logo to suit your unique personality">
+    <Layout title="Church Logos, Web Design, Branding & More – Your Complete Church Branding Partner">
       <Hero systemData={data?.data} />
       <Categories />
       <Services />

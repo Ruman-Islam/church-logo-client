@@ -1,5 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
-import VerifiedIcon from '@mui/icons-material/Verified';
+import VerifiedIcon from "@mui/icons-material/Verified";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,10 +16,9 @@ import Typography from "@mui/material/Typography";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import useQueryParameter from "../../hooks/useQueryParameter";
+import useTracking from "../../hooks/useTracking";
 import { useGetReviewQuery } from "../../services/features/review/reviewApi";
 import { generateRandomHexColor } from "../../utils/generateRandomHexColor";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
-import useTracking from "../../hooks/useTracking";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -41,7 +40,10 @@ export default function ReviewsScreen() {
   const isVisibleMoreBtn = dynamicUrl.limit < data?.meta?.totalDocs;
 
   return (
-    <Layout title="Reviews">
+    <Layout
+      title="Church Logo Design Reviews - Real Testimonials & Success Stories"
+      description="Read real testimonials from churches who loved their custom logo designs. See why they recommend us."
+    >
       <section id="reviews">
         <SectionBanner
           heading="Reviews"

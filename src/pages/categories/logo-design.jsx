@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -9,10 +10,9 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategoryLogoDesignScreen() {
-  useTracking()
+  useTracking();
   const [iconColors, setIconColors] = useState({});
 
   const [query] = useState({
@@ -27,7 +27,10 @@ export default function CategoryLogoDesignScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Logo Design - Custom Church Logos That Stand Out"
+      description="Get a custom-designed church logo that reflects your values and vision. Elevate your church branding with professional, unique logos."
+    >
       <section id="logo-design" className="bg-white">
         <SectionBanner
           heading="The complete logo design package for Your Church"

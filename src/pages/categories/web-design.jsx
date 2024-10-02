@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -9,7 +10,6 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategoryWebDesignScreen() {
   useTracking();
@@ -27,7 +27,10 @@ export default function CategoryWebDesignScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Web Design - Custom Church Websites for Modern Engagement"
+      description="Build a modern, user-friendly church website that enhances engagement and outreach. Tailored to your mission and congregation’s needs."
+    >
       <section id="web-design" className="bg-white">
         <SectionBanner
           heading="The complete web design package for Your Church"

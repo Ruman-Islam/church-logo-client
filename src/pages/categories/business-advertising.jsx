@@ -27,7 +27,10 @@ export default function CategoryPersonalSignatureScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Business & Advertising - Boost Your Church's Visibility"
+      description="Get professional business and advertising solutions to enhance your church’s outreach. Build brand awareness with impactful marketing materials."
+    >
       <section id="personal-signature" className="bg-white">
         <SectionBanner
           heading="Full business & advertising package for Your Church"

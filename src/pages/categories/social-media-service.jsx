@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -9,7 +10,6 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategorySocialMediaServiceScreen() {
   useTracking();
@@ -27,7 +27,10 @@ export default function CategorySocialMediaServiceScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Social Media Service - Grow Your Church’s Online Presence"
+      description="Maximize your church’s impact on social media with expert services. Engage more effectively and reach a broader community online."
+    >
       <section id="personal-signature" className="bg-white">
         <SectionBanner
           heading="All of your social media service packages for Your Church"

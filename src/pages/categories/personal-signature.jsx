@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
@@ -9,7 +10,6 @@ import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategoryPersonalSignatureScreen() {
   useTracking();
@@ -27,7 +27,10 @@ export default function CategoryPersonalSignatureScreen() {
   const packages = data?.data ? data?.data : [];
 
   return (
-    <Layout title="Categories">
+    <Layout
+      title="Personal Signature - Custom Signature Logos for a Personal Touch"
+      description="Design a custom personal signature logo that reflects your unique identity. Perfect for individuals or ministries seeking a distinctive look."
+    >
       <section id="personal-signature" className="bg-white">
         <SectionBanner
           heading="The complete signature logo package for Your Church"

@@ -8,7 +8,8 @@
     "build": "vite build",
     "json-server": "json-server --watch mock_data.json --port 8081",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",

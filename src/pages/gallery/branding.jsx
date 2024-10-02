@@ -15,9 +15,9 @@ import Layout from "../../components/common/Layout/index";
 import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
+import useTracking from "../../hooks/useTracking";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
 import { getImgUrl } from "../../utils/getImgUrl-utility";
-import useTracking from "../../hooks/useTracking";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -356,7 +356,10 @@ export default function GalleryBrandingScreen() {
 
   return (
     <>
-      <Layout title="Gallery & Examples">
+      <Layout
+        title="Church Logo Design Gallery - Browse Creative Custom Logos"
+        description="Explore our gallery of unique, custom church logos. Get inspired by top designs for your church branding."
+      >
         <section id="branding">
           <SectionBanner heading="Gallery" desc="" />
           <div className="container px-4 flex flex-col gap-5 py-[20px]">

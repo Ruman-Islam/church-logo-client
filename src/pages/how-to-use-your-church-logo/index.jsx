@@ -84,7 +84,10 @@ const settings2 = {
 
 export default function HowToUseYourChurchLogoScreen() {
   return (
-    <Layout title="How to use your church logo">
+    <Layout
+      title="How to Use Your Church Logo - Effective Church Branding Tips"
+      description="Learn how to properly use your church logo across all platforms. Get practical tips to enhance your branding and create a lasting impact."
+    >
       <Box id="church">
         <SectionBanner
           heading="How to Use your Church Logo"

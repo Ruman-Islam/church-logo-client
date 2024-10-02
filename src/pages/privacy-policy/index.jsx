@@ -9,7 +9,10 @@ export default function PrivacyPolicyScreen() {
   const { data } = useGetSystemConfigQuery();
 
   return (
-    <Layout title="Privacy Policy">
+    <Layout
+      title="Privacy Policy - How We Protect Your Data"
+      description="Your privacy matters to us. Read our privacy policy to learn how we protect your personal information and ensure data security."
+    >
       <section id="privacy" className="mb-10">
         <SectionBanner heading="Privacy Policy" desc="" />
         {/* Introduction */}
