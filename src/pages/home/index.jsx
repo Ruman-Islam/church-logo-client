@@ -5,7 +5,7 @@ import CustomersDoing from "./components/CustomersDoing";
 import Hero from "./components/Hero";
 // import OtherPromotionalSpace from "./components/OtherPromotionalSpace";
 import useTracking from "../../hooks/useTracking";
-import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
+import { useAppSelector } from "../../services/hook";
 import PersonalSignature from "./components/PersonalSignature";
 import Portfolio from "./components/Portfolio";
 import Services from "./components/Services";
@@ -16,10 +16,13 @@ import ZeroPlacePromotionalSpace from "./components/ZeroPlacePromotionalSpace";
 export default function HomeScreen() {
   useTracking();
 
-  const { data } = useGetSystemConfigQuery();
+  const {
+    system: { homeSettings, isLoading },
+  } = useAppSelector((state) => state);
+
   return (
     <Layout title="Church Logos, Web Design, Branding & More – Your Complete Church Branding Partner">
-      <Hero systemData={data?.data} />
+      <Hero data={homeSettings} loading={isLoading} />
       <Categories />
       <Services />
       <Portfolio />

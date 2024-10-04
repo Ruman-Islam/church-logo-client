@@ -277,9 +277,9 @@ const publicRoutes = [
     Component: () => import("../pages/blog/index"),
   },
   {
-    path: "blog/analyzing-spotify-music-ui-ux",
-    name: "blog/analyzing-spotify-music-ui-ux",
-    Component: () => import("../pages/blog/pages/blog1"),
+    path: "blog/:id",
+    name: "blog/:id",
+    Component: () => import("../pages/blog-detail/index"),
   },
 ];
 
