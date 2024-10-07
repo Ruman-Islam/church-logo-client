@@ -13,7 +13,6 @@ import PrevArrow from "../../../../components/common/Arrow/prevArrow";
 import useQueryParameter from "../../../../hooks/useQueryParameter";
 import { useGetReviewQuery } from "../../../../services/features/review/reviewApi";
 import { generateRandomHexColor } from "../../../../utils/generateRandomHexColor";
-import { getImgUrl } from "../../../../utils/getImgUrl-utility";
 
 const settings = {
   dots: false,
@@ -92,7 +91,7 @@ export default function OurClientsLovesUs() {
                 className="rounded-tl-xl rounded-tr-xl border"
                 component="img"
                 height="140"
-                image={getImgUrl(item?.productImageUrl)}
+                image={item?.productImageUrl}
                 alt="church_logo"
               />
 
