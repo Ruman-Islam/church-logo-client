@@ -23,16 +23,16 @@ export default function HomeScreen() {
   return (
     <Layout title="Church Logos, Web Design, Branding & More – Your Complete Church Branding Partner">
       <Hero data={homeSettings} loading={isLoading} />
-      <Categories />
-      <Services />
-      <Portfolio />
+      <Categories data={homeSettings} loading={isLoading} />
+      <Services data={homeSettings} loading={isLoading} />
+      <Portfolio data={homeSettings} loading={isLoading} />
       <ContactBar />
-      <ZeroPlacePromotionalSpace />
+      <ZeroPlacePromotionalSpace data={homeSettings} loading={isLoading} />
       <Testimonial />
-      <ShowCaseYouLogo />
+      <ShowCaseYouLogo data={homeSettings} loading={isLoading} />
       {/* <OtherPromotionalSpace /> */}
-      <CustomersDoing />
-      <PersonalSignature />
+      <CustomersDoing data={homeSettings} loading={isLoading} />
+      <PersonalSignature data={homeSettings} loading={isLoading} />
     </Layout>
   );
 }

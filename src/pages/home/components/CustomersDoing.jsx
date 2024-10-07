@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box";
 import Slider from "react-slick";
 import SectionTitle from "../../../components/common/SectionTitle";
-import data from "../../../data/customersDoing.json";
-import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
 const settings = {
   dots: false,
   infinite: true,
-  speed: 1000,
+  speed: 2000,
+  autoplaySpeed: 5000,
   slidesToShow: 3,
   slidesToScroll: 3,
-  autoplay: false,
+  autoplay: true,
   arrows: false,
   draggable: true,
   responsive: [
@@ -31,43 +30,43 @@ const settings = {
   ],
 };
 
-function CustomersDoingCard(props) {
-  const { content } = props;
+function CustomersDoingCard({ slide }) {
   return (
-    <Box className="w-full h-full rounded-lg bg-white aspect-[1.3/1] text-center p-2">
+    <Box className="w-full h-full rounded-lg bg-white text-center p-2">
       <Box className="mb-2">
-        <img
-          src={getImgUrl(content?.img)}
-          alt=""
-          className="rounded-tl-lg rounded-tr-lg"
-        />
+        <img src={slide.url} alt="" className="rounded-lg" />
       </Box>
-      <p className="leading-tight p-2 text-left shadow text-gray-500 h-[80px]">
+      {/* <p className="leading-tight p-2 text-left  text-gray-500 h-[80px]">
         <small>
           <em>
-            <span>{content?.hashTag}</span> <span>{content?.title}</span>
+            <span>#faithfullogos</span>{" "}
+            <span>
+              &rdquo;I absolutely LOVE my new signature! It looks professional
+              and elegant on my images and products.&rdquo;
+            </span>
           </em>
         </small>
-      </p>
+      </p> */}
     </Box>
   );
 }
 
-export default function CustomersDoing() {
-  return (
+export default function CustomersDoing({ data, loading }) {
+  const { customersDoing: { title, slideImages = [] } = {} } = data || {};
+  return loading ? null : (
     <Box>
       <Box className="container px-4 py-[20px] md:py-[30px] xl:py-[50px]">
         <Box>
           <SectionTitle
-            title="Check out the cool things our customers are doing with their Church Logo"
+            title={title}
             titleClass="text-[22px] md:text-section__title__size xl:text-brand__font__size__xl leading-[30px] md:leading-[40px] xl:leading-[55px] font-brand__font__600 text-center text-center md:mb-4 text-text__gray max-w-[600px] xl:max-w-[1024px] mx-auto"
           />
         </Box>
 
         <Box className="slider-container w-full cursor-grab active:cursor-grabbing">
           <Slider {...settings} className="p-2">
-            {data.map((content) => (
-              <CustomersDoingCard key={content.id} content={content} />
+            {slideImages.map((slide, idx) => (
+              <CustomersDoingCard key={idx} slide={slide} />
             ))}
           </Slider>
         </Box>
