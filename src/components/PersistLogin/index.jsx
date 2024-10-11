@@ -12,13 +12,15 @@ const PersistLogin = () => {
 
   useEffect(() => {
     if (auth?.user) {
-      socket.emit("addUser", auth?.user?.userId);
-      socket.emit("requestUnreadMessages", auth?.user?.userId);
+      socket.emit(
+        "addToAdminsAndClientsOnlineList",
+        auth?.user?.userId,
+        auth?.user?.role
+      );
     }
 
     return () => {
-      socket.off("addUser");
-      socket.off("requestUnreadMessages");
+      socket.off("addToAdminsAndClientsOnlineList");
     };
   }, [auth?.user]);
 

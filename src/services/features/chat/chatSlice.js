@@ -5,7 +5,7 @@ const chatSlice = createSlice({
   initialState: {
     conversations: [],
     messages: [],
-    onlineUsers: [],
+    adminsAndClientsOnlineList: [],
     unreadMessages: [],
     currentConversationId: null,
   },
@@ -57,8 +57,8 @@ const chatSlice = createSlice({
       return (state = { ...state, conversations });
     },
 
-    setOnlineUsers: (state, action) => {
-      return (state = { ...state, onlineUsers: action.payload });
+    setAdminsAndClientsOnlineList: (state, action) => {
+      return (state = { ...state, adminsAndClientsOnlineList: action.payload });
     },
   },
 });
@@ -69,7 +69,7 @@ export const {
   setUnreadMessages,
   addMessage,
   setMessages,
-  setOnlineUsers,
+  setAdminsAndClientsOnlineList,
 } = chatSlice.actions;
 
 export default chatSlice.reducer;

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import {
   addMessage,
-  setOnlineUsers,
+  setAdminsAndClientsOnlineList,
   setUnreadMessages,
 } from "../../services/features/chat/chatSlice";
 import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
@@ -29,9 +29,9 @@ const LoadInitialData = () => {
     [dispatch]
   );
 
-  const handleSetOnlineUsers = useCallback(
+  const handleSetAdminsAndClientsOnlineList = useCallback(
     (res) => {
-      dispatch(setOnlineUsers(res));
+      dispatch(setAdminsAndClientsOnlineList(res));
     },
     [dispatch]
   );
@@ -45,20 +45,23 @@ const LoadInitialData = () => {
 
   useEffect(() => {
     socket.connect();
-    socket.on("getMessage", handleAddMessage);
-    socket.on("getOnlineUsers", handleSetOnlineUsers);
+    socket.on("adminClientMsgTransfer", handleAddMessage);
+    socket.on(
+      "getAdminsAndClientsOnlineList",
+      handleSetAdminsAndClientsOnlineList
+    );
     socket.on("getUnreadMessages", handleSetUnreadMessages);
     handleSetSystemConfiguration({ ...data?.data, isLoading });
 
     return () => {
-      socket.off("getMessage");
-      socket.off("getOnlineUsers");
+      socket.off("adminClientMsgTransfer");
+      socket.off("getAdminsAndClientsOnlineList");
       socket.off("getUnreadMessages");
     };
   }, [
     data?.data,
     isLoading,
-    handleSetOnlineUsers,
+    handleSetAdminsAndClientsOnlineList,
     handleAddMessage,
     handleSetUnreadMessages,
     handleSetSystemConfiguration,

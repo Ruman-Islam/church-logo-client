@@ -1,12 +1,9 @@
-const checkIsOnline = (onlineUsers = [], userId) => {
-  let isTrue = false;
+const checkIsOnline = (adminsAndClientsOnlineList = []) => {
+  const doesAdminsOnline = adminsAndClientsOnlineList.filter(
+    (u) => u.role === "admin" || u.role === "super_admin"
+  );
 
-  if (onlineUsers?.length) {
-    const isExists = onlineUsers.find((user) => user?.userId === userId);
-    isTrue = isExists ? true : false;
-  }
-
-  return isTrue;
+  return doesAdminsOnline.length > 0;
 };
 
 export default checkIsOnline;

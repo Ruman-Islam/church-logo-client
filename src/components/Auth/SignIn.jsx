@@ -39,7 +39,7 @@ export default function SignIn({ showForm }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isSignIn = showForm.includes("sign-in");
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/profile";
   const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -59,8 +59,9 @@ export default function SignIn({ showForm }) {
   useEffect(() => {
     if (data || googleSignInData) {
       socket.emit(
-        "addUser",
-        data?.data?.user?.userId || googleSignInData?.data?.user?.userId
+        "addToAdminsAndClientsOnlineList",
+        data?.data?.user?.userId || googleSignInData?.data?.user?.userId,
+        data?.data?.user?.role || googleSignInData?.data?.user?.role
       );
       handleSuccess(data?.message || googleSignInData?.message);
       handleSetCookie(
@@ -72,7 +73,7 @@ export default function SignIn({ showForm }) {
       handleError(error?.data?.message || googleSignInError?.data?.message);
     }
 
-    return () => socket.off("addUser");
+    return () => socket.off("addToAdminsAndClientsOnlineList");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error, googleSignInData, googleSignInError]);

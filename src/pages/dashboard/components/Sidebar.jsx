@@ -15,29 +15,17 @@ import { useGetOrderListQuery } from "../../../services/features/order/orderApi"
 import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
 
-function findOppositeParticipant(userObject, userId) {
-  const { creator, participant } = userObject;
-
-  if (creator.userId === userId) {
-    return participant;
-  } else if (participant.userId === userId) {
-    return creator;
-  } else {
-    return null; // Return null or handle the case where neither ID matches
-  }
-}
-
 export default function Sidebar() {
   const scrollWithOffset = useScrollWithOffset();
 
   const {
     auth: { user },
-    chat: { onlineUsers, unreadMessages, messages },
+    chat: { adminsAndClientsOnlineList, unreadMessages, messages },
   } = useAppSelector((state) => state);
 
   const query = {
     page: 1,
-    limit: 100,
+    limit: 1,
   };
 
   const prevMessagesLength = useRef(messages.length);
@@ -147,7 +135,6 @@ export default function Sidebar() {
         </ListSubheader>
         <Box className="max-h-[221px] h-fit overflow-y-auto bg-white custom-scrollbar">
           {conversation?.data?.docs.map((item) => {
-            const participant = findOppositeParticipant(item, user?.userId);
             const unreadMsgs = unreadMessages.filter(
               (msg) => msg?.conversationId?._id === item?._id
             );
@@ -166,9 +153,10 @@ export default function Sidebar() {
                   <Box className="basis-[5%] flex items-center">
                     <Avatar
                       className="w-8 h-8 rounded-full text-brand__font__size__sm p-0 m-0"
-                      alt={participant?.firstName}
+                      alt={item?.participant?.firstName}
                       src={
-                        participant?.photo?.url || "/static/images/avatar/1.jpg"
+                        item?.participant?.photo?.url ||
+                        "/static/images/avatar/1.jpg"
                       }
                     />
                   </Box>
@@ -179,11 +167,12 @@ export default function Sidebar() {
                       primary={
                         <span className="flex items-center gap-x-1 leading-tight">
                           <span>
-                            {participant?.firstName} {participant?.lastName}
+                            {item?.participant?.firstName}{" "}
+                            {item?.participant?.lastName}
                           </span>
                           <span
                             className={`w-1.5 h-1.5 rounded-full mb-0.5 ${
-                              checkIsOnline(onlineUsers, participant?.userId)
+                              checkIsOnline(adminsAndClientsOnlineList)
                                 ? "bg-primary"
                                 : "bg-text__gray"
                             }`}

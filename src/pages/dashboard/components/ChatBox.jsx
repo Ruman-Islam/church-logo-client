@@ -25,7 +25,6 @@ import {
   useSendMessageMutation,
 } from "../../../services/features/chat/chatApi";
 import {
-  addMessage,
   setCurrentConversationId,
   setMessages,
   setUnreadMessages,
@@ -43,7 +42,7 @@ export default function ChatBox() {
 
   const {
     auth: { user },
-    chat: { messages, onlineUsers, unreadMessages },
+    chat: { messages, adminsAndClientsOnlineList, unreadMessages },
   } = useAppSelector((state) => state);
 
   const { id } = useParams();
@@ -62,10 +61,7 @@ export default function ChatBox() {
 
   const hasShowMore = data?.data?.totalDocs > data?.data?.docs?.length;
 
-  const [
-    sendMessage,
-    { data: postMessage, error: postMessageError, isLoading },
-  ] = useSendMessageMutation();
+  const [sendMessage, { isLoading }] = useSendMessageMutation();
 
   const handleSetMessages = useCallback(
     (res) => {
@@ -77,13 +73,6 @@ export default function ChatBox() {
     },
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dispatch]
-  );
-
-  const handleAddMessage = useCallback(
-    (res) => {
-      dispatch(addMessage(res));
-    },
     [dispatch]
   );
 
@@ -106,26 +95,15 @@ export default function ChatBox() {
   }, [id, data, handleSetMessages, handleSetCurrentConversationId]);
 
   useEffect(() => {
-    if (postMessage?.statusCode === 200) {
-      handleAddMessage(postMessage?.data);
-    }
-    if (postMessageError) {
-      handleError(postMessageError?.data?.message);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postMessage, postMessageError, handleAddMessage]);
-
-  useEffect(() => {
     const unreadMessages = messages.filter(
       (msg) =>
         !msg?.isRead &&
         msg?.conversationId?._id === id &&
-        msg?.receiver?.userId === user?.userId
+        msg?.receiver?.role === user?.role
     );
 
     if (unreadMessages?.length) {
-      socket.emit("seenMessages", { unreadMessages, receiverId: user?.userId });
+      socket.emit("seenMessages", { unreadMessages, role: user?.role });
     }
 
     socket.on("getSeenMessages", (res) => {
@@ -141,7 +119,7 @@ export default function ChatBox() {
       socket.off("seenMessages");
       socket.off("getSeenMessages");
     };
-  }, [messages, user?.userId, handleSetMessages, id]);
+  }, [messages, user?.role, handleSetMessages, id]);
 
   const handleImage = async (files) => {
     const attachmentPromises = files.base64.map(async (file) => {
@@ -194,7 +172,7 @@ export default function ChatBox() {
     reset();
   };
 
-  const isOnline = checkIsOnline(onlineUsers, data?.data?.participantId);
+  const isOnline = checkIsOnline(adminsAndClientsOnlineList);
   const currentConversationMessages = messages.filter(
     (item) => item?.conversationId?._id === id && item?.text !== "No messages"
   );
@@ -252,14 +230,14 @@ export default function ChatBox() {
                       <Box className="flex-1">
                         <p className="flex items-center gap-x-1.5">
                           <span className="font-brand__font__semibold text-brand__black__color">
-                            {item?.sender?.userId === user?.userId
+                            {item?.sender?.role === user?.role
                               ? "You"
                               : `${item?.sender?.firstName} ${item?.sender?.lastName}`}
                           </span>
                           <em className="text-brand__font__size__xs capitalize">
                             {getTimeDifference(item?.dateTime)}
                           </em>
-                          {item?.sender?.userId === user?.userId && (
+                          {item?.sender?.role === user?.role && (
                             <span>
                               {item?.isRead ? (
                                 <IoCheckmarkDoneSharp
