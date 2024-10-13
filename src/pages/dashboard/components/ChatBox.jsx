@@ -128,6 +128,7 @@ export default function ChatBox() {
       formData.append("cloud_name", env?.cloud_upload_name);
       formData.append("folder", "church-logo/inbox");
       formData.append("file", file);
+      formData.append("format", "png");
 
       try {
         const { data } = await axios.post(
