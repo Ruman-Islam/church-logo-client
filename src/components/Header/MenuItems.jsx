@@ -24,7 +24,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import MuiIButton from "../../components/UI/MuiButton";
 import { default as navItems } from "../../data/navigation.json";
-import useCookie from "../../hooks/useCookie";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import { api } from "../../services/api/apiSlice";
 import { logOut } from "../../services/features/auth/authSlice.js";
@@ -97,7 +96,6 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
-  const { handleRemoveCookie } = useCookie();
   const dispatch = useAppDispatch();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -109,7 +107,7 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
     socket.emit("disconnection");
     dispatch(api.util.resetApiState());
     dispatch(logOut());
-    handleRemoveCookie();
+    localStorage.removeItem("auth");
     navigate("/");
   };
 

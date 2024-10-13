@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Cookies from "js-cookie";
 import { env } from "../../config/env";
 import { logOut, setAuth } from "../features/auth/authSlice";
 
@@ -17,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
-  const token = Cookies.get("rT");
+  const { token } = JSON.parse(localStorage.getItem("auth")) || {};
 
   let result = await baseQuery(args, api, extraOptions);
 
@@ -35,12 +34,12 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
       // retry the original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      Cookies.remove("rT");
+      localStorage.removeItem("auth");
       api.dispatch(logOut());
     }
   }
   if (result?.error?.status === 401) {
-    Cookies.remove("rT");
+    localStorage.removeItem("auth");
     api.dispatch(logOut());
   }
 
@@ -50,6 +49,15 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ["user", "gallery", "review", "package", "system", "order", "chat", "blog"],
+  tagTypes: [
+    "user",
+    "gallery",
+    "review",
+    "package",
+    "system",
+    "order",
+    "chat",
+    "blog",
+  ],
   endpoints: () => ({}),
 });

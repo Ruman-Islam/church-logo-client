@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/common/Layout";
-import useCookie from "../../hooks/useCookie";
 import useToast from "../../hooks/useToast";
 import { useResetPasswordMutation } from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
@@ -21,7 +20,6 @@ import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
 
 export default function ResetPasswordScreen() {
   const { token } = useParams();
-  const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const { auth } = useAppSelector((state) => state);
   const { handleSuccess, handleError } = useToast();
@@ -54,7 +52,12 @@ export default function ResetPasswordScreen() {
   useEffect(() => {
     if (data) {
       handleSuccess(data?.message);
-      handleSetCookie(data?.data?.refreshToken);
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          token: data?.data?.refreshToken,
+        })
+      );
       dispatch(setAuth(data?.data));
     }
     if (error?.status) {

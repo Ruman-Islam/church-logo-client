@@ -6,12 +6,10 @@ import {
   useGetRefreshTokenMutation,
 } from "../services/features/auth/authApi.js";
 import { useAppDispatch } from "../services/hook";
-import useCookie from "./useCookie";
 
 const useRefreshToken = () => {
   const dispatch = useAppDispatch();
-  const { handleGetCookie } = useCookie();
-  const token = handleGetCookie();
+  const { token } = JSON.parse(localStorage.getItem("auth")) || {};
   const [getRefreshToken, { data }] = useGetRefreshTokenMutation();
 
   const refresh = async () => {

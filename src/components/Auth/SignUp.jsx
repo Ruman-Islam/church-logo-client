@@ -8,7 +8,6 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import useCookie from "../../hooks/useCookie";
 import useToast from "../../hooks/useToast";
 import {
   useGoogleSignInMutation,
@@ -38,7 +37,6 @@ export default function SignUp({ showForm }) {
   const location = useLocation();
   const isSignUp = showForm.includes("sign-up");
   const from = location.state?.from?.pathname || "/profile";
-  const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -61,8 +59,12 @@ export default function SignUp({ showForm }) {
         data?.data?.user?.role || googleSignInData?.data?.user?.role
       );
       handleSuccess(data?.message || googleSignInData?.message);
-      handleSetCookie(
-        data?.data?.refreshToken || googleSignInData?.data?.refreshToken
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          token:
+            data?.data?.refreshToken || googleSignInData?.data?.refreshToken,
+        })
       );
       dispatch(setAuth(data?.data || googleSignInData?.data));
     }

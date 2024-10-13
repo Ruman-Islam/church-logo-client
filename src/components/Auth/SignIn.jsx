@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import useCookie from "../../hooks/useCookie";
 import useToast from "../../hooks/useToast";
 import {
   useGoogleSignInMutation,
@@ -40,7 +39,6 @@ export default function SignIn({ showForm }) {
   const location = useLocation();
   const isSignIn = showForm.includes("sign-in");
   const from = location.state?.from?.pathname || "/profile";
-  const { handleSetCookie } = useCookie();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -64,8 +62,12 @@ export default function SignIn({ showForm }) {
         data?.data?.user?.role || googleSignInData?.data?.user?.role
       );
       handleSuccess(data?.message || googleSignInData?.message);
-      handleSetCookie(
-        data?.data?.refreshToken || googleSignInData?.data?.refreshToken
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          token:
+            data?.data?.refreshToken || googleSignInData?.data?.refreshToken,
+        })
       );
       dispatch(setAuth(data?.data || googleSignInData?.data));
     }
