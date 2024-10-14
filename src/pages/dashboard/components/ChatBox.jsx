@@ -1,6 +1,5 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -9,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import ReactFileReader from "react-file-reader";
-import { useForm } from "react-hook-form";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
@@ -36,7 +34,6 @@ import generatePhotoDownloadLink from "../../../utils/generatePhotoDownloadLink"
 import getTimeDifference from "../../../utils/getTimeDifference";
 
 export default function ChatBox() {
-  const { register, handleSubmit, reset } = useForm();
   const { handleError } = useToast();
   const dispatch = useAppDispatch();
 
@@ -54,6 +51,9 @@ export default function ChatBox() {
     sortOrder: -1,
     conversationId: id,
   });
+
+  const [message, setMessage] = useState("");
+  const [imgLoading, setImgLoading] = useState(false);
 
   const { data, isFetching } = useGetMessagesQuery(query, {
     refetchOnMountOrArgChange: true,
@@ -122,13 +122,44 @@ export default function ChatBox() {
   }, [messages, user?.role, handleSetMessages, id]);
 
   const handleImage = async (files) => {
+    setImgLoading(true);
     const attachmentPromises = files.base64.map(async (file) => {
+      // Create an image element
+      const image = new Image();
+
+      // Wait for the image to load
+      const imageLoaded = new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = reject;
+      });
+
+      // Set the base64 image source
+      image.src = file;
+      await imageLoaded;
+
+      // Create a canvas element to convert image to PNG format
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Set canvas dimensions to match the image
+      canvas.width = image.width;
+      canvas.height = image.height;
+
+      // Draw the image onto the canvas
+      ctx.drawImage(image, 0, 0);
+
+      // Convert the canvas to a PNG data URL
+      const pngDataUrl = canvas.toDataURL("image/png");
+
+      // Convert the base64 data URL to a Blob
+      const blob = await fetch(pngDataUrl).then((res) => res.blob());
+
+      // Create FormData for Cloudinary
       const formData = new FormData();
       formData.append("upload_preset", env?.cloud_upload_preset);
       formData.append("cloud_name", env?.cloud_upload_name);
       formData.append("folder", "church-logo/inbox");
-      formData.append("file", file);
-      formData.append("format", "png");
+      formData.append("file", blob, "image.png"); // Upload PNG
 
       try {
         const { data } = await axios.post(
@@ -157,6 +188,8 @@ export default function ChatBox() {
     await sendMessage({
       data: { conversationId: id, text: "", attachment: validAttachments },
     });
+
+    setImgLoading(false);
   };
 
   const handleLoadMore = () => {
@@ -166,11 +199,13 @@ export default function ChatBox() {
     }));
   };
 
-  const onSubmit = async ({ message }) => {
+  const onSubmit = async () => {
+    if (!message) return;
+
     await sendMessage({
       data: { conversationId: id, text: message, attachment: [] },
     });
-    reset();
+    setMessage("");
   };
 
   const isOnline = checkIsOnline(adminsAndClientsOnlineList);
@@ -304,26 +339,26 @@ export default function ChatBox() {
           </PhotoProvider>
         </Box>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="pt-4 pb-2 px-4">
+        <Box className="pt-4 pb-2 px-4">
           <Box className="flex flex-col gap-2">
             <FormControl fullWidth>
               <OutlinedInput
-                {...register("message", {
-                  required: true,
-                })}
+                onChange={(e) => setMessage(e.target.value)}
+                value={message}
+                disabled={isLoading || imgLoading}
                 className="text-brand__font__size__sm"
-                id="message"
-                name="message"
-                placeholder="Type your message here"
+                placeholder="Enter a message"
                 type="text"
-                multiline
-                rows="3"
-                endAdornment={
-                  <InputAdornment
-                    position="end"
-                    className="flex flex-col justify-center relative"
-                  >
-                    <IconButton>
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onSubmit();
+                  }
+                }}
+                startAdornment={
+                  <InputAdornment className="flex flex-col justify-center relative">
+                    <IconButton 
+                    disabled={isLoading || imgLoading}
+                    >
                       <ReactFileReader
                         base64={true}
                         multipleFiles
@@ -334,27 +369,31 @@ export default function ChatBox() {
                     </IconButton>
                   </InputAdornment>
                 }
+                endAdornment={
+                  <InputAdornment
+                    position="end"
+                    className="flex flex-col justify-center relative"
+                  >
+                    <IconButton
+                      onClick={onSubmit}
+                      disabled={isLoading || imgLoading}
+                      className="text-brand__font__size__sm"
+                    >
+                      {isLoading || imgLoading ? (
+                        "Sending..."
+                      ) : (
+                        <IoMdSend size={25} />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </FormControl>
             <Box className="flex justify-between items-center w-full">
               <Box></Box>
-              <Button
-                type="submit"
-                className="text-sm w-fit bg-primary hover:bg-brand__black__color text-white border-primary rounded-full flex items-center gap-x-1 capitalize px-6"
-                variant="primary"
-              >
-                {isLoading ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    Send
-                    <IoMdSend />
-                  </>
-                )}
-              </Button>
             </Box>
           </Box>
-        </form>
+        </Box>
       </Box>
     </Box>
   );
