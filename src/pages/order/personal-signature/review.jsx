@@ -311,7 +311,7 @@ export default function OrderReviewScreen() {
                           <img
                             key={item?.serialId}
                             className="max-w-[100px] w-full"
-                            src={item?.secureUrl}
+                            src={item?.url}
                           />
                         ))}
                       </Box>
@@ -329,7 +329,7 @@ export default function OrderReviewScreen() {
                           <Box key={item?.serialId}>
                             <img
                               className="max-w-[100px] w-full"
-                              src={item?.secureUrl}
+                              src={item?.url}
                             />
                             <span className="text-brand__font__size__sm">
                               {item?.displayName}

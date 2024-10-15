@@ -8,6 +8,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { useEffect, useRef } from "react";
+import { CgAttachment } from "react-icons/cg";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
@@ -182,18 +183,27 @@ export default function Sidebar() {
                       secondary={
                         <span className="flex justify-between gap-x-1 mt-1 leading-tight">
                           <span className="basis-[90%] w-full flex gap-x-2">
-                            <span>
+                            <span className="flex items-center">
                               <span className="font-brand__font__semibold">
                                 {item?.lastMessage?.senderDetails?.userId ===
                                   user?.userId &&
                                   item?.lastMessage?.text !== "No messages" &&
                                   "You: "}
                               </span>
-                              {item?.lastMessage?.text?.length > 20
-                                ? item?.lastMessage?.text?.slice(0, 20) +
-                                  " " +
-                                  "..."
-                                : item?.lastMessage?.text}
+                              {item?.lastMessage?.attachment?.length > 0 ? (
+                                <span className="flex items-center gap-x-0.5 ml-0.5">
+                                  <CgAttachment size={13} />{" "}
+                                  <span>attachment</span>
+                                </span>
+                              ) : item?.lastMessage?.text?.length > 20 ? (
+                                <span>
+                                  {item?.lastMessage?.text?.slice(0, 20) +
+                                    " " +
+                                    "..."}
+                                </span>
+                              ) : (
+                                <span>{item?.lastMessage?.text}</span>
+                              )}
                             </span>
                           </span>
                           {unreadMsgs?.length > 0 && (

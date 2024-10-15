@@ -316,7 +316,7 @@ export default function ChatBox() {
                             ))}
                           </Box>
                         ) : (
-                          <p className="text-text__gray max-w-[650px] w-full">
+                          <p className="text-text__gray max-w-[650px] break-words leading-tight">
                             {item?.text}
                           </p>
                         )}
@@ -348,17 +348,18 @@ export default function ChatBox() {
                 disabled={isLoading || imgLoading}
                 className="text-brand__font__size__sm"
                 placeholder="Enter a message"
+                multiline
+                maxRows={4}
                 type="text"
                 onKeyPress={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
                     onSubmit();
                   }
                 }}
                 startAdornment={
                   <InputAdornment className="flex flex-col justify-center relative">
-                    <IconButton 
-                    disabled={isLoading || imgLoading}
-                    >
+                    <IconButton disabled={isLoading || imgLoading}>
                       <ReactFileReader
                         base64={true}
                         multipleFiles

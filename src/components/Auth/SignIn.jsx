@@ -38,7 +38,7 @@ export default function SignIn({ showForm }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isSignIn = showForm.includes("sign-in");
-  const from = location.state?.from?.pathname || "/profile";
+  const from = location.state?.from?.pathname || "/dashboard";
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 

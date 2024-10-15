@@ -36,7 +36,7 @@ export default function SignUp({ showForm }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isSignUp = showForm.includes("sign-up");
-  const from = location.state?.from?.pathname || "/profile";
+  const from = location.state?.from?.pathname || "/dashboard";
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 

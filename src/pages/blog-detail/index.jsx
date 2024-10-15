@@ -26,7 +26,7 @@ const BlogDetailScreen = () => {
         <SectionBanner heading={blog?.title} desc="" />
       )}
 
-      <div className="container px-4 py-[30px]">
+      <div className="container px-4 py-[30px] all-initial">
         <div className="max-w-[1000px] w-full mx-auto">
           {isFetching ? (
             <Box className="flex flex-col gap-3">
@@ -53,6 +53,7 @@ const BlogDetailScreen = () => {
             </Box>
           ) : (
             <div
+            className="enable-list-styles"
               dangerouslySetInnerHTML={{
                 __html: blog?.content,
               }}

@@ -76,6 +76,7 @@ export default function Testimonial() {
 
   const { data, isLoading } = useGetReviewQuery(dynamicUrl);
   const reviews = data?.data || [];
+  const filteredReviews = reviews.filter(review => review.approved);
 
   return (
     <section>
@@ -105,7 +106,7 @@ export default function Testimonial() {
                     {...settings}
                     className="relative max-w-[400px] sm:max-w-[550px] md:max-w-[750px] lg:max-w-[600px] xl:max-w-[800px] mx-auto md:ml-auto"
                   >
-                    {reviews.map((item) => (
+                    {filteredReviews.map((item) => (
                       <div
                         key={item?._id}
                         className="rounded-md w-full text-brand__black__color"

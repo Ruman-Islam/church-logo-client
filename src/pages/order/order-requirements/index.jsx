@@ -301,11 +301,11 @@ export default function OrderRequirementsScreen() {
                             </Typography>
                             <Box className="flex flex-wrap gap-3">
                               {preferredDesigns.map(
-                                ({ publicId, secureUrl }) => (
+                                ({ publicId, url }) => (
                                   <Avatar
                                     key={publicId}
                                     variant="square"
-                                    src={secureUrl}
+                                    src={url}
                                     className="w-32 h-24 text-brand__font__size__lg2 rounded"
                                   />
                                 )
@@ -327,11 +327,11 @@ export default function OrderRequirementsScreen() {
                             </Typography>
                             <Box className="flex flex-wrap gap-3">
                               {preferredColors.map(
-                                ({ publicId, secureUrl }) => (
+                                ({ publicId, url }) => (
                                   <Avatar
                                     key={publicId}
                                     variant="square"
-                                    src={secureUrl}
+                                    src={url}
                                     className="w-32 h-24 text-brand__font__size__lg2 rounded"
                                   />
                                 )

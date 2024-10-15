@@ -6,9 +6,15 @@
 @tailwind utilities;
 
 @layer base {
-  /* ul, */
-  /* li, */
+  ul,
+  li,
   ol {
+    list-style: none;
+  }
+
+  .enable-list-styles ul,
+  .enable-list-styles li,
+  .enable-list-styles ol {
     list-style: revert;
   }
 }
@@ -69,7 +75,6 @@ body {
     margin-inline: 5px;
   }
 }
-
 
 /* ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-thumb {
