@@ -5,11 +5,9 @@ import { Outlet } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
-import categoryData from "../../data/categories.json";
 import useAutomaticScrollWithOffset from "../../hooks/useAutomaticScrollWithOffset";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
-
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { useAppSelector } from "../../services/hook";
 import Sidebar from "./components/Sidebar";
 
 export const PrevArrow = ({ ...props }) => {
@@ -36,10 +34,10 @@ export const NextArrow = ({ ...props }) => {
   );
 };
 
-export function CategoryCard(props) {
+export function CategoryCard({ category }) {
   const scrollWithOffset = useScrollWithOffset();
-  const { category, route } = props;
-  const { img, title, alt } = category;
+
+  const { title, thumbnail, route } = category;
 
   return (
     <HashLink
@@ -51,8 +49,8 @@ export function CategoryCard(props) {
         <Box className="overflow-hidden md:max-w-[355px] w-full">
           <img
             className="group-hover:scale-125 duration-500 w-full h-full"
-            src={getImgUrl(img)}
-            alt={alt}
+            src={thumbnail}
+            alt="church_logo"
           />
         </Box>
         <Box className="py-2 bg-white w-full text-text__gray font-brand__font__semibold group-hover:text-primary duration-300 border text-brand__font__size__sm md:text-brand__font__size__base">
@@ -95,6 +93,64 @@ const settings = {
 export default function DashboardScreen() {
   useAutomaticScrollWithOffset();
 
+  const {
+    system: { homeSettings },
+  } = useAppSelector((state) => state);
+
+  const {
+    categoryLogoDesignThumbnail,
+    categoryWebDesignThumbnail,
+    categoryBrandingThumbnail,
+    categoryPersonalSignatureThumbnail,
+    categoryBusinessAdvertisingThumbnail,
+    categorySocialMediaServiceThumbnail,
+    categoryLogoDesignVisibility,
+    categoryWebDesignVisibility,
+    categoryBrandingVisibility,
+    categoryPersonalSignatureVisibility,
+    categoryBusinessAdvertisingVisibility,
+    categorySocialMediaServiceVisibility,
+  } = homeSettings || {};
+
+  const thumbnails = [
+    {
+      title: "Logo Design",
+      thumbnail: categoryLogoDesignThumbnail,
+      visibility: categoryLogoDesignVisibility,
+      route: "/categories/logo-design#logo-design",
+    },
+    {
+      title: "Web Design",
+      thumbnail: categoryWebDesignThumbnail,
+      visibility: categoryWebDesignVisibility,
+      route: "/categories/web-design#web-design",
+    },
+    {
+      title: "Branding",
+      thumbnail: categoryBrandingThumbnail,
+      visibility: categoryBrandingVisibility,
+      route: "/categories/branding#branding",
+    },
+    {
+      title: "Personal Signature",
+      thumbnail: categoryPersonalSignatureThumbnail,
+      visibility: categoryPersonalSignatureVisibility,
+      route: "/categories/personal-signature#personal-signature",
+    },
+    {
+      title: "Business & Advertising",
+      thumbnail: categoryBusinessAdvertisingThumbnail,
+      visibility: categoryBusinessAdvertisingVisibility,
+      route: "/categories/business-advertising#business-advertising",
+    },
+    {
+      title: "Social Media Service",
+      thumbnail: categorySocialMediaServiceThumbnail,
+      visibility: categorySocialMediaServiceVisibility,
+      route: "/categories/social-media-service#social-media-service",
+    },
+  ];
+
   return (
     <Layout title="Dashboard">
       <Box id="dashboard" className="bg-section__bg_color">
@@ -116,9 +172,15 @@ export default function DashboardScreen() {
               </Box>
             </Box>
             <Slider {...settings}>
-              {categoryData.map((d) => (
-                <CategoryCard key={d.id} route={d.route} category={d} />
-              ))}
+              {thumbnails
+                .filter((item) => item.visibility)
+                .map((item) => (
+                  <CategoryCard
+                    key={item.title}
+                    route={item.route}
+                    category={item}
+                  />
+                ))}
             </Slider>
           </Box>
         </Box>

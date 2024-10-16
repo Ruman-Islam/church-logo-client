@@ -7,14 +7,22 @@ export default function ZeroPlacePromotionalSpace({ data, loading }) {
     <div
       className="py-10 xl:py-0 xl:h-[533px] flex items-center justify-center bg-brand__black__color text-white bg-no-repeat bg-cover"
       style={{
-        backgroundImage: `url(${zeroPlacePromotional?.background[0].url})`,
+        backgroundImage: `url(${
+          zeroPlacePromotional?.background
+            ? zeroPlacePromotional?.background[0]?.url
+            : ""
+        })`,
       }}
     >
       <div className="container p-2 flex flex-col md:flex-row justify-between items-center">
         <div className="basis-[40%] hidden md:block">
           <img
             className="w-[250px] md:w-[450px]"
-            src={zeroPlacePromotional?.thumbnail[0].url}
+            src={
+              zeroPlacePromotional?.thumbnail
+                ? zeroPlacePromotional?.thumbnail[0]?.url
+                : ""
+            }
             alt=""
           />
         </div>
