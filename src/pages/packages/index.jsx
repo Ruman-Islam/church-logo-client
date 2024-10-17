@@ -4,13 +4,11 @@ import { FaCheck } from "react-icons/fa6";
 import { IoMdTime } from "react-icons/io";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-// import Swal from "sweetalert2";
 import Layout from "../../components/common/Layout";
 import NoDataFound from "../../components/common/NoDataFound";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import useTracking from "../../hooks/useTracking";
 import { useGetOnePackageQuery } from "../../services/features/package/packageApi";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -146,26 +144,6 @@ export default function Package() {
                         </Button>
                       </HashLink>
 
-                      {/* <Button
-                      onClick={() => {
-                        return Swal.fire({
-                          title: "<strong>Under construction</strong>",
-                          icon: "info",
-                          html: `
-                            Contact us on: <a style="color:blue" href="https://www.facebook.com/churchlogo/">Facebook</a>, <a style="color:blue" href="https://www.instagram.com/churchlogo.co/">Instagram</a>
-                          `,
-                          showCloseButton: true,
-                          showCancelButton: true,
-                          focusConfirm: false,
-                          cancelButtonAriaLabel: "Thumbs down",
-                        });
-                      }}
-                      className="bg-primary hover:bg-brand__black__color rounded-full px-6 font-brand__font__600"
-                      variant="contained"
-                    >
-                      Get started
-                    </Button> */}
-
                       <HashLink
                         to={`/package/${id}#package-faq`}
                         scroll={(el) => scrollWithOffset(el, 130)}
@@ -192,9 +170,7 @@ export default function Package() {
                 >
                   <img
                     className="block"
-                    src={getImgUrl(
-                      "image/hero-banner/churchlogo_slider_02.png"
-                    )}
+                    src={packageInfo?.thumbnail1}
                     alt="church_logo"
                   />
                 </div>
@@ -202,7 +178,7 @@ export default function Package() {
             </div>
           </div>
 
-          <WhyChurchLogo />
+          <WhyChurchLogo thumbnail={packageInfo?.thumbnail2}/>
           <Faq category={packageInfo?.category} />
           <OurClientsLovesUs />
         </section>
