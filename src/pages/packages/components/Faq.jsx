@@ -7,11 +7,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import faqs from "../../../data/categoryFaqs.json";
 
-export default function Faq({ category }) {
+export default function Faq({ faqs }) {
   const [index, setIndex] = useState(0);
-  const filteredFaqs = faqs.filter((f) => f.category === category);
 
   return (
     <Box id="package-faq" className="bg-section__bg_color py-10">
@@ -22,26 +20,26 @@ export default function Faq({ category }) {
 
         <Box className="max-w-[1024px] w-full mx-auto px-4 py-5 md:py-10">
           <Box>
-            {filteredFaqs.map((faq) => (
+            {faqs.map((faq, idx) => (
               <Accordion
                 key={faq?.id}
                 className="bg-transparent"
                 sx={{
                   boxShadow: "none",
                 }}
-                expanded={index === faq?.id}
-                onChange={() => setIndex(faq?.id)}
+                expanded={index === idx}
+                onChange={() => setIndex(idx)}
               >
                 <AccordionSummary
                   expandIcon={
                     <ExpandMoreIcon
-                      className={`${index === faq?.id && "text-primary"}`}
+                      className={`${index === idx && "text-primary"}`}
                     />
                   }
                 >
                   <Typography
                     className={`text-brand__font__size__md ${
-                      index === faq?.id ? "text-primary" : "text-text__gray"
+                      index === idx ? "text-primary" : "text-text__gray"
                     }`}
                   >
                     {faq?.question}

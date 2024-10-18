@@ -9,10 +9,27 @@ import NoDataFound from "../../components/common/NoDataFound";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import useTracking from "../../hooks/useTracking";
 import { useGetOnePackageQuery } from "../../services/features/package/packageApi";
+import { useAppSelector } from "../../services/hook";
 import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import WhyChurchLogo from "./components/WhyChurchLogo";
+
+function getCategory(category) {
+  if (category === "logo-design") {
+    return "logoDesign";
+  } else if (category === "web-design") {
+    return "webDesign";
+  } else if (category === "branding") {
+    return "branding";
+  } else if (category === "personal-signature") {
+    return "personalSignature";
+  } else if (category === "business-advertising") {
+    return "businessAdvertising";
+  } else if (category === "social-media-service") {
+    return "socialMediaService";
+  }
+}
 
 export default function Package() {
   useTracking();
@@ -21,6 +38,13 @@ export default function Package() {
   const { data, isLoading, isError } = useGetOnePackageQuery(id);
   const packageInfo = data?.data;
   const featuredItems = packageInfo ? packageInfo?.featuredItems : [];
+
+  const {
+    system: { categoryFaqs },
+  } = useAppSelector((state) => state);
+
+  const faqs =
+    (categoryFaqs && categoryFaqs[getCategory(packageInfo?.category)]) || [];
 
   return (
     <Layout title="Logo design source pack">
@@ -178,8 +202,8 @@ export default function Package() {
             </div>
           </div>
 
-          <WhyChurchLogo thumbnail={packageInfo?.thumbnail2}/>
-          <Faq category={packageInfo?.category} />
+          <WhyChurchLogo thumbnail={packageInfo?.thumbnail2} />
+          <Faq faqs={faqs} />
           <OurClientsLovesUs />
         </section>
       )}
