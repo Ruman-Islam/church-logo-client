@@ -31,7 +31,7 @@ export function OrderCard({ order }) {
         <Avatar
           variant="square"
           src={
-            order?.package?.thumbnail ||
+            order?.package?.thumbnail1 ||
             getImgUrl("image/gallery/logo-design/church_logo_01.jpg")
           }
           className="w-16 h-14 text-brand__font__size__lg2"

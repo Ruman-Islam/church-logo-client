@@ -2,14 +2,13 @@ import { Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import "../../styles/categories.css";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
 import WhyChurchLogo from "./components/WhyChurchLogo";
-import useTracking from "../../hooks/useTracking";
 
 export default function CategoryPersonalSignatureScreen() {
   useTracking();
@@ -24,7 +23,8 @@ export default function CategoryPersonalSignatureScreen() {
   });
 
   const { data, isLoading } = useGetPackageListQuery(query);
-  const packages = data?.data ? data?.data : [];
+  const packages = data?.data || [];
+  const meta = data?.meta?.systemData || {};
 
   return (
     <Layout
@@ -58,9 +58,7 @@ export default function CategoryPersonalSignatureScreen() {
                       <div className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
                         <img
                           className="max-w-[550px] w-full h-[500px] object-cover p-5"
-                          src={getImgUrl(
-                            "image/home/portfolio/churchlogo_flyer_design.png"
-                          )}
+                          src={meta?.businessAdvertisingThumbnail}
                           alt=""
                         />
                       </div>
