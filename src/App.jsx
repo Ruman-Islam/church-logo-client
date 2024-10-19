@@ -13,7 +13,7 @@ function App() {
     <Fragment>
       <Routers />
       <JumpToTopBtn />
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom-right" />
     </Fragment>
   );
 }
