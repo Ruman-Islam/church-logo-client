@@ -105,7 +105,7 @@ export default function FAQScreen() {
               return (
                 <div
                   key={faqIndex}
-                  className="flex flex-col xl:flex-row justify-between gap-5"
+                  className="flex flex-col xl:flex-row justify-between gap-10"
                 >
                   <div className="basis-[100%] h-full w-full">
                     <div className="text-[22px] md:text-[35px] text-brand__black__color font-brand__font__600 p-4 border-b-4 border-primary leading-snug">
@@ -166,12 +166,15 @@ export default function FAQScreen() {
                     </div>
                   </div>
 
-                  {faq?.imgUrl && (
+                  {faqIndex === 0 && (
                     <div className="basis-[50%] w-full h-[600px] hidden xl:block">
                       <figure className="w-full h-full rounded-xl">
                         <img
                           className="w-full h-full object-cover rounded-xl"
-                          src={getImgUrl(faq?.imgUrl)}
+                          src={getImgUrl(
+                            "image/hero-banner/churchlogo_slider_03.png"
+                          )}
+                          alt="church_logo_faq"
                         />
                       </figure>
                     </div>

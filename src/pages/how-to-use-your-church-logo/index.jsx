@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { FiChevronsRight } from "react-icons/fi";
 import { HashLink } from "react-router-hash-link";
@@ -6,25 +7,10 @@ import Slider from "react-slick";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner/index";
 import SectionTitle from "../../components/common/SectionTitle";
-import categoryData from "../../data/categories.json";
-import data from "../../data/customersDoing.json";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
+import { useGetListQuery } from "../../services/features/howToUseChurchLogo/howToUseChurchLogoApi";
+import { useAppSelector } from "../../services/hook";
 import { CategoryCard, NextArrow, PrevArrow } from "../dashboard";
-
-function Card(props) {
-  const { content } = props;
-  return (
-    <Box className="w-full h-full rounded-lg bg-white aspect-[1.3/1] text-center p-2 cursor-grab active:cursor-grabbing">
-      <Box className="mb-2">
-        <img
-          src={getImgUrl(content?.img)}
-          alt="church_logo"
-          className="rounded-tl-lg rounded-tr-lg"
-        />
-      </Box>
-    </Box>
-  );
-}
+import { CustomersDoingCard } from "../home/components/CustomersDoing";
 
 const settings = {
   dots: false,
@@ -83,6 +69,70 @@ const settings2 = {
 };
 
 export default function HowToUseYourChurchLogoScreen() {
+  const {
+    system: { homeSettings },
+  } = useAppSelector((state) => state);
+
+  const {
+    customersDoing: { title, slideImages = [] } = {},
+    categoryLogoDesignThumbnail,
+    categoryWebDesignThumbnail,
+    categoryBrandingThumbnail,
+    categoryPersonalSignatureThumbnail,
+    categoryBusinessAdvertisingThumbnail,
+    categorySocialMediaServiceThumbnail,
+    categoryLogoDesignVisibility,
+    categoryWebDesignVisibility,
+    categoryBrandingVisibility,
+    categoryPersonalSignatureVisibility,
+    categoryBusinessAdvertisingVisibility,
+    categorySocialMediaServiceVisibility,
+  } = homeSettings || {};
+
+  const thumbnails = [
+    {
+      title: "Logo Design",
+      thumbnail: categoryLogoDesignThumbnail,
+      visibility: categoryLogoDesignVisibility,
+      route: "/categories/logo-design#logo-design",
+    },
+    {
+      title: "Web Design",
+      thumbnail: categoryWebDesignThumbnail,
+      visibility: categoryWebDesignVisibility,
+      route: "/categories/web-design#web-design",
+    },
+    {
+      title: "Branding",
+      thumbnail: categoryBrandingThumbnail,
+      visibility: categoryBrandingVisibility,
+      route: "/categories/branding#branding",
+    },
+    {
+      title: "Personal Signature",
+      thumbnail: categoryPersonalSignatureThumbnail,
+      visibility: categoryPersonalSignatureVisibility,
+      route: "/categories/personal-signature#personal-signature",
+    },
+    {
+      title: "Business & Advertising",
+      thumbnail: categoryBusinessAdvertisingThumbnail,
+      visibility: categoryBusinessAdvertisingVisibility,
+      route: "/categories/business-advertising#business-advertising",
+    },
+    {
+      title: "Social Media Service",
+      thumbnail: categorySocialMediaServiceThumbnail,
+      visibility: categorySocialMediaServiceVisibility,
+      route: "/categories/social-media-service#social-media-service",
+    },
+  ];
+
+  const { data, isFetching } = useGetListQuery({
+    refetchOnMountOrArgChange: true,
+  });
+  const list = data?.data || [];
+
   return (
     <Layout
       title="How to Use Your Church Logo - Effective Church Branding Tips"
@@ -90,59 +140,73 @@ export default function HowToUseYourChurchLogoScreen() {
     >
       <Box id="church">
         <SectionBanner
-          heading="How to Use your Church Logo"
+          heading="How to use your Church Logo"
           desc="Take your brand to the next level with these simple ways you can add your Church Logo® seamlessly into all your graphics and photos."
         />
 
         <Box className="py-5 lg:py-10 flex flex-col gap-10">
-          <Box className="max-w-[1024px] w-full mx-auto flex flex-col px-4">
-            <Box className="w-full flex items-center justify-between gap-2">
-              <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
-                <Box>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
-                    CANVA
-                  </Typography>
-                  <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
-                    How to Apply Your Church Logo with Canva
-                  </Typography>
+          <Box className="max-w-[1024px] w-full mx-auto flex flex-col gap-10 px-4">
+            {(isFetching ? Array.from(new Array(3)) : list).map((item, idx) =>
+              item ? (
+                <Box
+                  key={item?._id}
+                  className={`w-full flex ${
+                    idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                  } items-center justify-between gap-2`}
+                >
+                  <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
+                    <Box>
+                      <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
+                        {item?.headTitle}
+                      </Typography>
+                      <Typography className="text-brand__font__size__md font-brand__font__semibold text-brand__black__color">
+                        {item?.subTitle}
+                      </Typography>
+                    </Box>
+
+                    <Typography
+                      component="p"
+                      className="text-brand__font__size__sm"
+                      dangerouslySetInnerHTML={{
+                        __html: item?.shortDesc,
+                      }}
+                    />
+                    <HashLink
+                      to={`/how-to-use-your-churchlogo/${item._id}`}
+                      className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
+                    >
+                      <span>Learn More</span>
+                      <FiChevronsRight />
+                    </HashLink>
+                  </Box>
+                  <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
+                    <img
+                      src={item?.thumbnail}
+                      alt="church_logo"
+                      className="w-full h-full rounded-lg"
+                    />
+                  </Box>
                 </Box>
-
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
+              ) : (
+                <Box
+                  key={idx}
+                  className={`w-full flex ${
+                    idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                  } justify-between gap-5`}
                 >
-                  Canva is one of the most beginner-friendly tools out there,
-                  offering an impressive array of graphic design features right
-                  on the web. Plus, it’s available on both Android and iOS,
-                  making it easy to DIY everything from slideshows to social
-                  media posts.
-                </Typography>
+                  <Box className="basis-[100%] md:basis-[30%] w-full flex flex-col gap-4 text-text__gray">
+                    <Skeleton variant="rounded" height={218} />
+                  </Box>
+                  <Box className="basis-[100%] md:basis-[70%] w-full rounded-lg flex flex-col gap-5">
+                    <Skeleton variant="rounded" width={200} height={30} />
+                    <Skeleton variant="rounded" width={350} height={20} />
+                    <Skeleton variant="rounded" height={15} />
+                  </Box>
+                </Box>
+              )
+            )}
 
-                <Typography
-                  component="p"
-                  className="text-brand__font__size__sm"
-                >
-                  In this guide, we’ll show you how to apply your Church Logo
-                  using Canva in 5 easy steps.
-                </Typography>
-                <HashLink
-                  to="/how-to-use-your-churchlogo/canva"
-                  className="bg-primary hover:bg-brand__black__color text-white px-6 py-1 rounded-full font-brand__font__600 w-fit flex items-center gap-x-1"
-                >
-                  <span>Learn More</span>
-                  <FiChevronsRight />
-                </HashLink>
-              </Box>
-              <Box className="basis-[100%] md:basis-[45%] w-full rounded-lg">
-                <img
-                  src={getImgUrl("image/banner/churchlogo_print_use.png")}
-                  alt="church_logo"
-                  className="w-full h-full rounded-lg"
-                />
-              </Box>
-            </Box>
-
-            <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
+            {/* <Box className="w-full flex flex-row-reverse items-center justify-between gap-2">
               <Box className="basis-[100%] md:basis-[45%] w-full flex flex-col gap-4 text-text__gray">
                 <Box>
                   <Typography className="text-brand__font__size__md font-brand__font__semibold text-primary">
@@ -420,19 +484,19 @@ export default function HowToUseYourChurchLogoScreen() {
                   className="w-full h-full rounded-lg"
                 />
               </Box>
-            </Box>
+            </Box> */}
           </Box>
 
           <Box className="bg-section__bg_color py-10 px-4">
             <Box className="max-w-[1024px] w-full mx-auto slider-container">
               <SectionTitle
-                title="See How Other Professionals Are Using Their Church Logos"
+                title={title}
                 titleClass="text-[22px] md:text-section__title__size xl:text-brand__font__size__xl leading-[30px] md:leading-[40px] xl:leading-[50px] font-brand__font__600 text-center text-center md:mb-5 text-text__gray max-w-[600px] xl:max-w-[1024px] mx-auto"
               />
 
               <Slider {...settings}>
-                {data.map((content) => (
-                  <Card key={content.id} content={content} />
+                {slideImages.map((content, idx) => (
+                  <CustomersDoingCard key={idx} slide={content} />
                 ))}
               </Slider>
             </Box>
@@ -448,9 +512,15 @@ export default function HowToUseYourChurchLogoScreen() {
               </Box>
             </Box>
             <Slider {...settings2}>
-              {categoryData.map((d) => (
-                <CategoryCard key={d.id} route={d.route} category={d} />
-              ))}
+              {thumbnails
+                .filter((item) => item.visibility)
+                .map((item) => (
+                  <CategoryCard
+                    key={item.title}
+                    route={item.route}
+                    category={item}
+                  />
+                ))}
             </Slider>
           </Box>
         </Box>

@@ -30,7 +30,7 @@ const settings = {
   ],
 };
 
-function CustomersDoingCard({ slide }) {
+export function CustomersDoingCard({ slide }) {
   return (
     <Box className="w-full h-full rounded-lg bg-white text-center p-2">
       <Box className="mb-2">

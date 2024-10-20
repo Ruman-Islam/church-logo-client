@@ -358,7 +358,10 @@ export default function ChatBox() {
                   }
                 }}
                 startAdornment={
-                  <InputAdornment className="flex flex-col justify-center relative">
+                  <InputAdornment
+                    position="end"
+                    className="flex flex-col justify-center relative"
+                  >
                     <IconButton disabled={isLoading || imgLoading}>
                       <ReactFileReader
                         base64={true}

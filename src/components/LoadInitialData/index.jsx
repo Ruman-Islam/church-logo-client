@@ -1,5 +1,8 @@
+import { skipToken } from "@reduxjs/toolkit/query/react";
 import { useCallback, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import newMessageSound from "../../assets/sounds/chat-sound.mp3";
+import { useGetUnreadMessagesQuery } from "../../services/features/chat/chatApi";
 import {
   addMessage,
   setAdminsAndClientsOnlineList,
@@ -7,13 +10,27 @@ import {
 } from "../../services/features/chat/chatSlice";
 import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
 import { setSystemConfiguration } from "../../services/features/system/systemSlice";
-import { useAppDispatch } from "../../services/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { socket } from "../../socket";
+import { getChatNotificationSound } from "../../utils/getNotificationSound";
 
 const LoadInitialData = () => {
   const dispatch = useAppDispatch();
+  const {
+    auth: { user },
+    chat: { currentConversationId },
+  } = useAppSelector((state) => state);
 
   const { data, isLoading } = useGetSystemConfigQuery();
+
+  const { data: unreadMessagesData } = useGetUnreadMessagesQuery(
+    user
+      ? {
+          "receiver.userId": user?.userId,
+          messageType: "client",
+        }
+      : skipToken
+  );
 
   const handleSetSystemConfiguration = useCallback(
     (res) => {
@@ -38,9 +55,13 @@ const LoadInitialData = () => {
 
   const handleAddMessage = useCallback(
     (res) => {
+      if (!currentConversationId && res?.sender?.userId !== user?.userId) {
+        getChatNotificationSound(newMessageSound);
+      }
+
       dispatch(addMessage(res));
     },
-    [dispatch]
+    [currentConversationId, dispatch, user?.userId]
   );
 
   useEffect(() => {
@@ -50,21 +71,26 @@ const LoadInitialData = () => {
       "getAdminsAndClientsOnlineList",
       handleSetAdminsAndClientsOnlineList
     );
-    socket.on("getUnreadMessages", handleSetUnreadMessages);
+
+    if (user) {
+      handleSetUnreadMessages(unreadMessagesData?.data || []);
+    }
+
     handleSetSystemConfiguration({ ...data?.data, isLoading });
 
     return () => {
       socket.off("adminClientMsgTransfer");
       socket.off("getAdminsAndClientsOnlineList");
-      socket.off("getUnreadMessages");
     };
   }, [
-    data?.data,
+    user,
     isLoading,
-    handleSetAdminsAndClientsOnlineList,
+    data?.data,
+    unreadMessagesData?.data,
     handleAddMessage,
-    handleSetUnreadMessages,
+    handleSetAdminsAndClientsOnlineList,
     handleSetSystemConfiguration,
+    handleSetUnreadMessages,
   ]);
 
   return <Outlet />;

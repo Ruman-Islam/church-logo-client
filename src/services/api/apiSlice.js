@@ -58,6 +58,7 @@ export const api = createApi({
     "order",
     "chat",
     "blog",
+    "how-to-use-church-logo",
   ],
   endpoints: () => ({}),
 });
