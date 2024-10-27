@@ -5,6 +5,7 @@ import {
   AppBar,
   Box,
   Button,
+  Chip,
   Divider,
   FormControl,
   FormControlLabel,
@@ -34,96 +35,107 @@ const AvatarInput = styled.div``;
 
 export default function OrderBriefScreen() {
   const {
-    auth: { user },
-  } = useAppSelector((state) => state);
-  const {
-    cart: { cartItems },
-  } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
-
-  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const cartItem = cartItems?.find((item) => item.category === "web-design");
+  const {
+    auth: { user },
+    cart: { cartItems },
+  } = useAppSelector((state) => state);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const { id } = useParams();
-  const navigate = useNavigate();
 
-  const [email, setEmail] = useState(
-    cartItem?.additionalEmail || user?.email || ""
-  );
-  const [demoWebsiteData, setDemoWebsiteData] = useState(
-    tagFinder("demo_website_data", cartItem)
-  );
-  const [hasHostingSetup, setHasHostingSetup] = useState(
-    !!tagFinder("domain_hosting_data", cartItem) || false
-  );
-  const [domainHostingData, setDomainHostingData] = useState(
-    tagFinder("domain_hosting_data", cartItem)
-  );
-  const [websiteDesc, setWebsiteDesc] = useState(
-    tagFinder("website_desc", cartItem)
-  );
-  const [websiteNote, setWebsiteNote] = useState(
-    tagFinder("website_note", cartItem)
-  );
-  const [referredImages, setReferredImages] = useState(
-    cartItem?.brief?.referredImages.length
-      ? cartItem?.brief?.referredImages
-      : []
-  );
+  const cartItem = cartItems?.find((item) => item.category === "web-design");
+
+  const [formData, setFormData] = useState({
+    email: cartItem?.additionalEmail || user?.email || "",
+    domainHostingData: tagFinder("domain_hosting_data", cartItem),
+    demoWebsiteData: "",
+    websiteDesc: tagFinder("website_desc", cartItem),
+    websiteNote: tagFinder("website_note", cartItem),
+    hasHostingSetup: !!tagFinder("domain_hosting_data", cartItem) || false,
+    referredImages: cartItem?.referredImages || [],
+    chips: tagFinder("demo_website_data", cartItem).split(","),
+  });
+
+  const handleChangeFormData = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const { data, isFetching } = useGetOnePackageQuery(id);
 
   const handleImage = (files) => {
-    setReferredImages((prev) => [
+    handleChangeFormData("referredImages", [
       ...files.base64.map((url) => ({
         id: generateRandomId(),
         url,
       })),
-      ...prev,
+      ...formData.referredImages,
     ]);
   };
 
   const handleRemoveImage = (img) => {
-    return setReferredImages(
-      referredImages.filter((item) => item.id !== img.id)
+    handleChangeFormData(
+      "referredImages",
+      formData.referredImages.filter((item) => item.id !== img.id)
     );
   };
 
-  const onSubmit = async (data) => {
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" || e.key === "," || e.key === " ") {
+      e.preventDefault();
+      if (formData.demoWebsiteData.trim()) {
+        handleChangeFormData("chips", [
+          ...formData.chips,
+          formData.demoWebsiteData.trim(),
+        ]);
+        handleChangeFormData("demoWebsiteData", "");
+      }
+    }
+  };
+
+  const handleDeleteChip = (chipToDelete) => {
+    handleChangeFormData(
+      "chips",
+      formData.chips.filter((chip) => chip !== chipToDelete)
+    );
+  };
+
+  const onSubmit = async () => {
     const order = {
       ...cartItem,
       packageId: id,
       category: "web-design",
-      additionalEmail: data.email,
-      userId: user?.userId ? user?.userId : null,
-      referredImages: referredImages,
+      additionalEmail: formData.email,
+      userId: user.userId || null,
+      referredImages: formData.referredImages,
       requirements: [
         {
           tag: "domain_hosting_data",
           question: "Do you have a setup domain and hosting?",
-          answer: data.domain_hosting_data || "",
+          answer: formData.hasHostingSetup ? formData.domainHostingData : "",
         },
         {
           tag: "demo_website_data",
           question:
             "Share any inspirational, competitor or similar website link",
-          answer: data.demo_website_data,
+          answer: formData.chips.length > 1 ? formData.chips.join(",") : "",
         },
         {
           tag: "website_desc",
           question: "Briefly describe about your website",
-          answer: data.website_desc,
+          answer: formData.websiteDesc,
         },
         {
           tag: "website_note",
           question:
             "Is there anything else you would like to communicate to the developer?",
-          answer: data.website_note,
+          answer: formData.websiteNote,
         },
       ],
     };
@@ -176,8 +188,10 @@ export default function OrderBriefScreen() {
                               message: "Enter valid email",
                             },
                           })}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          value={formData.email}
+                          onChange={(e) =>
+                            handleChangeFormData("email", e.target.value)
+                          }
                           className="mt-2"
                           variant="outlined"
                           id="email"
@@ -211,9 +225,12 @@ export default function OrderBriefScreen() {
 
                         <FormControl fullWidth>
                           <RadioGroup
-                            value={hasHostingSetup}
+                            value={formData.hasHostingSetup}
                             onChange={(e) =>
-                              setHasHostingSetup(e.target.value === "true")
+                              handleChangeFormData(
+                                "hasHostingSetup",
+                                e.target.value === "true"
+                              )
                             }
                           >
                             <Box>
@@ -230,7 +247,7 @@ export default function OrderBriefScreen() {
                             </Box>
                           </RadioGroup>
 
-                          {hasHostingSetup ? (
+                          {formData.hasHostingSetup ? (
                             <Box className="mt-2">
                               <Typography
                                 variant="p"
@@ -245,9 +262,12 @@ export default function OrderBriefScreen() {
                                   {...register("domain_hosting_data", {
                                     required: true,
                                   })}
-                                  value={domainHostingData}
+                                  value={formData.domainHostingData}
                                   onChange={(e) =>
-                                    setDomainHostingData(e.target.value)
+                                    handleChangeFormData(
+                                      "domainHostingData",
+                                      e.target.value
+                                    )
                                   }
                                   className="mt-1 w-full"
                                   variant="outlined"
@@ -304,17 +324,40 @@ export default function OrderBriefScreen() {
                         </Typography>
 
                         <FormControl fullWidth>
+                          <Box
+                            display="flex"
+                            flexWrap="wrap"
+                            gap={1}
+                            className="py-2"
+                          >
+                            {formData.chips.map(
+                              (chip, index) =>
+                                chip && (
+                                  <Chip
+                                    key={index}
+                                    label={chip}
+                                    onDelete={() => handleDeleteChip(chip)}
+                                    color="primary"
+                                    size="small"
+                                  />
+                                )
+                            )}
+                          </Box>
                           <TextField
                             {...register("demo_website_data")}
-                            value={demoWebsiteData}
-                            onChange={(e) => setDemoWebsiteData(e.target.value)}
+                            value={formData.demoWebsiteData}
+                            onChange={(e) =>
+                              handleChangeFormData(
+                                "demoWebsiteData",
+                                e.target.value
+                              )
+                            }
+                            onKeyPress={handleKeyPress}
                             className="mt-1 w-full"
                             variant="outlined"
                             id="demo_website_data"
                             name="demo_website_data"
                             type="text"
-                            multiline
-                            minRows={4}
                             size="small"
                             error={
                               !!getAuthErrorMessage(errors, "demo_website_data")
@@ -346,8 +389,13 @@ export default function OrderBriefScreen() {
                             {...register("website_desc", {
                               required: true,
                             })}
-                            value={websiteDesc}
-                            onChange={(e) => setWebsiteDesc(e.target.value)}
+                            value={formData.websiteDesc}
+                            onChange={(e) =>
+                              handleChangeFormData(
+                                "websiteDesc",
+                                e.target.value
+                              )
+                            }
                             className="mt-2"
                             variant="outlined"
                             id="website_desc"
@@ -392,8 +440,13 @@ export default function OrderBriefScreen() {
                         <FormControl fullWidth>
                           <TextField
                             {...register("website_note")}
-                            value={websiteNote}
-                            onChange={(e) => setWebsiteNote(e.target.value)}
+                            value={formData.websiteNote}
+                            onChange={(e) =>
+                              handleChangeFormData(
+                                "websiteNote",
+                                e.target.value
+                              )
+                            }
                             className="mt-2"
                             variant="outlined"
                             id="website_note"
@@ -415,9 +468,9 @@ export default function OrderBriefScreen() {
                           Do you have any images or logos that might be helpful?
                         </Typography>
 
-                        <AvatarInput className="mt-2.5 flex flex-wrap justify-center md:justify-start gap-1">
-                          {referredImages.length > 0
-                            ? referredImages.map((item) => (
+                        <AvatarInput className="mt-2.5 flex flex-wrap justify-center sm:justify-start gap-1">
+                          {formData.referredImages.length > 0
+                            ? formData.referredImages.map((item) => (
                                 <Box
                                   className="border w-[180px] h-[180px] group relative"
                                   key={item.id}
@@ -468,15 +521,19 @@ export default function OrderBriefScreen() {
 
                       <Button
                         disabled={
-                          !email ||
-                          !websiteDesc ||
-                          (hasHostingSetup ? !domainHostingData : false)
+                          !formData.email ||
+                          !formData.websiteDesc ||
+                          (formData.hasHostingSetup
+                            ? !formData.domainHostingData
+                            : false)
                         }
                         type="submit"
                         className={`${
-                          !email ||
-                          !websiteDesc ||
-                          (hasHostingSetup ? !domainHostingData : false)
+                          !formData.email ||
+                          !formData.websiteDesc ||
+                          (formData.hasHostingSetup
+                            ? !formData.domainHostingData
+                            : false)
                             ? "bg-text__gray"
                             : "bg-primary hover:bg-brand__black__color"
                         } text-white px-10 rounded-full font-brand__font__600`}

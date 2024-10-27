@@ -29,10 +29,9 @@ const AvatarInput = styled.div``;
 export default function OrderBriefScreen() {
   const {
     auth: { user },
-  } = useAppSelector((state) => state);
-  const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
+
   const dispatch = useAppDispatch();
 
   const {
@@ -54,8 +53,8 @@ export default function OrderBriefScreen() {
   );
   const [logoNote, setLogoNote] = useState(tagFinder("logo_note", cartItem));
   const [referredImages, setReferredImages] = useState(
-    cartItem?.brief?.referredImages.length
-      ? cartItem?.brief?.referredImages
+    cartItem?.referredImages.length
+      ? cartItem?.referredImages
       : []
   );
   const [email, setEmail] = useState(

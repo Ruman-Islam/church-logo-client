@@ -22,7 +22,7 @@ export default function Faq({ faqs }) {
           <Box>
             {faqs.map((faq, idx) => (
               <Accordion
-                key={faq?.id}
+                key={idx}
                 className="bg-transparent"
                 sx={{
                   boxShadow: "none",

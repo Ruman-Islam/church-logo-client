@@ -2,20 +2,21 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import OutlinedInput from "@mui/material/OutlinedInput";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import EmojiPicker from "emoji-picker-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ReactFileReader from "react-file-reader";
 import { BiSolidMessageDetail } from "react-icons/bi";
-import { FaCloudDownloadAlt } from "react-icons/fa";
+import { FaCloudDownloadAlt, FaSmile } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import { IoCheckmarkDoneSharp, IoCheckmarkSharp } from "react-icons/io5";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useParams } from "react-router-dom";
 import ScrollToBottom from "react-scroll-to-bottom";
+import FormattedText from "../../../components/FormattedText";
 import { env } from "../../../config/env";
 import useToast from "../../../hooks/useToast";
 import {
@@ -36,6 +37,8 @@ import getTimeDifference from "../../../utils/getTimeDifference";
 export default function ChatBox() {
   const { handleError } = useToast();
   const dispatch = useAppDispatch();
+  const inputRef = useRef(null);
+  const emojiPickerRef = useRef(null);
 
   const {
     auth: { user },
@@ -53,6 +56,7 @@ export default function ChatBox() {
   });
 
   const [message, setMessage] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [imgLoading, setImgLoading] = useState(false);
 
   const { data, isFetching } = useGetMessagesQuery(query, {
@@ -82,6 +86,12 @@ export default function ChatBox() {
     },
     [dispatch]
   );
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     handleSetMessages(data?.data?.docs || []);
@@ -120,6 +130,33 @@ export default function ChatBox() {
       socket.off("getSeenMessages");
     };
   }, [messages, user?.role, handleSetMessages, id]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        emojiPickerRef.current &&
+        !emojiPickerRef.current.contains(event.target)
+      ) {
+        setShowEmojiPicker(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker(true);
+  };
+
+  const handleEmojiSelect = (emoji) => {
+    const updatedText = message + emoji.emoji;
+    setMessage(updatedText);
+    setShowEmojiPicker(false);
+    inputRef?.current?.focus();
+  };
 
   const handleImage = async (files) => {
     setImgLoading(true);
@@ -185,11 +222,15 @@ export default function ChatBox() {
     // Filter out any null values in case some uploads failed
     const validAttachments = attachment.filter((url) => url !== null);
 
+    setImgLoading(false);
+
     await sendMessage({
       data: { conversationId: id, text: "", attachment: validAttachments },
     });
 
-    setImgLoading(false);
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   };
 
   const handleLoadMore = () => {
@@ -200,13 +241,27 @@ export default function ChatBox() {
   };
 
   const onSubmit = async () => {
-    if (!message) return;
+    if (message.trim() !== "") {
+      await sendMessage({
+        data: { conversationId: id, text: message, attachment: [] },
+      });
 
-    await sendMessage({
-      data: { conversationId: id, text: message, attachment: [] },
-    });
-    setMessage("");
+      setMessage("");
+
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
+    }
   };
+
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      onSubmit();
+    }
+  };
+
+  const handleSetMessage = (e) => setMessage(e.target.value);
 
   const isOnline = checkIsOnline(adminsAndClientsOnlineList);
   const currentConversationMessages = messages.filter(
@@ -316,9 +371,7 @@ export default function ChatBox() {
                             ))}
                           </Box>
                         ) : (
-                          <p className="text-text__gray max-w-[650px] break-words leading-tight">
-                            {item?.text}
-                          </p>
+                          <FormattedText text={item?.text} />
                         )}
                       </Box>
                     </Box>
@@ -340,48 +393,56 @@ export default function ChatBox() {
         </Box>
 
         <Box className="pt-4 pb-2 px-4">
-          <Box className="flex flex-col gap-2">
+          <Box className="flex flex-col gap-2 relative">
+            {showEmojiPicker && (
+              <div
+                ref={emojiPickerRef}
+                className="absolute bottom-24 left-0 z-10"
+              >
+                <EmojiPicker onEmojiClick={handleEmojiSelect} />
+              </div>
+            )}
             <FormControl fullWidth>
-              <OutlinedInput
-                onChange={(e) => setMessage(e.target.value)}
-                value={message}
-                disabled={isLoading || imgLoading}
-                className="text-brand__font__size__sm"
+              <TextField
+                type="text"
                 placeholder="Enter a message"
+                className="text-brand__font__size__sm"
                 multiline
                 maxRows={4}
-                type="text"
-                onKeyPress={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    onSubmit();
-                  }
-                }}
-                startAdornment={
-                  <InputAdornment
-                    position="end"
-                    className="flex flex-col justify-center relative"
-                  >
-                    <IconButton disabled={isLoading || imgLoading}>
-                      <ReactFileReader
-                        base64={true}
-                        multipleFiles
-                        handleFiles={handleImage}
+                value={message}
+                inputRef={inputRef}
+                disabled={isLoading || imgLoading}
+                onChange={handleSetMessage}
+                onKeyPress={handleOnKeyPress}
+                InputProps={{
+                  startAdornment: (
+                    <Box className="flex items-center gap-1">
+                      <IconButton
+                        className="pr-0 hover:bg-transparent hover:text-primary duration-200"
+                        disabled={isLoading || imgLoading}
                       >
-                        <MdAddPhotoAlternate />
-                      </ReactFileReader>
-                    </IconButton>
-                  </InputAdornment>
-                }
-                endAdornment={
-                  <InputAdornment
-                    position="end"
-                    className="flex flex-col justify-center relative"
-                  >
+                        <ReactFileReader
+                          base64={true}
+                          multipleFiles
+                          handleFiles={handleImage}
+                        >
+                          <MdAddPhotoAlternate />
+                        </ReactFileReader>
+                      </IconButton>
+                      <IconButton
+                        onClick={toggleEmojiPicker}
+                        className="pl-0 hover:bg-transparent hover:text-primary duration-200 "
+                        disabled={isLoading || imgLoading}
+                      >
+                        <FaSmile size={20} />
+                      </IconButton>
+                    </Box>
+                  ),
+                  endAdornment: (
                     <IconButton
                       onClick={onSubmit}
                       disabled={isLoading || imgLoading}
-                      className="text-brand__font__size__sm"
+                      className="text-brand__font__size__sm hover:bg-transparent hover:text-primary duration-200"
                     >
                       {isLoading || imgLoading ? (
                         "Sending..."
@@ -389,8 +450,8 @@ export default function ChatBox() {
                         <IoMdSend size={25} />
                       )}
                     </IconButton>
-                  </InputAdornment>
-                }
+                  ),
+                }}
               />
             </FormControl>
             <Box className="flex justify-between items-center w-full">

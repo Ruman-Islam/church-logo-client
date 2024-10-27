@@ -10,7 +10,6 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,7 +17,6 @@ import Swal from "sweetalert2";
 import Layout from "../../../components/common/Layout";
 import Loader from "../../../components/common/Loader";
 import SectionBanner from "../../../components/common/SectionBanner";
-import { env } from "../../../config/env";
 import { countries } from "../../../constants/countries";
 import useAutomaticScrollWithOffset from "../../../hooks/useAutomaticScrollWithOffset";
 import useToast from "../../../hooks/useToast";
@@ -31,6 +29,7 @@ import { useGetOnePackageQuery } from "../../../services/features/package/packag
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditionalItemPrice";
 import { getAuthErrorMessage } from "../../../utils/getAuthErrorMessage";
+import { multipleImageUploader } from "../../../utils/imageUploader";
 import { packagePriceConversion } from "../../../utils/packagePriceConversion";
 import OrderStepper2 from "../components/OrderStepper2";
 
@@ -137,12 +136,17 @@ export default function OrderCheckout() {
     cartItem?.selectedAdditionalDeliveryTime
   );
 
+  const additionalLanguageObj = calculateAdditionalItemPrice(
+    cartItem?.selectedProgrammingLang
+  );
+
   const totalPrice = Number(
     (
       packagePriceConversion(packageData) +
       additionalFeatureObj.totalPrice +
       additionalRevisionObj.totalPrice +
-      additionalDeliveryObj.totalPrice
+      additionalDeliveryObj.totalPrice +
+      additionalLanguageObj.totalPrice
     ).toFixed(2)
   );
 
@@ -162,37 +166,16 @@ export default function OrderCheckout() {
 
     const referredImages = order?.referredImages || [];
 
-    const uploadedReferredImages = [];
+    const uploadedImages = await multipleImageUploader(
+      referredImages,
+      "customer-order"
+    );
 
-    for (const element of referredImages) {
-      const formData = new FormData();
-      formData.append("upload_preset", env?.cloud_upload_preset);
-      formData.append("cloud_name", env?.cloud_upload_name);
-      formData.append("folder", "church-logo/customer-order");
-      formData.append("file", element?.url);
-
-      try {
-        const { data } = await axios.post(
-          `https://api.cloudinary.com/v1_1/${env?.cloud_upload_name}/upload`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-
-        uploadedReferredImages.push({
-          displayName: data?.display_name,
-          publicId: data?.public_id,
-          secureUrl: data?.secure_url,
-        });
-      } catch (error) {
-        handleError("Something went wrong!");
-      }
-    }
-
-    order.referredImages = uploadedReferredImages;
+    order.referredImages = uploadedImages.map((item) => ({
+      displayName: item?.display_name,
+      publicId: item?.public_id,
+      secureUrl: item?.secure_url,
+    }));
 
     await submitOrder({ data: order });
   };

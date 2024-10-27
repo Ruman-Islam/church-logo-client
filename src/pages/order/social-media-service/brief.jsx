@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
@@ -29,10 +30,9 @@ const AvatarInput = styled.div``;
 export default function OrderBriefScreen() {
   const {
     auth: { user },
-  } = useAppSelector((state) => state);
-  const {
     cart: { cartItems },
   } = useAppSelector((state) => state);
+
   const dispatch = useAppDispatch();
 
   const {
@@ -48,16 +48,18 @@ export default function OrderBriefScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [referredImages, setReferredImages] = useState(
-    cartItem?.brief?.referredImages.length
-      ? cartItem?.brief?.referredImages
-      : []
+    cartItem?.referredImages.length ? cartItem?.referredImages : []
   );
   const [email, setEmail] = useState(
     cartItem?.additionalEmail || user?.email || ""
   );
-  const [videoData, setVideoData] = useState(tagFinder("video_data", cartItem));
+  const [videoData, setVideoData] = useState("");
   const [logoDesc, setLogoDesc] = useState(tagFinder("logo_desc", cartItem));
   const [logoNote, setLogoNote] = useState(tagFinder("logo_note", cartItem));
+  const [chips, setChips] = useState(
+    tagFinder("video_data", cartItem).split(",")
+  );
+
 
   const { data, isFetching } = useGetOnePackageQuery(id);
 
@@ -77,31 +79,45 @@ export default function OrderBriefScreen() {
     );
   };
 
-  const onSubmit = async (data) => {
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" || e.key === "," || e.key === " ") {
+      e.preventDefault();
+      if (videoData.trim()) {
+        setChips([...chips, videoData.trim()]);
+        setVideoData("");
+      }
+    }
+  };
+
+  const handleDeleteChip = (chipToDelete) => {
+    setChips((prevChips) => prevChips.filter((chip) => chip !== chipToDelete));
+  };
+
+  const onSubmit = async () => {
     const order = {
       ...cartItem,
       packageId: id,
       category: "social-media-service",
-      additionalEmail: data.email,
+      additionalEmail: email,
       userId: user?.userId ? user?.userId : null,
       referredImages: referredImages,
       requirements: [
         {
           tag: "video_data",
           question: "Share concept video link if any",
-          answer: data.video_data,
+          answer: chips.length > 1 ? chips.join(",") : "",
         },
         {
           tag: "logo_desc",
           question:
             "Describe what your organization or product does and its target audience",
-          answer: data.logo_desc,
+          answer: logoDesc,
         },
         {
           tag: "logo_note",
           question:
             "Is there anything else you would like to communicate to the designers?",
-          answer: data.logo_note,
+          answer: logoNote,
         },
       ],
     };
@@ -188,17 +204,35 @@ export default function OrderBriefScreen() {
                         </Typography>
 
                         <FormControl fullWidth>
+                          <Box
+                            display="flex"
+                            flexWrap="wrap"
+                            gap={1}
+                            className="py-2"
+                          >
+                            {chips.map(
+                              (chip, index) =>
+                                chip && (
+                                  <Chip
+                                    key={index}
+                                    label={chip}
+                                    onDelete={() => handleDeleteChip(chip)}
+                                    color="primary"
+                                    size="small"
+                                  />
+                                )
+                            )}
+                          </Box>
                           <TextField
                             {...register("video_data")}
                             value={videoData}
                             onChange={(e) => setVideoData(e.target.value)}
+                            onKeyPress={handleKeyPress}
                             className="mt-1 w-full"
                             variant="outlined"
                             id="video_data"
                             name="video_data"
                             type="text"
-                            multiline
-                            minRows={4}
                             size="small"
                             error={!!getAuthErrorMessage(errors, "video_data")}
                             helperText={
