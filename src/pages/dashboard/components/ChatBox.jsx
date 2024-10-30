@@ -129,7 +129,7 @@ export default function ChatBox() {
       socket.off("seenMessages");
       socket.off("getSeenMessages");
     };
-  }, [messages, user?.role, handleSetMessages, id]);
+  }, [messages, user?.role, id, handleSetMessages]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -287,10 +287,7 @@ export default function ChatBox() {
 
         <Box className="flex-grow px-3">
           <PhotoProvider>
-            <ScrollToBottom
-              className="h-[535px] custom-scrollbar py-2"
-              scrollViewClassName="custom-scrollbar"
-            >
+            <ScrollToBottom scrollViewClassName="max-h-[535px] h-full custom-scrollbar py-2">
               {hasShowMore && (
                 <Box
                   className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
@@ -349,11 +346,11 @@ export default function ChatBox() {
                             {item?.attachment.map((url) => (
                               <PhotoView key={url} src={url}>
                                 <Box
-                                  className="max-w-[200px] w-full max-h-[200px] h-full group relative border cursor-pointer"
+                                  className="max-w-[100px] w-full max-h-[100px] h-full group relative border cursor-pointer"
                                   key={url}
                                 >
                                   <img
-                                    className="w-[200px] h-[200px] object-cover"
+                                    className="w-[100px] h-[100px] object-cover"
                                     src={url}
                                     alt="church_logo"
                                   />

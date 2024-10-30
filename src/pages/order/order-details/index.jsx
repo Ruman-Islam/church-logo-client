@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
 import NoDataFound from "../../../components/common/NoDataFound";
-import SectionBanner from "../../../components/common/SectionBanner";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetOneOrderQuery } from "../../../services/features/order/orderApi";
 import { calculateAdditionalItemPrice } from "../../../utils/calculateAdditionalItemPrice";
@@ -49,7 +48,6 @@ export default function OrderDetailScreen() {
           <NoDataFound />
         ) : (
           <>
-            <SectionBanner heading="Order Detail" desc="" />
             <Box
               component="div"
               className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-10"
@@ -231,21 +229,21 @@ export default function OrderDetailScreen() {
                     <ListSubheader className="bg-transparent">
                       <Box className="flex uppercase text-text__gray font-brand__font__semibold gap-6 border-b">
                         <HashLink
-                          to={`/order/order-activities/${id}#activities`}
+                          to={`/order/order-activities/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary"
                         >
                           Activity
                         </HashLink>
                         <HashLink
-                          to={`/order/order-details/${id}#details`}
+                          to={`/order/order-details/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary border-b-2 border-primary"
                         >
                           Details
                         </HashLink>
                         <HashLink
-                          to={`/order/order-requirements/${id}#requirements`}
+                          to={`/order/order-requirements/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary"
                         >

@@ -1,5 +1,6 @@
 import { Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
@@ -52,12 +53,7 @@ const BlogDetailScreen = () => {
               />
             </Box>
           ) : (
-            <div
-            className="enable-list-styles"
-              dangerouslySetInnerHTML={{
-                __html: blog?.content,
-              }}
-            />
+            <ReactQuill theme="bubble" readOnly value={blog?.content} />
           )}
         </div>
       </div>

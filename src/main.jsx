@@ -17,6 +17,7 @@ import App from "./App.jsx";
 import { env } from "./config/env.js";
 import "./index.css";
 import store from "./services/store.js";
+import 'react-quill/dist/quill.snow.css';
 
 const theme = createTheme({
   components: {

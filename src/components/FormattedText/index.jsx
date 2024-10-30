@@ -1,8 +1,10 @@
 const FormattedText = ({ text }) => {
-  const urlRegex = /(https?:\/\/\S+|www\.\S+)/g;
+  // Match URLs and exclude punctuation like commas, periods, etc.
+  const urlRegex = /(https?:\/\/[^\s,]+|www\.[^\s,]+)/g;
 
+  // Find all URLs and separate text parts
   const parts = text.split(urlRegex).map((part, index) =>
-    urlRegex.test(part) ? (
+    urlRegex.test(part.trim()) ? (
       <a
         key={index}
         href={part.startsWith("http") ? part : `https://${part}`}
@@ -10,7 +12,7 @@ const FormattedText = ({ text }) => {
         rel="noopener noreferrer"
         className="text-link__color hover:underline"
       >
-        {part}
+        {part.trim()}
       </a>
     ) : (
       <span key={index}>{part}</span>

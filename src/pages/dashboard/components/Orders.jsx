@@ -1,22 +1,30 @@
 import CloseIcon from "@mui/icons-material/Close";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Avatar from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaDollarSign } from "react-icons/fa6";
 import { IoMdTime } from "react-icons/io";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
+import { useAppSelector } from "../../../services/hook";
 import startCountdown from "../../../utils/countdown";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 
-export function OrderCard({ order }) {
+export function OrderCard({ order, unreadMessages }) {
+  const matchingMessageCount = useMemo(
+    () => unreadMessages.filter((msg) => msg.order._id === order._id).length,
+    [unreadMessages, order._id]
+  );
+
   const scrollWithOffset = useScrollWithOffset();
   const [timer, setTimer] = useState("");
 
@@ -37,13 +45,13 @@ export function OrderCard({ order }) {
           className="w-16 h-14 text-brand__font__size__lg2"
         />
         <Box className="text-brand__font__size__sm leading-tight text-center md:text-start">
-          <Typography variant="p">
+          <Typography variant="body1">
             {order?.package?.title.length > 36
               ? order?.package?.title.slice(0, 36) + "..."
               : order?.package?.title}
           </Typography>
           <Typography
-            variant="p"
+            variant="body2"
             className="block text-text__gray text-brand__font__size__xs mt-1"
           >
             Order ID: {order?.orderId}
@@ -53,20 +61,17 @@ export function OrderCard({ order }) {
       <Box className="flex-grow flex flex-col md:flex-row items-center justify-between text-text__gray gap-2">
         <Box className="flex-grow flex flex-col md:flex-row gap-y-2 justify-between items-center w-full text-brand__font__size__sm text-center md:text-start">
           <Box>
-            <Typography variant="p">Price </Typography>
-            <Typography variant="p" className="flex items-center">
+            <Typography variant="body2">Price</Typography>
+            <Typography variant="body2" className="flex items-center">
               <FaDollarSign />
               <span>{order?.totalPrice}</span>
             </Typography>
           </Box>
           {["in progress", "revision"].includes(order?.orderStatus) && (
             <Box>
-              <Typography variant="p" className="block">
-                Due In{" "}
-              </Typography>
-              <Typography variant="p" className="flex items-center gap-x-1">
+              <Typography variant="body2">Due In</Typography>
+              <Typography variant="body2" className="flex items-center gap-x-1">
                 <IoMdTime />
-                {/* <span>{dateAndTime(order?.deliveryDateUTC)?.date}</span> */}
                 <span>{timer}</span>
               </Typography>
             </Box>
@@ -88,12 +93,25 @@ export function OrderCard({ order }) {
             />
           </Box>
         </Box>
-        <Box className="basis-[25%] text-center text-primary">
+        <Box className="basis-[25%] text-center">
           <HashLink
-            to={`/order/order-details/${order?._id}#details`}
+            to={`/order/order-activities/${order?._id}#activities`}
             scroll={(el) => scrollWithOffset(el, 135)}
           >
-            <Typography variant="p">View</Typography>
+            <Badge
+              color="error"
+              overlap="circular"
+              sx={{
+                "& .MuiBadge-badge": {
+                  fontSize: 9,
+                  height: 15,
+                  minWidth: 15,
+                },
+              }}
+              badgeContent={matchingMessageCount}
+            >
+              <VisibilityIcon />
+            </Badge>
           </HashLink>
         </Box>
       </Box>
@@ -102,33 +120,57 @@ export function OrderCard({ order }) {
 }
 
 export default function Orders() {
-  const [open, setOpen] = useState(true);
+  const {
+    chat: { orderUnreadMessages },
+  } = useAppSelector((state) => state);
 
+  const [open, setOpen] = useState(true);
   const query = {
     page: 1,
     limit: 100,
   };
 
-  const { data: orderData } = useGetOrderListQuery(query);
+  const { data: orderData, refetch } = useGetOrderListQuery(query);
 
-  const order = orderData?.data || [];
+  const orders = useMemo(() => orderData?.data || [], [orderData]);
 
-  const activeOrders = order?.filter(
-    (item) => item?.orderStatus === "in progress"
-  );
+  const { activeOrders, deliveredOrders, totalActiveOrderPrice } =
+    useMemo(() => {
+      const activeOrdersList = orders
+        .filter((item) => item?.orderStatus === "in progress")
+        .sort(
+          (a, b) =>
+            new Date(b?.conversation?.lastUpdated) -
+            new Date(a?.conversation?.lastUpdated)
+        );
 
-  const totalActiveOrderPrice = activeOrders.reduce(
-    (accumulator, currentValue) => accumulator + currentValue?.totalPrice,
-    0
-  );
+      const deliveredOrdersList = orders
+        .filter((item) => item?.orderStatus === "delivered")
+        .sort(
+          (a, b) =>
+            new Date(b?.conversation?.lastUpdated) -
+            new Date(a?.conversation?.lastUpdated)
+        );
 
-  const deliveredOrders = order?.filter(
-    (item) => item?.orderStatus === "delivered"
-  );
+      const activeOrderTotalPrice = activeOrdersList.reduce(
+        (acc, item) => acc + item.totalPrice,
+        0
+      );
+
+      return {
+        activeOrders: activeOrdersList,
+        deliveredOrders: deliveredOrdersList,
+        totalActiveOrderPrice: activeOrderTotalPrice,
+      };
+    }, [orders]);
+
+  useEffect(() => {
+    refetch();
+  }, [refetch, orderUnreadMessages.length]);
 
   return (
     <Box>
-      {order?.length > 0 ? (
+      {orders.length > 0 && (
         <Collapse in={open} className={`border ${open && "mb-3"}`}>
           <Alert
             severity="info"
@@ -136,9 +178,7 @@ export default function Orders() {
               <IconButton
                 color="inherit"
                 size="small"
-                onClick={() => {
-                  setOpen(false);
-                }}
+                onClick={() => setOpen(false)}
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
@@ -154,7 +194,7 @@ export default function Orders() {
             </span>
           </Alert>
         </Collapse>
-      ) : null}
+      )}
 
       <Box className="w-full flex flex-col gap-5">
         <Box className="flex flex-col gap-3">
@@ -163,24 +203,33 @@ export default function Orders() {
               variant="h6"
               className="text-brand__font__size__sm lg:text-brand__font__size__md w-full flex justify-between"
             >
-              <span>Active Orders : {activeOrders?.length} </span>
-              <span className="flex gap-1">
+              <span>
+                Active Orders :{" "}
+                <span className="text-brand__font__size__base font-brand__font__semibold">
+                  {activeOrders.length}
+                </span>{" "}
+              </span>
+              <span className="flex items-center gap-1">
                 <span>Total:</span>
                 <span>
-                  <FaDollarSign className="inline text-brand__font__size__xs lg:text-brand__font__size__base" />
-                  {totalActiveOrderPrice?.toFixed(2)}
+                  <FaDollarSign className="inline text-brand__font__size__sm mb-1" />
+                  {totalActiveOrderPrice.toFixed(2)}
                 </span>
               </span>
             </Typography>
           </Box>
 
           <Box
-            className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
-              activeOrders?.length > 4 ? "max-h-[365px]" : "h-fit"
+            className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar duration-200 ${
+              activeOrders.length > 4 ? "max-h-[365px]" : "h-fit"
             }`}
           >
-            {activeOrders?.map((order) => (
-              <OrderCard key={order?.orderId} order={order} />
+            {activeOrders.map((order) => (
+              <OrderCard
+                key={order?.orderId}
+                order={order}
+                unreadMessages={orderUnreadMessages}
+              />
             ))}
           </Box>
         </Box>
@@ -189,18 +238,22 @@ export default function Orders() {
           <Box className="flex flex-col gap-4">
             <Box className="flex items-center">
               <Box className="max-w-[140px] w-full">
-                <Typography variant="p">Awaiting response</Typography>
+                <Typography variant="body2">Awaiting response</Typography>
               </Box>
               <Box className="border-t w-full flex-grow"></Box>
             </Box>
 
             <Box
               className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
-                deliveredOrders?.length > 4 ? "max-h-[350px]" : "h-fit"
+                deliveredOrders.length > 4 ? "max-h-[350px]" : "h-fit"
               }`}
             >
-              {deliveredOrders?.map((order) => (
-                <OrderCard key={order?.orderId} order={order} />
+              {deliveredOrders.map((order) => (
+                <OrderCard
+                  key={order?.orderId}
+                  order={order}
+                  unreadMessages={orderUnreadMessages}
+                />
               ))}
             </Box>
           </Box>

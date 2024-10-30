@@ -184,7 +184,7 @@ export default function Sidebar() {
                         <span className="flex justify-between gap-x-1 mt-1 leading-tight">
                           <span className="basis-[90%] w-full flex gap-x-2">
                             <span className="flex items-center">
-                              <span className="font-brand__font__semibold mr-1">
+                              <span className="font-brand__font__bold mr-1">
                                 {item?.lastMessage?.senderDetails?.userId ===
                                   user?.userId &&
                                   item?.lastMessage?.text !== "No messages" &&
@@ -195,9 +195,9 @@ export default function Sidebar() {
                                   <CgAttachment size={13} />{" "}
                                   <span>attachment</span>
                                 </span>
-                              ) : item?.lastMessage?.text?.length > 20 ? (
+                              ) : item?.lastMessage?.text?.length > 18 ? (
                                 <span>
-                                  {item?.lastMessage?.text?.slice(0, 20) +
+                                  {item?.lastMessage?.text?.slice(0, 18) +
                                     " " +
                                     "..."}
                                 </span>

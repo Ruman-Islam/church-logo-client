@@ -222,21 +222,21 @@ export default function OrderRequirementsScreen() {
                     <ListSubheader className="bg-transparent">
                       <Box className="flex uppercase text-text__gray font-brand__font__semibold gap-6 border-b">
                         <HashLink
-                          to={`/order/order-activities/${id}#activities`}
+                          to={`/order/order-activities/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary"
                         >
                           Activity
                         </HashLink>
                         <HashLink
-                          to={`/order/order-details/${id}#details`}
+                          to={`/order/order-details/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block hover:border-b-2 hover:border-primary"
                         >
                           Details
                         </HashLink>
                         <HashLink
-                          to={`/order/order-requirements/${id}#requirements`}
+                          to={`/order/order-requirements/${id}`}
                           scroll={(el) => scrollWithOffset(el, 135)}
                           className="inline-block border-b-2 border-primary"
                         >
@@ -300,16 +300,14 @@ export default function OrderRequirementsScreen() {
                               Preferred designs
                             </Typography>
                             <Box className="flex flex-wrap gap-3">
-                              {preferredDesigns.map(
-                                ({ publicId, url }) => (
-                                  <Avatar
-                                    key={publicId}
-                                    variant="square"
-                                    src={url}
-                                    className="w-32 h-24 text-brand__font__size__lg2 rounded"
-                                  />
-                                )
-                              )}
+                              {preferredDesigns.map(({ publicId, url }) => (
+                                <Avatar
+                                  key={publicId}
+                                  variant="square"
+                                  src={url}
+                                  className="w-32 h-24 text-brand__font__size__lg2 rounded"
+                                />
+                              ))}
                             </Box>
                           </Box>
                         </>
@@ -326,16 +324,14 @@ export default function OrderRequirementsScreen() {
                               Preferred colors
                             </Typography>
                             <Box className="flex flex-wrap gap-3">
-                              {preferredColors.map(
-                                ({ publicId, url }) => (
-                                  <Avatar
-                                    key={publicId}
-                                    variant="square"
-                                    src={url}
-                                    className="w-32 h-24 text-brand__font__size__lg2 rounded"
-                                  />
-                                )
-                              )}
+                              {preferredColors.map(({ publicId, url }) => (
+                                <Avatar
+                                  key={publicId}
+                                  variant="square"
+                                  src={url}
+                                  className="w-32 h-24 text-brand__font__size__lg2 rounded"
+                                />
+                              ))}
                             </Box>
                           </Box>
                         </>

@@ -6,8 +6,11 @@ import { useGetUnreadMessagesQuery } from "../../services/features/chat/chatApi"
 import {
   addMessage,
   setAdminsAndClientsOnlineList,
+  setOrderMessage,
+  setOrderUnreadMessages,
   setUnreadMessages,
 } from "../../services/features/chat/chatSlice";
+import { useGetOrderUnreadMessagesQuery } from "../../services/features/order/orderApi";
 import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
 import { setSystemConfiguration } from "../../services/features/system/systemSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
@@ -32,6 +35,15 @@ const LoadInitialData = () => {
       : skipToken
   );
 
+  const { data: orderUnreadMessagesData } = useGetOrderUnreadMessagesQuery(
+    user
+      ? {
+          "receiver.userId": user?.userId,
+          messageType: "order",
+        }
+      : skipToken
+  );
+
   const handleSetSystemConfiguration = useCallback(
     (res) => {
       dispatch(setSystemConfiguration(res));
@@ -42,6 +54,13 @@ const LoadInitialData = () => {
   const handleSetUnreadMessages = useCallback(
     (res) => {
       dispatch(setUnreadMessages(res));
+    },
+    [dispatch]
+  );
+
+  const handleSetOrderUnreadMessages = useCallback(
+    (res) => {
+      dispatch(setOrderUnreadMessages(res));
     },
     [dispatch]
   );
@@ -64,9 +83,17 @@ const LoadInitialData = () => {
     [currentConversationId, dispatch, user?.userId]
   );
 
+  const handleAddOrderMessage = useCallback(
+    (res) => {
+      dispatch(setOrderMessage(res));
+    },
+    [dispatch]
+  );
+
   useEffect(() => {
     socket.connect();
     socket.on("adminClientMsgTransfer", handleAddMessage);
+    socket.on("adminClientOrderMsgTransfer", handleAddOrderMessage);
     socket.on(
       "getAdminsAndClientsOnlineList",
       handleSetAdminsAndClientsOnlineList
@@ -74,6 +101,7 @@ const LoadInitialData = () => {
 
     if (user) {
       handleSetUnreadMessages(unreadMessagesData?.data || []);
+      handleSetOrderUnreadMessages(orderUnreadMessagesData?.data || []);
     }
 
     handleSetSystemConfiguration({ ...data?.data, isLoading });
@@ -87,8 +115,11 @@ const LoadInitialData = () => {
     isLoading,
     data?.data,
     unreadMessagesData?.data,
+    orderUnreadMessagesData?.data,
     handleAddMessage,
     handleSetAdminsAndClientsOnlineList,
+    handleSetOrderUnreadMessages,
+    handleAddOrderMessage,
     handleSetSystemConfiguration,
     handleSetUnreadMessages,
   ]);

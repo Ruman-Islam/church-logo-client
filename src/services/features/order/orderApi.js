@@ -3,6 +3,42 @@ import { api } from "../../api/apiSlice";
 
 const orderApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getOrderUnreadMessages: builder.query({
+      query: (query) => {
+        const url = generateServiceUrl(
+          "/secure/order/get-order-unread-messages",
+          query
+        );
+
+        return {
+          url,
+          method: "GET",
+        };
+      },
+      // providesTags: ["chat"],
+    }),
+    sendOrderMessage: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/order/send-order-message",
+        method: "POST",
+        body: data,
+      }),
+      // invalidatesTags: ["chat"],
+    }),
+    getOrderMessages: builder.query({
+      query: (query) => {
+        const url = generateServiceUrl(
+          "/secure/order/get-order-messages",
+          query
+        );
+
+        return {
+          url,
+          method: "GET",
+        };
+      },
+      providesTags: ["order"],
+    }),
     getOrderList: builder.query({
       query: (query) => {
         const url = generateServiceUrl("/secure/order/order-list", query);
@@ -37,6 +73,9 @@ const orderApi = api.injectEndpoints({
 });
 
 export const {
+  useGetOrderUnreadMessagesQuery,
+  useSendOrderMessageMutation,
+  useGetOrderMessagesQuery,
   useGetOrderListQuery,
   useGetOneOrderQuery,
   useSubmitOrderMutation,

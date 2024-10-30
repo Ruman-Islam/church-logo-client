@@ -13,7 +13,7 @@ import MenuItems from "./MenuItems";
 export default function Header({ topBarEnable, bgColor = "white" }) {
   const {
     auth: { user },
-    chat: { unreadMessages },
+    chat: { unreadMessages, orderUnreadMessages },
   } = useAppSelector((state) => state);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -109,6 +109,7 @@ export default function Header({ topBarEnable, bgColor = "white" }) {
                     onModalOpen={handleModalOpen}
                     user={user}
                     unreadMessages={unreadMessages}
+                    orderUnreadMessages={orderUnreadMessages}
                   />
                 </ul>
               </div>

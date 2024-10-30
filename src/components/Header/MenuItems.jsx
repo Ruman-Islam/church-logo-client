@@ -1,9 +1,7 @@
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Logout from "@mui/icons-material/Logout";
-import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import Settings from "@mui/icons-material/Settings";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
@@ -73,24 +71,29 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
+// const options = [
+//   "None",
+//   "Atria",
+//   "Callisto",
+//   "Dione",
+//   "Ganymede",
+//   "Hangouts Call",
+//   "Luna",
+//   "Oberon",
+//   "Phobos",
+//   "Pyxis",
+//   "Sedna",
+//   "Titania",
+//   "Triton",
+//   "Umbriel",
+// ];
 
-const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
+const MenuItems = ({
+  onModalOpen,
+  user,
+  unreadMessages,
+  orderUnreadMessages,
+}) => {
   const scrollWithOffset = useScrollWithOffset();
 
   const navigate = useNavigate();
@@ -111,11 +114,41 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
     navigate("/");
   };
 
-  const filteredUnreadMessages = [
-    ...new Map(
-      unreadMessages.map((item) => [item?.conversationId?._id, item])
-    ).values(),
+  const getFilteredUnreadMessages = (messages, idKey) => [
+    ...messages
+      .slice()
+      .reverse()
+      .reduce((acc, item) => {
+        const conversationId = item?.[idKey]?._id;
+
+        if (acc.has(conversationId)) {
+          acc.get(conversationId).count += 1;
+        } else {
+          acc.set(conversationId, { ...item, count: 1 });
+        }
+
+        return acc;
+      }, new Map())
+      .values(),
   ];
+
+  const filteredUnreadMessages = getFilteredUnreadMessages(
+    unreadMessages,
+    "conversationId"
+  );
+  const filteredOrderUnreadMessages = getFilteredUnreadMessages(
+    orderUnreadMessages,
+    "conversation"
+  );
+
+  const finalUnreadMessages = [
+    ...filteredUnreadMessages,
+    ...filteredOrderUnreadMessages,
+  ];
+
+  finalUnreadMessages.sort(
+    (a, b) => new Date(b?.dateTime) - new Date(a?.dateTime)
+  );
 
   return (
     <>
@@ -151,7 +184,9 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
                 <Badge
                   color="error"
                   overlap="circular"
-                  badgeContent={unreadMessages?.length}
+                  badgeContent={
+                    unreadMessages?.length + orderUnreadMessages?.length
+                  }
                 >
                   <NotificationsIcon />
                 </Badge>
@@ -185,52 +220,83 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
                     </Typography>
                   </ListSubheader>
                   <Box className="max-h-[250px] h-fit overflow-y-auto bg-white custom-scrollbar">
-                    {filteredUnreadMessages?.map((item) => (
-                      <HashLink
-                        key={item?._id}
-                        scroll={(el) => scrollWithOffset(el, 130)}
-                        to={`/dashboard/inbox/${item?.conversationId?._id}#chat`}
-                        onClick={() => setAnchorEl2(null)}
-                      >
-                        <ListItem className="border-t text-brand__font__size__sm hover:bg-section__bg_color flex justify-between gap-x-2">
-                          <Box className="basis-[5%] flex items-center">
-                            <MessageOutlinedIcon />
-                          </Box>
-                          <Box className="flex-grow">
-                            <ListItemText
-                              primaryTypographyProps={{ fontSize: "12px" }}
-                              primary={
-                                <span className="flex justify-between items-center">
-                                  <span>
-                                    <span className="font-brand__font__semibold">
-                                      {item?.sender?.firstName}{" "}
-                                      {item?.sender?.lastName}:
-                                    </span>{" "}
-                                    <span>
-                                      {item?.text?.length > 40
-                                        ? item?.text?.slice(0, 40) + " " + "..."
-                                        : item?.text}
-                                    </span>
-                                  </span>
-                                  <span>
-                                    {" "}
-                                    {unreadMessages?.length > 0 && (
-                                      <span
-                                        className={`w-3.5 h-3.5 rounded-full flex items-center justify-center bg-error text-white text-[8px]`}
-                                      >
-                                        {unreadMessages?.length}
+                    {finalUnreadMessages?.map((item) => {
+                      const isClientType = item.messageType === "client";
+
+                      const url = isClientType
+                        ? `/dashboard/inbox/${item?.conversationId?._id}#chat`
+                        : `/order/order-activities/${item?.order?._id}`;
+
+                      return (
+                        <HashLink
+                          key={item?._id}
+                          scroll={(el) => scrollWithOffset(el, 130)}
+                          to={url}
+                          onClick={() => setAnchorEl2(null)}
+                        >
+                          <ListItem className="border-t hover:bg-section__bg_color flex justify-between gap-x-2 py-3">
+                            <Box className="basis-[5%] flex items-center text-brand__black__color text-brand__font__size__md">
+                              {isClientType ? (
+                                <Avatar
+                                  variant="round"
+                                  src={item?.sender?.photo?.url}
+                                />
+                              ) : (
+                                <Avatar
+                                  variant="square"
+                                  alt={item?.package?.title}
+                                  src={item?.package?.thumbnail1}
+                                  sx={{ backgroundColor: "#FF5722" }}
+                                />
+                              )}
+                            </Box>
+                            <Box className="flex-grow pr-2">
+                              <ListItemText
+                                primaryTypographyProps={{ fontSize: "12px" }}
+                                primary={
+                                  <span className="flex justify-between items-center">
+                                    <span className="text-brand__font__size__sm">
+                                      <span className="font-brand__font__semibold">
+                                        {isClientType
+                                          ? `${item?.sender?.firstName} ${item?.sender?.lastName}`
+                                          : item?.package?.title?.length > 20
+                                          ? item?.package?.title?.slice(0, 20) +
+                                            "..."
+                                          : item?.package?.title}
                                       </span>
+                                      {": "}
+                                      <span>
+                                        {item?.text?.length > 20
+                                          ? item?.text?.slice(0, 20) +
+                                            " " +
+                                            "..."
+                                          : item?.text}
+                                      </span>
+                                    </span>
+                                    {item.count > 0 && (
+                                      <Badge
+                                        color="error"
+                                        sx={{
+                                          "& .MuiBadge-badge": {
+                                            fontSize: 9,
+                                            height: 15,
+                                            minWidth: 15,
+                                          },
+                                        }}
+                                        badgeContent={item?.count}
+                                        showZero
+                                      ></Badge>
                                     )}
                                   </span>
-                                </span>
-                              }
-                            />
-                          </Box>
-                        </ListItem>
-                      </HashLink>
-                    ))}
+                                }
+                              />
+                            </Box>
+                          </ListItem>
+                        </HashLink>
+                      );
+                    })}
 
-                    {options.map((option) => (
+                    {/* {options.map((option) => (
                       <ListItem
                         className="border-t text-brand__font__size__sm hover:bg-section__bg_color flex justify-between gap-x-2"
                         key={option}
@@ -245,7 +311,7 @@ const MenuItems = ({ onModalOpen, user, unreadMessages }) => {
                           />
                         </Box>
                       </ListItem>
-                    ))}
+                    ))} */}
                   </Box>
                 </List>
               </StyledMenu>
