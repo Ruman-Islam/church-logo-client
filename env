@@ -1,0 +1,33 @@
+VITE_ENV="development"
+VITE_CLOUDINARY_UPLOAD_PRESET="elzaryhp"
+VITE_CLOUDINARY_CLOUD_NAME="dmdjrqvmi"
+
+VITE_APP_SELF_URL_DEV="http://localhost:5174"
+VITE_APP_SELF_URL_PROD="http://localhost:5174"
+VITE_APP_URL_DEV="http://localhost:8080"
+VITE_APP_URL_PROD="https://church-logo-server.onrender.com"
+VITE_APP_ROUTE_URL_DEV="http://localhost:8080/api/v1"
+VITE_APP_ROUTE_URL_PROD="https://church-logo-server.onrender.com/api/v1"
+
+VITE_APP_SUPER_ADMIN_ROLE="super_admin"
+VITE_APP_ADMIN_ROLE="admin"
+VITE_APP_MODERATOR_ROLE="moderator"
+
+
+# PENDINGS.....
+
+# 1. Main faq controll pending on dashboard. (DONE)
+# 2. Client website review page design, Review adding from client site is pending.
+# 3. Task fully incomplete and tasks overview in admin list pending. (DONE)
+# 4. Chat - emoji, custom message, custom offer, client details
+# 5. Order fully feature incomplete.
+# 6. How to use your church logo controll from admin panel. (DONE)
+# 7. E commerce
+# 8. Dashboard.
+# 9. Hosting
+# 10. Payment gateway.
+# 11. Testing....
+# 12. Note option
+
+# version will start from 0.1
+
