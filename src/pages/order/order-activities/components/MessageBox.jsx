@@ -25,6 +25,7 @@ const MessageBox = ({ data }) => {
       const filtered = data.orderUnreadMessages.filter(
         (item) => item?.order?._id !== data?.id
       );
+
       dispatch(setOrderMessages(res));
       dispatch(setOrderUnreadMessages(filtered));
     },
@@ -169,7 +170,7 @@ const MessageBox = ({ data }) => {
                 </Box>
               ))
             ) : (
-              <Box className="flex flex-col items-center gap-2 h-full w-full justify-center text-brand__font__size__lg text-text__gray">
+              <Box className="flex flex-col items-center gap-2 min-h-[535px] h-full w-full justify-center text-brand__font__size__lg text-text__gray">
                 <Typography component="p" className="flex items-center gap-x-2">
                   <BiSolidMessageDetail size={20} />{" "}
                   <span>No conversation</span>

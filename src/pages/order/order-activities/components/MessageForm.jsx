@@ -29,7 +29,7 @@ const MessageForm = ({ data }) => {
 
   useEffect(() => {
     inputRef?.current?.focus();
-  }, []);
+  }, [isSendOrderMessageLoading]);
 
   const handleSetMessage = (e) => setMessage(e.target.value);
 
@@ -86,10 +86,6 @@ const MessageForm = ({ data }) => {
         attachment: validAttachments,
       },
     });
-
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 0);
   };
 
   const onSubmit = async () => {
@@ -104,10 +100,6 @@ const MessageForm = ({ data }) => {
         },
       });
     }
-
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 0);
   };
 
   const handleOnKeyPress = (e) => {
