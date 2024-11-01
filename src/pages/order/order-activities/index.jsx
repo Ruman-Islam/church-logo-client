@@ -1,13 +1,12 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { skipToken } from "@reduxjs/toolkit/query/react";
 import { useCallback, useEffect, useState } from "react";
-import { FaQuestionCircle } from "react-icons/fa";
-import { HiSupport } from "react-icons/hi";
+import { FaCloudDownloadAlt } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
@@ -20,6 +19,7 @@ import {
 } from "../../../services/features/order/orderApi";
 import { useAppDispatch, useAppSelector } from "../../../services/hook";
 import dateAndTime from "../../../utils/dateAndTime";
+import generatePhotoDownloadLink from "../../../utils/generatePhotoDownloadLink";
 import { getImgUrl } from "../../../utils/getImgUrl-utility";
 import MessageBox from "./components/MessageBox";
 import MessageForm from "./components/MessageForm";
@@ -212,52 +212,78 @@ export default function OrderActivityScreen() {
                       </Box>
                     </Box>
 
-                    <Box
-                      component="div"
-                      className="lg:max-w-[250px] w-full border bg-white p-4 flex flex-col gap-5"
-                    >
-                      <Typography
-                        variant="p"
-                        className="font-brand__font__semibold"
-                      >
-                        Support
-                      </Typography>
-                      <HashLink to="/package/${pg?.packageId}#package-faq">
-                        <Box component="div" className="flex gap-2">
-                          <Box className="mt-1">
-                            <FaQuestionCircle />
+                    {id && (
+                      <Box className="bg-white h-full border">
+                        <ListSubheader>
+                          <Typography variant="caption">
+                            Attachments (
+                            {
+                              orderMessagesData?.data?.orderConversation
+                                ?.attachments?.length
+                            }
+                            )
+                          </Typography>
+                        </ListSubheader>
+                        <PhotoProvider>
+                          <Box className="flex flex-wrap gap-1 px-4 max-h-[200px]overflow-y-auto custom-scrollbar">
+                            {(
+                              orderMessagesData?.data?.orderConversation
+                                ?.attachments || []
+                            ).map((url, idx) => (
+                              <PhotoView key={idx} src={url}>
+                                <Box
+                                  className="max-w-[60px] w-full max-h-[50px] h-full group relative border cursor-pointer"
+                                  key={url}
+                                >
+                                  <img
+                                    className="w-[60px] h-[50px] object-cover"
+                                    src={url}
+                                    alt="church_logo"
+                                  />
+
+                                  <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
+                                  <a
+                                    key={url}
+                                    href={generatePhotoDownloadLink(url)}
+                                    download
+                                  >
+                                    <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__sm hover:text-link__color" />
+                                  </a>
+                                </Box>
+                              </PhotoView>
+                            ))}
                           </Box>
-                          <Box className="flex flex-col">
-                            <Typography variant="p">FAQs</Typography>
-                            <Typography
-                              variant="p"
-                              className="text-text__gray text-brand__font__size__sm leading-tight"
-                            >
-                              Find needed answers.
-                            </Typography>
-                          </Box>
+                        </PhotoProvider>
+
+                        <ListSubheader>
+                          <Typography variant="caption">
+                            Links (
+                            {
+                              orderMessagesData?.data?.orderConversation?.links
+                                ?.length
+                            }
+                            )
+                          </Typography>
+                        </ListSubheader>
+                        <Box className="px-4 pb-2 max-h-[160px] overflow-y-auto custom-scrollbar">
+                          {(
+                            orderMessagesData?.data?.orderConversation?.links ||
+                            []
+                          ).map((url, idx) => (
+                            <Box key={idx}>
+                              <a
+                                href={url}
+                                target="_blank"
+                                className="text-link__color text-brand__font__size__xs hover:underline break-words"
+                                rel="noreferrer"
+                              >
+                                {url}
+                              </a>
+                            </Box>
+                          ))}
                         </Box>
-                      </HashLink>
-                      <Divider />
-                      <HashLink to="/package/${pg?.packageId}#package-faq">
-                        <Box component="div" className="flex gap-2">
-                          <Box className="mt-1">
-                            <HiSupport />
-                          </Box>
-                          <Box className="flex flex-col">
-                            <Typography variant="p">
-                              Resolution Center
-                            </Typography>
-                            <Typography
-                              variant="p"
-                              className="text-text__gray text-brand__font__size__sm leading-tight"
-                            >
-                              Resolve order issues.
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </HashLink>
-                    </Box>
+                      </Box>
+                    )}
                   </Box>
 
                   <Box component="div" className="flex-1 flex flex-col gap-5">

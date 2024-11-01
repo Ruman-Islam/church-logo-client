@@ -1,6 +1,6 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
+// import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -9,15 +9,20 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { useEffect, useRef } from "react";
 import { CgAttachment } from "react-icons/cg";
+import { FaCloudDownloadAlt } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
 import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
 import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
+import generatePhotoDownloadLink from "../../../utils/generatePhotoDownloadLink";
 
 export default function Sidebar() {
   const scrollWithOffset = useScrollWithOffset();
+  const { id } = useParams();
 
   const {
     auth: { user },
@@ -84,11 +89,11 @@ export default function Sidebar() {
             <Typography variant="p">ID: {user?.userId}</Typography>
           </Box>
         </Box>
-        <Box className="flex justify-between py-2.5">
+        {/* <Box className="flex justify-between py-2.5">
           <Typography variant="p">Status</Typography>
           <Typography variant="p">{user?.rank}</Typography>
-        </Box>
-        <Divider />
+        </Box> */}
+        {/* <Divider />
         <Box className="mt-2 text-brand__font__size__sm">
           <Box className="flex justify-between py-1">
             <Typography variant="p">Complete Order</Typography>
@@ -102,7 +107,7 @@ export default function Sidebar() {
             <Typography variant="p">Revision</Typography>
             <Typography variant="p">{0}</Typography>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
 
       <Box className="text-text__gray w-full">
@@ -134,7 +139,7 @@ export default function Sidebar() {
             Unread ({unreadMessages?.length})
           </Typography>
         </ListSubheader>
-        <Box className="max-h-[221px] h-fit overflow-y-auto bg-white custom-scrollbar">
+        <Box className="bg-white">
           {conversation?.data?.docs.map((item) => {
             const unreadMsgs = unreadMessages.filter(
               (msg) => msg?.conversationId?._id === item?._id
@@ -144,7 +149,7 @@ export default function Sidebar() {
               <ListItem
                 key={item?._id}
                 alignItems="flex-start"
-                className="p-0 border-t"
+                className="p-0 border-t flex flex-col"
               >
                 <HashLink
                   scroll={(el) => scrollWithOffset(el, 130)}
@@ -184,7 +189,7 @@ export default function Sidebar() {
                         <span className="flex justify-between gap-x-1 mt-1 leading-tight">
                           <span className="basis-[90%] w-full flex gap-x-2">
                             <span className="flex items-center">
-                              <span className="font-brand__font__bold mr-1">
+                              <span className="font-brand__font__semibold mr-1">
                                 {item?.lastMessage?.senderDetails?.userId ===
                                   user?.userId &&
                                   item?.lastMessage?.text !== "No messages" &&
@@ -218,6 +223,61 @@ export default function Sidebar() {
                     />
                   </Box>
                 </HashLink>
+                {id && (
+                  <>
+                    <ListSubheader className="border-t w-full">
+                      <Typography variant="caption">
+                        Attachments ({item?.attachments?.length})
+                      </Typography>
+                    </ListSubheader>
+                    <PhotoProvider>
+                      <Box className="flex flex-wrap gap-1 px-4 max-h-[200px]overflow-y-auto custom-scrollbar">
+                        {(item?.attachments || []).map((url, idx) => (
+                          <PhotoView key={idx} src={url}>
+                            <Box
+                              className="max-w-[60px] w-full max-h-[50px] h-full group relative border cursor-pointer"
+                              key={url}
+                            >
+                              <img
+                                className="w-[60px] h-[50px] object-cover"
+                                src={url}
+                                alt="church_logo"
+                              />
+
+                              <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
+                              <a
+                                key={url}
+                                href={generatePhotoDownloadLink(url)}
+                                download
+                              >
+                                <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__sm hover:text-link__color" />
+                              </a>
+                            </Box>
+                          </PhotoView>
+                        ))}
+                      </Box>
+                    </PhotoProvider>
+                    <ListSubheader>
+                      <Typography variant="caption">
+                        Links ({item?.links?.length})
+                      </Typography>
+                    </ListSubheader>
+                    <Box className="px-4 pb-2 max-h-[160px] overflow-y-auto custom-scrollbar">
+                      {(item?.links || []).map((url, idx) => (
+                        <Box key={idx}>
+                          <a
+                            href={url}
+                            target="_blank"
+                            className="text-link__color text-brand__font__size__xs hover:underline break-words"
+                            rel="noreferrer"
+                          >
+                            {url}
+                          </a>
+                        </Box>
+                      ))}
+                    </Box>
+                  </>
+                )}
               </ListItem>
             );
           })}
