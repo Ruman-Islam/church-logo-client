@@ -44,15 +44,20 @@ export default function OrderActivityScreen() {
     order: id,
   });
 
-  const { data, isFetching } = useGetOneOrderQuery(id);
+  const [orderInfo, setOrderInfo] = useState({});
+
+  const { data, isFetching } = useGetOneOrderQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const { data: orderMessagesData, isFetching: isFetching2 } =
     useGetOrderMessagesQuery(query.order ? query : skipToken, {
       refetchOnMountOrArgChange: true,
     });
 
-  const orderInfo = data?.data || {};
-  const packageTitle = orderInfo?.package?.title;
+  useEffect(() => {
+    setOrderInfo(data?.data || {});
+  }, [data?.data]);
 
   const handleSetCurrentOrderConversationId = useCallback(
     (id) => {
@@ -71,6 +76,7 @@ export default function OrderActivityScreen() {
   }, [id, handleSetCurrentOrderConversationId]);
 
   const { date } = dateAndTime(orderInfo?.deliveryDateUTC);
+  const packageTitle = orderInfo?.package?.title || "";
 
   return (
     <Layout title="Order Activity">
@@ -168,7 +174,7 @@ export default function OrderActivityScreen() {
                       </Box>
 
                       <Box className="text-brand__font__size__sm text-text__gray">
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Delivery date</Typography>
                           <Typography
                             variant="p"
@@ -177,7 +183,7 @@ export default function OrderActivityScreen() {
                             {date}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Total price</Typography>
                           <Typography
                             variant="p"
@@ -186,13 +192,25 @@ export default function OrderActivityScreen() {
                             ${orderInfo?.totalPrice}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Order ID</Typography>
                           <Typography
                             variant="p"
                             className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
                           >
                             #{orderInfo?.orderId}
+                          </Typography>
+                        </Box>
+                        <Box className="flex items-center justify-between py-1">
+                          <Typography variant="p">
+                            Revision remaining
+                          </Typography>
+                          <Typography
+                            variant="p"
+                            className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
+                          >
+                            {(orderInfo?.totalRevision || 0) -
+                              (orderInfo?.usedRevision || 0)}
                           </Typography>
                         </Box>
                       </Box>
@@ -274,7 +292,7 @@ export default function OrderActivityScreen() {
                               <a
                                 href={url}
                                 target="_blank"
-                                className="text-link__color text-brand__font__size__xs hover:underline break-words"
+                                className="text-link__color text-brand__font__size__sm hover:underline break-words"
                                 rel="noreferrer"
                               >
                                 {url}
@@ -330,6 +348,7 @@ export default function OrderActivityScreen() {
                           orderInfo,
                           orderMessages,
                           isFetching2,
+                          setOrderInfo,
                           setQuery,
                         }}
                       />

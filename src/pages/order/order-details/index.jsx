@@ -4,6 +4,7 @@ import Divider from "@mui/material/Divider";
 import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { HiSupport } from "react-icons/hi";
 import { useParams } from "react-router-dom";
@@ -19,9 +20,18 @@ import { getImgUrl } from "../../../utils/getImgUrl-utility";
 export default function OrderDetailScreen() {
   const scrollWithOffset = useScrollWithOffset();
   const { id } = useParams();
-  const { data, isFetching } = useGetOneOrderQuery(id);
-  const orderInfo = data?.data;
-  const packageTitle = orderInfo?.package?.title;
+
+  const [orderInfo, setOrderInfo] = useState({});
+
+  const { data, isFetching } = useGetOneOrderQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    setOrderInfo(data?.data || {});
+  }, [data?.data]);
+
+  const packageTitle = orderInfo?.package?.title || "";
   const additionalFeature = orderInfo?.additionalFeature || [];
   const additionalDeliveryTime = orderInfo?.additionalDeliveryTime || [];
   const additionalRevision = orderInfo?.additionalRevision || [];
@@ -133,7 +143,7 @@ export default function OrderDetailScreen() {
                       </Box>
 
                       <Box className="text-brand__font__size__sm text-text__gray">
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Delivery date</Typography>
                           <Typography
                             variant="p"
@@ -142,7 +152,7 @@ export default function OrderDetailScreen() {
                             {date}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Total price</Typography>
                           <Typography
                             variant="p"
@@ -151,13 +161,25 @@ export default function OrderDetailScreen() {
                             ${orderInfo?.totalPrice}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Order ID</Typography>
                           <Typography
                             variant="p"
                             className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
                           >
                             #{orderInfo?.orderId}
+                          </Typography>
+                        </Box>
+                        <Box className="flex items-center justify-between py-1">
+                          <Typography variant="p">
+                            Revision remaining
+                          </Typography>
+                          <Typography
+                            variant="p"
+                            className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
+                          >
+                            {(orderInfo?.totalRevision || 0) -
+                              (orderInfo?.usedRevision || 0)}
                           </Typography>
                         </Box>
                       </Box>

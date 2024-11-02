@@ -286,8 +286,15 @@ export default function ChatBox() {
         </Box>
 
         <Box className="flex-grow px-3">
+          {currentConversationMessages.length <= 0 && !isFetching && (
+            <Box className="flex flex-col items-center gap-2 min-h-[535px] h-full justify-center text-brand__font__size__lg text-text__gray">
+              <Typography component="p" className="flex items-center gap-x-2">
+                <BiSolidMessageDetail size={20} /> <span>No conversation</span>
+              </Typography>
+            </Box>
+          )}
           <PhotoProvider>
-            <ScrollToBottom scrollViewClassName="max-h-[535px] h-full custom-scrollbar py-2">
+            <ScrollToBottom scrollViewClassName="lg:h-[535px] h-full custom-scrollbar py-2">
               {hasShowMore && (
                 <Box
                   className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
@@ -297,7 +304,7 @@ export default function ChatBox() {
                 </Box>
               )}
               <Box className="flex flex-col gap-5 h-full">
-                {currentConversationMessages?.length > 0 ? (
+                {currentConversationMessages?.length > 0 &&
                   currentConversationMessages.map((item) => (
                     <Box
                       key={item._id}
@@ -372,18 +379,7 @@ export default function ChatBox() {
                         )}
                       </Box>
                     </Box>
-                  ))
-                ) : (
-                  <Box className="flex flex-col items-center gap-2 min-h-[535px] h-full w-full justify-center text-brand__font__size__lg text-text__gray">
-                    <Typography
-                      component="p"
-                      className="flex items-center gap-x-2"
-                    >
-                      <BiSolidMessageDetail size={20} />{" "}
-                      <span>No conversation</span>
-                    </Typography>
-                  </Box>
-                )}
+                  ))}
               </Box>
             </ScrollToBottom>
           </PhotoProvider>

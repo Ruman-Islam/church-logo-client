@@ -3,6 +3,14 @@ import { api } from "../../api/apiSlice";
 
 const orderApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    updateOrderMessageAction: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/order/update-order-message-action",
+        method: "PUT",
+        body: data,
+      }),
+      // invalidatesTags: ["order"],
+    }),
     getOrderUnreadMessages: builder.query({
       query: (query) => {
         const url = generateServiceUrl(
@@ -73,6 +81,7 @@ const orderApi = api.injectEndpoints({
 });
 
 export const {
+  useUpdateOrderMessageActionMutation,
   useGetOrderUnreadMessagesQuery,
   useSendOrderMessageMutation,
   useGetOrderMessagesQuery,

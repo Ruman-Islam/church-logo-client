@@ -4,13 +4,13 @@ import Divider from "@mui/material/Divider";
 import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { HiSupport } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../../components/common/Layout";
 import NoDataFound from "../../../components/common/NoDataFound";
-import SectionBanner from "../../../components/common/SectionBanner";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetOneOrderQuery } from "../../../services/features/order/orderApi";
 import dateAndTime from "../../../utils/dateAndTime";
@@ -19,13 +19,22 @@ import { getImgUrl } from "../../../utils/getImgUrl-utility";
 export default function OrderRequirementsScreen() {
   const scrollWithOffset = useScrollWithOffset();
   const { id } = useParams();
-  const { data, isFetching } = useGetOneOrderQuery(id);
-  const orderInfo = data?.data;
-  const packageTitle = orderInfo?.package?.title;
-  const requirements = orderInfo?.requirements;
-  const referredImages = orderInfo?.referredImages;
-  const preferredDesigns = orderInfo?.preferredDesigns;
-  const preferredColors = orderInfo?.preferredColors;
+
+  const [orderInfo, setOrderInfo] = useState({});
+
+  const { data, isFetching } = useGetOneOrderQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(() => {
+    setOrderInfo(data?.data || {});
+  }, [data?.data]);
+
+  const packageTitle = orderInfo?.package?.title || "";
+  const requirements = orderInfo?.requirements || [];
+  const referredImages = orderInfo?.referredImages || [];
+  const preferredDesigns = orderInfo?.preferredDesigns || [];
+  const preferredColors = orderInfo?.preferredColors || [];
 
   const { date } = dateAndTime(orderInfo?.deliveryDateUTC);
 
@@ -40,7 +49,6 @@ export default function OrderRequirementsScreen() {
           <NoDataFound />
         ) : (
           <>
-            <SectionBanner heading="Order Detail" desc="" />
             <Box
               component="div"
               className="max-w-[1024px] w-full mx-auto px-4 py-5 lg:py-10"
@@ -97,7 +105,7 @@ export default function OrderRequirementsScreen() {
                               variant="p"
                               className="font-brand__font__semibold leading-tight"
                             >
-                              {packageTitle.length > 36
+                              {packageTitle?.length > 36
                                 ? packageTitle.slice(0, 36) + "..."
                                 : packageTitle}
                             </Typography>
@@ -126,7 +134,7 @@ export default function OrderRequirementsScreen() {
                       </Box>
 
                       <Box className="text-brand__font__size__sm text-text__gray">
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Delivery date</Typography>
                           <Typography
                             variant="p"
@@ -135,7 +143,7 @@ export default function OrderRequirementsScreen() {
                             {date}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Total price</Typography>
                           <Typography
                             variant="p"
@@ -144,13 +152,25 @@ export default function OrderRequirementsScreen() {
                             ${orderInfo?.totalPrice}
                           </Typography>
                         </Box>
-                        <Box className="flex justify-between py-1">
+                        <Box className="flex items-center justify-between py-1">
                           <Typography variant="p">Order ID</Typography>
                           <Typography
                             variant="p"
                             className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
                           >
                             #{orderInfo?.orderId}
+                          </Typography>
+                        </Box>
+                        <Box className="flex items-center justify-between py-1">
+                          <Typography variant="p">
+                            Revision remaining
+                          </Typography>
+                          <Typography
+                            variant="p"
+                            className="text-brand__font__size__xs font-brand__font__semibold text-brand__black__color"
+                          >
+                            {(orderInfo?.totalRevision || 0) -
+                              (orderInfo?.usedRevision || 0)}
                           </Typography>
                         </Box>
                       </Box>

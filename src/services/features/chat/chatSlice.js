@@ -74,6 +74,32 @@ const chatSlice = createSlice({
       return (state = { ...state, orderMessages });
     },
 
+    updateOrderMsgAction: (state, action) => {
+      const message = action.payload;
+
+      // Find the index of the existing message (if it exists)
+      const existingIndex = state.orderMessages.findIndex(
+        (item) => item?._id === message?._id
+      );
+
+      // Create a copy of the current messages
+      const updatedMessages = [...state.orderMessages];
+
+      if (existingIndex !== -1) {
+        // Replace the existing message
+        updatedMessages[existingIndex] = message;
+      } else {
+        // Add the new message at the end
+        updatedMessages.push(message);
+      }
+
+      // Return the updated state with the modified messages array
+      return {
+        ...state,
+        orderMessages: updatedMessages,
+      };
+    },
+
     setOrderMessage: (state, action) => {
       const message = action.payload;
       const isExist = state.orderMessages.some(
@@ -143,6 +169,7 @@ export const {
   setOrderUnreadMessages,
   setOrderUnreadMessage,
   setCurrentOrderConversationId,
+  updateOrderMsgAction,
 } = chatSlice.actions;
 
 export default chatSlice.reducer;
