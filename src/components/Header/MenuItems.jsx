@@ -243,7 +243,7 @@ const MenuItems = ({
                                 />
                               ) : (
                                 <Avatar
-                                  variant="square"
+                                  variant="round"
                                   alt={item?.package?.title}
                                   src={item?.package?.thumbnail1}
                                   sx={{ backgroundColor: "#FF5722" }}

@@ -14,6 +14,7 @@ import {
   useSignUpMutation,
 } from "../../services/features/auth/authApi";
 import { setAuth } from "../../services/features/auth/authSlice";
+import { setConversationId } from "../../services/features/chat/chatSlice";
 import { useAppDispatch, useAppSelector } from "../../services/hook";
 import { socket } from "../../socket";
 import { getAuthErrorMessage } from "../../utils/getAuthErrorMessage";
@@ -67,6 +68,7 @@ export default function SignUp({ showForm }) {
         })
       );
       dispatch(setAuth(data?.data || googleSignInData?.data));
+      dispatch(setConversationId(googleSignInData?.data?.user?.conversationId));
     }
     if (error || googleSignInError) {
       handleError(error?.data?.message || googleSignInError?.data?.message);

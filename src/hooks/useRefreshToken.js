@@ -1,10 +1,7 @@
 import { useEffect } from "react";
-import {
-  setAuth,
-} from "../services/features/auth/authSlice";
-import {
-  useGetRefreshTokenMutation,
-} from "../services/features/auth/authApi.js";
+import { useGetRefreshTokenMutation } from "../services/features/auth/authApi.js";
+import { setAuth } from "../services/features/auth/authSlice";
+import { setConversationId } from "../services/features/chat/chatSlice";
 import { useAppDispatch } from "../services/hook";
 
 const useRefreshToken = () => {
@@ -22,6 +19,7 @@ const useRefreshToken = () => {
   useEffect(() => {
     if (data) {
       dispatch(setAuth(data.data));
+      dispatch(setConversationId(data?.data?.user?.conversationId));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);

@@ -82,11 +82,12 @@ const LoadInitialData = () => {
     },
     [currentConversationId, dispatch, user?.userId]
   );
-
+  
   const handleAddOrderMessage = useCallback(
     (res) => {
       dispatch(setOrderMessage(res));
     },
+
     [dispatch]
   );
 

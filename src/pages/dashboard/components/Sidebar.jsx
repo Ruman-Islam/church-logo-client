@@ -1,8 +1,7 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-// import Divider from "@mui/material/Divider";
+import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Skeleton from "@mui/material/Skeleton";
@@ -15,7 +14,7 @@ import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useScrollWithOffset from "../../../hooks/useScrollWithOffset";
 import { useGetInboxQuery } from "../../../services/features/chat/chatApi";
-import { useGetOrderListQuery } from "../../../services/features/order/orderApi";
+import { useGetOrderCountQuery } from "../../../services/features/order/orderApi";
 import { useAppSelector } from "../../../services/hook";
 import checkIsOnline from "../../../utils/checkIsOnline";
 import generatePhotoDownloadLink from "../../../utils/generatePhotoDownloadLink";
@@ -29,15 +28,14 @@ export default function Sidebar() {
     chat: { adminsAndClientsOnlineList, unreadMessages, messages },
   } = useAppSelector((state) => state);
 
+  const prevMessagesLength = useRef(messages.length);
+
   const query = {
     page: 1,
     limit: 1,
   };
 
-  const prevMessagesLength = useRef(messages.length);
-
-  const { /* data: order,  */ isFetching: orderFetching } =
-    useGetOrderListQuery(query);
+  const { data: count } = useGetOrderCountQuery();
 
   const {
     data: conversation,
@@ -56,17 +54,7 @@ export default function Sidebar() {
     prevMessagesLength.current = messages.length;
   }, [messages.length, refetch]);
 
-  // const activeOrders = order?.data.filter(
-  //   (item) => item?.orderStatus === "in progress"
-  // );
-  // const revisionOrders = order?.data.filter(
-  //   (item) => item?.orderStatus === "revision"
-  // );
-  // const completedOrders = order?.data.filter(
-  //   (item) => item?.orderStatus === "completed"
-  // );
-
-  if (orderFetching || conversationFetching) {
+  if (conversationFetching) {
     return <Skeleton variant="square" className="w-[250px] h-[600px]" />;
   }
 
@@ -89,25 +77,25 @@ export default function Sidebar() {
             <Typography variant="p">ID: {user?.userId}</Typography>
           </Box>
         </Box>
-        {/* <Box className="flex justify-between py-2.5">
+        <Box className="flex justify-between py-2.5">
           <Typography variant="p">Status</Typography>
           <Typography variant="p">{user?.rank}</Typography>
-        </Box> */}
-        {/* <Divider />
+        </Box>
+        <Divider />
         <Box className="mt-2 text-brand__font__size__sm">
           <Box className="flex justify-between py-1">
             <Typography variant="p">Complete Order</Typography>
-            <Typography variant="p">{0}</Typography>
+            <Typography variant="p">{count?.data?.completed || 0}</Typography>
           </Box>
           <Box className="flex justify-between py-1">
             <Typography variant="p">Pending Order</Typography>
-            <Typography variant="p">{0}</Typography>
+            <Typography variant="p">{count?.data?.progress || 0}</Typography>
           </Box>
           <Box className="flex justify-between py-1">
             <Typography variant="p">Revision</Typography>
-            <Typography variant="p">{0}</Typography>
+            <Typography variant="p">{count?.data?.revision || 0}</Typography>
           </Box>
-        </Box> */}
+        </Box>
       </Box>
 
       <Box className="text-text__gray w-full">
@@ -146,7 +134,7 @@ export default function Sidebar() {
             );
 
             return (
-              <ListItem
+              <Box
                 key={item?._id}
                 alignItems="flex-start"
                 className="p-0 border-t flex flex-col"
@@ -257,28 +245,9 @@ export default function Sidebar() {
                         ))}
                       </Box>
                     </PhotoProvider>
-                    <ListSubheader>
-                      <Typography variant="caption">
-                        Links ({item?.links?.length})
-                      </Typography>
-                    </ListSubheader>
-                    <Box className="px-4 pb-2 max-h-[160px] overflow-y-auto custom-scrollbar">
-                      {(item?.links || []).map((url, idx) => (
-                        <Box key={idx}>
-                          <a
-                            href={url}
-                            target="_blank"
-                            className="text-link__color text-brand__font__size__xs hover:underline break-words"
-                            rel="noreferrer"
-                          >
-                            {url}
-                          </a>
-                        </Box>
-                      ))}
-                    </Box>
                   </>
                 )}
-              </ListItem>
+              </Box>
             );
           })}
         </Box>

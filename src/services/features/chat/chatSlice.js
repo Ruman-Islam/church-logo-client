@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const chatSlice = createSlice({
   name: "chat",
   initialState: {
+    conversationId: null,
+
     conversations: [],
     messages: [],
     adminsAndClientsOnlineList: [],
@@ -12,8 +14,15 @@ const chatSlice = createSlice({
     orderMessages: [],
     orderUnreadMessages: [],
     currentOrderConversationId: null,
+    orderInfo: null,
   },
   reducers: {
+    setOrderInfo: (state, action) =>
+      (state = { ...state, orderInfo: { ...action.payload } }),
+
+    setConversationId: (state, action) =>
+      (state = { ...state, conversationId: action.payload }),
+
     setCurrentConversationId: (state, action) => {
       return (state = { ...state, currentConversationId: action.payload });
     },
@@ -78,16 +87,16 @@ const chatSlice = createSlice({
       const message = action.payload;
 
       // Find the index of the existing message (if it exists)
-      const existingIndex = state.orderMessages.findIndex(
+      const isExist = state.orderMessages.findIndex(
         (item) => item?._id === message?._id
       );
 
       // Create a copy of the current messages
       const updatedMessages = [...state.orderMessages];
 
-      if (existingIndex !== -1) {
+      if (isExist !== -1) {
         // Replace the existing message
-        updatedMessages[existingIndex] = message;
+        updatedMessages[isExist] = message;
       } else {
         // Add the new message at the end
         updatedMessages.push(message);
@@ -102,28 +111,80 @@ const chatSlice = createSlice({
 
     setOrderMessage: (state, action) => {
       const message = action.payload;
+
       const isExist = state.orderMessages.some(
         (item) => item?._id === message?._id
       );
 
-      if (isExist) return state;
+      if (!message.isDelivered && !message.action) {
+        if (isExist) return state;
 
-      const updatedState = {
-        ...state,
-        orderMessages: [...state.orderMessages, message],
-      };
+        const updatedState = {
+          ...state,
+          orderMessages: [...state.orderMessages, message],
+        };
 
-      if (
-        state.currentOrderConversationId !==
-        (message.order._id || message.order)
-      ) {
-        updatedState.orderUnreadMessages = [
-          ...state.orderUnreadMessages,
-          message,
-        ];
+        if (
+          state.currentOrderConversationId !==
+          (message.order._id || message.order)
+        ) {
+          updatedState.orderUnreadMessages = [
+            ...state.orderUnreadMessages,
+            message,
+          ];
+        }
+
+        return updatedState;
+      } else if (message.isDelivered && !message.action) {
+        if (isExist) return state;
+
+        const updatedState = {
+          ...state,
+          orderMessages: [...state.orderMessages, message],
+        };
+
+        if (
+          state.currentOrderConversationId !==
+          (message.order._id || message.order)
+        ) {
+          updatedState.orderUnreadMessages = [
+            ...state.orderUnreadMessages,
+            message,
+          ];
+        }
+
+        if (state.orderInfo) {
+          updatedState.orderInfo = {
+            ...state.orderInfo,
+            orderStatus: message.order.orderStatus,
+          };
+        }
+
+        return updatedState;
+      } else if (message.isDelivered && message.action && state.orderInfo) {
+        const isExist = state.orderMessages.findIndex(
+          (item) => item?._id === message?._id
+        );
+
+        const updatedState = {
+          ...state,
+          orderMessages: [...state.orderMessages],
+        };
+
+        if (isExist !== -1) {
+          updatedState.orderMessages[isExist] = message;
+        } else {
+          updatedState.orderMessages.push(message);
+        }
+
+        updatedState.orderInfo = {
+          ...state.orderInfo,
+          orderStatus: message.order.orderStatus,
+          usedRevision: message.order.usedRevision,
+        };
+
+        return updatedState;
       }
-
-      return updatedState;
     },
 
     setOrderUnreadMessage: (state, action) => {
@@ -158,6 +219,8 @@ const chatSlice = createSlice({
 });
 
 export const {
+  setOrderInfo,
+  setConversationId,
   setConversations,
   setCurrentConversationId,
   setUnreadMessages,

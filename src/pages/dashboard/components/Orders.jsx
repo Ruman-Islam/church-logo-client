@@ -67,7 +67,7 @@ export function OrderCard({ order, unreadMessages }) {
               <span>{order?.totalPrice}</span>
             </Typography>
           </Box>
-          {["in progress", "revision"].includes(order?.orderStatus) && (
+          {/* {["in progress", "revision"].includes(order?.orderStatus) && (
             <Box>
               <Typography variant="body2">Due In</Typography>
               <Typography variant="body2" className="flex items-center gap-x-1">
@@ -75,7 +75,14 @@ export function OrderCard({ order, unreadMessages }) {
                 <span>{timer}</span>
               </Typography>
             </Box>
-          )}
+          )} */}
+          <Box>
+            <Typography variant="body2">Due In</Typography>
+            <Typography variant="body2" className="flex items-center gap-x-1">
+              <IoMdTime />
+              <span>{timer}</span>
+            </Typography>
+          </Box>
           <Box>
             <Chip
               color={
@@ -134,35 +141,58 @@ export default function Orders() {
 
   const orders = useMemo(() => orderData?.data || [], [orderData]);
 
-  const { activeOrders, deliveredOrders, totalActiveOrderPrice } =
-    useMemo(() => {
-      const activeOrdersList = orders
-        .filter((item) => item?.orderStatus === "in progress")
-        .sort(
-          (a, b) =>
-            new Date(b?.conversation?.lastUpdated) -
-            new Date(a?.conversation?.lastUpdated)
-        );
-
-      const deliveredOrdersList = orders
-        .filter((item) => item?.orderStatus === "delivered")
-        .sort(
-          (a, b) =>
-            new Date(b?.conversation?.lastUpdated) -
-            new Date(a?.conversation?.lastUpdated)
-        );
-
-      const activeOrderTotalPrice = activeOrdersList.reduce(
-        (acc, item) => acc + item.totalPrice,
-        0
+  const {
+    activeOrders,
+    completedOrders,
+    deliveredOrders,
+    revisionOrders,
+    totalActiveOrderPrice,
+  } = useMemo(() => {
+    const activeOrdersList = orders
+      .filter((item) => item?.orderStatus === "in progress")
+      .sort(
+        (a, b) =>
+          new Date(b?.conversation?.lastUpdated) -
+          new Date(a?.conversation?.lastUpdated)
       );
 
-      return {
-        activeOrders: activeOrdersList,
-        deliveredOrders: deliveredOrdersList,
-        totalActiveOrderPrice: activeOrderTotalPrice,
-      };
-    }, [orders]);
+    const deliveredOrdersList = orders
+      .filter((item) => item?.orderStatus === "delivered")
+      .sort(
+        (a, b) =>
+          new Date(b?.conversation?.lastUpdated) -
+          new Date(a?.conversation?.lastUpdated)
+      );
+
+    const revisionOrdersList = orders
+      .filter((item) => item?.orderStatus === "revision")
+      .sort(
+        (a, b) =>
+          new Date(b?.conversation?.lastUpdated) -
+          new Date(a?.conversation?.lastUpdated)
+      );
+
+    const completedOrdersList = orders
+      .filter((item) => item?.orderStatus === "completed")
+      .sort(
+        (a, b) =>
+          new Date(b?.conversation?.lastUpdated) -
+          new Date(a?.conversation?.lastUpdated)
+      );
+
+    const activeOrderTotalPrice = activeOrdersList.reduce(
+      (acc, item) => acc + item.totalPrice,
+      0
+    );
+
+    return {
+      activeOrders: activeOrdersList,
+      completedOrders: completedOrdersList,
+      deliveredOrders: deliveredOrdersList,
+      revisionOrders: revisionOrdersList,
+      totalActiveOrderPrice: activeOrderTotalPrice,
+    };
+  }, [orders]);
 
   useEffect(() => {
     refetch();
@@ -249,6 +279,56 @@ export default function Orders() {
               }`}
             >
               {deliveredOrders.map((order) => (
+                <OrderCard
+                  key={order?.orderId}
+                  order={order}
+                  unreadMessages={orderUnreadMessages}
+                />
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        {revisionOrders.length > 0 && (
+          <Box className="flex flex-col gap-4">
+            <Box className="flex items-center">
+              <Box className="max-w-[80px] w-full">
+                <Typography variant="body2">In revision</Typography>
+              </Box>
+              <Box className="border-t w-full flex-grow"></Box>
+            </Box>
+
+            <Box
+              className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
+                revisionOrders.length > 4 ? "max-h-[350px]" : "h-fit"
+              }`}
+            >
+              {revisionOrders.map((order) => (
+                <OrderCard
+                  key={order?.orderId}
+                  order={order}
+                  unreadMessages={orderUnreadMessages}
+                />
+              ))}
+            </Box>
+          </Box>
+        )}
+
+        {completedOrders.length > 0 && (
+          <Box className="flex flex-col gap-4">
+            <Box className="flex items-center">
+              <Box className="max-w-[80px] w-full">
+                <Typography variant="body2">Completed</Typography>
+              </Box>
+              <Box className="border-t w-full flex-grow"></Box>
+            </Box>
+
+            <Box
+              className={`flex flex-col gap-1 overflow-y-auto custom-scrollbar ${
+                completedOrders.length > 4 ? "max-h-[350px]" : "h-fit"
+              }`}
+            >
+              {completedOrders.map((order) => (
                 <OrderCard
                   key={order?.orderId}
                   order={order}

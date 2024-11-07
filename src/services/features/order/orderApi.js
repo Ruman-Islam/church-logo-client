@@ -3,6 +3,33 @@ import { api } from "../../api/apiSlice";
 
 const orderApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    addReview: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/order/add-review",
+        method: "POST",
+        body: data,
+      }),
+      // invalidatesTags: ["order"],
+    }),
+    getOrderCount: builder.query({
+      query: (query) => {
+        const url = generateServiceUrl("/secure/order/get-order-count", query);
+
+        return {
+          url,
+          method: "GET",
+        };
+      },
+      providesTags: ["order"],
+    }),
+    addExtraFeatures: builder.mutation({
+      query: ({ data }) => ({
+        url: "/secure/order/add-extra-features",
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["order"],
+    }),
     updateOrderMessageAction: builder.mutation({
       query: ({ data }) => ({
         url: "/secure/order/update-order-message-action",
@@ -81,6 +108,9 @@ const orderApi = api.injectEndpoints({
 });
 
 export const {
+  useAddReviewMutation,
+  useGetOrderCountQuery,
+  useAddExtraFeaturesMutation,
   useUpdateOrderMessageActionMutation,
   useGetOrderUnreadMessagesQuery,
   useSendOrderMessageMutation,

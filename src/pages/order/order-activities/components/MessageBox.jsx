@@ -1,17 +1,18 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import { IoCheckmarkDoneSharp, IoCheckmarkSharp } from "react-icons/io5";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import ScrollToBottom from "react-scroll-to-bottom";
 import FormattedText from "../../../../components/FormattedText";
+import useToast from "../../../../hooks/useToast";
 import {
   setOrderMessages,
   setOrderUnreadMessages,
-  updateOrderMsgAction,
 } from "../../../../services/features/chat/chatSlice";
 import { useUpdateOrderMessageActionMutation } from "../../../../services/features/order/orderApi";
 import { useAppDispatch } from "../../../../services/hook";
@@ -20,31 +21,10 @@ import generatePhotoDownloadLink from "../../../../utils/generatePhotoDownloadLi
 import getTimeDifference from "../../../../utils/getTimeDifference";
 
 function GeneralMessage({ item, data }) {
-  const dispatch = useAppDispatch();
+  const { handleSuccess } = useToast();
 
-  const [updateOrderMessageAction, { isSuccess, data: updatedData }] =
+  const [updateOrderMessageAction, { data: updateActionData, isSuccess }] =
     useUpdateOrderMessageActionMutation();
-
-  const handleUpdateOrderMessage = useCallback(
-    (modified) => {
-      dispatch(updateOrderMsgAction(modified));
-    },
-    [dispatch]
-  );
-
-  useEffect(() => {
-    if (isSuccess) {
-      data.setOrderInfo((prev) => ({
-        ...prev,
-        orderStatus: updatedData.data.action,
-        usedRevision: updatedData.data.usedRevision,
-      }));
-
-      handleUpdateOrderMessage(updatedData.data);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
 
   const handleAcceptOrder = async () => {
     await updateOrderMessageAction({
@@ -57,6 +37,33 @@ function GeneralMessage({ item, data }) {
       data: { id: item._id, action: "revision" },
     });
   };
+
+  const handleSuccessMessage = useCallback(
+    (msg) => {
+      handleSuccess(msg);
+    },
+    [handleSuccess]
+  );
+
+  const hasNotifiedRef = useRef(false);
+
+  useEffect(() => {
+    if (isSuccess && !hasNotifiedRef.current) {
+      const action = updateActionData?.data?.action;
+
+      if (action === "revision") {
+        handleSuccessMessage("Order is under revision");
+      } else if (action === "completed") {
+        handleSuccessMessage("Order has been accepted");
+      }
+
+      // Mark as notified to prevent further calls
+      hasNotifiedRef.current = true;
+    } else if (!isSuccess) {
+      // Reset the ref if isSuccess becomes false again
+      hasNotifiedRef.current = false;
+    }
+  }, [handleSuccessMessage, updateActionData, isSuccess]);
 
   return (
     <Box className="text-brand__font__size__sm flex items-start gap-x-1.5">
@@ -93,46 +100,40 @@ function GeneralMessage({ item, data }) {
           )}
         </p>
 
-        {item?.isDelivered && (
+        {item?.isDelivered && !item?.isReview && (
           <Box className="border mt-3 max-w-[640px] w-full">
             <Box className="bg-section__bg_color text-text__gray p-2 border-b">
               Delivery
             </Box>
-            {item?.text.length > 0 && (
-              <Box className="p-2">
-                <FormattedText text={item?.text} />
-              </Box>
-            )}
 
-            {item?.attachment?.length > 0 && (
-              <Box
-                className={`flex items-center p-2 pb-5 flex-wrap my-1 gap-1 h-full ${
-                  !item.action && "border-b"
-                }`}
-              >
-                {item?.attachment.map((url) => (
-                  <PhotoView key={url} src={url}>
-                    <Box
-                      className="max-w-[120px] w-full max-h-[120px] h-full group relative border cursor-pointer"
-                      key={url}
-                    >
-                      <img
-                        className="w-[120px] h-[120px] object-cover"
-                        src={url}
-                        alt="church_logo"
-                      />
-
-                      <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
-                      <a
+            {item?.text.length > 0 && item?.attachment?.length > 0 && (
+              <Box className="p-2 flex items-center gap-2">
+                <Box className="max-w-[138px] w-full flex items-center p-2 pb-5 flex-wrap my-1 gap-1 h-full">
+                  {item?.attachment.map((url) => (
+                    <PhotoView key={url} src={url}>
+                      <Box
+                        className="max-w-[120px] w-full max-h-[120px] h-full group relative border cursor-pointer"
                         key={url}
-                        href={generatePhotoDownloadLink(url)}
-                        download
                       >
-                        <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__lg hover:text-link__color" />
-                      </a>
-                    </Box>
-                  </PhotoView>
-                ))}
+                        <img
+                          className="w-[120px] h-[120px] object-cover"
+                          src={url}
+                          alt="church_logo"
+                        />
+
+                        <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
+                        <a
+                          key={url}
+                          href={generatePhotoDownloadLink(url)}
+                          download
+                        >
+                          <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__lg hover:text-link__color" />
+                        </a>
+                      </Box>
+                    </PhotoView>
+                  ))}
+                </Box>
+                <FormattedText text={item?.text} />
               </Box>
             )}
 
@@ -144,18 +145,95 @@ function GeneralMessage({ item, data }) {
                 >
                   Accept
                 </button>
-                <button
-                  onClick={handleRevisionOrder}
-                  className="bg-[#ED6C02] max-w-[250px] w-full py-2 rounded hover:shadow-xl"
-                >
-                  Revision
-                </button>
+                {data?.orderInfo?.totalRevision >
+                  data?.orderInfo?.usedRevision && (
+                  <button
+                    onClick={handleRevisionOrder}
+                    className="bg-[#ED6C02] max-w-[250px] w-full py-2 rounded hover:shadow-xl"
+                  >
+                    Revision
+                  </button>
+                )}
               </Box>
             )}
           </Box>
         )}
 
-        {!item?.isDelivered && (
+        {item?.isReview && !item?.isDelivered && (
+          <Box className="border mt-3 text-text__gray  max-w-[640px] w-ful w-full">
+            <Box className="bg-section__bg_color border-b p-2 pb-0">
+              <Rating
+                value={item?.review?.ratingPoints}
+                readOnly
+                size="small"
+              />
+            </Box>
+
+            <Box className="flex justify-between items-center">
+              <PhotoView
+                key={item?.review?.productImageUrl}
+                src={item?.review?.productImageUrl}
+              >
+                <Box
+                  className="max-w-[120px] w-full max-h-[120px] h-full group relative border cursor-pointer m-2"
+                  key={item?.review?.productImageUrl}
+                >
+                  <img
+                    className="w-[120px] h-[120px] object-cover"
+                    src={item?.review?.productImageUrl}
+                    alt="church_logo"
+                  />
+
+                  <Box className="absolute bg-black opacity-0 group-hover:opacity-20 top-0 left-0 w-full h-full duration-200"></Box>
+                  <a
+                    key={item?.review?.productImageUrl}
+                    href={generatePhotoDownloadLink(
+                      item?.review?.productImageUrl
+                    )}
+                    download
+                  >
+                    <FaCloudDownloadAlt className="absolute top-2 right-2 text-white hidden group-hover:block duration-200 cursor-pointer text-brand__font__size__lg hover:text-link__color" />
+                  </a>
+                </Box>
+              </PhotoView>
+
+              <Box className="w-full flex flex-col gap-1.5 py-4 text-brand__black__color">
+                <Box className="flex justify-between items-center px-2">
+                  <p>Communication</p>
+                  <Rating
+                    value={item?.review?.communicationRatings}
+                    readOnly
+                    size="small"
+                  />
+                </Box>
+                <Box className="flex justify-between items-center px-2">
+                  <p>Service as Describe</p>
+                  <Rating
+                    value={item?.review?.serviceRatings}
+                    readOnly
+                    size="small"
+                  />
+                </Box>
+                <Box className="flex justify-between items-center px-2">
+                  <p>Recommended</p>
+                  <Rating
+                    value={item?.review?.recommendedRatings}
+                    readOnly
+                    size="small"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {item?.text.length > 0 && (
+              <Box className="p-2">
+                <FormattedText text={item?.text} />
+              </Box>
+            )}
+          </Box>
+        )}
+
+        {!item?.isDelivered && !item?.isReview && (
           <>
             {item?.attachment?.length > 0 && (
               <Box className="flex items-center flex-wrap my-1 gap-1 h-full">
@@ -260,33 +338,32 @@ const MessageBox = ({ data }) => {
   };
 
   return (
-    <Box className="flex-grow px-4">
-      <PhotoProvider>
-        <ScrollToBottom scrollViewClassName="max-h-[500px] h-full custom-scrollbar py-2">
-          {hasShowMore && (
-            <Box
-              className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
-              onClick={handleLoadMore}
-            >
-              {data.isFetching2 ? "Loading..." : "Load more"}
-            </Box>
-          )}
-          <Box className="flex flex-col gap-5 h-full">
-            {currentConversationMessages?.length > 0 ? (
-              currentConversationMessages.map((item) => (
-                <GeneralMessage key={item._id} item={item} data={data} />
-              ))
-            ) : (
-              <Box className="flex flex-col items-center gap-2 min-h-[535px] h-full w-full justify-center text-brand__font__size__lg text-text__gray">
-                <Typography component="p" className="flex items-center gap-x-2">
-                  <BiSolidMessageDetail size={20} />{" "}
-                  <span>No conversation</span>
-                </Typography>
+    <Box className="px-4">
+      {currentConversationMessages.length <= 0 && !data.isFetching2 ? (
+        <Box className="flex flex-col items-center gap-2 w-full justify-center text-brand__font__size__lg text-text__gray h-[450px]">
+          <Typography component="p" className="flex items-center gap-x-2">
+            <BiSolidMessageDetail size={20} /> <span>No conversation</span>
+          </Typography>
+        </Box>
+      ) : (
+        <PhotoProvider>
+          <ScrollToBottom scrollViewClassName="h-[450px] overflow-y-auto custom-scrollbar py-2">
+            {hasShowMore && (
+              <Box
+                className="bg-[#bdbdbd] text-white px-2 rounded w-fit mx-auto cursor-pointer text-brand__font__size__xs"
+                onClick={handleLoadMore}
+              >
+                {data.isFetching2 ? "Loading..." : "Load more"}
               </Box>
             )}
-          </Box>
-        </ScrollToBottom>
-      </PhotoProvider>
+            <Box className="flex flex-col gap-5 h-full">
+              {currentConversationMessages.map((item) => (
+                <GeneralMessage key={item._id} item={item} data={data} />
+              ))}
+            </Box>
+          </ScrollToBottom>
+        </PhotoProvider>
+      )}
     </Box>
   );
 };
