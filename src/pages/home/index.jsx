@@ -17,7 +17,7 @@ export default function HomeScreen() {
   useTracking();
 
   const {
-    system: { homeSettings, isLoading },
+    system: { homeSettings, contactUsThumbnail, isLoading },
   } = useAppSelector((state) => state);
 
   return (
@@ -26,7 +26,7 @@ export default function HomeScreen() {
       <Categories data={homeSettings} loading={isLoading} />
       <Services data={homeSettings} loading={isLoading} />
       <Portfolio data={homeSettings} loading={isLoading} />
-      <ContactBar />
+      <ContactBar data={contactUsThumbnail} />
       <ZeroPlacePromotionalSpace data={homeSettings} loading={isLoading} />
       <Testimonial />
       <ShowCaseYouLogo data={homeSettings} loading={isLoading} />

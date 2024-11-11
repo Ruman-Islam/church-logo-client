@@ -2,10 +2,14 @@ import { skipToken } from "@reduxjs/toolkit/query/react";
 import { useCallback, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import newMessageSound from "../../assets/sounds/chat-sound.mp3";
-import { useGetUnreadMessagesQuery } from "../../services/features/chat/chatApi";
+import {
+  useGetConversationIdQuery,
+  useGetUnreadMessagesQuery,
+} from "../../services/features/chat/chatApi";
 import {
   addMessage,
   setAdminsAndClientsOnlineList,
+  setInboxConversationId,
   setOrderMessage,
   setOrderUnreadMessages,
   setUnreadMessages,
@@ -26,6 +30,10 @@ const LoadInitialData = () => {
 
   const { data, isLoading } = useGetSystemConfigQuery();
 
+  const { data: conversation } = useGetConversationIdQuery(
+    user ? {} : skipToken
+  );
+
   const { data: unreadMessagesData } = useGetUnreadMessagesQuery(
     user
       ? {
@@ -42,6 +50,13 @@ const LoadInitialData = () => {
           messageType: "order",
         }
       : skipToken
+  );
+
+  const handleSetInboxConversationId = useCallback(
+    (res) => {
+      dispatch(setInboxConversationId(res));
+    },
+    [dispatch]
   );
 
   const handleSetSystemConfiguration = useCallback(
@@ -82,7 +97,7 @@ const LoadInitialData = () => {
     },
     [currentConversationId, dispatch, user?.userId]
   );
-  
+
   const handleAddOrderMessage = useCallback(
     (res) => {
       dispatch(setOrderMessage(res));
@@ -103,6 +118,7 @@ const LoadInitialData = () => {
     if (user) {
       handleSetUnreadMessages(unreadMessagesData?.data || []);
       handleSetOrderUnreadMessages(orderUnreadMessagesData?.data || []);
+      handleSetInboxConversationId(conversation?.data || null);
     }
 
     handleSetSystemConfiguration({ ...data?.data, isLoading });
@@ -117,6 +133,8 @@ const LoadInitialData = () => {
     data?.data,
     unreadMessagesData?.data,
     orderUnreadMessagesData?.data,
+    conversation?.data,
+    handleSetInboxConversationId,
     handleAddMessage,
     handleSetAdminsAndClientsOnlineList,
     handleSetOrderUnreadMessages,

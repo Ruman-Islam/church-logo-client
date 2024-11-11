@@ -15,8 +15,13 @@ const chatSlice = createSlice({
     orderUnreadMessages: [],
     currentOrderConversationId: null,
     orderInfo: null,
+
+    inboxConversationId: null,
   },
   reducers: {
+    setInboxConversationId: (state, action) =>
+      (state = { ...state, inboxConversationId: action.payload }),
+
     setOrderInfo: (state, action) =>
       (state = { ...state, orderInfo: { ...action.payload } }),
 
@@ -219,6 +224,7 @@ const chatSlice = createSlice({
 });
 
 export const {
+  setInboxConversationId,
   setOrderInfo,
   setConversationId,
   setConversations,

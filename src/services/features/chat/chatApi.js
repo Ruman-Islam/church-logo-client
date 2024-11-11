@@ -3,6 +3,20 @@ import { api } from "../../api/apiSlice";
 
 const chatApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getConversationId: builder.query({
+      query: (query) => {
+        const url = generateServiceUrl(
+          "/secure/chat/get-conversation-id",
+          query
+        );
+
+        return {
+          url,
+          method: "GET",
+        };
+      },
+      // providesTags: ["chat"],
+    }),
     getUnreadMessages: builder.query({
       query: (query) => {
         const url = generateServiceUrl(
@@ -51,6 +65,7 @@ const chatApi = api.injectEndpoints({
 });
 
 export const {
+  useGetConversationIdQuery,
   useGetUnreadMessagesQuery,
   useSendMessageMutation,
   useGetMessagesQuery,
