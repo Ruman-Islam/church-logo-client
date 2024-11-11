@@ -4,6 +4,7 @@ import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
+import { useAppSelector } from "../../services/hook.js";
 import "../../styles/categories.css";
 import CategoryBtn from "./components/CategoryBtn";
 import OurClientsLovesUs from "./components/OurClientsLovesUs";
@@ -12,6 +13,11 @@ import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryWebDesignScreen() {
   useTracking();
+
+  const {
+    system: { categorySettings },
+  } = useAppSelector((state) => state);
+
   const [iconColors, setIconColors] = useState({});
 
   const [query] = useState({
@@ -24,7 +30,6 @@ export default function CategoryWebDesignScreen() {
 
   const { data, isLoading } = useGetPackageListQuery(query);
   const packages = data?.data || [];
-  const meta = data?.meta?.systemData || {};
 
   return (
     <Layout
@@ -58,7 +63,7 @@ export default function CategoryWebDesignScreen() {
                       <div className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
                         <img
                           className="max-w-[550px] w-full h-[500px] object-cover p-5"
-                          src={meta?.webDesignThumbnail}
+                          src={categorySettings?.webDesignThumbnail}
                           alt=""
                         />
                       </div>
@@ -87,7 +92,7 @@ export default function CategoryWebDesignScreen() {
         </div>
 
         <div className="bg-section__bg_color">
-          <WhyChurchLogo imgUrl="image/package/churchlogo_website_design-2.png" />
+          <WhyChurchLogo imgUrl={categorySettings?.webDesignThumbnail2} />
         </div>
 
         <OurClientsLovesUs />

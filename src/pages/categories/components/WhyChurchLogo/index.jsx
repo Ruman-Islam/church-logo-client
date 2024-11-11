@@ -3,7 +3,6 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import Box from "@mui/material/Box";
-import { getImgUrl } from "../../../../utils/getImgUrl-utility";
 
 const ratingData = [
   {
@@ -47,7 +46,7 @@ const RatingCard = (props) => {
 
 export default function WhyChurchLogo({ imgUrl }) {
   return (
-    <Box className="flex flex-col lg:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container">
+    <Box className="flex flex-col lg:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container py-10">
       <Box className="basis-full lg:basis-[60%] p-5">
         <Box className="leading-tight">
           <h2 className="text-[24px] md:text-[32px]">So, why Church Logo?</h2>
@@ -62,12 +61,7 @@ export default function WhyChurchLogo({ imgUrl }) {
         </Box>
       </Box>
       <Box className="basis-full lg:basis-[40%] hidden lg:flex justify-center items-center">
-        <img
-          src={getImgUrl(
-            imgUrl ? imgUrl : "image/hero-banner/churchlogo_slider_02.png"
-          )}
-          alt="church_logo"
-        />
+        <img src={imgUrl} alt="church_logo" />
       </Box>
     </Box>
   );

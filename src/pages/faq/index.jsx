@@ -9,13 +9,12 @@ import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
 import useTracking from "../../hooks/useTracking";
 import { useAppSelector } from "../../services/hook";
-import { getImgUrl } from "../../utils/getImgUrl-utility";
 
 export default function FAQScreen() {
   useTracking();
 
   const {
-    system: { generalFaqs, isLoading },
+    system: { generalFaqs, faqThumbnail, isLoading },
   } = useAppSelector((state) => state);
 
   const faqs = generalFaqs || [];
@@ -171,9 +170,7 @@ export default function FAQScreen() {
                       <figure className="w-full h-full rounded-xl">
                         <img
                           className="w-full h-full object-cover rounded-xl"
-                          src={getImgUrl(
-                            "image/hero-banner/churchlogo_slider_03.png"
-                          )}
+                          src={faqThumbnail}
                           alt="church_logo_faq"
                         />
                       </figure>

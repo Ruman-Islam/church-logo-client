@@ -74,12 +74,12 @@ export default function OurClientsLovesUs() {
   const reviews = data?.data || [];
 
   return !reviews.length ? null : (
-    <div className="h-fit py-5 md:py-16 overflow-hidden">
+    <Box className="h-fit py-5 md:py-16 overflow-hidden">
       <h1 className="text-brand__font__size__lg md:text-brand__font__size__xl leading-tight text-center mb-2">
         Our clients love us
       </h1>
 
-      <div className="category-slide-container w-full">
+      <Box className="category-slide-container w-full">
         <Slider {...settings} className="p-2">
           {reviews.map((item) => (
             <Card
@@ -88,80 +88,82 @@ export default function OurClientsLovesUs() {
               className="rounded-xl shadow-md"
             >
               <CardMedia
-                className="rounded-tl-xl rounded-tr-xl border"
+                className="rounded-tl-xl rounded-tr-xl border h-[250px]"
                 component="img"
-                height="140"
                 image={item?.productImageUrl}
                 alt="church_logo"
               />
 
-              <CardContent>
-                <Typography>
-                  <Rating
-                    name="read-only"
-                    value={item?.ratingPoints || 5}
-                    precision={0.5}
-                    readOnly
-                    style={{
-                      fontSize: 20,
-                    }}
-                    emptyIcon={
-                      <StarIcon
-                        style={{
-                          opacity: 0.55,
-                          color: "white",
-                        }}
-                        fontSize="inherit"
-                      />
-                    }
-                  />
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  <span>&ldquo;</span>
-                  <span className="italic">
-                    {item?.reviewText.length > 90
-                      ? `${item?.reviewText.slice(0, 90)}...`
-                      : item?.reviewText}
-                  </span>
-                  <span>&rdquo;</span>
-                </Typography>
-              </CardContent>
-
-              <CardContent className="py-4 px-0">
-                <Box className="flex gap-2">
-                  <Box className="w-10 h-10 rounded-full">
-                    <Avatar
-                      alt={item?.user?.firstName}
-                      src={
-                        item?.user?.photo?.url || "/static/images/avatar/1.jpg"
+              <Box className="flex flex-col justify-between h-[200px]">
+                <CardContent>
+                  <Typography>
+                    <Rating
+                      name="read-only"
+                      value={item?.ratingPoints || 5}
+                      precision={0.5}
+                      readOnly
+                      style={{
+                        fontSize: 20,
+                      }}
+                      emptyIcon={
+                        <StarIcon
+                          style={{
+                            opacity: 0.55,
+                            color: "gray",
+                          }}
+                          fontSize="inherit"
+                        />
                       }
-                      sx={{ backgroundColor: generateRandomHexColor() }}
-                      className="w-full h-full border-2"
                     />
-                  </Box>
-                  <Box>
-                    <Box className="flex items-center gap-x-1 leading-tight">
-                      <span>{`${item?.user?.firstName} ${item?.user?.lastName}`}</span>
-                      {item?.user?.verified && (
-                        <VerifiedIcon className="text-primary text-brand__font__size__sm" />
-                      )}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    <span>&ldquo;</span>
+                    <span className="italic">
+                      {item?.reviewText.length > 90
+                        ? `${item?.reviewText.slice(0, 90)}...`
+                        : item?.reviewText}
+                    </span>
+                    <span>&rdquo;</span>
+                  </Typography>
+                </CardContent>
+
+                <CardContent className="py-4 px-0">
+                  <Box className="flex gap-2">
+                    <Box className="w-10 h-10 rounded-full">
+                      <Avatar
+                        alt={item?.user?.firstName}
+                        src={
+                          item?.user?.photo?.url ||
+                          "/static/images/avatar/1.jpg"
+                        }
+                        sx={{ backgroundColor: generateRandomHexColor() }}
+                        className="w-full h-full border-2"
+                      />
                     </Box>
                     <Box>
-                      {item?.user?.designation ? (
-                        <small className="flex">
-                          {item?.user?.designation}
-                        </small>
-                      ) : (
-                        <small className="flex">Verified</small>
-                      )}
+                      <Box className="flex items-center gap-x-1 leading-tight">
+                        <span>{`${item?.user?.firstName} ${item?.user?.lastName}`}</span>
+                        {item?.user?.verified && (
+                          <VerifiedIcon className="text-primary text-brand__font__size__sm" />
+                        )}
+                      </Box>
+                      <Box>
+                        {item?.user?.designation ? (
+                          <small className="flex">
+                            {item?.user?.designation}
+                          </small>
+                        ) : (
+                          <small className="flex">Verified</small>
+                        )}
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
-              </CardContent>
+                </CardContent>
+              </Box>
             </Card>
           ))}
         </Slider>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

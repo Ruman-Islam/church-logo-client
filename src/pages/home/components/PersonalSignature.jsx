@@ -36,7 +36,7 @@ export default function PersonalSignature({ data, loading }) {
             <div className="duration-300 bg-primary hover:bg-brand__black__color rounded-full text-white w-fit mt-5 mx-auto md:ml-2">
               <HashLink
                 className="px-8 py-2 w-full inline-block"
-                to="/categories/logo-design#logo-design"
+                to="/categories/personal-signature#personal-signature"
                 scroll={(el) => scrollWithOffset(el, 135)}
               >
                 Order Now
