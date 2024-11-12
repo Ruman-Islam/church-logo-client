@@ -201,7 +201,9 @@ export default function OrderRequirementsScreen() {
                     >
                       Support
                     </Typography>
-                    <HashLink to="/package/${pg?.packageId}#package-faq">
+                    <HashLink
+                      to={`/package/${orderInfo?.packageId}#package-faq`}
+                    >
                       <Box component="div" className="flex gap-2">
                         <Box className="mt-1">
                           <FaQuestionCircle />
@@ -218,7 +220,7 @@ export default function OrderRequirementsScreen() {
                       </Box>
                     </HashLink>
                     <Divider />
-                    <HashLink to="/package/${pg?.packageId}#package-faq">
+                    <HashLink to={`/order/order-activities/${id}`}>
                       <Box component="div" className="flex gap-2">
                         <Box className="mt-1">
                           <HiSupport />
