@@ -49,16 +49,16 @@ const PackageCard = ({ i, pg, iconColors, setIconColors }) => {
           <div className="text-brand__font__size__xl group-hover:text-primary duration-300 pt-2">
             <PackageIcon fill={iconColors[pg?.packageId] || "#031401"} />
           </div>
-          <div>
-            <h1 className="md:text-brand__font__size__md group-hover:text-primary duration-300 leading-tight md:leading-normal mb-1.5 md:m-0">
+          <div className="flex flex-col">
+            <h1 className="md:text-brand__font__size__md group-hover:text-primary duration-300 leading-[20px] mb-1.5">
               {pg?.title}
             </h1>
-            <div className="flex items-center gap-4 text-brand__font__size__sm">
-              <span>from US${packagePriceConversion(pg)}</span>
+            <div className="flex items-center gap-2 text-brand__font__size__sm">
+              <span className="text-brand__font__size__md font-brand__font__semibold">
+                ${packagePriceConversion(pg)}
+              </span>
               {pg?.savings > 0 && (
-                <span className="border border-primary py-0.5 px-2 rounded text-primary">
-                  Save {pg?.savings}%+
-                </span>
+                <span className="text-primary">{pg?.savings}%+</span>
               )}
             </div>
           </div>

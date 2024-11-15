@@ -10,7 +10,7 @@ export default function PackageIcon(props) {
       viewBox="0 0 100 100"
       enableBackground="new 0 0 100 100"
       xmlSpace="preserve"
-      width="30"
+      width="35"
       fill={props.fill}
     >
       <g>

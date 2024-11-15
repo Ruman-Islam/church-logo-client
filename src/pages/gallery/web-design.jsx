@@ -6,6 +6,7 @@ import SectionBanner from "../../components/common/SectionBanner";
 import { galleryNavButtons } from "../../constants/gallery";
 import useQueryParameter from "../../hooks/useQueryParameter";
 import { useGetGalleryImageQuery } from "../../services/features/gallery/galleryApi";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 export default function GalleryWebDesignScreen() {
   const { pathname } = useLocation();
@@ -44,25 +45,24 @@ export default function GalleryWebDesignScreen() {
             ))}
           </div>
 
+          <PhotoProvider>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 max-w-[1024px] w-full mx-auto gap-5">
             {(isLoading ? Array.from(new Array(dynamicUrl.limit)) : gallery)
               ?.slice(0, dynamicUrl.limit)
               .map((d, i) =>
                 d ? (
+                  <PhotoView key={i} src={d?.urls[0].url}>
                   <div
-                    key={d?.publicId}
                     className="w-full md:max-w-[800px] xl:max-w-[400px] text-center"
                   >
                     <div
                       style={{
-                        backgroundImage: `url(${d.url})`,
+                        backgroundImage: `url(${d?.urls[0].url})`,
                       }}
                       className={`w-full md:max-w-[800px] xl:max-w-[400px] h-[450px] bg-text__gray hover:duration-[10s] bg-top hover:bg-bottom cursor-pointer bg-cover shadow-lg border rounded-xl`}
                     ></div>
-                    {/* <div className="p-3">
-                      {d?.title ? d?.title : "Website Name"}
-                    </div> */}
                   </div>
+                  </PhotoView>
                 ) : (
                   <Skeleton
                     key={i}
@@ -73,6 +73,7 @@ export default function GalleryWebDesignScreen() {
                 )
               )}
           </div>
+          </PhotoProvider>
 
           {isVisibleMoreBtn ? (
             <div className="flex justify-center">

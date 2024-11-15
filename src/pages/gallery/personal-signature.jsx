@@ -47,17 +47,18 @@ export default function GalleryPersonalSignatureScreen() {
               </HashLink>
             ))}
           </div>
-          <PhotoProvider>
+
+           <PhotoProvider>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-3 max-w-[1024px] w-full mx-auto gap-4">
               {(isFetching ? Array.from(new Array(dynamicUrl.limit)) : gallery)
                 ?.slice(0, dynamicUrl.limit)
                 .map((d, i) =>
                   d ? (
-                    <PhotoView key={d?.publicId} src={d?.url}>
+                    <PhotoView key={i} src={d?.urls[0].url}>
                       <img
                         data-aos="flip-left"
                         data-aos-duration={`${i + 1 * 5}00`}
-                        src={d?.url}
+                        src={d?.urls[0].url}
                         className="w-full h-full object-cover rounded-md hover:cursor-pointer border"
                       />
                     </PhotoView>
