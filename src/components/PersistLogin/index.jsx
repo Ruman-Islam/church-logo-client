@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import useRefreshToken from "../../hooks/useRefreshToken.js";
 import { useAppSelector } from "../../services/hook.js";
 import { socket } from "../../socket.js";
-import Loader from "../common/Loader";
+import CrossLoader from "../common/CrossLoader/index.jsx";
 
 const PersistLogin = () => {
   const refresh = useRefreshToken();
@@ -45,7 +45,6 @@ const PersistLogin = () => {
         // Set a new idle timeout
         activityTimeoutRef.current = setTimeout(() => {
           setIsIdle(true);
-        
         }, 3000); // Set idle after 30 seconds of inactivity
       };
 
@@ -85,7 +84,7 @@ const PersistLogin = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth?.token]);
 
-  return <>{isLoading ? <Loader /> : <Outlet />}</>;
+  return <>{isLoading ? <CrossLoader /> : <Outlet />}</>;
 };
 
 export default PersistLogin;

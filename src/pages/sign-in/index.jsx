@@ -14,8 +14,13 @@ export default function SignInScreen() {
   const isSignIn = showForm.includes("sign-in");
 
   return (
-    <Layout title="Log In" showHeader={false} showFooter={false} sectionHeight="100vh">
-      <section className="text-brand__black__color h-full">
+    <Layout
+      title="Log In"
+      showHeader={false}
+      showFooter={false}
+      sectionHeight="100vh"
+    >
+      <section className="text-brand__black__color h-full bg-login_background_church_logo bg-no-repeat bg-center bg-cover">
         <div className="container h-full flex flex-col justify-center items-center p-4 md:p-8">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[800px] w-full max-h-[600px] h-full mx-auto rounded-xl p-2">
             <div className="h-full flex flex-row-reverse justify-between bg-white rounded-xl shadow-md">

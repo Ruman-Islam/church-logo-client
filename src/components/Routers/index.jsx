@@ -4,13 +4,13 @@ import RequireAuth from "../../auth/RequireAuth";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import PersistLogin from "../../components/PersistLogin";
-import Loader from "../../components/common/Loader";
 import DashboardScreen from "../../pages/dashboard";
 import NotFoundScreen from "../../pages/not-found";
 import privateDashboardRoutes from "../../routes/privateDashboardRoutes";
 import privateRoutes from "../../routes/privateRoutes";
 import publicRoutes from "../../routes/publicRoutes";
 import LoadInitialData from "../LoadInitialData";
+import CrossLoader from "../common/CrossLoader";
 
 export default function Routers() {
   return (
@@ -19,7 +19,7 @@ export default function Routers() {
         fallback={
           <Fragment>
             <Header topBarEnable="enable" />
-            <Loader />
+            <CrossLoader />
             <Footer />
           </Fragment>
         }
