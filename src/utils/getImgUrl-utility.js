@@ -2,7 +2,7 @@ import { countries } from "../constants/countries";
 
 function getCountryImgPath(countryName) {
   const country = countries.find(
-    (item) => item?.country.toLowerCase() === countryName.toLowerCase()
+    (item) => item?.country?.toLowerCase() === countryName?.toLowerCase()
   );
   const path = country?.path;
 
