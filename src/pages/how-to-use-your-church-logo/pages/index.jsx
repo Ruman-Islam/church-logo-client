@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import { useParams } from "react-router-dom";
 import Layout from "../../../components/common/Layout";
+import TextEditor from "../../../components/TextEditor";
 import { useGetOneQuery } from "../../../services/features/howToUseChurchLogo/howToUseChurchLogoApi";
 
 const HowToUseChurchLogoDetail = () => {
@@ -51,11 +52,7 @@ const HowToUseChurchLogoDetail = () => {
             />
           </Box>
         ) : (
-          <Box
-            dangerouslySetInnerHTML={{
-              __html: howToUseChurchLogoData?.content,
-            }}
-          />
+          <TextEditor readOnly content={howToUseChurchLogoData?.content} />
         )}
       </Box>
     </Layout>

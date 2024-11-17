@@ -1,9 +1,9 @@
 import { Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/common/Layout";
 import SectionBanner from "../../components/common/SectionBanner";
+import TextEditor from "../../components/TextEditor";
 import { useGetBlogQuery } from "../../services/features/blog/blogApi";
 
 const BlogDetailScreen = () => {
@@ -53,7 +53,7 @@ const BlogDetailScreen = () => {
               />
             </Box>
           ) : (
-            <ReactQuill theme="bubble" readOnly value={blog?.content} />
+            <TextEditor readOnly content={blog?.content} />
           )}
         </div>
       </div>
