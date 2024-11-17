@@ -7,9 +7,9 @@
   },
   {
     "id": 2,
-    "title": "Church Shop",
-    "route": "/church-shop#church-shop",
-    "match": "/church-shop"
+    "title": "About Us",
+    "route": "/about-us#about-us",
+    "match": "/about-us"
   },
   {
     "id": 3,

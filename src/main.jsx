@@ -10,6 +10,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "react-photo-view/dist/react-photo-view.css";
 import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";

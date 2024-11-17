@@ -245,6 +245,16 @@ const publicRoutes = [
     name: "blog/:id",
     Component: () => import("../pages/blog-detail/index"),
   },
+  {
+    path: "about-us",
+    name: "about-us",
+    Component: () => import("../pages/about-us/index"),
+  },
+  {
+    path: "contact-us",
+    name: "contact-us",
+    Component: () => import("../pages/contact-us/index"),
+  },
 ];
 
 export default publicRoutes;

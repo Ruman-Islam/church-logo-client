@@ -1,10 +1,6 @@
 import { Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
-import {
-  default as normalLogo,
-  default as stickyLogo,
-} from "../../assets/logo/churchlogo.png";
 import { useGetSystemConfigQuery } from "../../services/features/system/systemApi";
 import { useAppSelector } from "../../services/hook";
 import Auth from "../Auth";
@@ -13,6 +9,7 @@ import MenuItems from "./MenuItems";
 export default function Header({ topBarEnable, bgColor = "white" }) {
   const {
     auth: { user },
+    system: { logo },
     chat: { unreadMessages, orderUnreadMessages },
   } = useAppSelector((state) => state);
 
@@ -67,18 +64,14 @@ export default function Header({ topBarEnable, bgColor = "white" }) {
           <div className="container h-full">
             <nav className="flex items-center justify-between h-full relative">
               <div className="flex justify-between flex-1 h-full items-center z-50">
-                <div className="logo w-[220px] md:w-[250px] xl:w-[300px]">
+                <div className="max-w-[200px] md:max-w-[350px] lg:max-w-[450px]">
                   {isVisible ? (
-                    <HashLink to="/#" className="logo-text">
-                      <img
-                        className="w-[280px]"
-                        src={stickyLogo}
-                        alt="church logo"
-                      />
+                    <HashLink to="/#">
+                      <img src={logo} alt="church_logo" />
                     </HashLink>
                   ) : (
-                    <HashLink to="/#" className="logo-text">
-                      <img src={normalLogo} alt="church logo" />
+                    <HashLink to="/#">
+                      <img src={logo} alt="church_logo" />
                     </HashLink>
                   )}
                 </div>
@@ -98,7 +91,7 @@ export default function Header({ topBarEnable, bgColor = "white" }) {
               </div>
               <div
                 style={{ backgroundColor: bgColor }}
-                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block w-full duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
+                className={`absolute left-0 right-0 lg:relative lg:top-0 lg:left-0 lg:right-0 lg:block  duration-700 ease-in-out lg:px-2 shadow-2xl lg:shadow-none ${
                   menuOpen
                     ? "top-[90px] animate-navMenuOpInOut"
                     : "-top-[400px]"

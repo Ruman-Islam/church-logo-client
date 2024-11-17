@@ -1,15 +1,15 @@
-import { Skeleton } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
+import OurClientsLovesUs from "../../components/common/OurClientsLovesUs";
 import SectionBanner from "../../components/common/SectionBanner";
+import WhyChurchLogo from "../../components/common/WhyChurchLogo";
 import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import { useAppSelector } from "../../services/hook.js";
 import "../../styles/categories.css";
 import CategoryBtn from "./components/CategoryBtn";
-import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
-import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryPersonalSignatureScreen() {
   useTracking();
@@ -36,16 +36,16 @@ export default function CategoryPersonalSignatureScreen() {
       title="Business & Advertising - Boost Your Church's Visibility"
       description="Get professional business and advertising solutions to enhance your church’s outreach. Build brand awareness with impactful marketing materials."
     >
-      <section id="personal-signature" className="bg-white">
+      <Box id="personal-signature" className="bg-white">
         <SectionBanner
           heading="Full business & advertising package for Your Church"
           desc="Transforming ideas into captivating visuals: our design services bring your brand to life!"
         />
 
-        <div className="container px-4 py-5">
+        <Box className="container px-4 py-5">
           <CategoryBtn />
-          <div className="p-5 md:mt-4">
-            <div
+          <Box className="p-5 md:mt-4">
+            <Box
               className={`flex flex-wrap max-w-[1024px] w-full mx-auto ${
                 isLoading && "justify-center"
               }`}
@@ -60,13 +60,13 @@ export default function CategoryPersonalSignatureScreen() {
                         iconColors={iconColors}
                         setIconColors={setIconColors}
                       />
-                      <div className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
+                      <Box className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
                         <img
                           className="max-w-[550px] w-full h-[500px] object-cover p-5"
                           src={categorySettings?.businessAdvertisingThumbnail}
                           alt=""
                         />
-                      </div>
+                      </Box>
                     </Fragment>
                   ) : (
                     <PackageCard
@@ -87,18 +87,18 @@ export default function CategoryPersonalSignatureScreen() {
                   />
                 )
               )}
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
 
-        <div className="bg-section__bg_color">
+        <Box className="bg-section__bg_color">
           <WhyChurchLogo
             imgUrl={categorySettings?.businessAdvertisingThumbnail2}
           />
-        </div>
+        </Box>
 
         <OurClientsLovesUs />
-      </section>
+      </Box>
     </Layout>
   );
 }

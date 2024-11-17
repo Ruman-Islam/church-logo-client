@@ -397,7 +397,7 @@ const MenuItems = ({
               className=" lg:border-0 hover:bg-gray-200 lg:hover:bg-transparent duration-300 rounded-none lg:rounded-full"
             >
               <MuiIButton
-                className="text-brand__black__color font-brand__font__600 hover:text-primary duration-300 py-3 lg:py-1.5 w-full text-start"
+                className="text-brand__black__color font-brand__font__600 hover:text-primary duration-300 py-3 lg:py-1.5 w-full text-start capitalize"
                 onClick={onModalOpen}
                 style={{ justifyContent: "flex-start" }}
               >

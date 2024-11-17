@@ -17,7 +17,7 @@ export default function JumpToTopBtn() {
     <Box
       onClick={() => handleJump()}
       className={`bg-primary hover:bg-success hover:animate-jumpToTop text-white fixed right-4 z-50 rounded-md duration-300 cursor-pointer p-2 ${
-        distance >= 2000 ? "bottom-[70px]" : "-bottom-12"
+        distance >= 2000 ? "bottom-[75px]" : "-bottom-14"
       }`}
     >
       {distance >= 2000 ? (

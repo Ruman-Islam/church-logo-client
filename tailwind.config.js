@@ -104,6 +104,8 @@ export default {
           "url('../src/assets/image/background/zero_place_background.jpg')",
         login_background_church_logo:
           "url('../src/assets/image/background/login_background_church_logo.jpg')",
+          church_logo_contact_us_bg:
+          "url('../src/assets/image/background/church_logo_contact_us_bg.jpg')",
       },
     },
   },

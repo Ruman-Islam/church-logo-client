@@ -15,9 +15,9 @@ export default function Footer() {
 
   return (
     <>
-      <section className="relative bg-brand__black__color py-5 px-4 text-white">
-        <div className="container px-4.5 py-5 md:py-10">
-          <div className="flex gap-16">
+      <section className="relative bg-brand__black__color py-5 text-white">
+        <div className="container px-4 py-5 md:py-10">
+          <div className="flex gap-16 px-4">
             <div className="hidden md:block basis-[25%]">
               <div>
                 <HashLink to="/#home" className="block mb-5">
@@ -110,8 +110,8 @@ export default function Footer() {
         </div>
 
         <div className="border-b w-full mx-auto my-5"></div>
-        <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-4.5">
-          <div className="flex items-center gap-5 text-gray-300">
+        <div className="flex flex-col gap-3 items-center xl:items-start md:flex-row justify-between container px-4">
+          <div className="flex items-center gap-5 text-gray-300 px-4">
             <a
               href="https://www.facebook.com/churchlogo"
               target="_blank"
@@ -151,7 +151,7 @@ export default function Footer() {
               All rights reserved Church Logo {year}
             </p>
           </div>
-          <div className="flex items-center gap-x-2">
+          <div className="flex items-center gap-x-2  px-4">
             <span className="text-brand__font__size__sm">by</span>
             <a href="https://zeroplace.co/" target="_blank">
               <img

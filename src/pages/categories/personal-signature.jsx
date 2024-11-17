@@ -1,15 +1,15 @@
-import { Skeleton } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import { Fragment, useState } from "react";
 import Layout from "../../components/common/Layout";
+import OurClientsLovesUs from "../../components/common/OurClientsLovesUs";
 import SectionBanner from "../../components/common/SectionBanner";
+import WhyChurchLogo from "../../components/common/WhyChurchLogo";
 import useTracking from "../../hooks/useTracking";
 import { useGetPackageListQuery } from "../../services/features/package/packageApi";
 import { useAppSelector } from "../../services/hook.js";
 import "../../styles/categories.css";
 import CategoryBtn from "./components/CategoryBtn";
-import OurClientsLovesUs from "./components/OurClientsLovesUs";
 import PackageCard from "./components/PackageCard";
-import WhyChurchLogo from "./components/WhyChurchLogo";
 
 export default function CategoryPersonalSignatureScreen() {
   useTracking();
@@ -34,18 +34,18 @@ export default function CategoryPersonalSignatureScreen() {
   return (
     <Layout
       title="Personal Signature - Custom Signature Logos for a Personal Touch"
-      description="Design a custom personal signature logo that reflects your unique identity. Perfect for individuals or ministries seeking a distinctive look."
+      description="Design a custom personal signature logo that reflects your unique identity. Perfect for inBoxiduals or ministries seeking a distinctive look."
     >
-      <section id="personal-signature" className="bg-white">
+      <Box id="personal-signature" className="bg-white">
         <SectionBanner
           heading="The complete signature logo package for Your Church"
           desc="Designing bespoke logos and personal signatures that resonate with your brand’s essence."
         />
 
-        <div className="container px-4 py-5">
+        <Box className="container px-4 py-5">
           <CategoryBtn />
-          <div className="p-5 md:mt-4">
-            <div
+          <Box className="p-5 md:mt-4">
+            <Box
               className={`flex flex-wrap max-w-[1024px] w-full mx-auto ${
                 isLoading && "justify-center"
               }`}
@@ -60,13 +60,13 @@ export default function CategoryPersonalSignatureScreen() {
                         iconColors={iconColors}
                         setIconColors={setIconColors}
                       />
-                      <div className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
+                      <Box className="basis-[100%] md:basis-[50%] md:border-b w-full h-full">
                         <img
                           className="max-w-[550px] w-full h-[450px] object-cover p-5"
                           src={categorySettings?.personalSignatureThumbnail}
                           alt=""
                         />
-                      </div>
+                      </Box>
                     </Fragment>
                   ) : (
                     <PackageCard
@@ -87,18 +87,18 @@ export default function CategoryPersonalSignatureScreen() {
                   />
                 )
               )}
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
 
-        <div className="bg-section__bg_color">
+        <Box className="bg-section__bg_color">
           <WhyChurchLogo
             imgUrl={categorySettings?.personalSignatureThumbnail2}
           />
-        </div>
+        </Box>
 
         <OurClientsLovesUs />
-      </section>
+      </Box>
     </Layout>
   );
 }

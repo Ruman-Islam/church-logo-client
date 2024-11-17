@@ -1,18 +1,20 @@
 import StarIcon from "@mui/icons-material/Star";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Rating,
+  Typography,
+} from "@mui/material";
 import Slider from "react-slick";
-import NextArrow from "../../../../components/common/Arrow/nextArrow";
-import PrevArrow from "../../../../components/common/Arrow/prevArrow";
-import useQueryParameter from "../../../../hooks/useQueryParameter";
-import { useGetReviewQuery } from "../../../../services/features/review/reviewApi";
-import { generateRandomHexColor } from "../../../../utils/generateRandomHexColor";
+import NextArrow from "../../../components/common/Arrow/nextArrow";
+import PrevArrow from "../../../components/common/Arrow/prevArrow";
+import useQueryParameter from "../../../hooks/useQueryParameter";
+import { useGetReviewQuery } from "../../../services/features/review/reviewApi";
+import { generateRandomHexColor } from "../../../utils/generateRandomHexColor";
 
 const settings = {
   dots: false,
@@ -74,7 +76,7 @@ export default function OurClientsLovesUs() {
   const reviews = data?.data || [];
 
   return !reviews.length ? null : (
-    <Box className="h-fit py-5 md:py-16 overflow-hidden">
+    <Box className="h-fit py-5 md:py-20 overflow-hidden">
       <h1 className="text-brand__font__size__lg md:text-brand__font__size__xl leading-tight text-center mb-2">
         Our clients love us
       </h1>
@@ -119,8 +121,8 @@ export default function OurClientsLovesUs() {
                   <Typography variant="body2" color="text.secondary">
                     <span>&ldquo;</span>
                     <span className="italic">
-                      {item?.reviewText.length > 90
-                        ? `${item?.reviewText.slice(0, 90)}...`
+                      {item?.reviewText.length > 80
+                        ? `${item?.reviewText.slice(0, 80)}...`
                         : item?.reviewText}
                     </span>
                     <span>&rdquo;</span>

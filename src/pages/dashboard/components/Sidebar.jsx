@@ -219,7 +219,7 @@ export default function Sidebar() {
                       </Typography>
                     </ListSubheader>
                     <PhotoProvider>
-                      <Box className="flex flex-wrap gap-1 px-4 max-h-[200px]overflow-y-auto custom-scrollbar">
+                      <Box className="flex flex-wrap gap-1 px-4 pb-4 max-h-[200px]overflow-y-auto custom-scrollbar">
                         {(item?.attachments || []).map((url, idx) => (
                           <PhotoView key={idx} src={url}>
                             <Box

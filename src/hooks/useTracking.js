@@ -8,11 +8,12 @@ const useTracking = () => {
 
   const [tracking] = useTrackingMutation();
 
+  const url = `https://api.ipdata.co?api-key=${env.ip_data_api_key}`;
+
   useEffect(() => {
-    fetch(env.ip_url)
+    fetch(url)
       .then((response) => response.json())
       .then(async (data) => {
-
         const newData = {
           pathname,
           ip: data?.ip || "",
@@ -34,7 +35,7 @@ const useTracking = () => {
       .catch((error) => {
         console.error("Error fetching user location:", error);
       });
-  }, [pathname, tracking]);
+  }, [pathname, tracking, url]);
 };
 
 export default useTracking;

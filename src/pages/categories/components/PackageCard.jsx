@@ -54,7 +54,7 @@ const PackageCard = ({ i, pg, iconColors, setIconColors }) => {
               {pg?.title}
             </h1>
             <div className="flex items-center gap-2 text-brand__font__size__sm">
-              <span className="text-brand__font__size__md font-brand__font__semibold">
+              <span className="text-brand__font__size__md">
                 ${packagePriceConversion(pg)}
               </span>
               {pg?.savings > 0 && (

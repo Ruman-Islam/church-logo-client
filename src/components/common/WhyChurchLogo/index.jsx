@@ -44,9 +44,13 @@ const RatingCard = (props) => {
   );
 };
 
-export default function WhyChurchLogo({ imgUrl }) {
+const WhyChurchLogo = ({ imgUrl, direction = "no-reverse" }) => {
+  const style = direction === "no-reverse" ? "flex-row" : "flex-row-reverse";
+
   return (
-    <Box className="flex flex-col lg:flex-row justify-center items-center gap-5 md:mt-10 rounded-md container py-10">
+    <Box
+      className={`flex flex-col lg:${style} justify-center items-center gap-5 md:mt-10 rounded-md container py-10`}
+    >
       <Box className="basis-full lg:basis-[60%] p-5">
         <Box className="leading-tight">
           <h2 className="text-[24px] md:text-[32px]">So, why Church Logo?</h2>
@@ -65,4 +69,6 @@ export default function WhyChurchLogo({ imgUrl }) {
       </Box>
     </Box>
   );
-}
+};
+
+export default WhyChurchLogo;

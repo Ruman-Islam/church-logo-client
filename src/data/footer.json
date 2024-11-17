@@ -45,6 +45,14 @@
       "route": "/privacy-policy#privacy"
     },
     {
+      "title": "About Us",
+      "route": "/about-us#about-us"
+    },
+    {
+      "title": "Contact Us",
+      "route": "/contact-us#contact-us"
+    },
+    {
       "title": "FAQ",
       "route": "/faq#faq"
     }

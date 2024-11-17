@@ -6,14 +6,14 @@ import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Layout from "../../components/common/Layout";
 import NoDataFound from "../../components/common/NoDataFound";
+import OurClientsLovesUs from "../../components/common/OurClientsLovesUs";
+import WhyChurchLogo from "../../components/common/WhyChurchLogo";
 import useScrollWithOffset from "../../hooks/useScrollWithOffset";
 import useTracking from "../../hooks/useTracking";
 import { useGetOnePackageQuery } from "../../services/features/package/packageApi";
 import { useAppSelector } from "../../services/hook";
 import { packagePriceConversion } from "../../utils/packagePriceConversion";
 import Faq from "./components/Faq";
-import OurClientsLovesUs from "./components/OurClientsLovesUs";
-import WhyChurchLogo from "./components/WhyChurchLogo";
 
 function getCategory(category) {
   if (category === "logo-design") {
@@ -202,7 +202,7 @@ export default function Package() {
             </div>
           </div>
 
-          <WhyChurchLogo thumbnail={packageInfo?.thumbnail2} />
+          <WhyChurchLogo imgUrl={packageInfo?.thumbnail2} direction="reverse" />
           <Faq faqs={faqs} />
           <OurClientsLovesUs />
         </section>
